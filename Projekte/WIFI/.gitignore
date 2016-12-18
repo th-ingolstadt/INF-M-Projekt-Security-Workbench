@@ -1,0 +1,9 @@
+
+*.pyc
+*.cap
+*.csv
+*.netxml
+interfaces
+hostapd-[0-9].[0-9]/
+hostapd-wpe/
+

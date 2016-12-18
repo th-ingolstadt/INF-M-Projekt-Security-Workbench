@@ -1,0 +1,11 @@
+**/__pycache__/**
+*.pyc
+*.cap
+*.csv
+*.netxml
+*.pem
+sharedkey-*
+.gdb_history
+BufferOverflow/FirstExample
+BufferOverflow/SecondExample
+peda-session-*.txt

@@ -1,0 +1,17 @@
+IMPORTANT NOTES FOR DEVELOPERS
+------------------------------
+
+Changes on files of the html directory in this folder 
+will automaticly be transfered to the html directory 
+of the apache2 web server.
+
+
+DO NOT CHANGE THE FILES ON THE FOLDER OF 
+APACHE2 WEB SERVER DIRECTLY!
+
+With the start of the Security Workbench all files 
+from the html folder located in this directory will be
+copied to the apache2 web server and any changes made 
+there will simply be overwritten.So development is 
+only allowed in the html folder you can find in this 
+directory (thi.2016.iCTF/Projekte/SQLInjection/html).
