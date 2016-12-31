@@ -10,6 +10,7 @@ import colors
 import generics
 from generics import rlinput,execute,clearScreen
 
+used_interface=""
 
 def DOS_Menu():
 	attack = True
@@ -31,12 +32,14 @@ def DOS_Menu():
 
 		#MONITOR MODE
 		generics.monitor_mode(wifi_name)
+		used_interface=wifi_name
 		
 		#KILL PROCESSES
 		generics.kill_wifi_proc()
 
 		#STEP 1 Check again
 		wifi_name = generics.check_wifi_name(wifi_name)
+		used_interface=wifi_name
 		
 		#STEP 2
 		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren): \n# ', 'airodump-ng ' +wifi_name )
@@ -129,6 +132,13 @@ def DOS_Menu():
 			attack = False
 			return False
 
+def sql_signal_handler(signal, frame):
+	#Stop Monitor Mode
+	os.system('airmon-ng stop ' + used_interface)
+	#ReStart Networkmanager
+	os.system("service network-manager restart")
+	print('\n\n Die Security Workbench wird beendet ... \n')
+	sys.exit(0)
 
 
 	#FINISHED DOS ATTACK

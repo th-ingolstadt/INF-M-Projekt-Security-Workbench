@@ -144,6 +144,13 @@ def Enterprise_Menu():
 			attack = False
 			return False
 
-
+def sql_signal_handler(signal, frame):
+	#Check if interfaces copied
+	if(os.path.isfile("/etc/network/interfaces_restore")):
+		os.system("mv /etc/network/interfaces_restore /etc/network/interfaces")	
+	#ReStart Networkmanager
+	os.system("service network-manager restart")
+	print('\n\n Die Security Workbench wird beendet ... \n')
+	sys.exit(0)
 
 	#FINISHED ENTERPRISE ATTACK

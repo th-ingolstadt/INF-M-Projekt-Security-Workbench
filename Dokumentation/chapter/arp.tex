@@ -1,10 +1,10 @@
 %!TEX root = ../document.tex
 \chapter{ARP Spoofing}
 \label{chapter_arp_spoofing}
-ARP Spoofing ist ein Man-In-The-Middle (MITM) Angriff, mit dem Ziel den Netzwerkverkehr von einem oder mehreren fremden Rechnern zu überwachen und zu manipulieren.
+ARP Spoofing ist ein Man-In-The-Middle-Angriff (MITM-Angriff) mit dem Ziel, den Netzwerkverkehr von einem oder mehreren fremden Rechnern zu überwachen und zu manipulieren.
 
 \section{Erklärung}
-Für die Kommunikation über ein Netzwerk wird die MAC-Adresse des Zielrechners genutzt. Da meist nur die IP-Adresse zur Verfügung steht, gibt es das Address Resolution Protocol (ARP) mit dessen Hilfe eine Verknüpfung zwischen den beiden Adressen hergestellt werden kann. Außerdem hat jeder Rechner eine ARP-Tabelle in der sämtliche bekannten Verknüpfungen zwischen IP- und ARP-Adresse gespeichert werden. In Abbildung \ref{fig:arp_tabelle_vorher} wird eine unveränderte ARP-Tabelle dargestellt. Es ist in jeder Zeile eine IP-Adresse mit der zugehörigen MAC-Adresse (Physische Adresse), sowie deren Typ zu sehen. Der Typ kann dabei statisch -- und damit nachträglich nicht mehr veränderbar -- oder dynamisch sein.
+Für die Kommunikation über ein Netzwerk wird die MAC-Adresse des Zielrechners genutzt. Da meist nur die IP-Adresse zur Verfügung steht, gibt es das Address Resolution Protocol (ARP), mit dessen Hilfe eine Verknüpfung zwischen den beiden Adressen hergestellt werden kann. Außerdem hat jeder Rechner eine ARP-Tabelle in der sämtliche bekannte Verknüpfungen zwischen IP- und ARP-Adresse gespeichert werden. In Abbildung \ref{fig:arp_tabelle_vorher} wird eine unveränderte ARP-Tabelle dargestellt. Es ist in jeder Zeile eine IP-Adresse mit der zugehörigen MAC-Adresse (physische Adresse), sowie deren Typ zu sehen. Der Typ kann dabei statisch -- und damit nachträglich nicht mehr veränderbar -- oder dynamisch sein.
 
 \begin{figure}
 	\centering
@@ -13,7 +13,7 @@ Für die Kommunikation über ein Netzwerk wird die MAC-Adresse des Zielrechners 
 	\label{fig:arp_tabelle_vorher}
 \end{figure}
 
-Möchte nun ein Rechner Daten versenden, so wird als erstes in der eigenen ARP-Tabelle nach dem Zielrechner gesucht. Existiert noch kein Eintrag, verschickt der Rechner einen ARP-Request an die Broadcast-MAC-Adresse, um die MAC-Adresse zu seiner Ziel-IP-Adresse von den anderen Netzwerkteilnehmern zu erfragen. Abbildung \ref{fig:arp_request} zeigt einen möglichen Aufbau eines solchen ARP-Request. Daraufhin schickt der Zielrechner seine MAC-Adresse mittels eines ARP-Replys direkt an den Quellrechner zurück. Ein beispielhafter Aufbau eines ARP-Replys ist in Abbildung \ref{fig:arp_reply} dargestellt. Der Quellrechner legt für diese Verknüpfung einen neuen Eintrag in seiner ARP-Tabelle an und kann daraufhin die Daten versenden.
+Möchte nun ein Rechner Daten versenden, so wird als erstes in der eigenen ARP-Tabelle nach dem Zielrechner gesucht. Existiert noch kein Eintrag, verschickt der Rechner einen ARP-Request an die Broadcast-MAC-Adresse, um die MAC-Adresse zu seiner Ziel-IP-Adresse von den anderen Netzwerkteilnehmern zu erfragen. Abbildung \ref{fig:arp_request} zeigt einen möglichen Aufbau eines solchen ARP-Requests. Daraufhin schickt der Zielrechner seine MAC-Adresse mittels eines ARP-Replys direkt an den Quellrechner zurück. Ein beispielhafter Aufbau eines ARP-Replys ist in Abbildung \ref{fig:arp_reply} dargestellt. Der Quellrechner legt für diese Verknüpfung einen neuen Eintrag in seiner ARP-Tabelle an und kann daraufhin die Daten versenden.
 
 \begin{figure}
 	\centering
@@ -29,7 +29,7 @@ Möchte nun ein Rechner Daten versenden, so wird als erstes in der eigenen ARP-T
 	\label{fig:arp_reply}
 \end{figure}
 
-Da 1982 bei Erscheinen des Protokolls nur dessen Funktionalität und nicht dessen Sicherheit relevant war, wurden die Schwächen des Protokolls erst im Nachhinein entdeckt. So wird bei einem eingehenden ARP-Reply nicht geprüft, ob es zuvor einen ARP-Request gab. Es wird also lediglich ein Eintrag in der ARP-Tabelle generiert oder ein bestehender Eintrag geändert.
+Da im Jahr 1982 bei Erscheinen des Protokolls nur dessen Funktionalität und nicht dessen Sicherheit relevant war, wurden die Schwächen des Protokolls erst im Nachhinein entdeckt. So wird bei einem eingehenden ARP-Reply nicht geprüft, ob es zuvor einen ARP-Request gab. Es wird also lediglich ein Eintrag in der ARP-Tabelle generiert oder ein bestehender Eintrag geändert.
 
 Dies kann sich ein Angreifer zu Nutze machen und sämtliche IP-Adressen mit seiner eigenen MAC-Adresse verknüpfen. Ein solcher manipulierter ARP-Reply ist in Abbildung \ref{fig:arp_fake_reply} dargestellt. Nach diesem ARP-Reply bekommt der Angreifer alle versendeten Daten und kann diese weiterleiten oder verändern. Ein Vergleich der Netzwerkkommunikation vor und nach der Manipulation der ARP-Tabelle ist in Abbildung \ref{fig:netzwerkverkehr_vergleich} skizziert.
 
@@ -57,20 +57,13 @@ Notwendige Hardware:
 \end{itemize}
 
 \section{Ablauf}
-Für das ARP Spoofing sind zwei unterschiedliche Tutorials vorhanden. Das erste Tutorial ist als Einstieg gedacht und beschreibt das Verändern der ARP-Tabelle an einem fremden Gerät. Das zweite Tutorial baut darauf auf und verändert dann die vom fremden Gerät aufgerufenen Homepages indem ein Youtubevideo eingebunden wird und automatisch abspielt.
+Für das ARP Spoofing sind zwei unterschiedliche Tutorials vorhanden. Das erste Tutorial ist als Einstieg gedacht und beschreibt das Verändern der ARP-Tabelle an einem fremden Gerät. Das zweite Tutorial baut darauf auf und verändert dann die vom fremden Gerät aufgerufenen Homepages indem ein YouTube-Video eingebunden und automatisch abspielt wird.
 
 Da es bei dieser Art von Attacke immer mindestens zwei Teilnehmer gibt, wird dies auch im Tutorial widergespiegelt. Es gibt die beiden Rollen \emph{Angreifer} und \emph{Opfer}, die für ein Gelingen der Attacke abwechselnd beschrieben werden.
 
 
 \subsection{Darstellung des Netzwerkverkehrs}
-\paragraph{Angreifer \& Opfer} Starte das Skripts auf der Kommandozeile: Navigiere dich mit Hilfe des \colorbox{altgray}{\lstinline|cd|}-Befehles zum Ordner der Sceurity Workbench und starte das Skript mit Hilfe des folgenden Befehles.
-\begin{lstlisting}
-sudo python securityWorkbench.py
-\end{lstlisting}
-(\colorbox{altgray}{\lstinline|sudo|} führt den folgenden Befehle mit Root-Rechten aus, \colorbox{altgray}{\lstinline|python <name>|} startet das Pythonscript mit dem angegebenen Namen)
-
-% Wiederholt sich das nicht ständig? -> eventuell eingangs einmal erklären
-Im Anschluss muss das Root-Passwort eingegeben werden, um das Skript komplett zu starten. Der Startbildschirm ist in Abbildung \ref{fig:scriptstart}).
+\paragraph{Angreifer \& Opfer} Starte die Security Workbench, falls noch nicht geschehen (siehe \ref{section_startWorkbench}: Einführung in das Arbeiten mit Linux). Der Startbildschirm ist in Abbildung \ref{fig:scriptstart} zu sehen. Wähle dort die Nummer 3 \enquote{ARP Spoofing Tutorials}
 
 \begin{figure}
 	\centering
@@ -78,8 +71,6 @@ Im Anschluss muss das Root-Passwort eingegeben werden, um das Skript komplett zu
 	\caption{Bildschirmausgabe beim Start des Security Workbench Skriptes auf der Konsole}
 	\label{fig:scriptstart}
 \end{figure}
-
-\paragraph{Angreifer \& Opfer} Wähle die Nummer 3 \enquote{ARP Spoofing Tutorials}
 
 \paragraph{Angreifer} Wähle Nummer 1 \enquote{Einfaches ARP-Spoofing als Angreifer}
 
@@ -103,7 +94,7 @@ arp -a
 ifconfig
 \end{lstlisting}
 
-\paragraph{Angreifer} Gib zunächst das verwendete Netzwerkinterface deines Rechners an (in der Regel eth0 bzw. wlan0) und führe mit folgendem Befehlen einen lokalen Netzwerkscan durch, um die IP-Adresse des Opfers herauszufinden. Wie in Abbildung \ref{fig:arpscan} zu sehen ist, werden nun die verfügbaren IP-Adressen des Netzwerks in einer Liste dargestellt.
+\paragraph{Angreifer} Gib zunächst das verwendete Netzwerkinterface deines Rechners an (in der Regel eth0 bzw. wlan0) und führe mit folgendem Befehlen einen lokalen Netzwerk-Scan durch, um die IP-Adresse des Opfers herauszufinden. Wie in Abbildung \ref{fig:arpscan} zu sehen ist, werden nun die verfügbaren IP-Adressen des Netzwerks in einer Liste dargestellt.
 \begin{lstlisting}
 arp-scan --interface eth0 --localnet
 \end{lstlisting}
@@ -122,7 +113,7 @@ ettercap -T -i eth0 -M ARP /192.168.178.65// ///
 \end{lstlisting}
 
 \begin{itemize}
-	\item \bashCommand{-T} sagt Ettercap es soll Informationen nur als Text darstellen und keine GUI verwenden
+	\item \bashCommand{-T} sagt Ettercap, dass es  Informationen nur als Text darstellen und keine GUI verwenden soll
 	\item \bashCommand{-i eth0} gibt das Interface an, das verwendet werden soll
 	\item \bashCommand{-M ARP /192.168.178.65// ///} benennt die Art des Angriffs und das Ziel, in diesem Fall soll ein Man-in-the-Middle Angriff mithilfe von ARP-Spoofing ausgeführt werden
 \end{itemize}
@@ -151,7 +142,7 @@ Beim Vergleichen der beiden Tabellen sollte auffallen, dass die dynamischen Eint
 \paragraph{Angreifer} Beende nun Ettercap durch drücken von \bashCommand{q}. Dadurch wird die ursprüngliche ARP-Tabelle des Opfers wiederhergestellt.
 
 \subsection{Manipulation der Webseiten}
-\paragraph{Angreifer \& Opfer} Starte das Skripts auf der Kommandozeile: Navigiere dich mit Hilfe des \colorbox{altgray}{\lstinline|cd|}-Befehles zum Ordner der Sceurity Workbench und starte das Skript mit Hilfe des Befehles: \colorbox{altgray}{\lstinline|sudo python securityWorkbench.py|}. Im Anschluss muss das Root-Passwort eingegeben werden, um das Skript komplett zu starten (vgl. Abbildung \ref{fig:scriptstart}).
+\paragraph{Angreifer \& Opfer} Starte die Security Workbench, falls noch nicht geschehen (siehe \ref{section_startWorkbench}: Einführung in das Arbeiten mit Linux). Der Startbildschirm ist in Abbildung \ref{fig:scriptstart} zu sehen. Wähle dort die Nummer 3 \enquote{ARP Spoofing Tutorials}
 
 \paragraph{Angreifer} Wähle Nummer 3 \enquote{ARP-Spoofing und Verwendung von Filtern}
 
@@ -178,7 +169,7 @@ ettercap -T -q -F /root/thi.2016.iCTF/Projekte/ARPspoofing/test.ef -i eth0 -M AR
 
 \begin{itemize}
 	\item \bashCommand{-T} Ausführung auf der Kommandozeile, keine GUI
-	\item \bashCommand{-q} steht für quiet, wodurch der Netzwerkverkehr nicht mehr in der Konsole dargestellt wird
+	\item \bashCommand{-q} steht für \enquote{quiet}, wodurch der Netzwerkverkehr nicht mehr in der Konsole dargestellt wird
 	\item \bashCommand{-F /root/thi.2016.iCTF/Projekte/ARPspoofing/test.ef} Verwendung eines Etterfilter-Skriptes
 	\item \bashCommand{-i eth0 } gibt das Interface an, das verwendet werden soll
 	\item \bashCommand{-M ARP /192.168.178.65// ///} benennt die Art des Angriffs und das Ziel, in diesem Fall soll ein Man-in-the-Middle Angriff mithilfe von ARP-Spoofing ausgeführt werden
@@ -186,7 +177,7 @@ ettercap -T -q -F /root/thi.2016.iCTF/Projekte/ARPspoofing/test.ef -i eth0 -M AR
 
 Nun wird der angegebene Filter auf alle Pakete angewendet, die von oder zu dem Opfer gesendet werden.
 
-\paragraph{Opfer} Rufe noch einmal die gleiche Homepage auf. Jetzt sollten das eingebundene Youtubevideo eingebunden sein und abgespielt werden.
+\paragraph{Opfer} Rufe noch einmal die gleiche Homepage auf. Jetzt sollten das eingebundene YouTube-Video eingebunden sein und abgespielt werden.
 
 \paragraph{Angreifer} Beende nun Ettercap durch drücken von "q". Dadurch wird die ursprüngliche ARP-Tabelle des Opfers wiederhergestellt.
 

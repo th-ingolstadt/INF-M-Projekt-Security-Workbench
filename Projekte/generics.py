@@ -118,3 +118,16 @@ def RunAsRoot():
 	if not os.geteuid() == 0:
 		sys.exit('Bitte dieses Skript als Root ausführen.')
 
+def Is5GHz():
+	print('WLAN-Frequenzband wählen: \n')
+	print ('1. 2.4Ghz \n'
+	+ '2. 5GHz\n')
+	try:
+		selection = input("Die Auswahl bitte hier eingeben und mit Enter bestätigen: ")
+	except SyntaxError:
+		selection=1
+	if(selection==1):
+		return False
+	else: 
+		return True
+

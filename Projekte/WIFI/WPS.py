@@ -89,5 +89,11 @@ def WPS_Menu():
 			return False
 
 
+def sql_signal_handler(signal, frame):
+	#ReStart Networkmanager
+	os.system("service network-manager restart")
+	print('\n\n Die Security Workbench wird beendet ... \n')
+	sys.exit(0)
+
 
 	#FINISHED WPS ATTACK

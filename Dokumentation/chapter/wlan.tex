@@ -2,6 +2,11 @@
 
 \chapter{WLAN-Sicherheit}
 
+Der Aufbau von WLAN-Netzen ist seit Jahren bzw. Jahrzehnten eine bequeme Alternative zu Verkablung per Ethernetkabel, um Client Zugang zu einem internen Netz oder dem World Wide Web zu gewähren. \\
+Dank der Einführung von schnellen heimischen Internetzugängen wird heutzutage in fast jedem Haushalt ein aktives WLAN-Netz betrieben. Und auch im Unternehmensumfeld wird oftmals WLAN zur Erhöhung der Arbeitsplatzflexibilität eingesetzt. \\
+Um die Sicherheit in einem solchen Drahtlosnetz zu gewährleisten wurden Algorithmen und Protokolle entwickelt die WLAN so sicher wie eine direkte Verbindung per Kabel machen sollten. Besonders im privaten Umfeld wurden/werden hier oft WEP, WPA-PSK und WPA2-PSK genutzt wohingegen im Unternehmen oftmals eine Enterprise-Variante von WPA/WPA2 zum Einsatz kommt. \\
+In diesem Kapitel werden nachfolgend die eben genannten Begriffe im Detail beleuchtet sowie deren Schwachstellen herausgearbeitet. Basierend auf diesen Schwachstellen werden Angriffe präsentiert und in Anleitungen der Ablauf erläutert. 
+
 \section{Erklärung}
 
 In der folgenden Abbildung ist das Szenario so abgebildet, wie es in den meisten nachfolgenden
@@ -33,10 +38,12 @@ Voraussetzungen für die weiteren Übungen:
 	\item Natives Kali Linux oder vom Labor bereitgestellter USB-Stick mit Kali Linux
 	\item Grundlegende Kenntnisse mit Linux
 \end{itemize}
-Weitere Informationen zu der Hardware, die vom Labor bezogen werden kann, findet man in der nun folgenden Untersektion.
+Weitere Informationen zur verwendeten Hardware, die auch vom Netzwerklabor bezogen werden kann, sind im Kapitel \ref{hw}  dargestellt. 
 
-\section{Hardware}
-
+\section{Hardware}\label{hw}
+Grundsätzlich lässt sich für die Durchführung jede beliebige Hardware einsetzen. Lediglich bei den einzusetzenden WLAN-Interfaces sollte auf Kompatibilität zu den verwendeten Tools geachtet werden.\\
+Nachfolgend werden die von den Autoren empfohlenen Komponenten genauer beleuchtet. 
+ 
 \subsection{TP-Link Archer C7}
  Der WLAN-Router Archer C7 von TP-LINK eignet sich perfekt für die Verwendung bei den Tutorials der Security-Workbench. Dank simultanem Dualband kann der Router Übertragungsgeschwindigkeiten bis zu 450 Mbit/s auf 2,4GHz und bis zu 1300 Mbit/s auf 5GHz erreichen. Weitere Informationen findet man auf der Herstellerwebseite \url{http://www.tp-link.de/products/details/cat-9_Archer-C7.html}.
 
@@ -153,7 +160,7 @@ Nachfolgend werden alle eingerichteten WLAN-Netze mit den dazugehörigen Keys/PS
 
 \subsection{Alfa AWUS051NH 802.11abgn USB Adapter Dual-Band 2.4GHz/5GHz}
 
-Der Alfa Adapter sollte grundsätzlich über Plug and Play unter Kali funktionieren. Er eignet sich als leistungsstarke externe USB-WLAN Karte für die hier durchgeführten Versuche. Der Adapter ist sowohl kompatibel mit aktuellen Verfahren wie WPA und WPA2, als auch mit veralteten Verfahren wie WEP. Er lässt sich mit Windows, Mac OS und gängigen Linux Distributionen verwenden.
+Der Hauptvorteil der Alfa USB-Adapters ist die Plug'n'Play-Fähigkeit unter Linux. Er eignet sich als leistungsstarke externe USB-WLAN Karte für die hier durchgeführten Versuche. Der Adapter ist sowohl kompatibel mit aktuellen Verfahren wie WPA und WPA2, als auch mit veralteten Verfahren wie WEP. Der Adapter unterstützt die Verwendung des Monitor-Mode und die Packet-Injection. Die Unterstützung dieser beiden Funktionen ist in den nachfolgenden Tutorials zwingend notwendig. Er lässt sich mit Windows, Mac OS und gängigen Linux Distributionen verwenden.
 Weitere Informationen findet man auf der Herstellerwebseite unter \url{https://www.alfa.com.tw/products_show.php?pc=67&ps=241}.
 
 \begin{figure}[H]
@@ -192,7 +199,8 @@ Für die Authentifizierung der Clients am Access Point sieht WEP zwei Varianten 
 			\caption{Challenge/Response bei WEP}
 			\label{fig:Challenge/Response bei WEP}
 		\end{figure}
-	Nach der Authentifizierung und Verbindung wird der zuvor ausgetauschte WEP-Schlüssel für die Verschlüsselung der Daten mit RC4 verwendet. Im ersten Moment erscheint die shared-Variante sicherer als die open-Variante, da diese keine Authentifizierung anbietet. Das ist allerdings irreführend, da es ist möglich, den Vorgang des Schlüsselaustauschs abzuleiten, der für den Handshake verwendet wird, indem er die Challenge-Frames in der Shared Key-Authentifizierung erfasst. Sollte also die Privatsphäre ein entscheidender Punkt sein, wäre es ratsamer die open-Variante zu nutzen. Allerdings sei hier noch einmal darauf hingewiesen, dass beide Verfahren als schwach zu bezeichnen sind.
+		
+	\noindent Nach der Authentifizierung und Verbindung wird der zuvor ausgetauschte WEP-Schlüssel für die Verschlüsselung der Daten mit RC4 verwendet. Im ersten Moment erscheint die shared-Variante sicherer als die open-Variante, da diese keine Authentifizierung anbietet. Das ist allerdings irreführend, da es möglich ist, den Vorgang des Schlüsselaustauschs abzuleiten, der für den Handshake verwendet wird, indem er die Challenge-Frames in der Shared Key-Authentifizierung erfasst. Sollte also die Privatsphäre ein entscheidender Punkt sein, wäre es ratsamer die open-Variante zu nutzen. Allerdings sei hier noch einmal darauf hingewiesen, dass beide Verfahren als schwach zu bezeichnen sind.
 
 	\subsection{WEP-Verschlüsselung}
 
@@ -212,7 +220,7 @@ Für die Authentifizierung der Clients am Access Point sieht WEP zwei Varianten 
 		\label{fig:WEP Entschlüsselung}
 	\end{figure}
 
-	Ein mit WEP verschlüsseltes Datenpaket besteht aus dem geheimen WEP-Schlüssel mit 40 oder 104 Bit Länge (WEP64 / WEP128), einer 32 Bit Prüfsumme der unverschlüsselten
+	\noindent Ein mit WEP verschlüsseltes Datenpaket besteht aus dem geheimen WEP-Schlüssel mit 40 oder 104 Bit Länge (WEP64 / WEP128), einer 32 Bit Prüfsumme der unverschlüsselten
 	Daten und, wie oben bereits erwähnt, einem 24 Bit langem Initialisierungsvektor, den WEP-Schlüssel zum Gesamtschlüssel auf 64 Bit oder 128 Bit verlängert und einmal pro
 	Datenpaket inkrementiert (-1) wird. \\
 	Das gesamte Datenpaket besteht aus den Daten und der 32 Bit-Prüfsumme. Dies wird
@@ -287,7 +295,7 @@ Die genaue Beschreibung des Vorgangs wird im folgenden Punkt beschrieben.
 
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.9\textwidth]{images/WLAN/sharedBSP.JPG}
+			\includegraphics[width=0.9\textwidth]{images/WLAN/sharedBsp.JPG}
 			\caption{Sharedkey Files}
 			\label{fig:Sharedkey Files}
 		\end{figure}
@@ -320,7 +328,7 @@ Die genaue Beschreibung des Vorgangs wird im folgenden Punkt beschrieben.
 	\end{enumerate}
 
 	\subsubsection{Aufzeichnen der WLAN Pakete mit airodump}
-	Nun muss der Netzwerkverkehr im Zielnetzwerk aufgezeichnet erden. Dies erledigt das
+	Nun muss der Netzwerkverkehr im Zielnetzwerk aufgezeichnet werden. Dies erledigt das
 	Werkzeug airodump mit folgendem Befehl: \\
 	\colorbox{altgray}{\lstinline|airodump-ng -c KANAL -w SSID --bssid BSSID wlanX|}
 	Die Pakete werden in einem .cap-File aufgezeichnet, welches im aktuellen Verzeichnis angelegt wird.
@@ -426,7 +434,7 @@ Nachfolgend nun exemplarische eine Möglichkeit einen WPA/WPA2-PSK zu cracken:
 	\item {Check des WLAN Adapter} \\
 	Falls ein externer Adapter verwendet wir, muss folgendes beachtet werden. Zuerst muss geprüft werden, ob der eingesteckte USB oder der interne WLAN-Adapter richtig erkannt wird und somit einsatzbereit ist. Dazu muss das Terminal geöffnet und der Befehl \colorbox{altgray}{\lstinline|ifconfig|} eingegeben werden.
 
-	Der Adapter sollte als Interface, meist wlan0 oder wlan1 (meist bei einem externen WLAN-Adapter), angezeigt werden. Im Folgenden muss bei allen Befehlen die Interface-Bezeichnung mit der hier Angezeigten ersetzt werden, da sie sich von Rechner zu Rechner abhängig von der Anzahl der installierten WLAN-Adapter unterscheiden kann.
+	Der Adapter sollte als Interface, meist wlan0 oder wlan1 (meist bei einem externen WLAN-Adapter), angezeigt werden. Im Folgenden muss bei allen Befehlen die Interface-Bezeichnung mit der hier Angezeigten ersetzt werden, da sie sich von Rechner zu Rechner abhängig von der Anzahl der installierten WLAN-Adapter unterscheiden kann. Der Name kann abhängig von der verwendeten Linux-Distribution auch stärker abweichen, weshalb die Verwendung von Kali-Linux empfohlen wird.
 
 	\item {Exkurs MAC-Spoofing} \\
 Im Sinne von Wireless Security sollte man sich immer im Klaren sein, dass ein Angreifer immer in der Lage ist seine MAC-Adresse zu verändern, weswegen dieser Absatz hier zwar aufgeführt ist aber in den Versuchsskripten nicht genutzt wird. Dieser Vorgang wird auch Spoofing genannt. Die MAC-Adresse ist eine herstellerspezifische Kennung, die fest einem Netzwerkgerät zugeordnet ist. Jede Adresse ist eindeutig. Findet man die MAC-Adresse eines Angreifers heraus, kann mit Hilfe dieser Identifikationskennung festgestellt werden, welchen Typ von Antenne er verwendet. Diese Erkenntnis kann helfen einen Angreifer zu identifizieren. Verwendet ein Angreifer nun eine gefälschte MAC-Adresse können keine Rückschlüsse auf seine Identität gezogen werden, da überall nur seine Fake-Adresse angezeigt wird. Zuerst muss dafür das WLAN Interface deaktiviert werden. Danach kann mit dem Kommando \colorbox{altgray}{\lstinline|macchanger|} die Adresse geändert werden:\newline
@@ -461,45 +469,53 @@ Im Sinne von Wireless Security sollte man sich immer im Klaren sein, dass ein An
 	\item {Aufzeichnen der WLAN Pakete mit \colorbox{altgray}{\lstinline|airodump-ng|}}\\
 	Im nächsten Schritt werden die WLAN Pakete aus der Umgebung aufgezeichnet. Damit möchte man einen Handshake zwischen dem zu hackenden Access Point und einem Client aufzeichnen. Anhand dessen kann anschließend das Passwort herausgefunden werden. Der Name des WLANs ändert sich hier für gewöhnlich es ist also eine weitere Runde mit \colorbox{altgray}{\lstinline|ifconfig|} sinnvoll, um sicherzustellen, dass man den korrekten WLAN-Namen verwendet. Mit dem folgenden Befehl können wir nun in den Aufzeichnungsmodus umschalten: \newline
 
-	\colorbox{altgray}{\lstinline|airodump-ng -b a wlanXmon|}\newline
-
+	\colorbox{altgray}{\lstinline|airodump-ng -b a wlanXmon|}
 	\begin{itemize}
-		\item \bashCommand{-b a} Führe den Scann im 5 GHz Band durch
+		\item \bashCommand{-b a} Führe den Scan auch im 5 GHz Band durch
 	\end{itemize}
 
-	Sollten keine Daten aufgezeichnet werden, dann sollte der Adapter mehrmals aus- und wieder eingesteckt werden. Nach einem Reconnect muss der Adapter natürlich wieder in den Monitoring Modus versetzt werden. Hat alles soweit geklappt, sollten alle erreichbaren SSIDs mit ihren jeweiligen Sendern angezeigt werden. Als nächstes sollte die MAC-Adresse und der verwendete Kanal des zu hackenden APs, sowie die SSID notiert werden. Anschließend kann durch einen neuen \colorbox{altgray}{\lstinline|airodump-ng|} Durchlauf mit der MAC und dem Kanal als Parameter (nähere Infos unter \colorbox{altgray}{\lstinline|man airodump-ng|} abrufbar) der Scann eingeschränkt werden. Zusätzlich kann auch der Name der Ausgabedatei festgelegt werden. Der Befehl sieht dann in etwa wie nachfolgend aus:\\
+	Sollten keine Daten aufgezeichnet werden, dann sollte der Adapter mehrmals aus- und wieder eingesteckt werden. Nach einem Reconnect muss der Adapter natürlich wieder in den Monitoring Modus versetzt werden. Hat alles soweit geklappt, sollten alle erreichbaren SSIDs mit ihren jeweiligen Sendern angezeigt werden. Als nächstes sollte die MAC-Adresse und der verwendete Kanal des zu hackenden APs, sowie die SSID notiert werden. Anschließend kann durch einen neuen \colorbox{altgray}{\lstinline|airodump-ng|} Durchlauf mit der MAC und dem Kanal als Parameter (nähere Infos unter \colorbox{altgray}{\lstinline|man airodump-ng|} abrufbar) der Scan eingeschränkt werden. Zusätzlich kann auch der Name der Ausgabedatei festgelegt werden. Der Befehl sieht dann in etwa wie nachfolgend aus:\\
 	\\
-	\colorbox{altgray}{\lstinline|airodump-ng -c Kanal -b a --bssid BSSID --showack -w Filename wlanXmon|} \\
-
+	\colorbox{altgray}{\lstinline|airodump-ng -c Kanal -b a --bssid BSSID --showack -w Filename wlanXmon|}
 	\begin{itemize}
 		\item \bashCommand{-c} Kanal des Ziels angeben
-		\item \bashCommand{-b a} Führe den Scann im 5 GHz Band durch
+		\item \bashCommand{-b a} Führe den Scan auch im 5 GHz Band durch
 		\item \bashCommand{--bssid} BSSID (MAC) des Ziels angeben
 		\item \bashCommand{--showack} Erweiterte Ausgabe bezüglich ACKs
 		\item \bashCommand{-w} Prefix für die Ausgabedatei angeben (z. B. SSID des Ziels)
-	\end{itemize}
-
+	\end{itemize} 
 
 	Verbindet sich nun ein Client auf den AP, so kann der 4-way-handshake mitgelesen werden, was auch in der Konsole, in der rechten oberen Ecke, angezeigt wird. Hat dies funktioniert, ist der erste Schritt für das Hacken des Passworts abgeschlossen. Um diesen Vorgang zu beschleunigen, kann mithilfe von \colorbox{altgray}{\lstinline|aireplay-ng|} ein Verbindungsabbruch eines Clients erzwungen werden, wodurch dieser sich erneut mithilfe eines 4-way-handshakes verbinden muss. Dazu wird folgender Befehl verwendet:\newline\newline
 
-	\colorbox{altgray}{\lstinline|aireplay-ng --deauth 100 -a router_bssid wlanXmon|} \\
-
+	\colorbox{altgray}{\lstinline|aireplay-ng --deauth 100 -a router_bssid wlanXmon|}
 	\begin{itemize}
 		\item \bashCommand{--deauth} Attackmode Deauth auswählen, mit Anzahl der zu sendenden Pakete
 		\item \bashCommand{-a} Angabe der BSSID
 	\end{itemize}
+	
+	\item Betriebsfähigkeit wiederherstellen \\
 
+	Um diesen und auch andere WLAN-Adapter nach diesen Schritten wieder wie gewohnt nutzen zu können, muss der Monitor Mode beendet und der Network-Manager neugestartet werden. Dies geschieht über die Befehle:\\
+	\\
+	\colorbox{altgray}{\lstinline|airmon-ng stop wlanXmon|}\\
+	und\\
+	\colorbox{altgray}{\lstinline|service network-manager restart|}\\
+	\\
+	Dadurch sollten die WLAN-Adapter wieder problemlos nutzbar sein.
 
 	\item Cracken des Passworts \\
 	Zum Cracken des Passworts werden nachfolgend zwei Tools verwendet und vorgestellt.
 	\end{enumerate}
+	
+	
+
 
 	\subsubsection{Cracken des Passwortes mittels aircrack-ng}
 	\begin{enumerate}
 	\item Dictionary Attacke mit \colorbox{altgray}{\lstinline|aircrack-ng|} \\
 	Dazu wird ein Dictionary File mit allen Passwörtern benötigt, die auf Übereinstimmung mit dem PSK gecheckt werden sollen. Im Projekt-Verzeichnis sollte bereits ein Beispiel-Dictionary mit den Passwörtern der Vorführgeräte vorbereitet sein. Mit folgendem Befehl kann der Dictionary-Angriff gestartet werden:
 
-	\colorbox{altgray}{\lstinline|aircrack-ng -w dict.file -b BSSID File.cap|}\newline
+	\colorbox{altgray}{\lstinline|aircrack-ng -w dict.file -b BSSID File.cap|}
 	\begin{itemize}
 		\item \bashCommand{-w} Angabe des Dictionarys
 		\item \bashCommand{-b} Angabe der BSSID des Ziels
@@ -507,7 +523,7 @@ Im Sinne von Wireless Security sollte man sich immer im Klaren sein, dass ein An
 
 	\item Brutefore Angriff mit \colorbox{altgray}{\lstinline|aircrack|} und \colorbox{altgray}{\lstinline|crunch|}\\
 	\\
-	\colorbox{altgray}{\lstinline|crunch 8 12 abcdeABCDE {|} aircrack-ng --bssid BSSID -w- hack-wifi-01.cap|}\newline
+	\colorbox{altgray}{\lstinline|crunch 8 12 abcdeABCDE {|} aircrack-ng --bssid BSSID -w- hack-wifi-01.cap|}
 	\begin{itemize}
 		\item \bashCommand{8 12} Minimale und Maximale Passwortlänge
 		\item \bashCommand{abcdeABCDE} Verwendete Zeichen
@@ -517,38 +533,46 @@ Im Sinne von Wireless Security sollte man sich immer im Klaren sein, dass ein An
 	\end{enumerate}
 
 	\subsubsection{Cracken des Passwortes mittels hashcat}
-	Bei \colorbox{altgray}{\lstinline|hashcat|} handelt es sich wohl um den derzeit schnellsten Passwortcracker auf dem Markt. Wir verwenden ihn als Alternative zu \colorbox{altgray}{\lstinline|crunch|}. Das Entschlüsseln mit \colorbox{altgray}{\lstinline|hashcat|} wird in den beiliegenden Versuchsskripten nicht verwendet. \colorbox{altgray}{\lstinline|Hashcat|} verwendet die GPU, was bei Notebooks und virtuellen Umgebungen zu Problemen führt. Der Vollständigkeit wegen wurde \colorbox{altgray}{\lstinline|hashcat|} dennoch aufgeführt und kann bei Interesse mit den nachfolgenden Befehlen getestet werden, wenn die verwendete Grafikkarte mit \colorbox{altgray}{\lstinline|hashcat|} kompatibel ist. Wichtig ist auch, dass eine dedizierte Grafikkarte benötigt wird. Mit dem nachfolgendem Befehl wir die cap-Datei in eine hccap-Datei umgewandelt, was der erste Schritt zur Nutzung von \colorbox{altgray}{\lstinline|hashcat|} ist.\newline
+	Bei \colorbox{altgray}{\lstinline|hashcat|} handelt es sich wohl um den derzeit schnellsten Passwortcracker auf dem Markt, der als Alternative zu \colorbox{altgray}{\lstinline|crunch|} und \colorbox{altgray}{\lstinline|aircrack-ng|} verwendet werden kann.  \colorbox{altgray}{\lstinline|Hashcat|} verwendet die GPU, was bei Notebooks, virtuellen Umgebungen und Live-Systemen ohne proprietäre Grafiktreiber zu Problemen führen kann, weswegen das Cracken mit \colorbox{altgray}{\lstinline|hashcat|} in den beiliegenden Versuchsskripten nicht verwendet wird. Mit einer aktuelle Grafikkarte wie der "`nVidia GeForce GTX 1080"' (Stand Dezember 2016) können dabei bis zu 400.000 Passwörter pro Sekunde überprüft werden. Der Vollständigkeit wegen wurde \colorbox{altgray}{\lstinline|hashcat|} dennoch aufgeführt und kann bei Interesse mit den nachfolgenden Befehlen getestet werden,falls die verwendete Grafikkarte mit \colorbox{altgray}{\lstinline|hashcat|} kompatibel ist. Wichtig ist auch, dass eine dedizierte Grafikkarte mit OpenCL-fähigen Treibern benötigt wird.\newline
+Mit dem nachfolgendem Befehl wir die cap-Datei in eine hccap-Datei umgewandelt, was der erste Schritt zur Nutzung von \colorbox{altgray}{\lstinline|hashcat|} ist.\newline
 	\\
-	\colorbox{altgray}{\lstinline|aircrack-ng Filename.cap -J newFilename|}\newline
-	Filename.cap = Pfad bzw. Name des alten .cap files\newline
-	Pfad bzw. Name des neuen .hccap file\newline\newline
-	Mit \colorbox{altgray}{\lstinline|hashcat --help|} kann eine Hilfeseite aufgerufen werden in welcher der Befehl, die Parameter und die Verwendung genauer erläutert werden. Falls Probleme auftreten oder detailliertere Einstellungen vorgenommen werden sollen, kann die Hilfeseite die erste Anlaufstelle sein.
+	\colorbox{altgray}{\lstinline|aircrack-ng Filename.cap -J newFilename|}
+	\begin{itemize}
+		\item \bashCommand{Filename.cap} Pfad bzw. Name des alten .cap files
+		\item \bashCommand{-J newFilename} Angabe des Pfads bzw. Namens des neuen .hccap file
+	\end{itemize}
+	Mit \colorbox{altgray}{\lstinline|hashcat --help|} kann eine Hilfeseite aufgerufen werden in welcher der Befehl, die Parameter und die Verwendung genauer erläutert werden. Falls Probleme auftreten oder detailliertere Einstellungen vorgenommen werden sollen, sollte die Hilfeseite die erste Anlaufstelle sein.
 	\begin{enumerate}
 
 	\item Dictionary-Attacke mit \colorbox{altgray}{\lstinline|hashcat|}
 
-	\colorbox{altgray}{\lstinline|hashcat -m 2500 capture.hccap dict.txt|}\newline
-	-m 2500 = Anweisung, dass ein WPA/WPA2 Key gecrackt werden soll\newline
-	caputre.cap = Pfad bzw. Name des hccap file\newline
-	dict.txt = Pfad bzw. Name des dictionary file
+	\colorbox{altgray}{\lstinline|hashcat -m 2500 capture.hccap dict.txt|}
+	\begin{itemize}
+		\item \bashCommand{-m 2500} Art des Hashes (2500 für WPA/WPA2)
+		\item \bashCommand{capture.hccap}  Pfad bzw. Name der hccap Datei
+		\item \bashCommand{dict.txt} Pfad bzw. Name der Dictionary Datei
+	\end{itemize}
 
-	Anschließend wird das Dictionary genutzt, um das Passwort zu finden. Mit Enter kann der aktuelle Status des Vorgangs abgefragt werden.
+	Dadurch wird das Dictionary genutzt, um das Passwort zu finden. Mit Enter kann der aktuelle Status des Vorgangs abgefragt werden.
 	\\
 	\item Bruteforce-Attacke mit \colorbox{altgray}{\lstinline|hashcat|}
 
-	\colorbox{altgray}{\lstinline|hashcat -m 2500 -a3 capture.hccap ?d?d?d?d?d?d?d?d (?d = 0-9)|}\newline
-%	\begin{itemize}
-%		\item \bashCommand{-m 2500} Art des Hashes (2500 für WPA/WPA2)
-%		\item \bashCommand{-a3} Verwende Bruteforce \newline
-%		\item \bashCommand{?d..?d} Definierte Maske fuer zu testenden Passwortkandidaten, Anzahl entspricht "`bis zu Länge'\newline
-%		\begin{itemize}
-%			Weitere Optionen:\newline
-			%\item \bashCommand{?l} abcdefghi...yz\newline
-			%\item \bashCommand{?u} ABCDEFGHI...YZ\newline
-			%\item \bashCommand{?s} Sonderzeichen\newline
-			%\item \bashCommand{?a} ?l?u?s?\newline
-	%	\end{itemize}
-%	\end{itemize}
+	\colorbox{altgray}{\lstinline|hashcat -m 2500 -a3 capture.hccap ?d?d?d?d?d?d?d?d|}\newline
+	\begin{itemize}
+		\item \bashCommand{-m 2500} Art des Hashes (2500 für WPA/WPA2)
+		\item \bashCommand{-a3} Verwende Bruteforce
+		\item \bashCommand{capture.hccap}  Pfad bzw. Name der hccap Datei
+		\item \bashCommand{?d..?d} Definierte Maske fuer zu testenden Passwortkandidaten, Anzahl entspricht "`bis zu Länge'\newline
+			Optionen:
+			\begin{itemize}
+				\item \bashCommand{?l} abcdefghi...yz
+				\item \bashCommand{?u} ABCDEFGHI...YZ
+				\item \bashCommand{?s} Sonderzeichen
+				\item \bashCommand{?d} 0123456789
+				\item \bashCommand{?b} 0x00 - 0xFF
+				\item \bashCommand{?a} ?l?u?d?s
+			\end{itemize}
+	\end{itemize}
 
 	Bei der Bruteforce Attacke werden alle Kombinationen von Buchstaben bis zu einer bestimmten Länge getestet. Als letzter Parameter kann eine Art Maske angegeben werden, mit welcher die Länge und die zu testenden Ziffern, Buchstaben und Zeichen festgelegt werden. Im Beispiel werden alle bis zu neun stelligen Zahlenkombinationen von \colorbox{altgray}{\lstinline|hashcat|} durchprobiert.\newline
 
@@ -595,6 +619,11 @@ Um die Zugangsdaten eines Nutzers eines Enterprise-Mode WLANs zu erhalten, muss 
 	\end{itemize}
 	\item {Starten des Fake-AP}\\
 	Da nun alle Konfigurationen erfolgt sind, kann der Fake-AP in Betrieb genommen werden und auf die ersten Opfer gewartet werden. Der Fake-AP lässt sich komfortabel mit dem Skript \colorbox{altgray}{\lstinline|startFakeAP.sh|} gestartet werden. Dieses startet den hostapd-Deamon mit der zuvor festgelegten Konfiguration. Bei jedem Authentifikationsversuch wird nun auf der Konsole die gesendete Challenge und erhaltene Response ausgegeben.
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=0.85\textwidth]{images/WLAN/Enterprise.png}
+		\caption{Enterprise Fake-AP Challenge-Response}
+	\end{figure}
 	\item {Cracken des Passwortes}\\
 	Um nun aus der aufgenommenen Challenge und Response das Passwort zu extrahieren, muss ein Bruteforce- oder Wörterbuch-Angriff durchgeführt werden. \\
 	Ein Wörterbuch-Angriff kann beispielsweise mittels \colorbox{altgray}{\lstinline|asleap|} erfolgen: \\
@@ -616,9 +645,9 @@ Die grundlegende Funktionsweise von WPS lässt sich auf drei primäre Ansätze d
 Die Varianten werden hier näher beschrieben:
 
 \begin{itemize}
-	\item Push-butten Konfiguration: Bei der Push-button Variante wird mit einem Knopfdruck für eine bestimmte Zeit Zugang zu einem WLAN ermöglicht. Zu diesem Zeitpunkt können sich alle Geräte die sich in Reichweite des WLANs befinden verbinden. Der Knopf muss nicht unbedingt physischer Natur sein sondern kann auch softwareseitig sein. Das gerade hier Probleme auftreten können, in Gebieten wo sich viele WLAN-fähige Geräte befinden muss wohl nicht extra erwähnt werden.
+	\item Push-butten Konfiguration: Bei der Push-button Variante wird mit einem Knopfdruck für eine bestimmte Zeit Zugang zu einem WLAN ermöglicht. Zu diesem Zeitpunkt können sich alle Geräte die sich in Reichweite des WLANs befinden verbinden. Der Knopf muss nicht unbedingt physischer Natur sein sondern kann auch softwareseitig sein. Gerade hier können Probleme auftreten, in Gebieten wo sich viele WLAN-fähige Geräte befinden, muss wohl nicht extra erwähnt werden.
 
-	\item PIN Eingabe: Bei dieser Variante wird vom WLAN-Router ein Pin bereitgestellt mit dem sich ein Gerät im WLAN anmelden kann. Es ist sowohl möglich, dass dynamisch vom Gerät ein Pin bereitgestellt wird oder, dass ein einzigartiger Pin vom Router bereitgestellt wird. Der Pin soll problematische Verbindungen verhindern und eine zusätzliche Sicherheit bieten damit sich nicht einfach jedes Gerät in Reichweite verbinden kann, sollte die Push-button Methode angewendet werden. Wie der Authentifizierungsprozess des Pin-Verfahrens genau funktioniert wird später erklärt.
+	\item PIN Eingabe: Bei dieser Variante wird vom WLAN-Router ein Pin bereitgestellt mit dem sich ein Gerät im WLAN anmelden kann. Es ist sowohl möglich, dass dynamisch vom Gerät ein Pin bereitgestellt wird oder, dass ein einzigartiger Pin vom Router bereitgestellt wird. Der Pin soll problematische Verbindungen verhindern und eine zusätzliche Sicherheit bieten damit sich nicht einfach jedes Gerät in Reichweite verbinden kann, sollte die Push-button Methode angewendet werden. Wie der Authentifizierungsprozess des Pin-Verfahrens genau funktioniert, wird später erklärt.
 
 	\item Near Field Communication (NFC): NFC kann genutzt werden ohne eine manuelle Eingabe ein Gerät in ein WLAN aufzunehmen. Hier muss sehr intensiv darauf geachtet werden, dass Sicherheitsmaßnahmen getroffen werden, damit sich nicht unbekannte oder gefährliche Geräte mit dem WLAN verbinden.
 \end{itemize}
@@ -646,32 +675,31 @@ Folgender Vorgang zeigt den Ablauf einer Authentifizierung bei der WPS-Pin-Einga
 
 Das Aktivieren der WPS-PIN-Methode im Access Point führt bei vielen Modellen dazu, dass ein fremdes Gerät über eine Brute-Force-Methode innerhalb weniger Stunden eine Verbindung herstellen kann und somit auch den Sicherheitsschlüssel unabhängig von dem verwendeten Verschlüsselungsverfahren erhält. \\
 Durch einen verbreiteten Fehler in der Implementierung ist es dabei oft nur nötig, eine vierstellige sowie eine dreistellige PIN zu erwürfeln, was die Zahl der Möglichkeiten deutlich verringert. Bei einer Verbindung mittels WPS kann nahezu unmittelbar nach Herstellung der Verbindung das zum Access Point gehörige Wi-Fi-Passwort als Klartext ausgelesen werden. Es ist daher ratsam, die Funktion nicht oder nur als letzte Möglichkeit zu aktivieren, die Anmeldung des Geräts zu prüfen und WPS danach wieder abzuschalten. Nach der Anmeldung sollte auf Anzeichen von unbefugtem Zugriff auf das Netzwerk geachtet und gegebenenfalls das Wi-Fi-Passwort neu gesetzt werden. \\
-Bei einigen der betroffenen Access Points ist die WPS-Funktion, obwohl sie in den Einstellungen deaktiviert wurde, weiterhin aktiv. Außerdem bieten auch einige ältere Modelle die Möglichkeit einen Pin selbst zu bestimmen was ebenfalls problematisch sein kann wenn man einen zu einfachen Pin wählt.
+Bei einigen der betroffenen Access Points ist die WPS-Funktion, obwohl sie in den Einstellungen deaktiviert wurde, weiterhin aktiv. Außerdem bieten auch einige ältere Modelle die Möglichkeit einen Pin selbst zu bestimmen, was ebenfalls problematisch sein kann wenn man einen zu einfachen Pin wählt.
 
 \subsection{Cracking des WPS-Schlüssels}
 Folgender Vorgang soll den Ablauf des Hackvorgangs beim WPS-Verfahren zeigen:
 
 \subsubsection{Check des WLAN-Interfaces}
-	Falls ein externer Adapter verwendet wir, muss folgendes beachtet werden. Zuerst muss geprüft werden, ob der eingesteckte USB WLAN-Adapter erkannt wird und somit einsatzbereit ist, falls dieser verwendet wird. Dazu muss das Terminal öffnen in Kali Linux öffnen und den Befehl \colorbox{altgray}{\lstinline|ifconfig|} eingeben.
+	Falls ein externer Adapter verwendet wird, muss folgendes beachtet werden. Zuerst muss geprüft werden, ob der eingesteckte USB WLAN-Adapter erkannt wird und somit einsatzbereit ist, falls dieser verwendet wird. Dazu muss das Terminal öffnen in Kali Linux öffnen und den Befehl \colorbox{altgray}{\lstinline|ifconfig|} eingeben.
 
-	Der Adapter sollte als Interface, meist WLAN0 oder WLAN1 (meist bei einem externen WLAN-Adapter), angezeigt werden. Im Folgenden muss bei allen Befehlen die Interface-Bezeichnung mit der hier angezeigten ersetzt werden, da sie sich von Rechner zu Rechner unterscheiden kann.
+	\noindent Der Adapter sollte als Interface, meist WLAN0 oder WLAN1 (meist bei einem externen WLAN-Adapter), angezeigt werden. Im Folgenden muss bei allen Befehlen die Interface-Bezeichnung mit der hier angezeigten ersetzt werden, da sie sich von Rechner zu Rechner unterscheiden kann.
 
 	\subsubsection{Das Interface in den Monitor Mode versetzen}
 	Damit im WLAN Pakete aufgezeichnet werden können, muss sich die WLAN-Karte oder der Adapter im Monitor Mode befinden. \\
 	Dies wird mit folgendem Befehl erreicht: \\
 	\colorbox{altgray}{\lstinline|airmon-ng start wlanX|} \\
 
-	Zusätzlich wird nach dem Versetzen in den Monitor Mode erneut der Name des WLAN-Adapters mit \colorbox{altgray}{\lstinline|ifconfig|} nachgesehen, da sich der Name des Adapters ändern kann. Mit dem Befehl \colorbox{altgray}{\lstinline|airmon-ng check kill|} werden zusätzlich alle laufenden Prozesse, die Probleme verursachen könnten, beendet.
+	\noindent Zusätzlich wird nach dem Versetzen in den Monitor Mode erneut der Name des WLAN-Adapters mit \colorbox{altgray}{\lstinline|ifconfig|} nachgesehen, da sich der Name des Adapters ändern kann. Mit dem Befehl \colorbox{altgray}{\lstinline|airmon-ng check kill|} werden zusätzlich alle laufenden Prozesse, die Probleme verursachen könnten, beendet.
 
 	\subsubsection{Scannen der WLANs \colorbox{altgray}{\lstinline|airodump-ng|}}
-	Im nächsten Schritt werden die WLAN Pakete aus der Umgebung aufgezeichnet. Damit möchte man einen Handshake zwischen dem zu hackenden Access Point und einem Client aufzeichnen. Anhand dessen kann anschließend das Passwort herausgefunden werden. Der Name des WLANs ändert sich hier für gewöhnlich es ist also eine weitere Runde mit \colorbox{altgray}{\lstinline|ifconfig|} sinnvoll, um sicherzustellen, dass man den korrekten WLAN-Namen verwendet. Mit dem folgenden Befehl können wir nun in den Aufzeichnungsmodus umschalten: \newline
+	Im nächsten Schritt werden die WLAN Pakete aus der Umgebung aufgezeichnet. Damit möchte man einen Handshake zwischen dem zu hackenden Access Point und einem Client aufzeichnen. Anhand dessen kann anschließend das Passwort herausgefunden werden. Der Name des WLANs ändert sich hier für gewöhnlich, es ist also eine weitere Runde mit \colorbox{altgray}{\lstinline|ifconfig|} sinnvoll, um sicherzustellen, dass man den korrekten WLAN-Namen verwendet. Mit dem folgenden Befehl können wir nun in den Aufzeichnungsmodus umschalten: \newline
 	\colorbox{altgray}{\lstinline|airodump-ng -b a wlanXmon|}\newline
 	\begin{itemize}
-		\item Falls wir im im 5GHz Bereich scannen möchten muss der Parameter -b a mitgegeben werden. Falls nicht, kann der Parameter einfach weggelassen werden
+		\item Falls wir im 5GHz Bereich scannen möchten muss der Parameter -b a mitgegeben werden. Falls nicht, kann der Parameter einfach weggelassen werden
 		\item wlanXmon steht für die SSID des eigenen Adapters im Monitor Mode
 	\end{itemize}
-
-	 Sollten keine Daten aufgezeichnet werden, dann den Adapter mehrmals aus- und wieder einstecken. Nach einem Reconnect muss der Adapter natürlich wieder in den Monitoring Modus versetzt werden. Hat alles soweit geklappt, sollten alle erreichbaren SSIDs mit ihren jeweiligen Sendern angezeigt werden. Als nächstes sollte die MAC-Adresse und der verwendete Kanal des zu hackenden APs notiert.
+Sollten keine Daten aufgezeichnet werden, dann den Adapter mehrmals aus- und wieder einstecken. Nach einem Reconnect muss der Adapter natürlich wieder in den Monitoring Modus versetzt werden. Hat alles soweit geklappt, sollten alle erreichbaren SSIDs mit ihren jeweiligen Sendern angezeigt werden. Als nächstes sollte die MAC-Adresse und der verwendete Kanal des zu hackenden APs notiert werden.
 
 	\subsubsection{Beginn des Angriffs mit \colorbox{altgray}{\lstinline|wash|} und \colorbox{altgray}{\lstinline|reaver|}}
 
@@ -691,17 +719,16 @@ Folgender Vorgang soll den Ablauf des Hackvorgangs beim WPS-Verfahren zeigen:
 					\includegraphics[width=0.9\textwidth]{images/WLAN/WashWPS.jpg}
 					\caption{Wash Ausgabe}
 					\label{fig:Wash Ausgabe}
-				\end{figure}
-
-
-	Nach der Ausgabe von \colorbox{altgray}{\lstinline|wash|} wird nun die WPS-PIN geknackt und der WPA2-PSK extrahiert mit dem Aufruf von \colorbox{altgray}{\lstinline|reaver|} der wie folgt lautet:
+				\end{figure} 
+				
+\noindent Nach der Ausgabe von \colorbox{altgray}{\lstinline|wash|} wird nun die WPS-PIN geknackt und der WPA2-PSK extrahiert mit dem Aufruf von \colorbox{altgray}{\lstinline|reaver|} der wie folgt lautet:
 	\colorbox{altgray}{\lstinline|reaver -i wlanXmon -b BSSID|}
 			\begin{itemize}
 				\item -b spezifiziert hierbei das Ziel des Angriffs das zuvor durch \colorbox{altgray}{\lstinline|wash|}
 				\item -i spezifiziert auch hier den WLAN-Adapter
 			\end{itemize}
 
-		Folgende Abbildung zeigt wie die Ausgabe aussieht. Das weiße Feld würde im optimalen Fall das Ergebnis enthalten.
+	\noindent Folgende Abbildung zeigt wie die Ausgabe aussieht. Das weiße Feld würde im optimalen Fall das Ergebnis enthalten.
 
 						\begin{figure}[H]
 							\centering
@@ -721,7 +748,7 @@ Folgender Vorgang soll den Ablauf des Hackvorgangs beim WPS-Verfahren zeigen:
 					\item -e der Name des Ziel-Access Points
 				\end{itemize}
 
-	Sollte das Ziel verwundbar sein für einen WPS-Angriff wird \colorbox{altgray}{\lstinline|bully|} das Passwort nach einiger Zeit ausgeben.
+\noindent Sollte das Ziel verwundbar sein für einen WPS-Angriff wird \colorbox{altgray}{\lstinline|bully|} das Passwort nach einiger Zeit ausgeben.
 
 \subsection{Fazit}
 
@@ -732,38 +759,75 @@ Die Probleme früherer Geräte mit WPS, die unter dem obigen Kapitel aufgeführt
 \section{DoS}
 Ein Denail of Service-Angriff hat das Ziel, ein Netzwerk oder einen Server zu blockieren. Im Grunde basiert es einfach darauf durch eine Masse von Anfragen das Ziel zu überlasten und es im optimalen Fall zum Absturz zu bringen. Ein Erfolg ist hier also nicht Zugang zum Netz zu erhalten, sondern das Ziel möglichst lange in seinen Diensten einzuschränken, zu blockieren oder unbenutzbar zu machen. Dazu werden die zur Verfügung stehenden Programme oder Netzwerk-Ressourcen außerordentlich überbelastet, manchmal auch kollektiv von tausenden Nutzern. Große Ziele, also zum Beispiel Firmenserver die ohnehin starken Datenverkehr gewohnt sind, können nicht von einem einzigen eifrigen Angreifer mit seinem heimischen Computer in Bedrängnis gebracht werden. Außerdem wird an dieser Stelle darauf hingewiesen, dass hier von DoS-Angriffen die Rede ist, die von außerhalb des Ziel-WLANs erfolgen. DoS-Angriffe die in einem WLAN oder LAN erfolgen, werden an anderer Stelle bearbeitet. \\
 Für den Angriff wird hier das Tool \colorbox{altgray}{\lstinline|MDK3|} (Murder Death Kill 3) verwendet, welches speziell für WLAN-Netzwerke entwickelt wurde. \\
-Zuerst müssen auch hier wieder die um den WLAN-Adapter konkurrierenden Prozesse über das Kommando
-\colorbox{altgray}{\lstinline|airmon-ng check kill|}
+Zuerst müssen auch hier wieder die um den WLAN-Adapter konkurrierenden Prozesse über das Kommando\\
+\\
+\colorbox{altgray}{\lstinline|airmon-ng check kill|}\\
+\\
 beendet werden.
-Danach versetzen wir den WLAN-Adapter in den Monitoring-Modus. Dies geschieht über das Kommando:
-\colorbox{altgray}{\lstinline|airmon-ng start wlanX|}.
+Danach versetzen wir den WLAN-Adapter in den Monitoring-Modus. Dies geschieht über das Kommando:\\
+\\
+\colorbox{altgray}{\lstinline|airmon-ng start wlanX|}.\\
+\\
 Der WLAN-Adapter erhält hier für gewöhnlich einen neuen Namen mit der Form wlanXmon. Allerdings sei auch hier noch einmal darauf hingewiesen, dass sich der Name und eine mögliche Veränderung von System zu System unterscheiden kann.
 \\
-Anschließend suchen wir uns den Ziel-Access Point aus. Dies geschieht über den Befehl:
-\colorbox{altgray}{\lstinline|airodump-ng wlanXmon --band abg|}. Aus der von diesem Werkzeug generierten Liste notieren wir die MAC-Adresse des Ziel-Access Points (BSSID) und die Art der Verschlüsselung. Diese Informationen werden im weiteren Verlauf benötigt.
+Anschließend suchen wir uns den Ziel-Access Point aus. Dies geschieht über den Befehl:\\
+\\
+\colorbox{altgray}{\lstinline|airodump-ng wlanXmon --band abg|}.\\
+\\
+ Aus der von diesem Werkzeug generierten Liste notieren wir die MAC-Adresse (BSSID) und den Kanal des Ziel-Access Points und die Art der Verschlüsselung. Diese Informationen werden im weiteren Verlauf benötigt.
 \\
 Das MDK3-Tool stellt verschiedene Methoden bereit, um einen DoS-Angriff auf dem Ziel auszuführen.
 
 \subsection{Michael shutdown exploitation}
-Diese Methode nutzt einen Fehler in der TKIP-Verschlüsselung aus, um den gesamten Datenverkehr im Ziel-Netzwerk zu unterbinden. Für einen erfolgreichen Angriff muss das WLAN mit TKIP verschlüsselt worden sein.\\
-\colorbox{altgray}{\lstinline|mdk3 wlanXmon m -t BSSID -j|}. Durch den Parameter -j wird mdk3 angewiesen, eine Schwachstelle in der QoS-Implementierung der TKIP-Verschlüsselung auszunutzen. Dadurch werden nur ein paar Datenpakete benötigt, um den Datenverkehr zu blockieren. m steht für die Art des Angriffs hier also ein Angriff auf die TKIP-Verschlüsselung und versucht jeglichen Datenverkehr anhaltend zu stören. Mit -t wird das Ziel näher definiert.
+Diese Methode nutzt einen Fehler in der TKIP-Verschlüsselung aus, um den gesamten Datenverkehr im Ziel-Netzwerk zu unterbinden. Für einen erfolgreichen Angriff muss das WLAN mit TKIP verschlüsselt sein, was im Allgemeinen bei WPA der Fall ist. Gestartet wird der Angriff über den Befehl:\\
+\\
+\colorbox{altgray}{\lstinline|mdk3 wlanXmon m -t BSSID -j|}
+\begin{itemize}
+	\item \bashCommand{wlanXmon} Name des WLAN-Adapters im Monitor Mode
+	\item \bashCommand{m} Festlegen der Angriffsart
+	\item \bashCommand{-t BSSID} Festlegen der Ziels
+	\item \bashCommand{-j} Schwachstelle in der QoS-Implementierung der TKIP-Verschlüsselung auszunutzen
+\end{itemize}
+Dadurch werden nur ein paar Datenpakete benötigt, um den Datenverkehr nachhaltig zu stören.
 
 \subsection{Beacon Flood Mode}
-Bei dieser Methode werden Beacon-Frames ausgesendet, um den Clients gefälschte Access Points vorzugaukeln. Dies kann zu Abstürzen der Netzwerkscanner oder Treiber der WLAN-Adapter führen.
+Bei dieser Methode werden Beacon-Frames ausgesendet, um den Clients gefälschte Access Points vorzugaukeln. Dies kann zu Abstürzen der Netzwerkscanner oder Treiber der WLAN-Adapter führen.\\
+\\
 \colorbox{altgray}{\lstinline|mdk3 wlanXmon b -c KANAL|}
-Der Parameter wlanXmon muss wieder durch den eigentlichen Namen des WLAN-Adapters ersetzt werden.
-Das -c legt den Funkkanal fest, auf dem die Access Points erstellt werden sollen. b setzt hier wieder den Angriffsmodus da.
+\begin{itemize}
+	\item \bashCommand{wlanXmon} Name des WLAN-Adapters im Monitor Mode
+	\item \bashCommand{b} Festlegen der Angriffsart
+	\item \bashCommand{-c Kanal} Kanal, auf dem gesendet werden soll
+\end{itemize}
+Selbst wenn dabei kein Absturz verursacht werden kann, so kann trotzdem ein erstmaliges Verbinden mit einem Netzwerk deutlich erschwert werden, da die Liste der verfügbaren WLAN-Netzwerke auch sämtliche gefälschten Access Points anzeigt.
 
 \subsection{Authentication DoS mode}
-Bei dieser Methode werden vom Angreifer Authentication-Frames an den durch die BSSID spezifizierten Access Point geschickt. Zu viele Clients bringen den Access Point möglicherweise zum Absturz. Der Befehl
-\colorbox{altgray}{\lstinline|mdk3 wlanXmon a -a BSSID|} führt den Angriff aus. a steht für den Angriffsmodus mit -a wird das Ziel näher definiert.
+Bei dieser Methode werden vom Angreifer Authentication-Frames an den durch die BSSID spezifizierten Access Point geschickt. Zu viele Clients bringen den Access Point möglicherweise zum Absturz. Der folgende Befehl führt den Angriff aus:\\
+\\
+\colorbox{altgray}{\lstinline|mdk3 wlanXmon a -a BSSID|}
+\begin{itemize}
+	\item \bashCommand{wlanXmon} Name des WLAN-Adapters im Monitor Mode
+	\item \bashCommand{a} Festlegen der Angriffsart
+	\item \bashCommand{-a BSSID} Festlegen des Ziel-APs
+\end{itemize}
+Nach einiger Zeit führt dieser Angriff dazu, dass der angegriffene Access Point abstürzt, oder dass dieser keine neuen Verbindungen mehr annimmt.
 
 \subsection{Deauthentication DoS mode}
-Bei diesem Angriff wird versucht jedem, der auf einem Access Point eingeloggt ist, den Zugang zu verwehren. Der Befehl \colorbox{altgray}{\lstinline|mdk3 wlanXmon d -b blacklist -c KANAL|} führt den Angriff aus. Das d steht hier für den Angriffsmodus, das -b blacklist ruft eine Liste der enthaltenen Angriffsziele auf, es ist auch das Nutzen von whitelists möglich. -c legt hier wieder den Kanal fest auf dem gesendet werden soll.
+Bei diesem Angriff wird versucht die Verbindung eines jeden Ziels auf der Blacklist in den angegebenen Kanälen zu beenden. Der folgende Befehl führt den Angriff aus: \\
+\\
+\colorbox{altgray}{\lstinline|mdk3 wlanXmon d -b blacklist -c KANAL|}
+\begin{itemize}
+	\item \bashCommand{wlanXmon} Name des WLAN-Adapters im Monitor Mode
+	\item \bashCommand{d} Festlegen der Angriffsart
+	\item \bashCommand{-b blacklist} Name der Blacklist Datei, die die Angriffsziele enthält, eine leere Datei wird automatisch befüllt
+	\item \bashCommand{-w whitelist} Optionale Angabe einer Whitelist Datei
+	\item \bashCommand{-c Kanal} Kanal des Ziels, mehrere Kanäle durch Komma getrennt angeben
+\end{itemize}
+
 
 \subsection{Fazit}
 
-Der Beacon Flood Mod konnte in den durchgeführten Versuchen keine Erfolge erzielen, während die anderen Angriffsmodi sich als zuverlässig erwiesen. DoS-Angriffe sind immer noch relevant und auch neuere Fritzboxen konnten durch die Angriffe zum Absturz gebracht werden.
+Der Beacon Flood Mod konnte in den durchgeführten Versuchen keine Erfolge erzielen, während sich die anderen Angriffsmodi als zuverlässig erwiesen. DoS-Angriffe sind immer noch relevant und auch neuere Fritzboxen können durch die Angriffe zum Absturz gebracht werden.
 \newpage
 
 \section{Fake Access-Points}
@@ -784,8 +848,15 @@ Je nach Ziel des Angreifers wird den Opfern nun eine Anmeldemaske zum Phishing v
 Auch ein Mitlesen und die Manipulation des Datenverkehrs sowie eine Infektion des Opfers mit Schadcode über Lücken im Betriebssystem beziehungsweise im Browser ist möglich.
 
 \subsection{Erstellen eines Fake-AP mit Wifiphisher}
+\textit{Hinweis:} Falls während der Initialisierung der WLAN-Interfaces von \colorbox{altgray}{\lstinline|wifiphisher|} zu Fehlern kommt, ist zu beachten, dass beide benötigten Interfaces Packet-Injection unterstützen müssen. 
 In der Security-Workbench wird das Konsolen-Tool \colorbox{altgray}{\lstinline|wifiphisher|} gestartet.\\
-Anschließend führt das Programm eine Suche nach WLANs in der Umgebung durch. Aus dieser Liste kann ein  Zielnetzwerk ausgewählt werden. Im Anschluss daran wird ein Webserver und der Fake AP mit der entsprechenden Konfiguration gestartet. \\
+Anschließend führt das Programm eine Suche nach WLANs in der Umgebung durch. Aus dieser Liste kann ein  Zielnetzwerk ausgewählt werden. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/WLAN/wifiphisher.png}
+	\caption{Wifiphisher Netzwerkauswahl}
+\end{figure}
+\noindent Im Anschluss daran wird ein Webserver und der Fake AP mit der entsprechenden Konfiguration gestartet. \\
 Danach wird begonnen, den Datenverkehr im Zielnetzwerk durch Abmeldung der Opfer vom Ziel-Access Point zu unterbrechen. \\
 Das Opfer verbindet sich im Anschluss mit dem falschen Access Point des Angreifers, dieser befindet sich nun in einer "'Man in the Middle"'-Position. \\
 Beim Aufruf einer Webseite wird dem Opfer nun eine Webseite präsentiert, die der Konfigurationsoberfläche des Routers nachempfunden ist und zur Eingabe des WLAN-Zugangskennwortes aufgrund eines durchgeführten Firmwareupdates auffordert. Denkbar ist auch die Nachbildung von Login-Seiten verschiedener sozialer Netzwerke oder Mailprovider. Auch die Fälschung von Login-Seiten für Hotspots ist möglich. \\
@@ -805,10 +876,11 @@ Lediglich das Verwenden des Push-Buttons ohne weitere Key Eingabe ist problemati
 \subsection{WPA/WPA2}
 Da WPA bzw. WPA2 in fast jedem Haushalt/Unternehmen eingesetzt wird, sind hier Gegenmaßnahmen zu den oben demonstrierten Angriffen besonders relevant.
 \subsubsection{Personal-Mode}
-Grundsätzlich sind jedoch beide Verfahren nur so sicher, wie die verwendeten PSKs. Jeder Nutzer sollte also Standardpasswörter der Auslieferung sofort ersetzen und möglichst die maximal mögliche Passwortlänge ausnutzen. Auch sollte der Key so zufällig wie möglich gestaltet werden. Nur dann kann mit hoher Wahrscheinlichkeit davon ausgegangen werden, dass das Netz sicher ist. \\
+Grundsätzlich sind jedoch beide Verfahren nur so sicher, wie die verwendeten PSKs. Jeder Nutzer sollte also Standardpasswörter der Auslieferung sofort ersetzen und möglichst die maximal mögliche Passwortlänge ausnutzen. Auch sollte darauf geachtet werden, dass die Entropie des Passwortes hoch ist. Nur dann kann mit hoher Wahrscheinlichkeit davon ausgegangen werden, dass das Netz sicher ist. \\
 Viele Router bieten aktuell in der Standardkonfiguration WPA und WPA2 im Kombinationsbetrieb an. Der reine Einsatz von WPA2 sollte einem Kombibetrieb immer vorgezogen werden. \\
-Beim Verwendung von WPA/WPA2 im Enterprise Mode sollte entweder von Administrator- oder Nutzerseite darauf geachtet werden, dass das verwendete Passwort zur Anmeldung ebenfalls möglichst viele Zeichen besitzt und einen hohen Grad an Zufall besitzt.
+Beim Verwendung von WPA/WPA2 im Enterprise Mode sollte entweder von Administrator- oder Nutzerseite darauf geachtet werden, dass das verwendete Passwort zur Anmeldung möglichst hohe Entropie besitzt und einen hohen Grad an Zufall besitzt.
 \subsubsection{Enterprise-Mode}
-Im Enterprise-Mode gibt es eine sehr effiziente Möglichkeit das Verbinden zu einem Fake-AP zu verhindern bzw. zu vermeiden. Die RADIUS-Server stellen immer Zertifikate zur Verfügung, die bei einem Verbindungsversuch dem Client übermittelt werden. Wird nun von einen Fake-AP ein mit hoher Wahrscheinlichkeit nicht vertrauenswürdiges Zertifikat verwendet, wird dies bei der Prüfung entdeckt und kein Challenge-Response-Verfahren durchgeführt. Besonders in Mobilgeräten kann die Installation dieser Zertifikate aufwändig sein, sollte jedoch immer durchgeführt werden, um die Sicherheit der eigenen Credentials zu gewähren.
+Im Enterprise-Mode gibt es eine sehr effiziente Möglichkeit das Verbinden zu einem Fake-AP zu verhindern bzw. zu vermeiden. Die RADIUS-Server stellen immer Zertifikate zur Verfügung, die bei einem Verbindungsversuch dem Client übermittelt werden. Wird nun von einen Fake-AP ein mit hoher Wahrscheinlichkeit nicht vertrauenswürdiges Zertifikat verwendet, wird dies bei der Prüfung entdeckt und kein Challenge-Response-Verfahren durchgeführt. Besonders in Mobilgeräten kann die Installation dieser Zertifikate aufwändig sein, sollte jedoch immer durchgeführt werden, um die Sicherheit der eigenen Credentials zu gewähren.\\
+Auch bei einem Access Point im Enterprise-Mode ist es empfehlenswert bei der Auswahl des Passwortes die Länge und Entropie der Zeichenkette zu maximieren. 
 \subsubsection{Fake-Access-Points}
 Bei dem Verbinden mit einem WLAN-Netz sollte immer darauf geachtet werden, ob das Netz so konfiguriert ist, wie die Verbindung in der Verbindungsstatistik des Betriebssystems dokumentiert ist. Die meisten Betriebssysteme warnen heutzutage auch davor, wenn versucht wird eine Verbindung zu einem WLAN mit bekannter SSID aufzubauen, welches aber eine abweichende Konfiguration aufweist. Bei einer solchen Verbindungswarnung sollte man nur mit äußerster Vorsicht eine Verbindung mit dem Netz aufbauen.

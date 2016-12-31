@@ -63,3 +63,9 @@ def main():
 
 		if(showMenu == False):
 			print "\nSkript wird beendet.\n"
+
+
+
+def sql_signal_handler(signal, frame):
+	print('\n\n Die Security Workbench wird beendet ... \n')
+	sys.exit(0)

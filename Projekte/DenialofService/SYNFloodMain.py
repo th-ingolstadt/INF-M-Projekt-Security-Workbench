@@ -27,11 +27,11 @@ def main():
 		#Main Menu
 		generics.clearScreen()
 		print shellCols.UNDERLINE + shellCols.ALTERNAHEADER + "Denial of Service(DoS) Tutorials" + shellCols.ENDC + '\n'
-		print ('Dieses Tutorial bietet dem Benutzer die Möglichkeit, durch ein interaktives Skript, SYN-Flood Attacken auszuführen.\n')
+		print ('Dieses Tutorial bietet dem Benutzer die Möglichkeit, durch ein interaktives Skript, SYN-Flood-Attacken auszuführen.\n')
 		print shellCols.UNDERLINE + shellCols.ALTERNAHEADER + "SYN Flood Menu" + shellCols.ENDC
-		print shellCols.WARNING + "1.\tAngreifer SYN Flooding" + shellCols.ENDC
-		print shellCols.WARNING + "2.\tOpfer SYN Flooding" + shellCols.ENDC
-		print shellCols.WARNING + "3.\tLöschen IP Tables Eintrag" + shellCols.ENDC
+		print shellCols.WARNING + "1.\tAngreifer SYN-Flooding" + shellCols.ENDC
+		print shellCols.WARNING + "2.\tOpfer SYN-Flooding" + shellCols.ENDC
+		print shellCols.WARNING + "3.\tLöschen IP-Tables-Eintrag" + shellCols.ENDC
 		print shellCols.WARNING + "0.\tZurück zum Hauptmenü der Security-Workbench" + shellCols.ENDC
 		mainSelection = input(shellCols.BLUE + "\nDie Auswahl bitte hier eingeben und mit Enter bestätigen: " + shellCols.ENDC)
 		if(mainSelection == 1):

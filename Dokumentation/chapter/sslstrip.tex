@@ -73,7 +73,7 @@ iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port
 	\item \bashCommand{iptables} Werkzeug zur regelbasierten Konfiguration der Firewall von Linux
 	\item \bashCommand{-t nat} Firewall-Gruppe
 	\item \bashCommand{-A PREROUTING} die Regel wird vor dem Routen des Paketes angewandt
-	\item \bashCommand{p tcp}  nur TCP-Pakete sind betroffen
+	\item \bashCommand{-p tcp}  nur TCP-Pakete sind betroffen
 	\item \bashCommand{--destination-port 80} nur Pakete auf Ziel-Port 80(HTTP) sind betroffen
 	\item \bashCommand{-j REDIRECT} Pakete sollen weitergeleitet werden
 	\item \bashCommand{--to-port <listenPort>} Port, auf welchen auf Nachrichten gewartet werden soll -- dieser Port wird im Anschluss bei SSLStrip benötigt
@@ -97,5 +97,4 @@ Jetzt muss das Opfer eine http-Seite öffnen, von der aus er auf eine https-Seit
 
 \section{Gegenmaßnahmen}
 
-\subsection{Angriff abwehren}
 Um sicherzustellen, dass nur verschlüsselte Seiten aufgerufen werden, kann der Mechanismus HTTP Strict Transport Security (HSTS) verwendet werden. Dabei wird dem Browser des Anwenders mitgeteilt, dass für eine bestimmte Dauer nur verschlüsselte Verbindungen mit dieser Domain aufgebaut werden sollen. Plötzliche unverschlüsselte Verbindungen können so vom Browser erkannt und abgelehnt werden. Damit HSTS vor Spoofing schützen kann, muss jedoch die Seite vor Beginn des Angriffes mindestens einmal durch den Client aufgerufen worden sein.

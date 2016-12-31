@@ -79,7 +79,7 @@ def ReplaceImagesMode():
 			break
 
 		##Schritt3
-		print('Jetzt musst du warten bis der Angreifer seine Attacke durchgefuehrt hat.')
+		print('Jetzt musst du warten bis der Angreifer seine Attacke durchgeführt hat.')
 		selection = raw_input(shellCols.BLUE + '\nDrücke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		if(selection == "x"):
 			print('Gehe zurück zum Hauptmenü')

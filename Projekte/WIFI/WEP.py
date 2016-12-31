@@ -70,8 +70,14 @@ def WEP_Open():
 		#KILL PROCESSES
 		generics.kill_wifi_proc()
 		
+		#STEP BETWEEN 1 AND 2 
+		do5GHZ = generics.Is5GHz()
+		str5ghz = ""
+		if(do5GHZ):
+			str5ghz = " --band a "
+
 		#STEP 2
-		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren): \n# ', 'airodump-ng ' +wifi_name )
+		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren): \n# ', 'airodump-ng '+str5ghz +wifi_name )
 		execute(command)
 		router_ssid = raw_input("Bitte die Netzwerk SSID angeben: ")
 		router_chn = raw_input("Bitte die Netzwerk Kanalnummer angeben: ")
@@ -93,6 +99,10 @@ def WEP_Open():
 		print('SSID: ' + router_ssid)
 		print('Kanalnummer: ' + router_chn)
 		print('BSSID: ' + router_bssid)
+		if(do5GHZ):
+			print('Band: 5GHz')
+		else:
+			print('Band: 2.4GHz')
 		print("\n")
 
 		#RECORD TRAFFIC
@@ -115,7 +125,7 @@ def WEP_Open():
 			while(success!=True):
 				success=WEP_Shared(wifi_name,wifi_mac,router_ssid,router_bssid,router_chn)
 		
-		command = rlinput('Aufnahme des Netzwerkverkehrs (Im Hintergrund geöffnet lassen): \n# ', 'airodump-ng -c ' +router_chn +' -w ' + router_ssid + ' --bssid ' + router_bssid+ ' ' + wifi_name )
+		command = rlinput('Aufnahme des Netzwerkverkehrs (Im Hintergrund geöffnet lassen): \n# ', 'airodump-ng -c ' +router_chn + str5ghz +' -w ' + router_ssid + ' --bssid ' + router_bssid+ ' ' + wifi_name )
 		execute(command)
 
 		#INJECTION TEST
@@ -163,7 +173,11 @@ def WEP_Open():
 			return False
 
 
-
+def sql_signal_handler(signal, frame):
+	#ReStart Networkmanager
+	os.system("service network-manager restart")
+	print('\n\n Die Security Workbench wird beendet ... \n')
+	sys.exit(0)
 
 
 

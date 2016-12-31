@@ -24,7 +24,7 @@ def main():
 		#Main Menu
 		clearScreen()
 		print(shellCols.UNDERLINE + shellCols.HEADER + "SQL-Injection Tutorial" + shellCols.ENDC + '\n')
-		print('Mit diesem Tutorial kannst du anhand eines praktischen Beispiels eine MySQL-Datenbank hacken. Genauere Informationen über das Thema SQL-Injection findest du im PDF-Handbuch der THI Security Workbench. In diesem Tutorial wirst du mittels einer SQL-Injection Daten aus der Datenbank auslesen, auf die eigentlich kein Zugriff erfolgen solltest.\n')
+		print('Mit diesem Tutorial kannst du anhand eines praktischen Beispiels eine MySQL-Datenbank hacken. Genauere Informationen über das Thema SQL-Injection findest du im PDF-Handbuch der THI Security Workbench. In diesem Tutorial wirst du mittels einer SQL-Injection Daten aus der Datenbank auslesen, auf die du normalerweise keinen Zugriff haben solltest.\n')
 		print('Die Datenbank inkl. User und DB-Schema wird zu Beginn des Tutorials oder durch das manuelle zurücksetzen immer wieder initialisiert. Dadurch kannst du auch direkt auf die Datenbank zugreifen und andere Szenarien ausprobieren.\n')
 		print(shellCols.UNDERLINE + shellCols.HEADER + 'Hauptmenü:' + shellCols.ENDC)
 		print(shellCols.WARNING + "1.\tSQL-Injection zum Auslesen von Daten" + shellCols.ENDC)
@@ -34,8 +34,10 @@ def main():
 		print(shellCols.WARNING + "5.\tDatenbank zurücksetzen" + shellCols.ENDC)
 		print(shellCols.WARNING + "0.\tZurück zum Hauptmenü der Security-Workbench" + shellCols.ENDC)
 
-		mainSelection = input(shellCols.BLUE + "\nDeine Auswahl: " + shellCols.ENDC)
-
+		try:
+			mainSelection = input(shellCols.BLUE + "\nDie Auswahl bitte hier eingeben und mit Enter bestätigen: " + shellCols.ENDC)
+		except SyntaxError:
+			mainSelection = 0
 		if(mainSelection == 1):
 			attackDB.readFromDB()
 		elif(mainSelection == 2):

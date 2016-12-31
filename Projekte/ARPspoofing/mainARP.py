@@ -26,7 +26,11 @@ def main():
 		#Main Menu
 		clearScreen()
 		print(shellCols.UNDERLINE + shellCols.HEADER + "ARP Spoofing Tutorial" + shellCols.ENDC + '\n')
-		print('Dieses Tutorial zeigt dir anhand eines praktischen Beispiels, wie eine ARP Spoofing Attacke ausgeführt wird. Genauere Informationen über das ARP Spoofing kannst du im PDF-Handbuch der THI Security Workbench finden. Das Tutorial ist zweigeteilt und zeigt dir im ersten Schritt, wie man einen Blick auf den Netzwerkverkehr anderer Geräte bekommen kann. Im zweiten Schritt werden die von anderen Geräten aufgerufenen Homepages durch den Austausch der vorkommenden Bilder manipuliert. \nACHTUNG: Dieses Tutorial darf nur in eigenen Netzwerken und zu Demonstrationszwecken verwendet werden!\n')
+		print('Dieses Tutorial zeigt dir anhand eines praktischen Beispiels, wie eine ARP Spoofing Attacke ausgeführt wird. '
+			+'Genauere Informationen über das ARP Spoofing kannst du im PDF-Handbuch der THI Security Workbench finden. Das Tutorial ist '
+			+'zweigeteilt und zeigt dir im ersten Schritt, wie man einen Blick auf den Netzwerkverkehr anderer Geräte bekommen kann. Im zweiten '
+			+'Schritt werden die von anderen Geräten aufgerufenen Homepages durch den Austausch der vorkommenden Bilder manipuliert. \nACHTUNG: '
+			+'Dieses Tutorial darf nur in eigenen Netzwerken und zu Demonstrationszwecken verwendet werden!\n')
 		print(shellCols.UNDERLINE + shellCols.HEADER + 'Hauptmenü:' + 	shellCols.ENDC)
 		print(shellCols.WARNING + "1.\tEinfaches ARP-Spoofing als Angreifer" + shellCols.ENDC)
 		print(shellCols.WARNING + "2.\tStarte Darstellung des Netzwerkverkehrs als Opfer" + shellCols.ENDC)
@@ -34,8 +38,10 @@ def main():
 		print(shellCols.WARNING + "4.\tStarte Manipulation der Bilddateien als Opfer" + shellCols.ENDC)
 		print(shellCols.WARNING + "5.\tStarte SSLStrip Attacke als Angreifer" + shellCols.ENDC)
 		print(shellCols.WARNING + "0.\tZurück zum Hauptmenü der Security-Workbench" + shellCols.ENDC)
-
-		mainSelection = input(shellCols.BLUE + "\nDeine Auswahl: " + shellCols.ENDC)
+		try:
+			mainSelection = input(shellCols.BLUE + "\nDeine Auswahl: " + shellCols.ENDC)
+		except:
+			mainSelection = 0
 		if(mainSelection == 1):
 			attacker.SniffingMode()
 		elif(mainSelection == 2):

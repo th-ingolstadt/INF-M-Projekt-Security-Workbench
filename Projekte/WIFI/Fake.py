@@ -19,6 +19,7 @@ def Fake_Menu():
 		print("Mit Fake-APs versucht ein Angreifer einen WLAN-Nutzer dazu zu bringen, sich mit einer Kopie eines Original-Access-Points "
 			+"zu verbinden und dann durch geschicktes Phishing Informationen von Nutzer zu erhalten. Im Idealfall merkt der Nutzer gar nicht, dass er mit "
 			+"einem Fake-AP verbunden ist und er Opfer einer Phishing-Attacke wird. \n")
+		print("Hinweis: Für dieses Tutorial werden zwei WLAN-Interfaces mit Packet-Injection-Unterstützung benötigt.")
 
 
 		#START WIFIPHISHER

@@ -27,7 +27,7 @@ def main():
 		#Main Menu
 		generics.clearScreen()
 		print shellCols.UNDERLINE + shellCols.ALTERNAHEADER + "Denial of Service(DoS) Tutorials" + shellCols.ENDC + '\n'
-		print ('Dieses Tutorial bietet dem Benutzer die Möglichkeit, durch ein interaktives Skript, Denial of Service Attacken auszuführen.'
+		print ('Dieses Tutorial bietet dem Benutzer die Möglichkeit, durch ein interaktives Skript Denial-of-Service-Attacken auszuführen.'
 			+'Selbstverständlich dient dieses Tutorial nur einem demonstrativen Zweck.'
 			+'Im Tutorial selbst finden sich nur kurze Erklärungen zum Angriffverlauf. Für eine ausführliche '
 			+'Erklärung wird zusammen mit diesem Tutorial eine Anleitung in .pdf-Form mitgeliefert.\n')

