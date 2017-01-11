@@ -1,6 +1,17 @@
 # Projekt: Security-Workbench
 Dieses Repository beinhaltet die Security Workbench - Ergebnis der Projektarbeit von Studenten der Technischen Hochschule Ingolstadt im Masterstudiengang Informatik.
 
+# Dokumentation
+Eine ausführliche Dokumentation zur Security Workbench findet sich unter [Dokumentation/document.pdf](Dokumentation/document.pdf).
+
+# Starten der Workbench
+Die Security Workbench setzt neben weiteren Abhängigkeiten, die in der Dokumentation aufgeführt werden, ein Linux-System mit Python 2.7 voraus. Nach auschecken des Repositories kann die Workbench wie folgt gestartet werden.
+
+```
+> cd Projekte
+> python securityWorkbench.py
+```
+
 # Disclaimer
 Das vorliegende Dokument und das zugehörige Tool „Security Workbench“ sind im Rahmen eines Projektes des Masterstudiengangs Informatik an der Technischen Hochschule Ingolstadt (THI) im Wintersemester 2016/17 entstanden. Sinn und Zweck der Security Workbench ist es, interessierten Studierenden das Thema IT-Security näher zu bringen. Alle hier gezeigten Tutorials sind ausschließlich für den Einsatz innerhalb einer eigens dafür geschaffenen Umgebung (z.B. dediziertes WLAN zum Durchspielen der Angriffsszenarien) mit der Zustimmung aller Beteiligten (sowohl Angreifer als auch Angegriffene) gedacht.
 Der Missbrauch der zur Verfügung gestellten Informationen und Tutorials für kriminelle Handlungen kann strafrechtliche Folgen nach sich ziehen. Strafrechtliche Grundlagen sind hierbei u.a.:
