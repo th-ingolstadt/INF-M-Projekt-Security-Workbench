@@ -5,7 +5,7 @@ Dieses Repository beinhaltet die Security Workbench - Ergebnis der Projektarbeit
 Eine ausführliche Dokumentation zur Security Workbench findet sich unter [Dokumentation/document.pdf](Dokumentation/document.pdf).
 
 # Starten der Workbench
-Die Security Workbench setzt neben weiteren Abhängigkeiten, die in der Dokumentation aufgeführt werden, ein Linux-System mit Python 2.7 voraus. Nach auschecken des Repositories kann die Workbench wie folgt gestartet werden.
+Die Security Workbench setzt neben weiteren Abhängigkeiten, die in der Dokumentation aufgeführt werden, ein Linux-System mit Python 2.7 voraus. Nach Auschecken des Repositories kann die Workbench wie folgt gestartet werden.
 
 ```
 > cd Projekte
