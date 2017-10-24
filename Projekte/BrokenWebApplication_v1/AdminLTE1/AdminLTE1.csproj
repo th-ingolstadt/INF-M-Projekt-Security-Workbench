@@ -110,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\img\flat-avatar.png" />
+    <Content Include="Content\video\Intro.mp4" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Views\Test\Test.cshtml" />
