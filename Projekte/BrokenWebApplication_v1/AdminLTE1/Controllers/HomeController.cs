@@ -23,6 +23,11 @@ namespace AdminLTE1.Controllers
         {
             return View("SessionManagement"); 
         }
+
+        public ActionResult BufferOverflowLink()
+        {
+            return View("BufferOverflow");
+        }
     }
 
 }
