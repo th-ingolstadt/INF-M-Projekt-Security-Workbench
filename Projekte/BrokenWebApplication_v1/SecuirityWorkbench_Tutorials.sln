@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminLTE1", "AdminLTE1\AdminLTE1.csproj", "{BB0BA5D1-9643-46F1-B76D-3D4808E29928}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityWorkBench_Tutorials", "AdminLTE1\SecurityWorkBench_Tutorials.csproj", "{BB0BA5D1-9643-46F1-B76D-3D4808E29928}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
