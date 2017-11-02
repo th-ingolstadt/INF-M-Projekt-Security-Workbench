@@ -28,6 +28,11 @@ namespace AdminLTE1.Controllers
         {
             return View("BufferOverflow");
         }
+
+        public ActionResult BufferOverflow1ExampleLink()
+        {
+            return View("BufferOverflow_FirstExample");
+        }
     }
 
 }

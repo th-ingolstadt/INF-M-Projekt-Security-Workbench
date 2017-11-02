@@ -26,22 +26,35 @@
             <li class="@Url.IsLinkActive("SessionManagementLink", "Home")">
                 <a href="@Url.Action("SessionManagementLink", "Home")"><i class="fa fa-link"></i> <span>Session Management</span></a>
             </li>
-            <li class="@Url.IsLinkActive("BufferOverflow", "Home")">
-                <a href="@Url.Action("BufferOverflowLink", "Home")"><i class="fa fa-link"></i> <span>Buffer Overflow</span></a>
-            </li>
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-link"></i> <span>XSS</span>
+                    <i class="fa fa-link"></i> <span>Buffer Overflow</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Cross Site Scripting General</a></li>
-                    <li><a href="#">Reflected Cross Site Scripting</a></li>
+                    <li class="@Url.IsLinkActive("BufferOverflow", "Home")">
+                        <a href="@Url.Action("BufferOverflowLink", "Home")"><i class="fa fa-link"></i> <span>Buffer Overflow Einführung</span></a>
+                    </li>
+                    <li class="@Url.IsLinkActive("BufferOverflow_FirstExample", "Home")">
+                        <a href="@Url.Action("BufferOverflow1ExampleLink", "Home")"><i class="fa fa-link"></i> <span>Buffer Overflow erstes Beispiel</span></a>
+                    </li>
                 </ul>
             </li>
-        </ul>
-        @* END Menu *@
-    </section>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-link"></i> <span>XSS</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="#">Cross Site Scripting General</a></li>
+                            <li><a href="#">Reflected Cross Site Scripting</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                @* END Menu *@
+</section>
 </aside>

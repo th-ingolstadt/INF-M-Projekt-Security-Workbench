@@ -109,12 +109,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\FirstExample.c" />
+    <Content Include="Content\css\prism_Coy.css" />
+    <Content Include="Content\css\prism_Twilight.css" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\beispielCode.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\gnuDebugger.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\speicherAufbau.jpg" />
     <Content Include="Content\img\flat-avatar.png" />
+    <Content Include="Content\js\prism.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Views\Test\Test.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
     <Content Include="Views\Home\SessionManagement.cshtml" />
+    <Content Include="Views\Home\BufferOverflow.cshtml" />
+    <Content Include="Views\Home\BufferOverflow_FirstExample.cshtml" />
+    <None Include="Properties\PublishProfiles\KaliFTP.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -300,7 +310,6 @@
     <Compile Include="Controllers\HomeController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
