@@ -159,6 +159,7 @@
     </Content>
     <Content Include="Content\img\flat-avatar.png" />
     <Content Include="Content\img\storedXSS.jpg" />
+    <Content Include="Content\img\hackersymbol.png" />
     <Content Include="Content\video\Intro.mp4" />
     <Content Include="docs\MySqlCommand.xml" />
     <Content Include="docs\MySqlCommandBuilder.xml" />
@@ -171,8 +172,12 @@
     <Content Include="docs\MySqlParameter.xml" />
     <Content Include="docs\MySqlParameterCollection.xml" />
     <Content Include="docs\MySqlTransaction.xml" />
+    <Content Include="Files\commonpasswords.txt" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\js\guestbook.js" />
+    <Content Include="Scripts\js\loginParcour.js" />
+    <Content Include="Style\LoginStyle.css" />
+    <Content Include="aliens.txt" />
     <Content Include="Web.config" />
     <Content Include="Views\Test\Test.cshtml" />
     <Content Include="Views\Home\Test.cshtml" />
@@ -182,6 +187,16 @@
     <None Include="NWebsecConfig\HttpHeaderSecurityModuleConfig.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Home\LoginParcours\LoginParcoursHome.cshtml" />
+    <Content Include="Views\Home\LoginParcours\LoginParcoursLevel1.cshtml" />
+    <Content Include="Views\Home\LoginParcours\LoginParcoursLevel2.cshtml" />
+    <Content Include="Views\Home\LoginParcours\LoginParcoursLevel3.cshtml" />
+    <Content Include="bobsHiddenPage.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\LoginParcours\LoginParcoursLevel4.cshtml" />
+    <Content Include="Views\Home\LoginParcours\LoginParcoursLevel5.cshtml" />
+    <Content Include="Views\Home\LoginParcours\LoginParcoursLevel6.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

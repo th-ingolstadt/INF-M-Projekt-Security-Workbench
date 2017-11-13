@@ -1,0 +1,4 @@
+﻿User-agent: *
+Allow: /
+
+Disallow: /Home/bobsHiddenPage #don't allow google to find the solution for level 7

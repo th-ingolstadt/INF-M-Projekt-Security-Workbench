@@ -28,6 +28,40 @@ namespace AdminLTE1.Controllers
         {
             return View("PersistentXSS_Guestbook");
         }
+
+        public ActionResult LoginParcours()
+        {
+            return View("\\LoginParcours\\LoginParcoursHome"); 
+        }
+
+        public ActionResult LoginParcoursLevel1()
+        {
+            return View("\\LoginParcours\\LoginParcoursLevel1"); 
+        }
+
+        public ActionResult LoginParcoursLevel2()
+        {
+            return View("\\LoginParcours\\LoginParcoursLevel2");
+        }
+        public ActionResult LoginParcoursLevel3()
+        {
+            return View("\\LoginParcours\\LoginParcoursLevel3");
+        }
+        public ActionResult LoginParcoursLevel4()
+        {
+            return View("\\LoginParcours\\LoginParcoursLevel4");
+        }
+
+        public ActionResult LoginParcoursLevel5()
+        {
+            return View("\\LoginParcours\\LoginParcoursLevel5");
+        }
+
+        public ActionResult LoginParcoursLevel6()
+        {
+            return View("\\LoginParcours\\LoginParcoursLevel6");
+        }
+
     }
 
 }

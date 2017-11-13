@@ -117,3 +117,4 @@ C:\Users\Rober\Desktop\Informatik - Master\Security_Workbench_Projekt\SWB_Repo\P
 C:\Users\Rober\Desktop\Informatik - Master\Security_Workbench_Projekt\SWB_Repo\Projekte\BrokenWebApplication_v1\AdminLTE1\bin\NWebsec.dll
 C:\Users\Rober\Desktop\Informatik - Master\Security_Workbench_Projekt\SWB_Repo\Projekte\BrokenWebApplication_v1\AdminLTE1\bin\NWebsec.xml
 C:\Users\Rober\Desktop\Informatik - Master\Security_Workbench_Projekt\SWB_Repo\Projekte\BrokenWebApplication_v1\AdminLTE1\bin\NWebsec.Core.xml
+C:\Users\Rober\Desktop\Informatik - Master\Security_Workbench_Projekt\SWB_Repo\Projekte\BrokenWebApplication_v1\AdminLTE1\bin\bobsHiddenPage.html
