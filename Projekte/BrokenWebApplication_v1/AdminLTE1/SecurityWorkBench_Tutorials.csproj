@@ -153,9 +153,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Database.mdf" />
     <Content Include="App_Data\Database1.mdf" />
     <Content Include="App_Data\Database1_log.ldf">
       <DependentUpon>Database1.mdf</DependentUpon>
+    </Content>
+    <Content Include="App_Data\Database_log.ldf">
+      <DependentUpon>Database.mdf</DependentUpon>
     </Content>
     <Content Include="Content\img\flat-avatar.png" />
     <Content Include="Content\img\storedXSS.jpg" />
@@ -182,6 +186,9 @@
     <None Include="NWebsecConfig\HttpHeaderSecurityModuleConfig.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Views\Home\SessionManagementAufgabe1.cshtml" />
+    <Content Include="Views\Home\SessionManagementAufgabe3.cshtml" />
+    <None Include="Views\Home\SessionManagementAufgabe2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

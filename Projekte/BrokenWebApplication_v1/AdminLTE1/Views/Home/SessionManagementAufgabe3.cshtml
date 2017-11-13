@@ -1,0 +1,115 @@
+﻿@using WebMatrix.Data
+@using System.Data.SqlClient
+
+@{
+
+
+    var db = Database.Open("Database1");
+
+
+    var userName = "";
+    var entryString = Request.Unvalidated("userName"); // Validation bypassed
+    if (entryString != null && entryString != "")
+    {
+        userName = Request.Form["userName"];
+        var password = Request.Form["pwd"];
+
+        try
+        {
+            var userdb = db.QueryValue("SELECT username FROM Users WHERE username =" + "'" + userName + "' AND password =" + "'" + password + "'").Trim();
+            var pwddb = db.QueryValue("SELECT password FROM Users WHERE username=" + "'" + userName + "'").Trim();
+
+
+            if (password.Equals(pwddb))
+            {
+            <p>Loggin erfolgreich als @userName</p>
+
+
+            }
+            else
+            {
+            <p>Loggin nicht erfolgreich!</p>
+            }
+        }
+        catch
+        {<p>Loggin nicht erfolgreich!</p> }
+
+    }
+
+
+
+
+
+}
+
+
+
+<script src="~/Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+<style>
+    .modal-header, h4, .close {
+        background-color: #006dcc;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+</style>
+
+@{
+    ViewBag.Title = "Broken Authentication and Session Management";
+    ViewBag.Description = "";
+}
+
+
+
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header">
+
+                <h4>Aufgabe 3:</h4>
+
+                <p /><div class="text-black"> Bitte logge dich in unser System ein.</div>
+                <div class="box-body">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">Anmeldung</h3>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" name="form1" method="post" acction="HomeController.cs">
+                                    <div class="form-group">
+                                        <label>Benutzername:</label>
+                                        <div class="input-group">
+                                        </div>
+                                        <input type="text" class="form-control" required id="userName" for="userName" value="@userName" name="userName">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Passwort:</label>
+                                        <div class="input-group">
+                                        </div>
+                                        <input type="password" class="form-control" id = "pwd" name = "pwd" required>
+                                    </div>
+                                    <button type="submit" name ="registrieren" ></button>
+                                </form>
+                                <br />
+                                <br />
+
+                                <aside><button onclick="hintFunction()">Hinweis</button></aside>
+
+                                <p id="hint"></p>
+
+                                <script>
+                                        function hintFunction() {
+                                        document.getElementById("hint").innerHTML = "Dein gewähltes Passwort ist zu einfach zu erraten. Bitte beachte die gängigen Passwortregeln!";
+                                        }
+
+                                    
+                                </script>
+
+                            </div>
+                            </div>

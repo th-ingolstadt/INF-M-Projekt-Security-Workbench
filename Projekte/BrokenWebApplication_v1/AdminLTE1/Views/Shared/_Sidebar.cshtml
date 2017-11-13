@@ -12,9 +12,27 @@
                 <a href="@Url.Action("TestLink", "Home")"><i class="fa fa-link"></i> <span>Test Link</span></a>
             </li>
 
-            <li class="@Url.IsLinkActive("SessionManagementLink", "Home")">
-                <a href="@Url.Action("SessionManagementLink", "Home")"><i class="fa fa-link"></i> <span>Session Management</span></a>
+            <li class="treeview {@Url.IsLinkActive("SessionManagementLink", "Home")?'active':''}{@Url.IsLinkActive("SessionManagementAufgabe1", "Home")?'active':''} {@Url.IsLinkActive("SessionManagementAufgabe2", "Home")?'active':''}">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span>Broken Authentication <br /> and Session Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li class="@Url.IsLinkActive("SessionManagementAufgabe1", "Home")">
+                        <a href="@Url.Action("SessionManagementAufgabe1", "Home")"><i class="fa fa-link"></i><span>Aufgabe 1</span></a>
+                    </li>
+                    <li class="@Url.IsLinkActive("SessionManagementAufgabe2", "Home")">
+                        <a href="@Url.Action("SessionManagementAufgabe2", "Home")"><i class="fa fa-link"></i><span>Aufgabe 2</span></a>
+                    </li>
+                    <li class="@Url.IsLinkActive("SessionManagementAufgabe3", "Home")">
+                        <a href="@Url.Action("SessionManagementAufgabe3", "Home")"><i class="fa fa-link"></i><span>Aufgabe 3</span></a>
+                    </li>
+                </ul>
             </li>
+        
+
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i> <span>XSS</span>

@@ -1,0 +1,70 @@
+﻿@using WebMatrix.Data
+@using System.Data.SqlClient
+
+@{
+    ViewBag.Title = "Persistent/ Stored Cross-Site-Scripting";
+    ViewBag.Description = "Tutorial";
+
+    var db = Database.Open("Database1");
+    var selectQueryString = "SELECT * FROM Guestbook";
+
+    var guestbookentry = Request.Form["guestbookentry"];
+    var usernameToStore = Request.Form["usernameToStore"];
+
+
+    var entryString = Request.Unvalidated("guestbookentry"); // Validation bypassed
+    if(entryString != null && entryString != "")
+    {
+        usernameToStore = Request.Form["usernameToStore"];
+       // var name = usernameToStore.Substring(0, usernameToStore.IndexOf("'"));
+        var name = "admin"; 
+        var currentDate = DateTime.Now;
+        var insertQuery = "INSERT INTO Guestbook (username, date, comment) " +
+        "VALUES (@0, @1, @2)";
+        db.Execute(insertQuery, name, currentDate, entryString);
+    }
+}
+
+
+<style>
+    .modal-header, h4, .close {
+        background-color: #006dcc;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+</style>
+
+
+
+<head>
+    <title>Tutorial für Einsteiger</title>
+</head>
+<body>
+
+    <h1>Broken Authentication and Session Management</h1>
+    <p>Logge dich über den "Logout"-Button aus unserem System aus.</p>
+    <p>Wie könntest du jetzt wieder zu deiner Session zurückkehren ohne deinen Benutzernamen und das Passwort erneut einzugeben?</p>
+
+    <p>User: test</p>
+    <a href="aufgabe2_logoutPage.html">
+        <button type="button" name="Logout">Logout</button>
+    </a>
+    </br></br>
+
+
+    <button onclick=showHint()>Hinweis</button>
+    <p id='hinweis1'></p>
+
+    <script>
+	function showHint(){
+    		document.getElementById('hinweis1').innerHTML = "Nutze die Möglichkeit des Browsers, um zur vorherigen Seite zurückzukehren.";
+	}
+
+    </script>
+
+</body>

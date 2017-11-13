@@ -1,0 +1,124 @@
+﻿@using WebMatrix.Data
+@using System.Data.SqlClient
+
+@{
+  
+
+    var db = Database.Open("Database1");
+    
+
+    var userName = "";
+    var entryString = Request.Unvalidated("userName"); // Validation bypassed
+    if (entryString != null && entryString != "")
+    {
+        userName = Request.Form["userName"];
+        var password = Request.Form["pwd"];
+        var insertQuery = "INSERT INTO Users (username, password) " +
+        "VALUES (@0, @1)";
+        db.Execute(insertQuery, userName, password);
+    }
+}
+
+
+
+<script src="~/Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+<style>
+    .modal-header, h4, .close {
+        background-color: #006dcc;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+</style>
+
+@{
+    ViewBag.Title = "Broken Authentication and Session Management";
+    ViewBag.Description = "";
+}
+
+<body>
+
+    <h4>OWASP Top 10 Risk Rating 2017 - A2</h4>
+
+    <pr>
+        Fehler in der Authentifizierung und dem Session-Management gehören zu den häufigsten Sicherheitslücken in Webapplikationen und liegen im OWASP Top 10 Risk Rating 2017 auf dem zweiten Platz. Sie können zur Kompromittierung oder der Übernahme von Benutzerkonten führen.
+    </pr>
+    <pr>
+        <br>
+        Viele Webapplikationen bieten benutzerbezogene Dienste an wie beispielsweise Social-Media-Plattformen. Um auf der Plattform aktiv zu werden, ist eine Authentifizierung des Benutzers mittels Benutzername und Passwort gegenüber der Webapplikation notwendig.
+
+    </pr>
+
+    <br />
+    <br />
+
+    <h4>Session-Management</h4>
+    <pr>
+        Das Session-Management ist dafür zuständig, dass ein Benutzer nach erfolgreicher Authentifizierung als angemeldeter Benutzer mit der Webapplikation interagieren kann. Hierzu werden Session-IDs in der Form von Cookies verwendet. Cookies sind im Browser gespeicherte Informationen zur Authentifizierung gegenüber der Webapplikation.
+    </pr>
+
+    <h4>Technischer Hintergrund</h4>
+    <pr>
+        Das http-Protokoll, das zur Kommunikation über den Browser mit dem Webserver verwendet wird, ist zustandslos. Seitenaufrufe sind für den Sever deshalb unabhängig voneinander und stehen in keinerlei Zusammenhang.
+        <br>Cookies stellen sicher, dass derselbe Benutzer über die Zeit einer Anwendungssession bei mehreren Anfragen an den Webserver als ein Benutzer erkannt wird.
+    </pr>
+    <h4>Session-ID</h4>
+    <pr>
+        Die Session-ID ist typischerweise eine lange, zufällige Zeichenkette wie z.B. jk743gfb23juk987hkjh90.Es muss sichergestellt werden, dass Session-IDs eindeutig sind und nicht leicht erraten werden können.
+    </pr>
+    <br />
+</body>
+<br />
+<br />
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-default">
+            <div class="box-header">
+
+                <h4>Aufgabe 1:</h4>
+
+                <p /><div class="text-black"> Bitte registriere dich als ersten Schritt unseres Tutorials im Folgenden mit einem Benutzernamen und Passwort.</div>
+                <div class="box-body">
+                    <div class="col-xs-12 col-md-6">
+                        <div class="box box-danger">
+                            <div class="box-header">
+                                <h3 class="box-title">Registrierung</h3>
+                            </div>
+                            <div class="box-body">
+                                <form role="form" name="form1" method="post" acction="HomeController.cs">
+                                    <div class="form-group">
+                                        <label>Benutzername:</label>
+                                        <div class="input-group">
+                                        </div>
+                                        <input type="text" class="form-control" required id="userName" for="userName" value="@userName" name="userName">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Passwort:</label>
+                                        <div class="input-group">
+                                        </div>
+                                        <input type="password" class="form-control" id = "pwd" name = "pwd" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                                    </div>
+                                    <button type="submit" name ="registrieren" >Registrieren</button>
+                                </form>
+                                <br />
+                                <br />
+
+                                <aside><button onclick="hintFunction()">Hinweis</button></aside>
+
+                                <p id="hint"></p>
+
+                                <script>
+                                        function hintFunction() {
+                                        document.getElementById("hint").innerHTML = "Dein gewähltes Passwort ist zu einfach zu erraten. Bitte beachte die gängigen Passwortregeln!";
+                                        }
+
+                                    
+                                </script>
+
+                            </div>
+                            </div>
