@@ -24,12 +24,12 @@ namespace AdminLTE1.Controllers
             return View("SessionManagement"); 
         }
 
-        public ActionResult BufferOverflowLink()
+        public ActionResult BufferOverflow()
         {
             return View("BufferOverflow");
         }
 
-        public ActionResult BufferOverflow1ExampleLink()
+        public ActionResult BufferOverflow_FirstExample()
         {
             return View("BufferOverflow_FirstExample");
         }

@@ -34,7 +34,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60425</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:60425/</IISUrl>
+          <IISUrl>http://localhost:51129/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

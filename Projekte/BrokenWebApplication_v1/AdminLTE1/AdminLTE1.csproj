@@ -110,12 +110,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\FirstExample.c" />
+    <Content Include="Content\css\image-slider.css" />
     <Content Include="Content\css\prism_Coy.css" />
     <Content Include="Content\css\prism_Twilight.css" />
+    <Content Include="Content\css\gallery.css" />
     <Content Include="Content\img\Attacks\BufferOverflowImg\beispielCode.png" />
     <Content Include="Content\img\Attacks\BufferOverflowImg\gnuDebugger.png" />
-    <Content Include="Content\img\Attacks\BufferOverflowImg\speicherAufbau.jpg" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\heartbleed_explanation_0.svg" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\heartbleed_explanation_1.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\heartbleed_explanation_2.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\heartbleed_explanation_3.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\heartbleed_explanation_complete.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\speicherAufbau_new.jpg" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\Stack_nach_BO.png" />
+    <Content Include="Content\img\Attacks\BufferOverflowImg\Stack_vor_BO.png" />
     <Content Include="Content\img\flat-avatar.png" />
+    <Content Include="Content\img\imageSlider\navbuttons2.gif" />
+    <Content Include="Content\js\image-slider.js" />
     <Content Include="Content\js\prism.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />

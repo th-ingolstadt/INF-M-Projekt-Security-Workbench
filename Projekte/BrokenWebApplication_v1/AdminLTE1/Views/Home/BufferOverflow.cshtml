@@ -4,37 +4,81 @@
     ViewBag.Description = "Einführung";
 }
 
-<div class="col-xs-12 col-md-7">
 
 <div class="row">
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
-            <div class="box-header">
-                <h3 class="box-title">Theorie</h3>
-            <div class="box-body">
-                Buffer Overflow ist der Überbegriff für eine Schwachstelle im Quellcode der für
-                einen Angriff genutzt wird und gehört zu den häufigsten Angriffsmethoden.
-                <br />
-                <br />
-                Einfach ausgedrückt, werden bei diesem Angriff einem Programm mehr Daten übergeben als es erwartet bzw. verarbeiten kann. Bei guter Programmierung führt dies zu einem Absturz des Programmes oder einer Fehlermeldung. Bei schlechter Programmierung (fehlender Überprüfung der Eingangsdaten) reicht der freigehaltene Speicherplatz für die Variable aber nicht aus und nachfolgende Speicherbereiche werden überschrieben. Für das Überschreiben der nachfolgenden Speicherbereiche ist die Speicherverwaltung verantwortlich. Beim Start eines Programmes wird diesem nämlich ein bestimmter Speicherbereich zugewiesen.
-                <br />
-                Dieser ist, wie in Abbildung 10.1 dargestellt, in drei Abschnitte aufgeteilt: den Code, den Heap und den Stack. Im Code liegt der eigentliche Quellcode, der nicht mehr verändert werden kann. Darüber liegt der Heap, in dem dynamische Variablen abgelegt sind. Der Stack beginnt am oberen Ende des Speichers und wächst mit jedem Eintrag nach unten. Dabei wird nach dem Prinzip des LIFO (last in, first out) vorgegangen. Gespeichert werden im Stack lokale Variablen, der Inhalt von Prozessorregistern und Rücksprung-Adressen von Unterprogrammen. Bei einem Angriff durch Buffer-Overflow wird einen lokale Variable mit mehr Daten beschrieben, als reserviert sind. Deshalb wird der nachfolgende Speicherbereich überschrieben, was entweder andere lokale Variablen oder aber Rücksprung-Adressen sein können.</div>
+    <div class="col-xs-12 col-md-7">
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Theorie</h3>
+                    <div class="box-body">
+
+                        Zu einem Buffer Overflow oder zu Deutsch Pufferüberlauf kommt es,
+                        wenn ein Programm oder ein Prozess versucht, mehr Daten in einem Puffer (temporärer Datenspeicher)
+                        zu speichern, als dort vorgesehen ist. Da Puffer darauf ausgerichtet sind, eine begrenzte Datenmenge
+                        aufzunehmen, „fließen” die überzähligen Informationen, die irgendwo gespeichert werden müssen,
+                        in benachbarte Puffer. Die sich dort befindlichen Daten werden dabei überschrieben und beschädigt.
+                        Obwohl dies auch versehentlich durch einen Programmierfehler auftreten kann, werden Buffer Overflows
+                        zunehmend genutzt, um Daten absichtlich zu korrumpieren.
+                        <br />
+                        <br />
+                        Beim Start eines Programms wird diesem ein bestimmter Speicherbereich zugewiesen.
+                        Dieser ist, wie in der nebenstehenden Abbildung dargestellt, in drei Abschnitte aufgeteilt: den Code, den Heap und
+                        den Stack. Im Code liegt der eigentliche Quellcode, der nicht mehr verändert werden kann.
+                        Darüber liegt der Heap, in dem dynamische Variablen abgelegt sind. Der Stack beginnt am oberen Ende des
+                        Speichers und wächst mit jedem Eintrag nach unten. Dabei wird nach dem Prinzip des LIFO (last in, first out)
+                        vorgegangen. Gespeichert werden im Stack lokale Variablen, der Inhalt von Prozessorregistern und
+                        Rücksprung-Adressen von Unterprogrammen. Bei einem Angriff durch Buffer-Overflow wird eine lokale Variable
+                        mit mehr Daten beschrieben, als reserviert sind. Wird in dem ausgeführten Programm die Länge der Eingangsdaten nicht überprüft,
+                        so wird der nachfolgende Speicherbereich überschrieben,
+                        was entweder andere lokale Variablen oder aber Rücksprung-Adressen sein können.
+                        Werden Rücksprungadressen überschrieben, so kann der Angreifer beliebigen Code ausführen und somit die Kontrolle über das Opfer erlangen.
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</div>
-<div class="col-xs-12 col-md-5">
-    <div class="box box-warning">
-    <div class="box-header">
-        <h3 class="box-title">Media</h3>
-    </div>
-        <div class="box-body">
-            <img alt="Speicher Aufbau" class="auto-style1" src="../../Content/img/Attacks/BufferOverflowImg/speicherAufbau.jpg" /></div>
+
+    <div class="col-xs-12 col-md-5">
+        <img alt="Speicher Aufbau" class="auto-style1" src="../../Content/img/Attacks/BufferOverflowImg/speicherAufbau_new.jpg" />
     </div>
 </div>
 
-<p>
-    <input id="btnContinue" class=".btn-lg" type="button" value="button" /></p>
+<div class="row">
+    <div class="col-xs-12 col-md-7">
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Beispiel Heartbleed</h3>
+                <div class="box-body">
+                    <div id="sliderFrame">
+                        <div id="slider">
+                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_0.svg" />
+                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_1.png" />
+                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_2.png" />
+                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_3.png" />
+                        </div>
+                        <div class="group1-Wrapper">
+                            <a onclick="imageSlider.previous()" class="group1-Prev"></a>
+                            <a onclick="imageSlider.next()" class="group1-Next"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="col-xs-12 col-md-5">
+        <div id="gallery">
+            <figure>
+                <img src="~/Content/img/Attacks/BufferOverflowImg/Stack_nach_BO.png" />
+            </figure>
+            <figure>
+                <img src="~/Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
+            </figure>
+            <figure>
+                <img src="~/Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
+            </figure>
+        </div>
+    </div>
+</div>
 
