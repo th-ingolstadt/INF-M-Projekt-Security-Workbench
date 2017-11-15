@@ -1,0 +1,66 @@
+/*
+Master CSS to bind all styles into one file
+*/
+/* 
+    Created on : 15.11.2017, 20:32:03
+    Author     : Marco Egner
+*/
+
+@import "AdminLTE.css";
+@import "AdminLTE.min.css";
+@import "bootstrap-datepicker3.min.css";
+@import "bootstrap.min.css";
+@import "font-awesome.min.css";
+@import "gallery.css";
+@import "image-slider.css";
+@import "prism_Coy.css";
+@import "prism_Twilight.css";
+@import "select2.min.css";
+
+@import "icheck/aero.css";
+@import "icheck/aero.min.css";
+@import "icheck/blue.css";
+@import "icheck/blue.min.css";
+@import "icheck/green.css";
+@import "icheck/green.min.css";
+@import "icheck/grey.css";
+@import "icheck/grey.min.css";
+@import "icheck/minimal.css";
+@import "icheck/minimal.min.css";
+@import "icheck/orange.css";
+@import "icheck/orange.min.css";
+@import "icheck/pink.css";
+@import "icheck/pink.min.css";
+@import "icheck/purple.css";
+@import "icheck/purple.min.css";
+@import "icheck/red.css";
+@import "icheck/red.min.css";
+@import "icheck/yellow.css";
+@import "icheck/yellow.min.css";
+
+@import "skins/_all-skins.css";
+@import "skins/_all-skins.min.css";
+@import "skins/skin-black-light.css";
+@import "skins/skin-black-light.min.css";
+@import "skins/skin-black.css";
+@import "skins/skin-black.min.css";
+@import "skins/skin-blue-light.css";
+@import "skins/skin-blue-light.min.css";
+@import "skins/skin-blue.css";
+@import "skins/skin-blue.min.css";
+@import "skins/skin-green-light.css";
+@import "skins/skin-green-light.min.css";
+@import "skins/skin-green.css";
+@import "skins/skin-green.min.css";
+@import "skins/skin-purple-light.css";
+@import "skins/skin-purple-light.min.css";
+@import "skins/skin-purple.css";
+@import "skins/skin-purple.min.css";
+@import "skins/skin-red-light.css";
+@import "skins/skin-red-light.min.css";
+@import "skins/skin-red.css";
+@import "skins/skin-red.min.css";
+@import "skins/skin-yellow-light.css";
+@import "skins/skin-yellow-light.min.css";
+@import "skins/skin-yellow.css";
+@import "skins/skin-yellow.min.css";

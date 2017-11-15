@@ -1,0 +1,45 @@
+﻿main {
+	background: transparent;
+	border-color: transparent;
+}
+
+div {
+	border: none;
+	background: none;
+}
+
+#gallery {
+  position: relative;
+}
+
+#gallery figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#gallery figcaption {
+  position: absolute;
+  left: 1em;
+  bottom: 0.5em;
+  z-index: 2;
+}
+
+#gallery figure {
+  animation: wechseln 15s infinite;
+}
+
+@keyframes wechseln {
+    0% {opacity: 1;}
+   25% {opacity: 1;}
+   40% {opacity: 0;}
+   92% {opacity: 0;}
+  100% {opacity: 1;}
+}
+#gallery figure:nth-of-type(2) {
+  animation-delay: 5s;
+}
+#gallery figure:nth-of-type(1) {
+  animation-delay: 10s;
+}

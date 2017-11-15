@@ -1,0 +1,60 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout.html";
+?>
+
+﻿@{
+    ViewBag.Title = "Buffer Overflow";
+    ViewBag.Description = "Der erste Angriff";
+
+    var dataFile = Server.MapPath("~/App_Data/FirstExample.c");
+    var code = "";
+    code = File.ReadAllText(@dataFile).Trim();
+}
+
+<script src="~/Content/js/prism.js"></script>
+
+<h2>Stack Overflow</h2>
+
+<div class="row">
+    <div class="col-xs-12 col-md-7">
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Der erste Buffer Overflow</h3>
+                </div>
+                <div class="box-body">
+                    Zu Beginn, soll der nachfolende einfache C-Code analysiert werden. Es werden darin zuerst drei Variablen angelegt.
+                    Im Anschluss wird das Eingabeargument in einer der Variablen gespeichert. Da das Argument vor der Speicherung nicht auf seine Größe überprüft wird, ist es möglich die anderen Variablen mit einer zu großen Eingabe zu überschreiben.
+                    <pre class="line-numbers">
+                    <code class="language-c">
+@code
+                        </code>
+                    </pre>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-md-5">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Media</h3>
+            </div>
+            <div class="box-body">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-5">
+        <div class="box box-success">
+            <div class="box-header">
+                <h3 class="box-title">Tipps</h3>
+            </div>
+            <div class="box-body">
+
+            </div>
+        </div>
+    </div>
+</div>
