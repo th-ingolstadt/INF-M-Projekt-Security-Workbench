@@ -44,22 +44,7 @@
         $("#letsGo").click(function () {
             $("#loginModal").modal();
         });
-        /*
-        $("#loginButton").click(function () {
-            var username = $("#usrname").val();
-            var password = $("#pwd").val(); 
-
-            if (username === "Mr.Robot" && password === "hallo123") {
-                $("#loginModal").modal().toggle(); 
-                alert("login success");
-            } else {
-                alert("Wrong Login credentials");
-                $("#loginModal").modal();
-            }
-        });
-        */
     });
-
 </script>
 
 <body onload="checkCookiesForLoggedinUser();">
@@ -73,8 +58,9 @@
                     <div class="box-body">
                         <h5><b><u>Stored Cross Site Scripting</u></b></h5>
                         <p style="text-align: justify;">
-                            Stored attacks are those where the injected script is permanently stored on the target servers, such as in a database, in a message forum, visitor log, comment field, etc. The victim then retrieves the malicious script from the server when it requests the stored information.
-                            Stored XSS is also sometimes referred to as Persistent or Type-I XSS
+                            Gespeicherte XSS ist eine Attake bei der ein Skript injiziiert und permanent auf dem Zielserver z. B. in einer Datenbank, einem Nachrichtenforum oder einem Kommentarfeld gespeichert wird.
+                            Sobald dann ein Client ein HTTP-Request nach der Webseite mit den gespeicherten Informationen anfrägt, wird der Server ihm mit dem böswilligen Code antworten. 
+                            Stored XSS wird manchmal auch als Persistent oder Type-I XSS bezeichnet. 
                         </p>
                         <div class="col-xs-12 col-md-12">
                             <img src="~/Content/img/storedXSS.jpg" class="img-responsive" alt="Stored-Cross-Site Scripting">
@@ -104,7 +90,6 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>
                         <br /><br />
-                        <!-- TODO: HIDDEN INPUT -->
                         <h3 id="guestbookHeader">""</h3>
                         <table class="table table-striped" id="guestbook">
                             <thead>
@@ -118,17 +103,11 @@
                                 @foreach (var row in db.Query(selectQueryString))
                                 {
                                     <tr>
-                                        <td>@row.username</td>
-                                        <td>@row.date</td>
-                                        <td>@row.comment</td>
-                                     <!--  <td>TML.raw(row.comment)</td> -->
+                                        @Html.Raw("<td>" + @row.username + "</td>")
+                                        @Html.Raw("<td>" + @row.date + "</td>")
+                                        @Html.Raw("<td>" + @row.comment + "</td>")
                                     </tr>
                                 }
-                          <!--      <tr>
-                                <td>jlöjl</td>
-                                <td>jlkösakd</td>
-                                <td><script>alert("Test"); </script></td>
-                                </tr> -->
                             </tbody>
                         </table>
                     </div>
@@ -188,7 +167,6 @@
                     <p>Forgot <a href="#">Password?</a></p>
                 </div>
             </div>
-
         </div>
     </div>
 </body>

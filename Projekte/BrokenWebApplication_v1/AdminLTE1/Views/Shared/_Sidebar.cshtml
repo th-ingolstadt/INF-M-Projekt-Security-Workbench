@@ -25,9 +25,11 @@
                 <ul class="treeview-menu" >
                     <li><a href="#">Cross Site Scripting General</a></li>
                     <li><a href="#">Reflected Cross Site Scripting</a></li>
-                    <li><a href="#">DOM-based or local XSS</a></li>
                     <li class="@Url.IsLinkActive("PersistentXSSGuestbook", "Home")">
                         <a href="@Url.Action("PersistentXSSGuestbook", "Home")">Stored XSS - Guestbook</a>
+                    </li>
+                    <li  class="@Url.IsLinkActive("LocalXSS", "Home")">
+                        <a href="@Url.Action("LocalXSS", "Home")">DOM-based/ Local XSS</a>
                     </li>
                 </ul>
             </li>

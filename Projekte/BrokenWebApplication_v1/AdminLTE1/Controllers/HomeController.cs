@@ -23,10 +23,15 @@ namespace AdminLTE1.Controllers
         {
             return View("SessionManagement"); 
         }
-
+        
         public ActionResult PersistentXSSGuestbook()
         {
             return View("PersistentXSS_Guestbook");
+        }
+
+        public ActionResult LocalXSS()
+        {
+            return View("LocalXSS"); 
         }
 
         public ActionResult LoginParcours()

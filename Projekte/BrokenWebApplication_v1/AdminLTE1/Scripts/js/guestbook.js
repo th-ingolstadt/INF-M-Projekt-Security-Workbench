@@ -33,3 +33,14 @@ function checkLoginInput() {
     document.cookie = "username=" + username;
     document.cookie = "password=" + password; 
 }
+
+function checkLoginDOMXSS() {
+    var username = document.getElementById("usrname").value;
+    var password = document.getElementById("pwd").value; 
+
+    if (username === "admin" && password === "admin") {
+        var pos = document.URL.indexOf("context=") + 8;
+        document.write(document.URL.substring(pos, document.URL.length));
+        document.getElementById("shoppingList").removeAttribute("hidden");
+    }
+}
