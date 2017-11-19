@@ -33,6 +33,11 @@ namespace AdminLTE1.Controllers
         {
             return View("BufferOverflow_FirstExample");
         }
+
+        public ActionResult BufferOverflow_SecondExample()
+        {
+            return View("BufferOverflow_SecondExample");
+        }
     }
 
 }

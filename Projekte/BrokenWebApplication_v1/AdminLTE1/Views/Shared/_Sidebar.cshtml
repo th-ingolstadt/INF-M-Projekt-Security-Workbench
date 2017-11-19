@@ -26,7 +26,7 @@
             <li class="@Url.IsLinkActive("SessionManagementLink", "Home")">
                 <a href="@Url.Action("SessionManagementLink", "Home")"><i class="fa fa-link"></i> <span>Session Management</span></a>
             </li>
-            <li class="treeview { @Url.IsLinkActive("BufferOverflow", "Home") ? 'active' : '' } { @Url.IsLinkActive("BufferOverflow_FirstExample", "Home") ? 'active' : '' }">
+            <li class="treeview { @Url.IsLinkActive("BufferOverflow", "Home") ? 'active' : '' } { @Url.IsLinkActive("BufferOverflow_FirstExample", "Home") ? 'active' : '' } { @Url.IsLinkActive("BufferOverflow_SecondExample", "Home") ? 'active' : '' }">
                 <a href="#">
                     <i class="fa fa-link"></i> <span>Buffer Overflow</span>
                     <span class="pull-right-container">
@@ -40,6 +40,10 @@
                     <li class="@Url.IsLinkActive("BufferOverflow_FirstExample", "Home")">
                         <a href="@Url.Action("BufferOverflow_FirstExample", "Home")"><i class="fa fa-link"></i> <span>Übung 1</span></a>
                     </li>
+                    <li class="@Url.IsLinkActive("BufferOverflow_SecondExample", "Home")">
+                        <a href="@Url.Action("BufferOverflow_SecondExample", "Home")"><i class="fa fa-link"></i> <span>Übung 2</span></a>
+                    </li>
+
                 </ul>
             </li>
                     <li class="treeview">

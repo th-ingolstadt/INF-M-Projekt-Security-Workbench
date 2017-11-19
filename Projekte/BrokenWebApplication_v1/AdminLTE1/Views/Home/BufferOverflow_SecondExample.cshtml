@@ -1,8 +1,8 @@
 ﻿@{
     ViewBag.Title = "Buffer Overflow";
-    ViewBag.Description = "Der erste Angriff";
+    ViewBag.Description = "Der zweite Angriff";
 
-    var dataFile = Server.MapPath("~/App_Data/FirstExample.c");
+    var dataFile = Server.MapPath("~/App_Data/SecondExample.c");
     var code = "";
     code = File.ReadAllText(@dataFile).Trim();
 }
@@ -19,8 +19,8 @@
                     <h3 class="box-title">Der erste Buffer Overflow</h3>
                 </div>
                 <div class="box-body">
-                    Zu Beginn, soll der nachfolende einfache C-Code analysiert werden. Es werden darin zuerst drei Variablen angelegt.
-                    Im Anschluss wird das Eingabeargument in einer der Variablen gespeichert. Da das Argument vor der Speicherung nicht auf seine Größe überprüft wird, ist es möglich die anderen Variablen mit einer zu großen Eingabe zu überschreiben.
+                    Als zweite Übung soll dieser C-Code analysiert und angegriffen werden. Der Code geht aus der ersten Übung hervor. Allerdings wurde hier, um einem Buffer Overflow vorzubeugen, eine sogenannte Magic Number hinzugefügt. 
+                    Wird diese Variable überschrieben, so wird die Authentifizierung abgebrochen.
                     <pre class="line-numbers">
                     <code class="language-c">
 @code
