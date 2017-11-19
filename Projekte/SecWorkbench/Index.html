@@ -1,11 +1,10 @@
 <?php
-    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout.html";
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
-
-﻿@{
-    ViewBag.Title = "Security-Workbench Tutorials";
+﻿
+<title>Security-Workbench Tutorials</title>
     ViewBag.Description = "Introduction";
-}
+
 
 <div class="row">
     <div class="col-xs-12 col-md-12">
@@ -19,3 +18,7 @@
         </div>
     </div>
 </div>
+    
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>

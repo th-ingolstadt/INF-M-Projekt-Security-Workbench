@@ -11,7 +11,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            include ("./StaticSites/Index.html");
+            include ("./Index.html");
         ?>
     </body>
 </html>
