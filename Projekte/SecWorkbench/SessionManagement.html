@@ -1,11 +1,15 @@
 <?php
-    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout.html";
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
 
-﻿@{
-    ViewBag.Title = "Session Management";
-    ViewBag.Description = "...";
-}
+<script>
+    window.onload = function(){
+        var title = "Session Management";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";        
+};
+</script>
 
 <div class="row">
     <div class="col-xs-12 col-md-12">
@@ -19,3 +23,10 @@
         </div>
     </div>
 </div>
+
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+// mark sidebar element for this page active
+<script> document.getElementById('sbiSessionManagement').className = 'active'; </script>

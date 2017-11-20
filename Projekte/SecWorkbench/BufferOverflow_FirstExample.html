@@ -1,15 +1,15 @@
 <?php
-    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout.html";
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
 
-﻿@{
-    ViewBag.Title = "Buffer Overflow";
-    ViewBag.Description = "Der erste Angriff";
-
-    var dataFile = Server.MapPath("~/App_Data/FirstExample.c");
-    var code = "";
-    code = File.ReadAllText(@dataFile).Trim();
-}
+<script>
+    window.onload = function(){
+        var title = "Buffer Overflow";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "Der erste Angriff";        
+};
+</script>
 
 <script src="~/Content/js/prism.js"></script>
 
@@ -58,3 +58,12 @@
         </div>
     </div>
 </div>
+
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script> 
+    document.getElementById('tvBufferOverflow').className = 'treeview active'; 
+    document.getElementById('sbiBufferOverflowFE').className = 'active';
+</script>
