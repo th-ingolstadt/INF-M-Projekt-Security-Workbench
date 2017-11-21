@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:java="http://www.yworks.com/xml/yfiles-common/1.0/java" xmlns:sys="http://www.yworks.com/xml/yfiles-common/markup/primitives/2.0" xmlns:x="http://www.yworks.com/xml/yfiles-common/markup/2.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:y="http://www.yworks.com/xml/graphml" xmlns:yed="http://www.yworks.com/xml/yed/3" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://www.yworks.com/xml/schema/graphml/1.1/ygraphml.xsd">
+  <!--Created by yEd 3.14.1-->
+  <key attr.name="Beschreibung" attr.type="string" for="graph" id="d0"/>
+  <key for="port" id="d1" yfiles.type="portgraphics"/>
+  <key for="port" id="d2" yfiles.type="portgeometry"/>
+  <key for="port" id="d3" yfiles.type="portuserdata"/>
+  <key attr.name="url" attr.type="string" for="node" id="d4"/>
+  <key attr.name="description" attr.type="string" for="node" id="d5"/>
+  <key for="node" id="d6" yfiles.type="nodegraphics"/>
+  <key for="graphml" id="d7" yfiles.type="resources"/>
+  <key attr.name="url" attr.type="string" for="edge" id="d8"/>
+  <key attr.name="description" attr.type="string" for="edge" id="d9"/>
+  <key for="edge" id="d10" yfiles.type="edgegraphics"/>
+  <graph edgedefault="directed" id="G">
+    <data key="d0"/>
+    <node id="n0">
+      <data key="d5"/>
+      <data key="d6">
+        <y:GenericNode configuration="com.yworks.flowchart.process">
+          <y:Geometry height="340.0" width="500.0" x="501.0" y="439.0"/>
+          <y:Fill color="#FFFFFF" color2="#FFFFFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="SansSerif" fontSize="12" fontStyle="bold" hasBackgroundColor="false" hasLineColor="false" height="268.62109375" modelName="custom" textColor="#000000" visible="true" width="498.115234375" x="0.9423828125" y="35.689453125">Der sogenannte Heartbeat soll es eigentlich Server 
+und Client ermöglichen, eine TLS-Verbindung am Leben zu halten. 
+Zu diesem Zweck sendet einer der Kommunikationspartner 
+eine Payload mit beliebigem Inhalt an das andere Ende. 
+Der Kommunikationspartner schickt dann exakt die selben Daten zurück, 
+um zu zeigen, dass die Verbindung nach wie vor in Ordnung ist.
+
+Das Problem bei der Umsetzung der TLS-Heartbeat-Funktion in OpenSSL war, 
+dass das Programm nicht überprüft, wie lang die empfangene 
+Payload tatsächlich ist – 
+der Empfänger glaubt dem Absender einfach. Der kann in das dafür vorgesehene Feld 
+"payload_length" im Header des Payload-Paketes beliebige Werte schreiben. 
+Lügt der Absender bei der Größe der Payload, kann er letztlich Speicher 
+der Gegenstelle auslesen. Dieser Heartbleed-Angriff funktioniert in beide Richtungen, 
+aber meistens greift ein böser Client einen verwundbaren Server an.
+
+Auf den folgenden Bildern ist die oben beschriebene 
+Funktionsweise intuitiv dargestellt.<y:LabelModel>
+              <y:SmartNodeLabelModel distance="4.0"/>
+            </y:LabelModel>
+            <y:ModelParameter>
+              <y:SmartNodeLabelModelParameter labelRatioX="0.0" labelRatioY="0.0" nodeRatioX="0.0" nodeRatioY="0.0" offsetX="0.0" offsetY="0.0" upX="0.0" upY="-1.0"/>
+            </y:ModelParameter>
+          </y:NodeLabel>
+        </y:GenericNode>
+      </data>
+    </node>
+    <node id="n1">
+      <data key="d5"/>
+      <data key="d6">
+        <y:ImageNode>
+          <y:Geometry height="86.53960975936276" width="70.34624697336562" x="914.5" y="457.5"/>
+          <y:Fill color="#CCCCFF" transparent="false"/>
+          <y:BorderStyle color="#000000" type="line" width="1.0"/>
+          <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" modelName="sandwich" modelPosition="s" textColor="#000000" visible="true" width="4.0" x="33.17312348668281" y="90.53960975936275"/>
+          <y:Image alphaImage="true" refid="1"/>
+        </y:ImageNode>
+      </data>
+    </node>
+  </graph>
+  <data key="d7">
+    <y:Resources>
+      <y:Resource id="1" type="java.awt.image.BufferedImage">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&#13;
+FP4X3Soc690r+mkAAAAASUVORK5CYII=</y:Resource>
+    </y:Resources>
+  </data>
+</graphml>
