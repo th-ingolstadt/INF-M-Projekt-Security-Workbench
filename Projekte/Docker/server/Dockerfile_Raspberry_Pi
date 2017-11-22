@@ -14,8 +14,8 @@ RUN apt-get update && apt-get install -y \
 # Open ports
 EXPOSE 80
 
-# Copy sql script into the container to initialize the DB
-COPY initlializeDB.sql . 
+# apache configuration
+RUN printf "RemoveHandler .html .htm \nAddType application/x-httpd-php .php .htm .html" >> /etc/apache2/apache2.conf
 
 # Start services as last step
 COPY startServices.sh startServices.sh
