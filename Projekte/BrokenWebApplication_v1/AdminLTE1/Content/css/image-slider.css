@@ -11,7 +11,7 @@
 }      
 
 #slider, #slider .sliderInner {
-    width:500px;height:343px;// Must be the same size as the slider images 
+    width:500px;height:343px; /* Must be the same size as the slider images */
     border-radius:0px;
 }
 
