@@ -19,7 +19,12 @@ def OpferSynFlood_Menu():
 		#Apache2 server starten
 		print('In diesem Abschnitt wird der Apache2-Server gestartet, der im SYN-Flooding-Tutorial angegriffen wird.')
 		command = rlinput('Der Server wird mit folgendem Befehl gestartet: \n# ', ' /etc/init.d/apache2 start')
-		os.system(command)
+		
+		curPath = os.path.dirname(os.path.realpath(__file__))	
+		apacheDockerScriptPath = curPath + "/server/apacheDockerControl.sh"
+		startApacheCmd = apacheDockerScriptPath + " start"		
+		execute(startApacheCmd)
+
 		print('\n')
 
 		#IP Adressen Opfer/Angreifer
@@ -38,7 +43,12 @@ def OpferSynFlood_Menu():
 
 	 	selection = raw_input(shellCols.BLUE + '\nDrücke ENTER um den Server zu stoppen. Führen sie diesen Befehl nur aus, wenn die Attacke bereits beendet wurde. ' + shellCols.ENDC)
 		command = rlinput('Der Server wird mit folgendem Befehl gestoppt : \n# ', ' /etc/init.d/apache2 stop')
-		os.system(command)
+		
+		# Apache2 server stoppen
+		stopApacheCmd = apacheDockerScriptPath + " stop"
+		execute(stopApacheCmd)
+		
+
 		selection = raw_input(shellCols.BLUE + '\nDrücke ENTER um das Programm zu verlassen...' + shellCols.ENDC)
 		print('Gehe zurück zum Hauptmenü')
 		showMenu = False

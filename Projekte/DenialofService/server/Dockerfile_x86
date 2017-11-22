@@ -1,0 +1,17 @@
+FROM debian:9
+ 
+# Update and install all necessary packages
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    php \
+    && apt-get clean
+
+# Open ports
+EXPOSE 80
+
+# Copy php file in /var/www/html
+COPY index.php /var/www/html/index.php
+
+# Start apache
+CMD apachectl -D FOREGROUND
+

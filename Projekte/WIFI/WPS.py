@@ -59,7 +59,7 @@ def WPS_Menu():
 	
 		#CHECK WPS LOCK
 		print ('Nun beginnt der eigentliche Angriff:\n')
-		command = rlinput('Zuerst muss geprüft werden, ob der ausgewählte Router WPS unterstützt(Prüfen auf WPS-Locked: No): \n# ', 'wash -i ' + wifi_name + ' -c ' +router_chn + ' -C -s')
+		command = rlinput('Zuerst muss geprüft werden, ob der ausgewählte Router WPS unterstützt(Prüfen auf WPS-Locked: No): \n# ', 'wash -i ' + wifi_name + ' -c ' +router_chn + ' -s')
 		execute(command)
 
 		#CRACK WPA2-PSK

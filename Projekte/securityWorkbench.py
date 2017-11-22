@@ -72,7 +72,6 @@ while(showMenu):
 	elif(mainSelection == 4):
 		signal.signal(signal.SIGINT, mainSQL.sql_signal_handler)
 		mainSQL.initializeDB.start_services()
-		mainSQL.initializeDB.init()
 		mainSQL.main()
 	elif(mainSelection == 5):
 		mainOpenSSL.main()

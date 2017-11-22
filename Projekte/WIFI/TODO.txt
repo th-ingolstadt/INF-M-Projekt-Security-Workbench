@@ -1,0 +1,7 @@
+2. wlan0 no monitoring mode
+2.1 Noch nicht Angepast
+2.2 Angepasst
+2.3 Nicht mehr vorhanden Funktionen angepasst. Muss noch genauer untersucht werden hat keine Auswirkung auf das Netzwerk
+2.4 Muss zuerst noch auf dem AP implementiert werden
+2.5 Funktioniert nicht aus den Stand es wurden nicht die Packete entpackt hier sollte man im Kali installations Script diese noch machen.
+2.6 Hier ist höchstwarscheinlich das selbe wie in 2.5

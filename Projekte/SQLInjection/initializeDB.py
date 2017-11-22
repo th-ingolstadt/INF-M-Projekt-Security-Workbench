@@ -9,69 +9,37 @@ import shutil
 import zipfile
 
 from generics import rlinput, execute, clearScreen
+from subprocess import Popen
 
 def start_services():
-	#Copy HTML/PHP files from git repository to apache2 source folder and start apache2
-	srcdir = os.path.dirname(os.path.realpath(__file__)) + '/html'
-	
-	#####################################################################################
-	############################# BEGIN OF CONFIGURATION ################################
-	##### IN CASE YOU HAVE ANOTHER PATH TO APACHE2 WEBSERVER PLEASE CONFIGURE HERE ######
-	#####################################################################################
-	dstfile = '/var/www/html/sqlinjection.zip'
-	dstdir = '/var/www/html/sqlinjection'
-	#####################################################################################
-	############################# END OF CONFIGURATION# #################################
-	#####################################################################################
-	
-	#Delete existing directory and files sqlinjection in apache2-root
-	shutil.rmtree(dstdir, ignore_errors=True)
-	#Create necessary directories
-	os.makedirs(dstdir)
-	#Create Zip-File from git-repository and copy it to apache2-root
-	#This way, the source-files from git can be modified an automaticly pushed into apache2 web servers
-	shutil.make_archive(dstdir, 'zip', srcdir)
-	
-	#unzip sqlinjection.zip in apache2-root
-	zip_ref = zipfile.ZipFile(dstfile, 'r')
-	zip_ref.extractall(dstdir)
-	zip_ref.close()
-
-	#start apache2
-	os.system('/etc/init.d/apache2 start')
-
-	#start mysql
-	os.system('/etc/init.d/mysql start')
-
+	# start lamp docker container
+	lampControl("start")
+	return	
 
 def end_services():
-	#shutdown apache 2
-	os.system('/etc/init.d/apache2 stop')
+	# stop lamp container
+	lampControl("stop")
+	return
 	
-	#shutdown mysql
-	os.system('/etc/init.d/mysql stop')
-
+def lampControl( command ):
+	curPath = os.path.dirname(os.path.realpath(__file__))
+	webResourcePath = curPath + "/html"
+	# restart container
+	lampControlScript = Popen(['/bin/bash', './SQLInjection/server/lampDockerControl.sh', str(command)], env={"WEB_RES_PATH": webResourcePath})
+	# wait until lampControl script has finished
+	lampControlScript.communicate()
+	# check exit status of the lampControl script
+	lampControlScriptExitStatus = lampControlScript.returncode
+	if(0 != lampControlScriptExitStatus):
+		print("Error: lampControl script returned", lampControlScriptExitStatus)
+		sys.exit(1)
+	return
 
 def init():
-
-	
-	executeQuery('drop database if exists vulnerableDB;')
-	executeQuery('create database vulnerableDB;')
-	executeQuery('grant select, insert, update, delete, alter, drop, create on vulnerableDB.* to "normal_user"@"localhost" identified by "master42";')
-	executeQuery('create table vulnerableDB.secretUserData(userId int primary key auto_increment, userName varchar(255), password varchar(30));')
-	data = [
-		('1', 'Douglas Adams', 'DontPanic!'),
-		('2', 'Harry Potter', 'CaputDraconis'),
-		('3', 'James T. Kirk', 'BeamMeUpScotty'),
-		('4', 'Grumpy Cat', 'No!'),
-		('5', 'Dalek', 'Exterminate!'),
-		('6', 'The Doctor', 'Allons-y'),
-		('7', 'Deadpool', 'Chimichanga')
-	]
-	insertIntoSecretUserData(data)
-
+	# start/restart the lamp container
+	lampControl("start")
 	print('Datenbank wurde zurueckgesetzt!')
-
+	return
 
 def executeQuery( query ):
 	import MySQLdb as mdb
