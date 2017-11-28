@@ -705,7 +705,7 @@ a:focus {
 }
 .control-sidebar {
   position: absolute;
-  padding-top: 50px;
+  padding-top: 70px;
   z-index: 1010;
 }
 @media (max-width: 768px) {
