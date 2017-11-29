@@ -300,6 +300,7 @@ zone \"news.local\"{
         };
 " >> /etc/bind/named.conf.local
 mkdir /etc/bind/zones
+#TODO Dummy Configuration
 echo "\$TTL 2h
 @ IN SOA master.injection.local. hostmaster.injection.local. (
     2017112701 ;
@@ -410,6 +411,15 @@ wps_pin_requests=/var/run/hostapd.pin-req
 #       nfc_interface push_button keypad virtual_display physical_display
 #       virtual_push_button physical_push_button
 config_methods=label virtual_display virtual_push_button keypad
+
+device_name=USB2.0 WLAN
+manufacturer=ATHEROS
+model_name=WAP
+model_number=123
+serial_number=12345
+device_type=6-0050F204-1
+os_version=01020300
+
 
 # Static access point PIN for initial configuration and adding Registrars
 # If not set, hostapd will not allow external WPS Registrars to control the

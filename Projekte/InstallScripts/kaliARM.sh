@@ -39,7 +39,7 @@ service docker start
 
 # Configurate SecWorkbench
 #TODO Pfade Müssen gegebenfalls noch angepast werden
-chmod +x ../Project/WIFI/startFakeAP.sh
+chmod +x ../WIFI/startFakeAP.sh
 
 ##Add OAth phising Need for wifiphisher 1.1
 #tar xvfJ oauth-login.tar.xz /usr/lib/python2.7/dist-packages/wifiphisher/data/phishing-pages
