@@ -84,6 +84,10 @@ function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
  * This is what we want in a security critical application like this. */
 set_error_handler('error_handler');
 
+if($_SESSION['needLogin'] == false)
+{
+    $_SESSION['authenticated'] = true;
+}
 
 function logout()
 {
@@ -127,13 +131,13 @@ $nounce   = isset($_POST['nounce'])   ? $_POST['nounce']   : '';
 
 $command  = isset($_POST['command'])  ? $_POST['command']  : '';
 $rows     = isset($_POST['rows'])     ? $_POST['rows']     : 24;
-$columns  = isset($_POST['columns'])  ? $_POST['columns']  : 80;
+$columns  = isset($_POST['columns'])  ? $_POST['columns']  : 75;
 
 if (!preg_match('/^[[:digit:]]+$/', $rows)) { 
     $rows=24 ; 
 } 
 if (!preg_match('/^[[:digit:]]+$/', $columns)) {
-    $columns=80 ;
+    $columns=75 ;
 }
 /* Load the configuration. */
 $ini = parse_ini_file('config.php', true);
@@ -398,7 +402,8 @@ if ($_SESSION['authenticated']) {
   <link rel="stylesheet" href="style.css" type="text/css">
 
   <script type="text/javascript">
-  <?php if ($_SESSION['authenticated'] && ! $showeditor) { ?>
+  <?php 
+  if ($_SESSION['authenticated'] && ! $showeditor ) { ?>
 
     var current_line = 0;
     var command_hist = new Array(<?php echo $js_command_hist ?>);
@@ -457,7 +462,7 @@ if ($_SESSION['authenticated']) {
 <div><input name="levelup" id="levelup" type="hidden"></div>
 <div><input name="changedirectory" id="changedirectory" type="hidden"></div>
 <?php
-if (!$_SESSION['authenticated']) {
+if (!$_SESSION['authenticated'] ) {
     /* Generate a new nounce every time we present the login page.  This binds
      * each login to a unique hit on the server and prevents the simple replay
      * attack where one uses the back button in the browser to replay the POST
@@ -491,7 +496,17 @@ if (!$_SESSION['authenticated']) {
 
 </fieldset>
 
-<?php } else { /* Authenticated. */ ?>
+<?php } else { /* Authenticated. */ 
+    if($_SESSION['needLogin']==false)
+    {
+        $_SESSION['nounce'] = mt_rand();
+
+
+        if (ini_get('safe_mode') && $ini['settings']['safe-mode-warning'] == true ) {
+            echo '<div class="warning">Warning: Safe-mode is enabled. PHP Shell will probably not work correctly.</div>';
+        }
+    }
+    ?>
 <fieldset>
   <legend><?php echo "Phpshell running on: " . $_SERVER['SERVER_NAME']; ?></legend>
 <p>Current Working Directory:
