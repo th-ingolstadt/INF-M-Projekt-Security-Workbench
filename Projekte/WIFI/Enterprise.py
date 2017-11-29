@@ -117,7 +117,7 @@ def Enterprise_Menu():
 		execute(command)
 
 		#WAIT FOR CHALLANGE RESPONSE PAIR
-		print("Wurde ein Authentifikationsversuch aufgezeichnet, kann der Fake-AP heruntergefahren und die Deauthenticate-Attacke beendet werden und es können folgende Parameter ausgefüllt werden:")
+		print("Wurde ein Authentifikationsversuch aufgezeichnet, kann der Fake-AP heruntergefahren und die Deauthenticate-Attacke beendet werden und es können folgende Parameter ausgefüllt werden(Deise müssen aus dem Log des FAKE AP entnohmen werden):")
 		challenge = raw_input("Challenge des Authentifikationsversuch: ").strip()
 		response = raw_input("Response des Authentifikationsversuch: ").strip()
 
@@ -133,8 +133,8 @@ def Enterprise_Menu():
 
 		
 
-		#END           ! WAT !
-		print('Ende des DoS-Tutorials erreicht! \n Bitte wählen zum Fortfahren: \n')
+		#END
+		print('Ende des WPA/WPA2-Enterprise-Tutorials erreicht! \n Bitte wählen zum Fortfahren: \n')
 		print ('1. Zurück zum Menü \n'
 			+ '2. Zurück zur WPA/WPA2-Enterprise-Übersicht\n' 
 			+ '0. Tutorial beenden \n')
@@ -157,7 +157,8 @@ def sql_signal_handler(signal, frame):
 	if(os.path.isfile("/etc/network/interfaces_restore")):
 		os.system("mv /etc/network/interfaces_restore /etc/network/interfaces")	
 	#ReStart Networkmanager
-	os.system("service network-manager restart")
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start && service network-manager start")
 	print('\n\n Die Security Workbench wird beendet ... \n')
 	sys.exit(0)
 

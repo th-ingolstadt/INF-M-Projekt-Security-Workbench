@@ -18,6 +18,7 @@ def SniffingMode():
 		print(shellCols.UNDERLINE + shellCols.HEADER + 'Untermenü Opfer der Darstellung des Netzwerkverkehrs: ' + shellCols.ENDC + '\n')
 
 		##Schritt 1
+		#TODO Was wird mit Host Netwerk gemeint
 		print('Stelle im ersten Schritt sicher, dass du direkten Zugriff auf das Host-Netzwerk hast.\n')
 		selection = raw_input(shellCols.BLUE + '\nDrücke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		if(selection == "x"):
@@ -26,6 +27,7 @@ def SniffingMode():
 			break
 
 		##Schritt 2
+		# Hier vieleicht interactiver man kann ja auch ein netzwerk scan machen beim angrefeier und dann überprüfen ob sie überein stimmen
 		command = rlinput('Rufe nun die Konfiguration deiner IP-Netzwerkschnittstellen auf und lies dort deine IP-Adresse aus: ', 'ifconfig')
 		os.system(command)
 		print('\n')
@@ -71,7 +73,7 @@ def ReplaceImagesMode():
 			break
 
 		##Schritt 2
-		print('Rufe nun in deinem Browser eine Homepage auf - beispielsweise www.sueddeutsche.de. Schliesse im Anschluss den Browser.')
+		print('Rufe nun in deinem Browser die Homepage -  www.sueddeutsche.de - auf. Schliesse im Anschluss den Browser.')
 		selection = raw_input(shellCols.BLUE + '\nDrücke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		if(selection == "x"):
 			print('Gehe zurück zum Hauptmenü')
@@ -86,7 +88,7 @@ def ReplaceImagesMode():
 			showMenu = False
 			break
 
-		##Schritt 4
+		##Schritt 4 
 		print('Rufe nun in deinem Browser erneut die zuvor gewählte Webseite auf. Es sollte jetzt das entsprechende Youtubevideo auf der Webseite eingebunden und abgespielt werden.')
 		selection = raw_input(shellCols.BLUE + '\nDrücke x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		#if(selection == "x"):

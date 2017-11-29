@@ -153,7 +153,8 @@ def sql_signal_handler(signal, frame):
 	#Stop Monitor Mode
 	os.system('airmon-ng stop ' + used_interface)
 	#ReStart Networkmanager
-	os.system("service network-manager restart")
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start && service network-manager start")
 	print('\n\n Die Security Workbench wird beendet ... \n')
 	sys.exit(0)
 

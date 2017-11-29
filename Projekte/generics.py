@@ -85,6 +85,8 @@ def stop_monitor_mode(wifi_name):
 
 def restart_networkmanager():
 	command = rlinput('Neustart des Netzwerkmanagers: \n# ', 'service network-manager start')
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start")
 	os.system(command)
 
 
