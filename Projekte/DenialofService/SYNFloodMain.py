@@ -7,11 +7,10 @@ import subprocess
 import time
 import colors
 
-
 import generics
 import SYNFLOOD
-import OpferSynFlood
 import DeleteIPTable
+import OpferSynFlood
 
 ##########################################
 # Main menu DoS attacks

@@ -8,6 +8,7 @@ import subprocess
 import colors
 import generics
 from generics import rlinput, execute, clearScreen
+from subprocess import Popen
 
 def OpferSynFlood_Menu():
 	shellCols = colors.ShellColors
@@ -18,12 +19,10 @@ def OpferSynFlood_Menu():
 		
 		#Apache2 server starten
 		print('In diesem Abschnitt wird der Apache2-Server gestartet, der im SYN-Flooding-Tutorial angegriffen wird.')
-		command = rlinput('Der Server wird mit folgendem Befehl gestartet: \n# ', ' /etc/init.d/apache2 start')
+		rlinput('Der Server wird mit folgendem Befehl gestartet: \n# ', ' /etc/init.d/apache2 start')
 		
-		curPath = os.path.dirname(os.path.realpath(__file__))	
-		apacheDockerScriptPath = curPath + "/server/apacheDockerControl.sh"
-		startApacheCmd = apacheDockerScriptPath + " start"		
-		execute(startApacheCmd)
+		# Apache server starten	
+		dosDockerControl("start")		
 
 		print('\n')
 
@@ -39,17 +38,27 @@ def OpferSynFlood_Menu():
 		print('Der folgende Ausdruck zeigt in Wireshark alle Einträge mit beiden IP-Adressen: ')
 		print('ip.addr == ' +ipVictim + ' && ip.addr == ' +ipAttacker)
 		
-		
 
 	 	selection = raw_input(shellCols.BLUE + '\nDrücke ENTER um den Server zu stoppen. Führen sie diesen Befehl nur aus, wenn die Attacke bereits beendet wurde. ' + shellCols.ENDC)
-		command = rlinput('Der Server wird mit folgendem Befehl gestoppt : \n# ', ' /etc/init.d/apache2 stop')
+		rlinput('Der Server wird mit folgendem Befehl gestoppt : \n# ', ' /etc/init.d/apache2 stop')
 		
 		# Apache2 server stoppen
-		stopApacheCmd = apacheDockerScriptPath + " stop"
-		execute(stopApacheCmd)
+		dosDockerControl("stop")
 		
 
 		selection = raw_input(shellCols.BLUE + '\nDrücke ENTER um das Programm zu verlassen...' + shellCols.ENDC)
 		print('Gehe zurück zum Hauptmenü')
 		showMenu = False
 		break
+
+def dosDockerControl(command):
+	curPath = os.path.dirname(os.path.realpath(__file__))
+	webResourcePath = curPath + "/server/html"
+	dosControlScript = Popen(['/bin/bash', './DenialofService/server/dosDockerControl.sh', str(command)], env={"DOS_WEB_RES_PATH": webResourcePath})
+	dosControlScript.communicate()
+	scriptExitStatus = dosControlScript.returncode
+	if(0 != scriptExitStatus):
+		print("Error: dosDockerControl script returned:", scriptExitStatus)
+		sys.exit(scriptExitStatus)
+	return
+	

