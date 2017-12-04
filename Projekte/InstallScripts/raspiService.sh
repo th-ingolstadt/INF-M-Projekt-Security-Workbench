@@ -368,25 +368,24 @@ echo "# WLAN-Router-Betrieb
 interface=wlan1
 driver=nl80211
 
-# AP WPA2
-ssid=THISecurityWorkbenchWPA2
+# FIRST AP WPA2
+ssid=THISecWorkbenchWPA2
 channel=1
 hw_mode=g
+#hw_mode=ag
 ieee80211n=1
 ieee80211d=1
 country_code=DE
 wmm_enabled=1
-#
 
+#
 auth_algs=1
 wpa=2
 wpa_psk_file=/etc/hostapd-psk
 wpa_key_mgmt=WPA-PSK
 wpa_pairwise=CCMP TKIP
 rsn_pairwise=CCMP
-
 ##WPS Config
-
 # WPS state
 # 0 = WPS disabled (default)
 # 1 = WPS enabled, not configured
@@ -396,6 +395,9 @@ ap_setup_locked=0
 
 # Enable control interface for PBC/PIN entry
 ctrl_interface=/var/run/hostapd
+
+# Enable internal EAP server for EAP-WSC (part of Wi-Fi Protected Setup)
+eap_server=1
 
 # When an Enrollee requests access to the network with PIN method, the Enrollee
 # PIN will need to be entered for the Registrar. PIN request notifications are
@@ -408,8 +410,8 @@ wps_pin_requests=/var/run/hostapd.pin-req
 # Config Methods
 # List of the supported configuration methods
 # Available methods: usba ethernet label display ext_nfc_token int_nfc_token
-#       nfc_interface push_button keypad virtual_display physical_display
-#       virtual_push_button physical_push_button
+#	nfc_interface push_button keypad virtual_display physical_display
+#	virtual_push_button physical_push_button
 config_methods=label virtual_display virtual_push_button keypad
 
 device_name=USB2.0 WLAN
@@ -419,7 +421,6 @@ model_number=123
 serial_number=12345
 device_type=6-0050F204-1
 os_version=01020300
-
 
 # Static access point PIN for initial configuration and adding Registrars
 # If not set, hostapd will not allow external WPS Registrars to control the
@@ -443,34 +444,25 @@ ap_pin=12345670
 #wps_nfc_dh_privkey: Hexdump of DH Private Key
 #wps_nfc_dev_pw: Hexdump of Device Password
 
-
-# AP WEP Open
+# Seconf AP WEP
 # IEEE 802.11 specifies two authentication algorithms. hostapd can be
 # configured to allow both of these or only one. Open system authentication
 # should be used with IEEE 802.1X.
 # Bit fields of allowed authentication algorithms:
-# bit 0 = Open System Authentication -> 1 -> 01
-# bit 1 = Shared Key Authentication (requires WEP) -> 2 -> 10
-# 
+# bit 0 = Open System Authentication
+# bit 1 = Shared Key Authentication (requires WEP)
 
 bss=wlan2
-ssid=THISecurityWorkbenchWEPOpen
+ssid=THISecWorkbenchWEPOpen
 auth_algs=1
 ignore_broadcast_ssid=0
 wep_default_key=0
 wep_key0=BC6AFE583E
 
-# AP WEP share
-bss=wlan3
-ssid=THISecurityWorkbenchWEPShare
-auth_algs=2
-ignore_broadcast_ssid=0
-wep_default_key=0
-wep_key0=BC6AFE583E
 
-# AP WPA2-Enterprise
-bss=wlan4
-ssid=THISecurityWorkbenchWPA2-E
+# Seconf AP WEP
+bss=wlan3
+ssid=THISecWorkbenchWPA2-E
 ieee8021x=1
 wpa=2
 wpa_key_mgmt=WPA-EAP
@@ -479,6 +471,21 @@ auth_algs=1
 auth_server_addr=127.0.0.1
 auth_server_port=1812
 auth_server_shared_secret=radius
+
+
+# AP WEP Open
+bss=wlan4
+ssid=THISecurityWorkbenchWEPShare
+auth_algs=2
+ignore_broadcast_ssid=0
+wep_default_key=0
+wep_key0=BC6AFE583E
+# IEEE 802.11 specifies two authentication algorithms. hostapd can be
+# configured to allow both of these or only one. Open system authentication
+# should be used with IEEE 802.1X.
+# Bit fields of allowed authentication algorithms:
+# bit 0 = Open System Authentication
+# bit 1 = Shared Key Authentication (requires WEP)
 
 " > /etc/hostapd/hostapd.conf
 
