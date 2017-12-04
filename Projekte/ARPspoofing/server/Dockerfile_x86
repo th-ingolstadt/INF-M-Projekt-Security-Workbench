@@ -1,0 +1,15 @@
+FROM debian:9
+ 
+# Update and install all necessary packages (vim for debugging in the container)
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    php \
+    vim \
+    && apt-get clean
+
+# Open ports
+EXPOSE 80
+
+# Start apache
+CMD apachectl -D FOREGROUND
+
