@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CONTAINER_NAME=lampcontainer
-IMAGE_NAME=lampimage
+CONTAINER_NAME=sqlcontainer
+IMAGE_NAME=sqlimage
 PATH_TO_DOCKERFILE=$(dirname $(realpath "$0"))
 DOCKER_FILE_NAME_RASPBERRY=Dockerfile_Raspberry_Pi
 DOCKER_FILE_NAME_x86=Dockerfile_x86
@@ -11,7 +11,7 @@ WEB_SERVER_DST_PATH=/var/www/html/sqlinjection
 # usage function
 function usage {
 	echo "usage: $0 [start|stop|status]"
-	echo "env: WEB_RES_PATH has to be set and point to the location of the web application resources. This directory will be copied to root folder of the web server."
+	echo "env: SQL_WEB_RES_PATH has to be set and point to the location of the web application resources. This directory will be copied to root folder of the web server."
 	echo "Arguments:"
 	echo "	start: Will start the container. If the container is already running the container will be restarted."
 	echo "	stop: Stops the container."
@@ -20,21 +20,21 @@ function usage {
 }
 
 
-# check if environment variable WEB_RES_PATH is set
-if [ -z "$WEB_RES_PATH" ]; then
-	echo "Environment variable WEB_RES_PATH not set!"
+# check if environment variable SQL_WEB_RES_PATH is set
+if [ -z "$SQL_WEB_RES_PATH" ]; then
+	echo "Environment variable SQL_WEB_RES_PATH not set!"
 	usage
 	exit 1
 else 
-	if [ -d "$WEB_RES_PATH" ]; then
-		WEB_RES_ABSOLUTE_PATH=$(realpath $WEB_RES_PATH)
+	if [ -d "$SQL_WEB_RES_PATH" ]; then
+		SQL_WEB_RES_ABSOLUTE_PATH=$(realpath $SQL_WEB_RES_PATH)
 		status=$?
 		if [ $status -ne 0 ]; then
-			echo "Absolute path to environment variable value WEB_RES_PATH=$WEB_RES_PATH could not be created!"
+			echo "Absolute path to environment variable value SQL_WEB_RES_PATH=$SQL_WEB_RES_PATH could not be created!"
 			exit 1
 		fi
 	else
-		echo "The path of the environment variable WEB_RES_PATH=$WEB_RES_PATH could not be found!"
+		echo "The path of the environment variable SQL_WEB_RES_PATH=$SQL_WEB_RES_PATH could not be found!"
 		exit 1
 	fi
 fi
@@ -59,7 +59,7 @@ else
 fi
 
 
-# Check if the lamp image exists
+# Check if the sql image exists
 image_existing="$(docker images | grep $IMAGE_NAME)"
 
 if [ -z "$image_existing" ]; then
@@ -109,10 +109,10 @@ if [ "$1" == "start" ]; then
 		echo "Removed $CONTAINER_NAME"
 	fi
 
-	echo "Starting lamp docker..."
+	echo "Starting sql docker..."
 
 	docker run \
-		-v $WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
+		-v $SQL_WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
 		-p 80:80 \
 		--name $CONTAINER_NAME \
 		-d $IMAGE_NAME
@@ -125,7 +125,7 @@ if [ "$1" == "start" ]; then
 		exit 1
 	fi
 
-	echo "...lamp docker started successfully."
+	echo "...sql docker started successfully."
 
 elif [ "$1" == "stop" ]; then
 

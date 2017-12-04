@@ -13,31 +13,31 @@ from subprocess import Popen
 
 def start_services():
 	# start lamp docker container
-	lampControl("start")
+	sqlDockerControl("start")
 	return	
 
 def end_services():
 	# stop lamp container
-	lampControl("stop")
+	sqlDockerControl("stop")
 	return
 	
-def lampControl( command ):
+def sqlDockerControl( command ):
 	curPath = os.path.dirname(os.path.realpath(__file__))
 	webResourcePath = curPath + "/html"
 	# restart container
-	lampControlScript = Popen(['/bin/bash', './SQLInjection/server/lampDockerControl.sh', str(command)], env={"WEB_RES_PATH": webResourcePath})
-	# wait until lampControl script has finished
-	lampControlScript.communicate()
-	# check exit status of the lampControl script
-	lampControlScriptExitStatus = lampControlScript.returncode
-	if(0 != lampControlScriptExitStatus):
-		print("Error: lampControl script returned", lampControlScriptExitStatus)
+	sqlControlScript = Popen(['/bin/bash', './SQLInjection/server/sqlDockerControl.sh', str(command)], env={"SQL_WEB_RES_PATH": webResourcePath})
+	# wait until sqlControl script has finished
+	sqlControlScript.communicate()
+	# check exit status of the sqlControl script
+	sqlControlScriptExitStatus = sqlControlScript.returncode
+	if(0 != sqlControlScriptExitStatus):
+		print("Error: sqlControl script returned", sqlControlScriptExitStatus)
 		sys.exit(1)
 	return
 
 def init():
 	# start/restart the lamp container
-	lampControl("start")
+	sqlDockerControl("start")
 	print('Datenbank wurde zurueckgesetzt!')
 	return
 
