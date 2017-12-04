@@ -11,6 +11,7 @@
     } 
 }
 
+
 function getCookie(cname) {
     var name = cname + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -37,10 +38,13 @@ function checkLoginInput() {
 function checkLoginDOMXSS() {
     var username = document.getElementById("usrname").value;
     var password = document.getElementById("pwd").value; 
-
+    
     if (username === "admin" && password === "admin") {
-        var pos = document.URL.indexOf("context=") + 8;
-        document.write(document.URL.substring(pos, document.URL.length));
         document.getElementById("shoppingList").removeAttribute("hidden");
+        // var pos = document.URL.indexOf("context=") + 8;
+      //  document.write(document.URL.substring(pos, document.URL.length));
+	//var pos=document.URL.indexOf("context=")+8;
+	//document.write(document.URL.substring(pos,document.URL.length));
     }
 }
+

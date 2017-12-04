@@ -1,38 +1,38 @@
-<script> 
-function setActiveClass(parentID) {
-    // all sidebar menu items must be a member of allSBI array
-    var allSBI=["sbiIndex", "sbiTest", "sbiSessionManagement", "sbiBufferOverflow", "sbiBufferOverflowFE", "sbiBufferOverflowSE"];
-    var allTV=["tvXSS", "tvBufferOverflow"];
-    var arrayLength = allSBI.length;
-    var element;
-    
-    //alert("Node: " + nodeID + " ParentID: " + parentID);
-    
-    // remove the active class of all sidebar menu items
-    for (var i = 0; i < arrayLength; i++) 
-    {
-        element = document.getElementById(allSBI[i]);
-        element.className = '';
+<script>
+    function setActiveClass(parentID) {
+        // all sidebar menu items must be a member of allSBI array
+        var allSBI = ["sbiIndex", "sbiTest", "sbiSessionManagement", "sbiBufferOverflow", "sbiBufferOverflowFE", "sbiBufferOverflowSE"];
+        var allTV = ["tvXSS", "tvBufferOverflow"];
+        var arrayLength = allSBI.length;
+        var element;
+
+        //alert("Node: " + nodeID + " ParentID: " + parentID);
+
+        // remove the active class of all sidebar menu items
+        for (var i = 0; i < arrayLength; i++)
+        {
+            element = document.getElementById(allSBI[i]);
+            element.className = '';
+        }
+
+        arrayLength = allTV.length;
+        // reset all tree view elements
+        for (var i = 0; i < arrayLength; i++)
+        {
+            document.getElementById(allTV[i]).className = "treeview";
+        }
+
+        if (parentID !== 'undefined')
+        {
+            document.getElementById(parentID).className = "treeview active";
+        }
     }
-    
-    arrayLength = allTV.length;
-    // reset all tree view elements
-    for (var i = 0; i < arrayLength; i++) 
-    {
-        document.getElementById(allTV[i]).className = "treeview";
-    } 
-        
-    if (parentID !== 'undefined')
-    {
-        document.getElementById(parentID).className = "treeview active";
-    }
-}
 </script>
 
 <aside class="main-sidebar">
     <section class="sidebar">
         <!-- BEGIN Search -->
-        <form action="#" method="get" class="sidebar-form">
+        <form method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="q" class="form-control" placeholder="Search...">
                 <span class="input-group-btn">
@@ -73,27 +73,34 @@ function setActiveClass(parentID) {
                     <li id="sbiBufferOverflowSE" class="">
                         <a href="BufferOverflow_SecondExample.html"><i class="fa fa-link"></i> <span>Übung 2</span></a>
                     </li>
-
                 </ul>
             </li>
-                    <li id="tvXSS" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span onclick="setActiveClass('tvXSS')">XSS</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a id="sbiXSSGeneral" href="#">Cross Site Scripting General</a></li>
-                            <li><a id="sbiRXSS" href="#">Reflected Cross Site Scripting</a></li>
-                        </ul>
-                    </li>
-                    
-               
+            <li id="tvXSS" class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span onclick="setActiveClass('tvXSS')">XSS</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a id="sbiXSSGeneral" href="#">Cross Site Scripting General</a></li>
+                    <li><a id="sbiRXSS" href="#">Reflected Cross Site Scripting</a></li>
+                </ul>
+            </li>
+
+
             <li id="storedXSS" class="">
                 <a href="xss_tutorials\StoredXSS.php"><i class="fa fa-link"></i> <span>Stored XSS</span></a>
             </li>     
-</ul>
+
+            <li id="localXSS" class="">
+                <a href="xss_tutorials\DOMbasedXSS.php"><i class="fa fa-link"></i> <span>Local XSS</span></a>
+            </li> 
+
+            <li id="loginParcour" class="">
+                <a href="LoginParcours\LoginParcoursHome.html"><i class="fa fa-link"></i> <span>Login-Parkour</span></a>
+            </li>     
+        </ul>
         <!-- END Menu -->
-</section>
+    </section>
 </aside>

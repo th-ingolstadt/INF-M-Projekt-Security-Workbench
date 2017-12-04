@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login-Parcours-Level 3</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../Content/css/AllStyles.css">
+        <link rel="stylesheet" href="../Content/css/AdminLTE.min.css">
+
+        <script src="../Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+        <script src="../Content/js/plugins/bootstrap/bootstrap.min.js"></script>        <script src="../Content/js/loginParcour.js"></script>
+
+        <script>
+            function checkLoginCredentials() {
+                var password = document.getElementById('login_password');
+                if (password.value === String.fromCharCode(100, 101, 98, 117, 103, 103, 101, 114, 70, 111, 117, 110, 100)) {
+                    $('#login-modal').modal('hide');
+                    document.getElementById("solution").removeAttribute("hidden");
+                    document.getElementById("instruction").setAttribute("hidden", true);
+                } else {
+                    alert("Wrong password - try again!");
+                }
+            }
+
+        </script>
+
+    </head>
+
+    <body oncontextmenu="return false">
+        <div class="container" id="instruction">
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-4 col-md-4">
+                    <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Start</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="solution" hidden>
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-6 col-md-6">
+                    <h1 style="color:green"><b>Congratulations - Level 3 solved!</b></h1>
+                    <p class="text-center">
+                        <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Restart Level</a>
+                        <br /><br />
+                        <a href="LoginParcoursLevel3.html" class="btn btn-primary btn-lg" role="button">Next Level</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" align="center">
+                        <img class="img-bordered" id="img_logo" src="~/Content/img/hackersymbol.png">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+
+                        <!-- Begin # Login Form -->
+                        <form id="login-form">
+                            <div class="modal-body">
+                                <div id="div-login-msg">
+                                    <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-login-msg">Type your username and password.</span>
+                                </div>
+                                <input id="login_username" class="form-control" type="text" value="root" required disabled>
+                                <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="checkLoginCredentials()">Login</button>
+                                </div>
+                                <div>
+                                    <a>Lost Password?</a>
+                                    <br />
+                                    <a>Register</a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- End # DIV Form -->
+
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>

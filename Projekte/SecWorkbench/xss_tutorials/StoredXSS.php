@@ -30,8 +30,6 @@
                 });
             });
         </script>  
-
-
     </head>
     <!-- DB INSERT SELF FORM VALIDATION --> 
     <?php if (isset($_POST['sent'])) {
@@ -91,7 +89,6 @@
                         </div>
                         <div class="box-body">
                                 <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                       <!--     <form role="form" method="post" action="../Content/php/guestbookSQL.php"> -->
                                 <div class="form-group">
                                     <label id="labelGuestbook" for="guestbookEntry"></label>
                                     <textarea class="form-control" id="guestbookentry" name="guestbookentry" rows="4"></textarea>

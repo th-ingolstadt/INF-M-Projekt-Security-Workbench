@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Parcours-Level 6</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        <link rel="stylesheet" href="../Content/css/AllStyles.css">
+        <link rel="stylesheet" href="../Content/css/AdminLTE.min.css">
+
+        <script src="../Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+        <script src="../Content/js/plugins/bootstrap/bootstrap.min.js"></script>
+
+        <script src="../Content/js/loginParcour.js"></script>
+
+    </head>
+    <body>
+        <div class="container" id="instruction">
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-4 col-md-4">
+                    <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Start</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="solution" hidden>
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-6 col-md-6">
+                    <h1 style="color:green"><b>Congratulations - Level 6 solved!</b></h1>
+                    <p class="text-center">
+                        <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Restart Level</a>
+                        <br /><br />
+                        <a href="" class="btn btn-primary btn-lg" role="button" >Next Level</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header" align="center">
+                        <img class="img-bordered" id="img_logo" src="~/Content/img/hackersymbol.png"> 
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <!-- Begin # DIV Form -->
+                    <div id="div-forms">
+                        <!-- Begin # Login Form -->
+                        <form id="login-form-">
+                            <div class="modal-body">
+                                <div id="div-login-msg">
+                                    <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-login-msg">Du warst in der Lage mittels einer SQL-Injection an die Tabelle mit Usernamen und Passwörtern zu gelangen. 
+                                        Allerdings sind dort nur verschlüsselte Werte vorzufinden. Finde einen Weg in das System! Im ersten Schritt gehst du davon aus, dass min. ein User so freundlich gewesen ist und eines der gebräuchlichen Passwörter zu benutzen. 
+                                        (<a href="~/Files/commonpasswords.txt" target="_blank">commonpasswords.txt</a>) <br />
+                                    </span>
+                                    <br />
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Username</th>
+                                                <th>Hash</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>0</td>
+                                                <td>Daniel</td>
+                                                <td>$2y$10$zwynnupIpCUSxUKAt2jK5.htSXwvkn/el3zMb6ZdgBMdmCuWobWXO</td>
+                                            </tr>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Mohammed</td>
+                                                <td>$2y$10$GXOsE7j7Qs40FdmuiDorUuprsvPaZFqms.lGCbLzCaIYMveAvxNPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Stefan</td>
+                                                <td>$2y$10$b6XHaEhR0Zwqaf6.CTYkv.QdU2fIh796DxB24wjyXoYv49GuBt4pC</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Christian</td>
+                                                <td>$2y$10$e5yfZ.2GxpQqaw740ZvjAeZ/lMbi2pOV8lsH3DwN0uaMBVALDiO7C</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Kevin</td>
+                                                <td>$2y$10$roMOvhk2uJ.9QMbUtKgHZOvfIlv/EsXxsfpoBWEuN1WAvAlJBb5D</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Sebastian</td>
+                                                <td>$2y$10$K7Zz/co4Fjh1V.QGU.K/Gua3IRdR8HbnYnsWqoyAejBcIziuBR5Ta</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Fabian</td>
+                                                <td>$2y$10$OM/uZQ5PAdHFvOTFgO8y0OMciHWKW2PPALsM40koeP9Dzdvi5BhJS</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <br />
+                                </div>
+                                <input id="login_username" class="form-control" type="text" placeholder="Username" required >
+                                <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="checkLoginCredentialsBCrypt()">Login</button>
+                                </div>
+                                <div>
+                                    <a>Lost Password?</a>
+                                    <br />
+                                    <a>Register</a>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- End # DIV Form -->
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+</html>
