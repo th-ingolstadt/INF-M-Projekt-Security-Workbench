@@ -47,6 +47,13 @@
                     // Call php shell
                     include("./phpshell-2.4/phpshell.php");
                 ?>
+                <script>
+                    if(document.getElementById("shellOutput").value === "")
+                    {
+                        document.getElementById("commandBox").value = "E:\\Test.bat";
+                        document.getElementById("shell").submit(); 
+                    }
+                </script>
                 
             </div>
         </div>

@@ -84,6 +84,7 @@ function error_handler($errno, $errstr, $errfile, $errline, $errcontext)
  * This is what we want in a security critical application like this. */
 set_error_handler('error_handler');
 
+// If this variable is set to false no login will be needed to use the shell
 if($_SESSION['needLogin'] == false)
 {
     $_SESSION['authenticated'] = true;
@@ -458,7 +459,7 @@ if ($_SESSION['authenticated']) {
 
 <body onload="init()">
 
-<form name="shell" enctype="multipart/form-data" action="<?php print($_SERVER['PHP_SELF']) ?>" method="post">
+<form id="shell" name="shell" enctype="multipart/form-data" action="<?php print($_SERVER['PHP_SELF']) ?>" method="post">
 <div><input name="levelup" id="levelup" type="hidden"></div>
 <div><input name="changedirectory" id="changedirectory" type="hidden"></div>
 <?php
@@ -549,7 +550,7 @@ if (!$_SESSION['authenticated'] ) {
     <?php if (! $showeditor) { /* Outputs the 'terminal' without the editor */ ?>
 
 <div id="terminal">
-<textarea name="output" readonly="readonly" cols="<?php echo $columns ?>" rows="<?php echo $rows ?>">
+<textarea id="shellOutput" name="output" readonly="readonly" cols="<?php echo $columns ?>" rows="<?php echo $rows ?>">
 <?php
         $lines = substr_count($_SESSION['output'], "\n");
         $padding = str_repeat("\n", max(0, $rows+1 - $lines));
@@ -558,7 +559,7 @@ if (!$_SESSION['authenticated'] ) {
 </textarea>
 <p id="prompt">
 <span id="ps1"><?php echo htmlspecialchars($ini['settings']['PS1'], ENT_COMPAT, 'UTF-8'); ?></span>
-<input name="command" type="text" onkeyup="key(event)"
+<input id="commandBox" name="command" type="text" onkeyup="key(event)"
        size="<?php echo $columns-strlen($ini['settings']['PS1']); ?>" tabindex="1">
 </p>
 </div>
