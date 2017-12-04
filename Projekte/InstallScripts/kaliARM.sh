@@ -3,7 +3,7 @@
 apt update && apt full-upgrade
 
 ## Get needed Packages for SecWorkbench
-apt install ettercap-common hping3 arp-scan gdb okular arpspoof
+apt install ettercap-common hping3 arp-scan gdb okular reaver mdk3 hostapd-wpe hostapd
 
 ## Generate SSH Keys
 ##
@@ -42,4 +42,6 @@ service docker start
 chmod +x ../WIFI/startFakeAP.sh
 
 ##Add OAth phising Need for wifiphisher 1.1
+# git clone 
 #tar xvfJ oauth-login.tar.xz /usr/lib/python2.7/dist-packages/wifiphisher/data/phishing-pages
+# rm 
