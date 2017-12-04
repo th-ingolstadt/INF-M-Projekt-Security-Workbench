@@ -302,7 +302,7 @@ zone \"news.local\"{
 mkdir /etc/bind/zones
 #TODO Dummy Configuration
 echo "\$TTL 2h
-@ IN SOA master.injection.local. hostmaster.injection.local. (
+@ IN SOA ns1.router.local. admin.router.local. (
     2017112701 ;
     3600       ;
     1800       ;
@@ -314,12 +314,12 @@ echo "\$TTL 2h
 *       IN A 127.0.0.1
 " >> /etc/bind/zones/db.injection.local
 echo "\$TTL 2h
-@ IN SOA master.bank24.local. hostmaster.bank24.local. (
-    2017112700 ;
-    3600       ;
-    1800       ;
-    604800     ;
-    120 )      ;
+@ IN SOA ns1.router.local. admin.router.local. (
+    2017112700 ; serial
+    3600       ; refresh
+    1800       ; retry
+    604800     ; expire
+    120 )      ; ttl
 @ IN NS ns1.router.local
   IN A 127.0.0.1
 
@@ -327,7 +327,7 @@ echo "\$TTL 2h
 htsp    IN A 127.0.0.2
 " >> /etc/bind/zones/db.bank24.local
 echo "\$TTL 2h
-@ IN SOA master.news.local. hostmaster.news.local. (
+@ IN SOA ns1.router.local. admin.router.local. (
     2017112701 ;
     3600       ;
     1800       ;
