@@ -1,6 +1,7 @@
 <?php
-    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout.html";
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
+
 
 <script>
     window.onload = function(){
@@ -46,27 +47,63 @@
     </div>
 
     <div class="col-xs-12 col-md-5">
-        <img alt="Speicher Aufbau" class="auto-style1" src="../../Content/img/Attacks/BufferOverflowImg/speicherAufbau_new.jpg" />
+        <img alt="Speicher Aufbau" src="Content/img/Attacks/BufferOverflowImg/speicherAufbau_new.jpg" >
     </div>
 </div>
 
 <div class="row">
     <div class="col-xs-12 col-md-7">
-        <div class="box box-default">
-            <div class="box-header">
-                <h3 class="box-title">Beispiel Heartbleed</h3>
-                <div class="box-body">
-                    <div id="sliderFrame">
-                        <div id="slider">
-                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_0.svg" />
-                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_1.png" />
-                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_2.png" />
-                            <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_3.png" />
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Beispiel Heartbleed</h3>
+                    <div class="box-body">
+                        <!-- <div id="sliderFrame">
+            <div id="slider">
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_0.svg" />
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_1.png" />
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_2.png" />
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_3.png" />
+            </div>
+            <div class="group1-Wrapper">
+                <a onclick="imageSlider.previous()" class="group1-Prev"></a>
+                <a onclick="imageSlider.next()" class="group1-Next"></a>
+            </div>
+        </div>-->
+                        
+                            <div id="carousel-heartbleed" class="carousel slide" data-ride="carousel" data-interval="false" style="align-content: center">
+
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_0.svg" alt="Heartbleed explanation page 1">
+                                        </center>
+                                    </div>
+                                    <div class="item">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_1.png" alt="Heartbleed explanation page 2">
+                                        </center>
+                                    </div>
+                                    <div class="item">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_2.png" alt="Heartbleed explanation page 3">
+                                        </center>
+                                    </div>
+                                    <div class="item">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_3.png" alt="Heartbleed explanation page 4">
+                                        </center>
+                                    </div>
+                                </div>
+                                <a class="left carousel-control" href="#carousel-heartbleed" data-slide="prev">
+                                    <span class="fa fa-angle-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-heartbleed" data-slide="next">
+                                    <span class="fa fa-angle-right"></span>
+                                </a>
                         </div>
-                        <div class="group1-Wrapper">
-                            <a onclick="imageSlider.previous()" class="group1-Prev"></a>
-                            <a onclick="imageSlider.next()" class="group1-Next"></a>
-                        </div>
+
+
                     </div>
                 </div>
             </div>
@@ -76,16 +113,23 @@
     <div class="col-xs-12 col-md-5">
         <div id="gallery">
             <figure>
-                <img src="~/Content/img/Attacks/BufferOverflowImg/Stack_nach_BO.png" />
+                <img src="Content/img/Attacks/BufferOverflowImg/Stack_nach_BO.png" />
             </figure>
             <figure>
-                <img src="~/Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
+                <img src="Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
             </figure>
             <figure>
-                <img src="~/Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
+                <img src="Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
             </figure>
         </div>
     </div>
 </div>
 
-<script> document.getElementById('tvBufferOverflow').className = 'treeview active'; </script>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script> 
+    document.getElementById('tvBufferOverflow').className = 'treeview active'; 
+    document.getElementById('sbiBufferOverflow').className = 'active';
+</script>

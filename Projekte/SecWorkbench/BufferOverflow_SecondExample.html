@@ -1,6 +1,5 @@
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
-    
 ?>
 
 <script>
@@ -8,42 +7,40 @@
         var title = "Buffer Overflow";
         document.getElementById("pageTitle").innerHTML = title;
         document.getElementById("titleDiv").innerHTML = title;
-        document.getElementById("pageDescription").innerHTML = "Der erste Angriff";        
+        document.getElementById("pageDescription").innerHTML = "Der zweite Angriff";        
 };
 </script>
 
 <script src="~/Content/js/prism.js"></script>
 
 <h2>Stack Overflow</h2>
-                
+
 <div class="row">
     <div class="col-xs-12 col-md-7">
         <div class="col-xs-12 col-md-12">
             <div class="box box-default collapsed-box">
                 <div class="box-header">
-                    <h3 class="box-title">Der erste Buffer Overflow</h3>
+                    <h3 class="box-title">Der zweite Buffer Overflow</h3>
                     <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
                     </div>
                 </div>
                 <div class="box-body">
-                    Zu Beginn, soll der nachfolende einfache C-Code analysiert werden. Es werden darin zuerst drei Variablen angelegt.
-                    Im Anschluss wird das Eingabeargument in einer der Variablen gespeichert. Da das Argument vor der Speicherung nicht auf seine Größe überprüft wird, ist es möglich die anderen Variablen mit einer zu großen Eingabe zu überschreiben.
-                    <br />
-                    <br />
-                    Versuche jetzt dich mithilfe der untenstehenden Maske zu authentifizieren.
+                    Als zweite Übung soll dieser C-Code analysiert und angegriffen werden. Der Code geht aus der ersten Übung hervor. Allerdings wurde hier, um einem Buffer Overflow vorzubeugen, eine sogenannte Magic Number hinzugefügt. 
+                    Wird diese Variable überschrieben, so wird die Authentifizierung abgebrochen. <br/>
+                    Hinweis: Beachte dass die String Eingabe als Unicode interpretiert wird.
                     <pre class="line-numbers">
                     <code class="language-c">
                          <?php
-                            $FE = fopen("App_Data/FirstExample.c", "r") or die("Unable to open file!");
-                            fgets($FE);
-                            fgets($FE);
-                            fgets($FE);
-                            fgets($FE);
-                            fgets($FE);
+                            $SE = fopen("App_Data/SecondExample.c", "r") or die("Unable to open file!");
+                            fgets($SE);
+                            fgets($SE);
+                            fgets($SE);
+                            fgets($SE);
+                            fgets($SE);
 
-                            echo fread($FE, filesize("App_Data/FirstExample.c"));
-                            fclose($FE);
+                            echo fread($SE, filesize("App_Data/SecondExample.c"));
+                            fclose($SE);
                             ?> 
                         </code>
                     </pre>
@@ -53,7 +50,6 @@
             </div>
         </div>
     </div>
-
     <div class="col-xs-12 col-md-5">
         <div class="box box-default collapsed-box">
             <div class="box-header">
@@ -74,9 +70,9 @@
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
-                                Sieh dir die Abfrage des Authentifizierungsflags genau an. Was muss eintreten, damit die if-Verzweigung betreten wird? <br />
-                                Wie kann dieses Flag von außen beeinflusst werden? <br /><br />
-                                Versuche weiterhin das Lösungswort auf "YOU_ARE_AUTHENTICATED" zu setzen!
+                                Sieh dir die Abfrage des Authentifizierungsflags und der Magic Number genau an. Was muss eintreten, damit die if-Verzweigung betreten wird? <br />
+                                Wie liegen die Variablen auf dem Stack? <br />
+                                Wie muss der Buffer Overflow ausgeführt werden, damit das Authentifizierungsflag überschrieben werden kann?
                             </div>
                         </div>
                     </div>
@@ -93,7 +89,10 @@
                                 Die Variable "authflag", das Authentifizierungsflag, muss von seinem Initialzustand auf einen beliebigen anderen Wert gesetzt werden, damit die if-Verzweigung betreten wird. <br />
                                 Durch einen Eingabe-String, der größer, als die Variable "buffer" ist, kann dieses Flag überschrieben werden.<br />
                                 Wie groß muss der Eingabe-String sein?<br />
-                                Warum muss der Eingabe-String größer als diese Variable sein?
+                                Warum muss der Eingabe-String größer als diese Variable sein?<br/>
+                                Kann der gesamte Eingabestring beliebig gewählt werden? Warum (nicht)?<br/>
+                                Beachte wie der Eingabestring interpretiert wird und mit welchem Code du Eingaben tätigst. (Dies kann in den Optionen der Windows cmd nachgesehen werden.)
+                                Beachte weiterhin, dass der Stack von unten nach oben geschrieben wird.
 
                             </div>
                         </div>
@@ -108,8 +107,10 @@
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="box-body">
-                                Gib einen beliebigen mindestens 30 Zeichen langen String ein. <br />
-                                Warum muss der String größer als 30 Zeichen sein?
+                                Ein Buffer Overflow ist in diesem Fall nur möglich, wenn die Magic Number mit dem gleichen Wert überschrieben wird. Das bedeutet, dass der Wert des Eingabestrings an der richtigen Stelle dem Wert der Magic Number entsprechen muss.<br/>
+                                Zuerst muss der vorgesehene Eingabepuffer mit 20 beliebigen Zeichen gefüllt werden. Danach müssen die vier Zeichen "&#239&#190&#173&#222" eingefügt werden.<br/>
+                                Diese Zeichen entsprechen im Unicode dem Hex-Wert 0xEFBE ADDE, wobei das Zeichen 0xAD ein leeres Zeichen ist. Deshalb wird es oben nicht angezeigt, wenn du den String kopierst wird es aber mit interpretiert. <br />
+                                Die Wertepaare liegen in umgekehrter Reihenfolge auf dem Stack. Somit wird der String als 0x DEAD BEEF oder -559038737 interpretiert.
                             </div>
                         </div>
                     </div>
@@ -134,11 +135,11 @@
                     $OS = php_uname('s');
                     if($OS == "Windows NT")
                     {
-                        $command = "App_Data\FirstExample.exe " . $input;
+                        $command = "App_Data\SecondExample.exe " . $input;
                     }
                     else
                     {
-                        $command = "./App_Data/FirstExample.exe " . $input;
+                        $command = "./App_Data/SecondExample.exe " . $input;
                     }
                     exec($command, $output);
                 }
@@ -149,8 +150,8 @@
                 }
                 ?>
                 <div class="box-body">          
-                    <form id="Exec_BO" action="BufferOverflow_FirstExample.html"  autocomplete="off">
-                        <textarea class="form-control" name="input" id="input" rows="4"  placeholder="Enter..." maxlength="44"><?php  echo $input; ?></textarea>
+                    <form id="Exec_BO" action="BufferOverflow_SecondExample.html"  autocomplete="off">
+                        <textarea class="form-control" name="input" id="input" rows="4"  placeholder="Enter..." maxlength="39"><?php  echo $input; ?></textarea>
                             
                     </form>
                 </div>
@@ -179,5 +180,5 @@
 
 <script> 
     document.getElementById('tvBufferOverflow').className = 'treeview active'; 
-    document.getElementById('sbiBufferOverflowFE').className = 'active';
+    document.getElementById('sbiBufferOverflowSE').className = 'active';
 </script>
