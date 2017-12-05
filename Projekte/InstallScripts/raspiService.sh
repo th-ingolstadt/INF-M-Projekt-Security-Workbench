@@ -102,24 +102,16 @@ up service isc-dhcp-server restart
 " > /etc/network/interfaces.d/wlan
 
 ## Configure eth Interfaces
-# IP-Range:
+# IP-Range: 172.26.32.0/XX1
+# IP:172.26.32.5 -> news.local
 ##
 echo "# ETH1-Interface
 allow-hotplug eth1
 iface eth1 inet static
 address 172.26.47.253
 netmask 255.255.240.0
+up ip addr add 172.26.32.5 dev eth1
 " > /etc/network/interfaces.d/eth1
-
-##Docker Network Configuration
-#
-#
-# ip addr add 172.26.47/16 dev eth1
-#
-# docker run -i -t --rm -p IPADDRESSE:PORT NAMEContainer
-#
-#
-
 
 ## Configuration of Firewall and Routing
 # TODO some infos about
@@ -334,9 +326,9 @@ echo "\$TTL 2h
     604800     ;
     120 )      ;
 @ IN NS ns1.router.local
-  IN A 127.0.0.1
+  IN A 172.26.32.5
 
-*       IN A 127.0.0.1" >> /etc/bind/zones/db.news.local
+*       IN A 172.26.32.5" >> /etc/bind/zones/db.news.local
 
 #Install freeradius Server
 apt-get install freeradius -y;
@@ -495,6 +487,18 @@ chmod 600 /etc/hostapd-psk
 sed -i 's/#DAEMON_CONF=""/DAEMON_CONF=\"\/etc\/hostapd\/hostapd.conf\"/g' /etc/default/hostapd
 systemctl enable hostapd
 systemctl enable freeradius.service
+
+# Build Docker Container
+# ARP-Spoofing Container NEWS
+export export ARP_WEB_RES_PATH='../ARPspoofing/server/html'
+chmod +x ../ARPspoofing/server/arpDockerControl.sh
+../ARPspoofing/server/arpDockerControl.sh start
+# ARP-Spoofing Container NEWS
+#export export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/ARPspoofing/server/html'
+#chmod +x ../ARPspoofing/server/arpDockerControl.sh
+#../ARPspoofing/server/arpDockerControl.sh start
+
+
 
 echo "############################################################"
 echo "Installion Complete Reboot needed."
