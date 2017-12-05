@@ -19,7 +19,7 @@ def do():
 
 		##Schritt 1
 		print('Als erstes wollen wir den Quellcode zu einem ausführbaren Programm machen. ')
-		command = rlinput('Dafür Kompilieren wir den Quellcode mit dem GNU Kompiler mit folgendem Befehl: ' , 'gcc -ggdb BufferOverflow/FirstExample.c -o BufferOverflow/FirstExample')
+		command = rlinput('Dafuer Kompilieren wir den Quellcode mit dem GNU Kompiler mit folgendem Befehl: ' , 'gcc -ggdb BufferOverflow/FirstExample.c -o BufferOverflow/FirstExample')
 		os.system(command)
 		print('\n')
 		selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
@@ -44,7 +44,7 @@ def do():
 			showMenu = False
 			break
 		
-		##Schritt 5
+		##Schritt 3
                 print('Wir moechten nun genauer betrachten, welcher Bereich im Stack veraendert wird bei einer Uebergabe des Eingangsparameter. Deshalb setzen wir einen Breakpoint bei Line 10 mit folgendem Befehl: break 10 \n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
@@ -52,7 +52,7 @@ def do():
                         showMenu = False
                         break
 
-                ##Schritt 3
+                ##Schritt 4
                 print('Nun wird FirstExample gestartet mit folgendem Befehl: run <Uebergabeparameter> z.B. run AAAAAAAA ->Dez. von "A =65"\n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
@@ -60,7 +60,7 @@ def do():
                         showMenu = False
                         break
 
-	 	##Schritt 4
+	 	##Schritt 5
                 print('Aus FirstExample.c war ersichtlich, dass das Ueberschreiben der Variable "authflag" zum gesuchten Loesungswort fuehrt. Das Ziel ist es authflag zu beschreiben, deswegen moechten wir vorerst herausfinden, wo im Stack die Variable liegt.\n')
        	        print('\nMit folgendem Befehl wir sehen wir, die Adresse der gesuchten Variable: print &authflag')
 		selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
@@ -70,15 +70,15 @@ def do():
                         break		
 
 
-		##Schritt 5
-                print('Es ist ausserdem zu erkennen, dass das Programm beim Breakpoint unterbrochen wurde und noch nicht der Uebergabeparameter im Stack abgelegt wurde, deshalb schauen wir den Stack vorher genauer mit folgendem Befehl an: x/500b $sp \n')
+		##Schritt 6
+                print('Es ist ausserdem zu erkennen, dass das Programm beim Breakpoint unterbrochen wurde und der Uebergabeparameter im Stack noch nicht abgelegt wurde, deshalb schauen wir den Stack vorher genauer mit folgendem Befehl an: x/500b $sp \n')
 		selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
                         print('Gehe zurueck zum Hauptmen  ')
                         showMenu = False
                         break
 
-                ##Schritt 6
+                ##Schritt 7
                 print('Mit folgendem Befehl wird das Programm um einen Schritt fortgesetzt: next \n')
 		print('Der Uebergabeparameter wird daraufhin im Stack abgelegt.\n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
@@ -87,15 +87,15 @@ def do():
                         showMenu = False
                         break
 			
-                ##Schritt 7
-                print('Nun ist es Zeit, den Stack nochmal genauer anzuschauen mit folgendem Befehl: x/500b $sp \n')
+                ##Schritt 8
+                print('Nun ist es Zeit, den Stack mit folgendem Befehl nochmal genauer anzuschauen: x/500b $sp \n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
                         print('Gehe zurueck zum Hauptmen  ')
                         showMenu = False
                         break
 
-                ##Schritt 8
+                ##Schritt 9
                 print('Abhaengig vom Uebergabeparameter ist nun der ASCII-Wert (dezimal) im Stack zu finden. \n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
@@ -103,7 +103,7 @@ def do():
                         showMenu = False
                         break
 
-		##Schritt 9
+		##Schritt 10
                 print('Zaehle nun wie viele Stellen benoetigt werden, um die Variable "authflag" zu ueberschreiben und tippe "q" ein. \n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
@@ -111,22 +111,22 @@ def do():
                         showMenu = False
                         break
 		
-		##Schritt 10
-		print('Schliesse nun die Assembler Ansicht mit folgendem Befehl: quit und anschliessend mit Enter.\n')
+		##Schritt 11
+		print('Schliesse nun die Assembler-Ansicht mit folgendem Befehl: quit und anschliessend mit Enter.\n')
 		selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		if(selection == "x"):
 			print('Gehe zurück zum Hauptmenue')
 			showMenu = False
 			break
 		
-		##Schritt 11
-		print('Starte nun das ausfuehrbare Programm FirstExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass das Passwort noch nicht mit ausgegeben wird.\n')
+		##Schritt 12
+		print('Starte nun das ausfuehrbare Programm FirstExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass die Daten eines Bankkunden noch nicht mit ausgegeben werden.\n')
 		command = rlinput('Starte FirstExample mit folgendem Befehl: ', './BufferOverflow/FirstExample <Deine Eingabe>')
 		os.system(command)
 		print('\n')
 
 		##Schritt 13
-		print('Starte nun das ausfuehrbare Programm FirstExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass das Passwort mit ausgegeben wird.\n')
+		print('Starte nun das ausfuehrbare Programm FirstExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass die Daten eines Bankkunden ausgegeben werden.\n')
 		command = rlinput('Starte FirstExample mit folgendem Befehl: ', './BufferOverflow/FirstExample <Deine Eingabe>')
 		os.system(command)
 		print('\n')
