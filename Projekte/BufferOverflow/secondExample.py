@@ -122,13 +122,13 @@ def do():
 			break
 		
 		##Schritt 12
-		print('Starte nun das ausfuehrbare Programm SecondExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass das Passwort noch nicht mit ausgegeben wird.\n')
+		print('Starte nun das ausfuehrbare Programm SecondExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass die Daten des Bankkunden noch nicht mit ausgegeben werden.\n')
 		command = rlinput('Starte SecondExample mit folgendem Befehl: ', './BufferOverflow/SecondExample <Deine Eingabe>')
 		os.system(command)
 		print('\n')
 
 		##Schritt 13
-		print('Starte nun das ausfuehrbare Programm SecondExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass das Passwort mit ausgegeben wird.\n')
+		print('Starte nun das ausfuehrbare Programm SecondExample aus dem Unterordner BufferOverflow und gib als Eingabewert einen String mit so vielen Stellen mit, dass die Daten des Bankkunden mit ausgegeben werden.\n')
 		command = rlinput('Starte SecondExample mit folgendem Befehl: ', './BufferOverflow/SecondExample <Deine Eingabe>')
 		os.system(command)
 		print('\n')
