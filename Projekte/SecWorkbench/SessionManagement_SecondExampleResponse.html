@@ -1,0 +1,44 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            window.onload = function(){
+                var title = "Session Management - Aufgabe 2";
+                document.getElementById("pageTitle").innerHTML = title;
+                document.getElementById("titleDiv").innerHTML = title;
+                document.getElementById("pageDescription").innerHTML = "";        
+            };
+        </script>
+        
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="box box-default">
+                    
+                    <div class="box-body">
+                        <p>Herzlichen Glückwunsch! Du hast die 2. Aufgabe geschafft!</p>
+                        <p>Du bist jetzt angemeldet mit folgendem User:</p> 
+                        <?php echo $_SESSION["username"]; ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script> 
+            document.getElementById('tvSessionManagement').className = 'treeview active'; 
+            document.getElementById('sbiSessionManagement_2').className = 'active';
+        </script>
+    </body>
+</html>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
