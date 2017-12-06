@@ -1,4 +1,10 @@
 
+if (ip.proto == TCP && tcp.dst == 80){
+	if (search(DATA.data, "Accept-Encoding")){
+		replace("Accept-Encoding", "Accept-Troonish");
+	}
+}
+
 if (ip.proto == TCP && tcp.src == 80)
 {
 	if (search(DATA.data, "<title>"))
