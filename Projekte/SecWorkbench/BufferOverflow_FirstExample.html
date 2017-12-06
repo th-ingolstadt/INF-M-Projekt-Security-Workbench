@@ -1,6 +1,7 @@
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
     
+    $_SESSION['needLogin']=FALSE; // no login will be needed
 ?>
 
 <script>
@@ -55,6 +56,28 @@
     </div>
 
     <div class="col-xs-12 col-md-5">
+        <div class="box box-warning">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                        Media
+                        </h3>
+                    </div>
+                    <div class="box-body">
+                        
+                    
+                <?php 
+                    // Call php shell
+                    include("./phpshell-2.4/phpshell.php");
+                ?>
+                <script>
+                    if(document.getElementById("shellOutput").value === "")
+                    {
+                        document.getElementById("commandBox").value = "echo Test";
+                        document.getElementById("shell").submit(); 
+                    }
+                </script>
+            </div>
+        </div>
         <div class="box box-default collapsed-box">
             <div class="box-header">
                 <h3 class="box-title">Tips</h3>
@@ -114,8 +137,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
         </div>
+        
     </div>
 </div>
 
