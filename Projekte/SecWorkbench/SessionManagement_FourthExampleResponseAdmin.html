@@ -1,0 +1,136 @@
+<?php
+   ini_set("session.use_cookies", 0);
+    ini_set("session.use_trans_sid", 1);
+    session_start();
+    $_SESSION["username"] = "customer";
+    session_id('customer');
+  
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+
+<html>
+    <head>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: center;
+                padding: 8px;
+            }
+
+            tr:nth-child(odd) {
+                background-color: #dddddd;
+            }
+        </style>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            window.onload = function(){
+                var title = "Session Management - Aufgabe 4";
+                document.getElementById("pageTitle").innerHTML = title;
+                document.getElementById("titleDiv").innerHTML = title;
+                document.getElementById("pageDescription").innerHTML = "";        
+            };
+        </script>
+        
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="box box-default">
+                    
+                    <div class="box-body">
+                        <p>Du bist jetzt der Admin! <br> Herzlichen Glückwunsch!!</p>
+                        
+                        <h3>Wetter für die nächsten 3 Tage </h3>
+                                <br>
+                                <h4>Heute</h4>
+                                <table>
+                                   
+                                    <tbody>
+                                        <tr> 
+                                            <th>Vormittag</th> 
+                                            <th>Nachmittag</th> 
+                                            <th>Nacht</th> 
+                                        </tr>
+                                        <tr>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                            <td><img src="Content/img/sonne_bewölkt.png" alt="Bewölkt"></td>
+                                            <td><img src="Content/img/regen.png" alt="Regen"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>13°</td>
+                                            <td>20°</td>
+                                            <td>3°</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <br>
+                                <h4>Morgen</h4>
+                                <table>
+                                   
+                                    <tbody>
+                                        <tr> 
+                                            <th>Vormittag</th> 
+                                            <th>Nachmittag</th> 
+                                            <th>Nacht</th> 
+                                        </tr>
+                                        <tr>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                            <td><img src="Content/img/wolke.png" alt="Wolkig"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>18°</td>
+                                            <td>21°</td>
+                                            <td>12°</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                
+                                <br>
+                                <h4>Übermorgen</h4>
+                                <table>
+                                   
+                                    <tbody>
+                                        <tr> 
+                                            <th>Vormittag</th> 
+                                            <th>Nachmittag</th> 
+                                            <th>Nacht</th> 
+                                        </tr>
+                                        <tr>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>25 °</td>
+                                            <td>30 °</td>
+                                            <td>28 °</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br><br>
+                                <p>Viel Spaß bei diesen sonnigen Aussichten! :)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script> 
+            document.getElementById('tvSessionManagement').className = 'treeview active'; 
+            document.getElementById('sbiSessionManagement_5').className = 'active';
+        </script>
+    </body>
+</html>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>

@@ -1,0 +1,78 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<script src="../Content/js/loginParcour.js"></script>
+
+    <body>
+
+        <div class="container" id="instruction">
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-4 col-md-4">
+                    <p class="text-center"><a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Start</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="solution" hidden>
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-6 col-md-6">
+                    <h1 style="color:green"><b>Congratulations - Level 6 solved!</b></h1>
+                    <p class="text-center">
+                        <a href="#" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#login-modal">Restart Level</a>
+                        <br /><br />
+                        <a href="LoginParcoursLevel6.html" class="btn btn-primary btn-lg" role="button" >Next Level</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" align="center">
+                        <img class="img-bordered" id="img_logo" src="~/Content/img/hackersymbol.png"> 
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <div id="div-forms">
+                        <form id="login-form">
+                            <div class="modal-body">
+                                <div id="div-login-msg">
+                                    <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
+                                    <span id="text-login-msg">Irgendwie ist es dir gelungen an das Passwort zu erlangen, welches 'LyRhtZhoBukZplnal' laut.
+                                        Allerdings ist dies verschlüsselt. Finde eine Möglichkeit um das entschlüsselte Passwort zu gelangen</span>
+                                </div>
+                                <input id="login_username" class="form-control" type="text" value="root" required disabled>
+                                <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox"> Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="checkLoginCredentialsCaesar()">Login</button>
+                                </div>
+                                <div>
+                                    <a>Lost Password?</a>
+                                    <br />
+                                    <a>Register</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </body>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
