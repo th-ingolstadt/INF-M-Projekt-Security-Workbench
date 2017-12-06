@@ -490,7 +490,7 @@ systemctl enable freeradius.service
 
 # Build Docker Container
 # ARP-Spoofing Container NEWS
-export export ARP_WEB_RES_PATH='../ARPspoofing/server/html'
+export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Workbench/Projekte/ARPspoofing/server/html'
 chmod +x ../ARPspoofing/server/arpDockerControl.sh
 ../ARPspoofing/server/arpDockerControl.sh start
 # ARP-Spoofing Container NEWS
