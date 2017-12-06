@@ -1,0 +1,155 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<!--
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stored XSS</title>
+
+        <link rel="stylesheet" href="../Content/css/AllStyles.css">
+        <link rel="stylesheet" href="../Content/css/AdminLTE.min.css">
+
+        <script src="../Content/js/guestbook.js" type="text/javascript"></script>
+        <script src="../Content/js/plugins/jquery/jquery-2.2.4.min.js"></script>
+        <script src="../Content/js/plugins/bootstrap/bootstrap.min.js"></script>
+--> 
+<script src="../Content/js/guestbook.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $("#letsGo").click(function () {
+                    $("#loginModal").modal();
+                });
+            });
+        </script>
+        <style>
+            .modal-header, h4, .close {
+                background-color: #006dcc;
+                color: white !important;
+                text-align: center;
+                font-size: 30px;
+            }
+
+            .modal-footer {
+                background-color: #f9f9f9;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="row">
+            <div class="col-xs-8 col-md-8">
+                <div class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title">Aufgabenstellung</h3>
+                    </div>
+
+                    <div class="box-body">
+                        <h5><b><u>DOM-based Cross Site Scripting</u></b></h5>
+                        Der Angriff spielt sich ausschließlich im Webbrowser ab, im Unterschied zu Angriffen über reflektiertes oder
+                        persistentes XSS ist der Schadcode niemals Bestandteil der vom Server gelieferten HTML-Daten. 
+                        Weder der Server noch ein IDS/IPS oder eine Web Application Firewall können ihn darin also erkennen.<br/>
+                        Der Client-seitige Code einer Webanwendung ist immer dann für DOM-basiertes XSS anfällig, wenn sie Daten aus vom Angreifer kontrollierbaren Objekten wie zum Beispiel document.location, document.URL oder document.referrer oder in Zeiten von HTML5 und Web 2.0 auch irgend welche lokalen Eingaben ohne Prüfung auf eingeschleusten Code verwendet.
+                    </div>
+                </div>
+                <div class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title">Aufgabe</h3>
+                    </div>
+
+                    <div class="box-body">
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">Los Geht's</button>
+                    </div>
+                </div>
+
+                <div class="box box-default" id="shoppingList" hidden>
+                    <div class="box-header">
+                        <h3 class="box-title">Aufgabe</h3>
+                    </div>
+                    <div class="box-body">
+                        <h3 id="guestbookHeader">Admin's Einkaufsliste</h3>
+                        <div class="form-group">
+                            <div>
+                                <input type="checkbox" class="form-control" checked="checked"> Chips
+                            </div>
+                            <div>
+                                <input type="checkbox" class="form-control"> Bananen
+                            </div>
+                            <div>
+                                <input type="checkbox" class="form-control" disabled="disabled"> Brokkoli und Spinat
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div>
+                                <input type="radio" class="form-control" checked="checked"> Wasser
+                            </div>
+                            <div>
+                                <input type="radio" class="form-control"> Spülmittel
+                            </div>
+                            <div>
+                                <input type="radio" class="form-control" disabled="disabled"> Nudeln
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal only for login -->
+        <div class="modal fade" id="loginModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header" style="padding:35px 50px;">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                        <h6>Gültige Credentials: admin/admin</h6>
+                    </div>
+                    <div class="modal-body" style="padding:40px 50px;">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                                <input type="text" class="form-control" name="usrname" id="usrname" placeholder="Enter Username" />
+                            </div>
+                            <div class="form-group">
+                                <label for="pwd"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                                <input type="text" class="form-control" id="pwd" name="pwd" placeholder="Enter password">
+                            </div>
+                            <button type="submit" name="login" class="btn btn-success" id="loginButton" onclick="checkLoginDOMXSS();"><span class="glyphicon glyphicon-off"></span> Login</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                        <p>Not a member? <a href="#">Sign Up</a></p>
+                        <p>Forgot <a href="#">Password?</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    
+    
+
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script> 
+    // mark the site as active in the nav bar
+    document.getElementById('tvBufferOverflow').className = 'treeview active'; 
+    document.getElementById('sbiBufferOverflowFE').className = 'active';
+    
+    // Update site description and title
+    var title = "Buffer Overflow";
+    document.getElementById("pageTitle").innerHTML = title;
+    document.getElementById("titleDiv").innerHTML = title;
+    document.getElementById("pageDescription").innerHTML = "Der erste Angriff";        
+</script>
+
+
+

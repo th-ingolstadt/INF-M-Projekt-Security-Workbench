@@ -92,6 +92,31 @@ function setActiveClass(parentID) {
                     </li>
                 </ul>
             </li>
+            
+            <li id="tvXSS" class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span onclick="setActiveClass('tvXSS')">Cross Site Scripting</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" >
+                    <li id="sbiReflectedXSSXSS" class="" >
+                        <a href=""><i class="fa fa-link"></i> <span>Reflected XSS</span></a>
+                    </li>
+                    <li id="sbiStoredXSS" class="">
+                        <a href="StoredXSS.php"><i class="fa fa-link"></i> <span>Stored XSS</span></a>
+                    </li>
+                    
+                    <li id="sbiSQLInjectionSelect" class="">
+                        <a href="DOMbasedXSS.php"><i class="fa fa-link"></i> <span>Reflected XSS</span></a>
+                    </li>
+                </ul>
+            </li>
+            
+            <li id="sbiLoginParcours" class="">
+                <a href="LoginParcoursHome.html"><i class="fa fa-link"></i> <span>Login Parcours</span></a>
+            </li>
                 
                     <li id="tvXSS" class="treeview">
                         <a href="#">
