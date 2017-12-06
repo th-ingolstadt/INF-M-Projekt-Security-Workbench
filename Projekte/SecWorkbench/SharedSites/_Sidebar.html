@@ -1,8 +1,20 @@
 <script>
 function setActiveClass(parentID) {
     // all sidebar menu items must be a member of allSBI array
-    var allSBI=["sbiIndex", "sbiTest", "sbiSessionManagement", "sbiBufferOverflow", "sbiBufferOverflowFE", "sbiBufferOverflowSE"];
-    var allTV=["tvXSS", "tvBufferOverflow"];
+    var allSBI=["sbiIndex", "sbiTest", 
+        //Session Management
+        "sbiSessionManagement_1", "sbiSessionManagement_2", "sbiSessionManagement_3", "sbiSessionManagement_4", "sbiSessionManagement_5", 
+        //Buffer Overflow
+        "sbiBufferOverflow", "sbiBufferOverflowFE", "sbiBufferOverflowSE",
+        //SQL Injection
+        "sbiSQLInjection", "sbiSQLInjectionSelect", "sbiSQLInjectionInsert", "sbiSQLInjectionDrop", "sbiSQLInjectionPlayground", "sbiSQLInjection_Modify", 
+        //Cross Site Scripting
+        "sbiReflectedXSSXSS", "sbiStoredXSS", "sbiDOMbasedXSS",
+        //Login Parcours
+        "sbiLoginParcours"
+        
+        ];
+    var allTV=["tvSessionManagement", "tvBufferOverflow", "tvSQLInjection", "tvXSS"];
     var arrayLength = allSBI.length;
     var element;
 
@@ -52,7 +64,7 @@ function setActiveClass(parentID) {
                     <li id="sbiSessionManagement_1" class="" >
                         <a href="SessionManagement.html"><i class="fa fa-link"></i> <span>Theorie</span></a>
                     </li>
-                    <li id="sbiSessionManagemen_2" class="">
+                    <li id="sbiSessionManagement_2" class="">
                         <a href="SessionManagement_FirstExample.html"><i class="fa fa-link"></i> <span>Übung 1</span></a>
                     </li>
                     <li id="sbiSessionManagement_3" class="">
@@ -87,7 +99,7 @@ function setActiveClass(parentID) {
 
                 </ul>
             </li>
-            <li id="tvSQLInection" class="treeview">
+            <li id="tvSQLInjection" class="treeview">
                 <a href="#">
                     <i class="fa fa-link"></i> <span onclick="setActiveClass('tvSQLInjection')">SQLInjection</span>
                     <span class="pull-right-container">
@@ -96,7 +108,7 @@ function setActiveClass(parentID) {
                 </a>
                 <ul class="treeview-menu" >
                     <li id="sbiSQLInjection" class="" >
-                        <a href="SQLInjection.html"><i class="fa fa-link"></i> <span>SQLInjection</span></a>
+                        <a href="SQLInjection.html"><i class="fa fa-link"></i> <span>SQL Injection</span></a>
                     </li>
                     <li id="sbiSQLInjectionSelect" class="">
                         <a href="SQLInjection_select.html"><i class="fa fa-link"></i> <span>Select</span></a>
@@ -131,8 +143,8 @@ function setActiveClass(parentID) {
                         <a href="StoredXSS.php"><i class="fa fa-link"></i> <span>Stored XSS</span></a>
                     </li>
 
-                    <li id="sbiSQLInjectionSelect" class="">
-                        <a href="DOMbasedXSS.php"><i class="fa fa-link"></i> <span>Reflected XSS</span></a>
+                    <li id="sbiDOMbasedXSS" class="">
+                        <a href="DOMbasedXSS.php"><i class="fa fa-link"></i> <span>DOMbased XSS</span></a>
                     </li>
                 </ul>
             </li>
@@ -140,19 +152,6 @@ function setActiveClass(parentID) {
             <li id="sbiLoginParcours" class="">
                 <a href="LoginParcoursHome.html"><i class="fa fa-link"></i> <span>Login Parcours</span></a>
             </li>
-
-                    <li id="tvXSS" class="treeview">
-                        <a href="#">
-                            <i class="fa fa-link"></i> <span onclick="setActiveClass('tvXSS')">XSS</span>
-                            <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
-                        </a>
-                        <ul class="treeview-menu">
-                            <li><a id="sbiXSSGeneral" href="#">Cross Site Scripting General</a></li>
-                            <li><a id="sbiRXSS" href="#">Reflected Cross Site Scripting</a></li>
-                        </ul>
-                    </li>
             </ul>
         <!-- END Menu -->
 </section>
