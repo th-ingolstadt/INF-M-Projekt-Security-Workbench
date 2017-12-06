@@ -4,15 +4,6 @@
     $_SESSION['needLogin']=FALSE; // no login will be needed
 ?>
 
-<script>
-    window.onload = function(){
-        var title = "Buffer Overflow";
-        document.getElementById("pageTitle").innerHTML = title;
-        document.getElementById("titleDiv").innerHTML = title;
-        document.getElementById("pageDescription").innerHTML = "Der erste Angriff";        
-};
-</script>
-
 <script src="~/Content/js/prism.js"></script>
 
 <h2>Stack Overflow</h2>
@@ -70,6 +61,7 @@
                     include("./phpshell-2.4/phpshell.php");
                 ?>
                 <script>
+                    // preload command / precall programm
                     if(document.getElementById("shellOutput").value === "")
                     {
                         document.getElementById("commandBox").value = "echo Test";
@@ -202,6 +194,13 @@
 ?>
 
 <script> 
+    // mark the site as active in the nav bar
     document.getElementById('tvBufferOverflow').className = 'treeview active'; 
     document.getElementById('sbiBufferOverflowFE').className = 'active';
+    
+    // Update site description and title
+    var title = "Buffer Overflow";
+    document.getElementById("pageTitle").innerHTML = title;
+    document.getElementById("titleDiv").innerHTML = title;
+    document.getElementById("pageDescription").innerHTML = "Der erste Angriff";        
 </script>
