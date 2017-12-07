@@ -3,7 +3,7 @@
 apt update && apt full-upgrade
 
 ## Get needed Packages for SecWorkbench
-apt install ettercap-common hping3 arp-scan gdb okular reaver mdk3 hostapd-wpe hostapd
+apt install ettercap-common hping3 arp-scan gdb okular reaver mdk3 hostapd-wpe hostapd metasploit-framework wifiphisher sslstrip
 
 ## Generate SSH Keys
 ##
