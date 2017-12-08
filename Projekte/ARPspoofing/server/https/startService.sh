@@ -5,7 +5,7 @@ openssl genrsa -out /etc/ssl/private/apache.key 2048
 
 #generate self-signed certificate
 openssl req -new -x509 -key /etc/ssl/private/apache.key -days 365 -sha256 -out /etc/ssl/certs/apache.crt \
--subj "/C=DE/ST=Bayern/L=Ingolstadt/O=THI/OU=SecurityWorkBench/CN=thi.de"
+-subj "/C=DE/ST=Bayern/L=Ingolstadt/O=THI/OU=SecurityWorkBench/CN=bank24.local"
 
 
 #activate ssl modul
