@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CONTAINER_NAME=arpcontainer
-IMAGE_NAME=arpimage
+CONTAINER_NAME=arphttpscontainer
+IMAGE_NAME=arphttpsimage
 PATH_TO_DOCKERFILE=$(dirname $(realpath "$0"))
 DOCKER_FILE_NAME_RASPBERRY=Dockerfile_Raspberry_Pi
 DOCKER_FILE_NAME_x86=Dockerfile_x86

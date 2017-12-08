@@ -113,7 +113,7 @@ def Enterprise_Menu():
 		print("\n")
 		
 		#START THE FAKE AP
-		command = rlinput('Starten des konfigurierten Fake-Enterprise-Routers und Aufzeichnung eines Authentifikationsversuchs (Liegt ein Versuch bestehend aus Challange und Response vor kann der Prozess beendet werden): \n# ', 'WIFI/startFakeAP.sh' )
+		command = rlinput('Starten des konfigurierten Fake-Enterprise-Routers und Aufzeichnung eines Authentifikationsversuchs (Liegt ein Versuch bestehend aus Challange und Response vor kann der Prozess beendet werden, wenn der AP nicht gestart werden kann muss man zusätlich in einer weiteren Consolle killall wpa_supplicant ausgeführt werden): \n# ', 'WIFI/startFakeAP.sh' )
 		execute(command)
 
 		#WAIT FOR CHALLANGE RESPONSE PAIR
