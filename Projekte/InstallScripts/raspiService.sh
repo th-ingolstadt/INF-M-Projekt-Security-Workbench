@@ -381,7 +381,7 @@ echo "\$TTL 2h
   IN A 172.26.32.6
 
 *       IN A 172.26.32.6
-htsp    IN A 172.26.32.7
+hsts    IN A 172.26.32.7
 " >> /etc/bind/zones/db.bank24.local
 
 #DNS for News
