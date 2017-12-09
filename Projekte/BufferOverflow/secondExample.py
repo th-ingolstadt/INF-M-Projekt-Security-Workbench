@@ -62,6 +62,7 @@ def do():
 
 	 	##Schritt 5
                 print('Aus SecondExample.c ist ersichtlich, dass das Ueberschreiben der Variable "authflag" zum gesuchten Loesungswort fuehrt, jedoch faellt die zusaetzliche Variable "checkForHack" auf (warum?). Das Ziel ist wie bei FirstExample "authflag" zu uebeschreiben, deswegen moechten wir vorerst herausfinden, wo im Stack die Variable zu finden ist.\n')
+		print('\nMit folgendem Befehl sehen wir die Startadresse der Eingabe-Variable "buffer": print &buffer')
 		print('\nMit folgendem Befehl sehen wir die Adresse der gesuchten Variable: print &authflag')
 		print('\nMit folgendem Befehl sehen wir die Adresse der zusaetzlich aufgetauchten Variable: print &checkForHack')
 		print('\nMache dir gedanken, welchen Einfluss die Variable "checkForHack", im zusammenhang mit der dazugehörigen Adresse im Stack, hat.')
@@ -106,7 +107,7 @@ def do():
                         break
 
 		##Schritt 10
-                print('Zaehle nun wie viele Stellen benoetigt werden, um die Variable "authflag" zu ueberschreiben und tippe "q" ein. \n')
+                print('Zaehle oder berechne, anhand der vorher angezeigten Adressen, nun wie viele Stellen benoetigt werden, um die Variable "authflag" zu ueberschreiben und tippe "q" ein. \n')
                 selection = raw_input(shellCols.BLUE + '\nDruecke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
                 if(selection == "x"):
                         print('Gehe zurueck zum Hauptmen  ')
