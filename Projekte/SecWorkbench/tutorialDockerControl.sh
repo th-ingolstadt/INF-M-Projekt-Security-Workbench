@@ -41,7 +41,7 @@ fi
 
 # check if IP variable is set
 if [ -z "$WEB_RES_IP" ]; then
-	echo "Environment variable will set to localhost not set!"
+	echo "Environment variable for IP not Set. Set to Default"
 	WEB_RES_IP='80:80'
 fi
 
@@ -121,6 +121,7 @@ if [ "$1" == "start" ]; then
 		-v $WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
 		-p $WEB_RES_IP \
 		--name $CONTAINER_NAME \
+		--restart=unless-stopped \
 		-d $IMAGE_NAME
 
 	status=$?

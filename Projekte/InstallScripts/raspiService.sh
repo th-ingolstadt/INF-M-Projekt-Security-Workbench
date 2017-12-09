@@ -106,7 +106,7 @@ iface wlan5 inet static
 address 172.26.111.253
 netmask 255.255.240.0
 up service isc-dhcp-server restart
-up ip addr add 172.26.112.1 dev wlan5
+up ip addr add dev wlan5
 " > /etc/network/interfaces.d/wlan
 
 ## Configure eth Interfaces
@@ -579,9 +579,10 @@ chmod +x ../ARPspoofing/server/https/arphttpsDockerControl.sh
 #../ARPspoofing/server/https/arphttpsDockerControl.sh start
 
 # Tutorial Container 
-#export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/XYZ/server/html'
-#chmod +x ../XYZ/server/XYZDockerControl.sh
-#../XYZ/server/XYZDockerControl.sh start
+export WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/SecWorkbench/html'
+export WEB_RES_IP='172.26.112.1:80:80'
+chmod +x ../SecWorkbench/tutorialDockerControl.sh
+../SecWorkbench/tutorialDockerControl.sh start
 
 echo "############################################################"
 echo "Installion Complete Reboot needed."
