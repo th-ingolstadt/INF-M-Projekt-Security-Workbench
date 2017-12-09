@@ -1,0 +1,173 @@
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<script>
+    window.onload = function () {
+        var title = "";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>
+
+<h2>SQLInjection - Modify</h2>
+<div class="row">
+    <div class="col-xs-8 col-md-8">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">SQLInjection zum Modifizieren von einer Rangliste</h3>
+                <div class="box-body">
+                    In dem folgenden Formular kann der Nutzer die Rangliste einer virutellen Footballliga betrachten. Initial werden dabei 
+                    die Top 5 des Wettbewerbs angezeigt. Daher gibt es zusätzlich eine Suchfunktion, die den gewünschten User anzeigt. <br/>
+                    Allerdings ist dieses Formular verwundbar für eine SQLInjection. Versuchen Sie die Punktzahl des Users Mr. Robot zu modifzieren. 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4 col-md-4">
+        <div class="box box-info collapsed-box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tipps</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div style="display: none;" class="box-body">
+                <p><span class="glyphicon glyphicon-bell"></span> Es können mehrere Queries in einer Abfrage durchgeführt werden.</p>
+                <p><span class="glyphicon glyphicon-bell"></span> Mit UPDATE, SET und WHERE kann bestehende Einträge in der Datenbank aktualisieren.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 col-xs-12">
+        <div class="box box-warning">
+            <div class="box-header">
+                <h3 class="box-title">Rangliste</h3>
+                <div class="box-body">
+                    <form class="navbar-form" role="search" method="post" action="">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Suche nach User" name="searchTerm" id="searchTerm">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit" name="search"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <!-- TODO: If POST SET ... Abfragen nach user 
+                    else standard top 10 --> 
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Rang</th>
+                                <th>Username</th>
+                                <th>Punkte</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            if (isset($_POST['search']) && $_POST["searchTerm"] != "") {
+                                $conn = new mysqli("localhost", "root", "", "swb_database");
+
+                                if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                                }
+
+                                $searchedUserRanglistenIndex = 0;
+                                $searchUserPoints = "";
+                                $searchedUser = $_POST["searchTerm"];
+                                
+                                $sqlQuery = "SELECT user, punkte FROM rangliste WHERE user = '".$searchedUser."'";
+                                
+                                /* Php austricksen, damit er die SQLInjection erlaubt ;) */ 
+                                if(strpos($sqlQuery, ";") == true){
+                                    $result = $conn->multi_query($sqlQuery);
+                                } else {
+                                    $result = $conn->query($sqlQuery);
+                                }
+                                
+                                if (strpos($sqlQuery, "'; UPDATE rangliste SET punkte") == true) {
+                                    echo '<b><font color="green">Herzlichen Glückwunsch! Du hast die Aufgabe gelöst. Schau dir dein Ergebnis an, 
+                                            indem du dir nochmal die modifizierte Rangliste ansiehst!</font></b>';
+                                    return; 
+                                } else if(!$result) {
+                                    trigger_error('Invalid query: ' . $conn->error);
+                                }
+                                
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        $searchedUser = $row["user"];
+                                        $searchUserPoints = $row["punkte"];
+                                    }
+                                } else {
+                                    echo "Sth is wrong with the database2 :(";
+                                }
+
+                                $secondSqlQuery = "SELECT user, punkte FROM rangliste ORDER BY punkte DESC LIMIT 5";
+                                $ranglistenResult = $conn->query($secondSqlQuery);
+                                $ranglistenIndex = 1;
+                                if ($ranglistenResult->num_rows > 0) {
+                                    while ($searchRanglistenIndexRow = $ranglistenResult->fetch_assoc()) {
+                                        if ($searchedUser == $searchRanglistenIndexRow["user"]) {
+                                        $searchedUserRanglistenIndex = $ranglistenIndex;
+                                        }
+                                            $ranglistenIndex++;
+                                        }
+                                } else {
+                                    echo "Sth is wrong with the database1 :(";
+                                }
+
+                                echo "<tr>";
+                                echo "<td>" . $searchedUserRanglistenIndex . "</td>";
+                                echo "<td>" . $searchedUser . "</td>";
+                                echo "<td>" . $searchUserPoints . "</td>";
+                                echo "</tr>";
+
+
+                                $conn->close();
+                            } else {
+                                $conn = new mysqli("localhost", "root", "", "swb_database");
+
+                                if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                                }
+
+                                $sqlQuery = "SELECT user, punkte FROM rangliste ORDER BY punkte DESC LIMIT 5";
+                                $result = $conn->query($sqlQuery);
+                                $ranglistenIndex = 1;
+                                if ($result->num_rows > 0) {
+                                    while ($row = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        echo "<td>" . $ranglistenIndex . "</td>";
+                                        echo "<td>" . $row["user"] . "</td>";
+                                        echo "<td>" . $row["punkte"] . "</td>";
+                                        echo "</tr>";
+                                        $ranglistenIndex++;
+                                    }
+                                } else {
+                                    echo "Sth is wrong with the database :(";
+                                }
+
+                                $conn->close();
+                            }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script> 
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjection_Modify').className = 'active';
+</script>

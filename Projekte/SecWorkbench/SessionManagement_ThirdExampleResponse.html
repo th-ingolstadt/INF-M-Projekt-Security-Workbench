@@ -1,0 +1,57 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+    
+?>
+
+
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            window.onload = function(){
+                var title = "Session Management - Aufgabe 3";
+                document.getElementById("pageTitle").innerHTML = title;
+                document.getElementById("titleDiv").innerHTML = title;
+                document.getElementById("pageDescription").innerHTML = "";        
+            };
+        </script>
+        
+        <div class="row">
+            <div class="col-xs-12 col-md-12">
+                <div class="box box-default">
+                    
+                    <div class="box-body">
+                        <form id='logout' accept-charset='UTF-8'>
+                            
+                                <h4>Logout</h4>
+                                <p>Du hast dich erfolgreich abgemeldet! Bis bald :)</p>
+                               
+                                <p>Wie kannst du jetzt zu deiner alten Session zurückzukehren ohne dich erneut einzuloggen?</p>
+                                <br>
+                                
+                                <input type="button" value="Hinweis" onclick="hinweis()"/> 
+                                                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script> 
+            document.getElementById('tvSessionManagement').className = 'treeview active'; 
+            document.getElementById('sbiSessionManagement_4').className = 'active';
+            
+            function hinweis(){
+                alert("Nutze die Möglichkeiten deienes Browsers, um zur vorherigen Seite zurück zu kehren!");
+            }
+        </script>
+    </body>
+</html>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>

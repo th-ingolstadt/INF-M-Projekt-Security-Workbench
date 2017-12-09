@@ -9,3 +9,5 @@ sharedkey-*
 BufferOverflow/FirstExample
 BufferOverflow/SecondExample
 peda-session-*.txt
+SecWorkbench/nbproject/private/*
+SecWorkbench/nbproject/configs/*

@@ -1,0 +1,135 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+
+<script>
+    window.onload = function(){
+        var title = "";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";        
+};
+</script>
+
+<div class="row">
+    <div class="col-xs-12 col-md-7">
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Theorie</h3>
+                    <div class="box-body">
+
+                        Zu einem Buffer Overflow oder zu Deutsch Pufferüberlauf kommt es,
+                        wenn ein Programm oder ein Prozess versucht, mehr Daten in einem Puffer (temporärer Datenspeicher)
+                        zu speichern, als dort vorgesehen ist. Da Puffer darauf ausgerichtet sind, eine begrenzte Datenmenge
+                        aufzunehmen, „fließen” die überzähligen Informationen, die irgendwo gespeichert werden müssen,
+                        in benachbarte Puffer. Die sich dort befindlichen Daten werden dabei überschrieben und beschädigt.
+                        Obwohl dies auch versehentlich durch einen Programmierfehler auftreten kann, werden Buffer Overflows
+                        zunehmend genutzt, um Daten absichtlich zu korrumpieren.
+                        <br />
+                        <br />
+                        Beim Start eines Programms wird diesem ein bestimmter Speicherbereich zugewiesen.
+                        Dieser ist, wie in der nebenstehenden Abbildung dargestellt, in drei Abschnitte aufgeteilt: den Code, den Heap und
+                        den Stack. Im Code liegt der eigentliche Quellcode, der nicht mehr verändert werden kann.
+                        Darüber liegt der Heap, in dem dynamische Variablen abgelegt sind. Der Stack beginnt am oberen Ende des
+                        Speichers und wächst mit jedem Eintrag nach unten. Dabei wird nach dem Prinzip des LIFO (last in, first out)
+                        vorgegangen. Gespeichert werden im Stack lokale Variablen, der Inhalt von Prozessorregistern und
+                        Rücksprung-Adressen von Unterprogrammen. Bei einem Angriff durch Buffer-Overflow wird eine lokale Variable
+                        mit mehr Daten beschrieben, als reserviert sind. Wird in dem ausgeführten Programm die Länge der Eingangsdaten nicht überprüft,
+                        so wird der nachfolgende Speicherbereich überschrieben,
+                        was entweder andere lokale Variablen oder aber Rücksprung-Adressen sein können.
+                        Werden Rücksprungadressen überschrieben, so kann der Angreifer beliebigen Code ausführen und somit die Kontrolle über das Opfer erlangen.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-5">
+        <img alt="Speicher Aufbau" src="Content/img/Attacks/BufferOverflowImg/speicherAufbau_new.jpg" >
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-md-7">
+        <div class="col-xs-12 col-md-12">
+            <div class="box box-default">
+                <div class="box-header">
+                    <h3 class="box-title">Beispiel Heartbleed</h3>
+                    <div class="box-body">
+                        <!-- <div id="sliderFrame">
+            <div id="slider">
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_0.svg" />
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_1.png" />
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_2.png" />
+                <img src="~/Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_3.png" />
+            </div>
+            <div class="group1-Wrapper">
+                <a onclick="imageSlider.previous()" class="group1-Prev"></a>
+                <a onclick="imageSlider.next()" class="group1-Next"></a>
+            </div>
+        </div>-->
+                        
+                            <div id="carousel-heartbleed" class="carousel slide" data-ride="carousel" data-interval="false" style="align-content: center">
+
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_0.svg" alt="Heartbleed explanation page 1">
+                                        </center>
+                                    </div>
+                                    <div class="item">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_1.png" alt="Heartbleed explanation page 2">
+                                        </center>
+                                    </div>
+                                    <div class="item">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_2.png" alt="Heartbleed explanation page 3">
+                                        </center>
+                                    </div>
+                                    <div class="item">
+                                        <center>
+                                            <img src="Content/img/Attacks/BufferOverflowImg/heartbleed_explanation_3.png" alt="Heartbleed explanation page 4">
+                                        </center>
+                                    </div>
+                                </div>
+                                <a class="left carousel-control" href="#carousel-heartbleed" data-slide="prev">
+                                    <span class="fa fa-angle-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel-heartbleed" data-slide="next">
+                                    <span class="fa fa-angle-right"></span>
+                                </a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-md-5">
+        <div id="gallery">
+            <figure>
+                <img src="Content/img/Attacks/BufferOverflowImg/Stack_nach_BO.png" />
+            </figure>
+            <figure>
+                <img src="Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
+            </figure>
+            <figure>
+                <img src="Content/img/Attacks/BufferOverflowImg/Stack_vor_BO.png" />
+            </figure>
+        </div>
+    </div>
+</div>
+
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script> 
+    document.getElementById('tvBufferOverflow').className = 'treeview active'; 
+    document.getElementById('sbiBufferOverflow').className = 'active';
+</script>

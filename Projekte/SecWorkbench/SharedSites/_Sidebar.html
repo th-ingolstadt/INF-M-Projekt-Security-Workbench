@@ -1,0 +1,158 @@
+<script>
+function setActiveClass(parentID) {
+    // all sidebar menu items must be a member of allSBI array
+    var allSBI=["sbiIndex", "sbiTest", 
+        //Session Management
+        "sbiSessionManagement_1", "sbiSessionManagement_2", "sbiSessionManagement_3", "sbiSessionManagement_4", "sbiSessionManagement_5", 
+        //Buffer Overflow
+        "sbiBufferOverflow", "sbiBufferOverflowFE", "sbiBufferOverflowSE",
+        //SQL Injection
+        "sbiSQLInjection", "sbiSQLInjectionSelect", "sbiSQLInjectionInsert", "sbiSQLInjectionDrop", "sbiSQLInjectionPlayground", "sbiSQLInjection_Modify", 
+        //Cross Site Scripting
+        "sbiReflectedXSSXSS", "sbiStoredXSS", "sbiDOMbasedXSS",
+        //Login Parcours
+        "sbiLoginParcours"
+        
+        ];
+    var allTV=["tvSessionManagement", "tvBufferOverflow", "tvSQLInjection", "tvXSS"];
+    var arrayLength = allSBI.length;
+    var element;
+
+    //alert("Node: " + nodeID + " ParentID: " + parentID);
+
+    // remove the active class of all sidebar menu items
+    for (var i = 0; i < arrayLength; i++)
+    {
+        element = document.getElementById(allSBI[i]);
+        element.className = '';
+    }
+
+    arrayLength = allTV.length;
+    // reset all tree view elements
+    for (var i = 0; i < arrayLength; i++)
+    {
+        document.getElementById(allTV[i]).className = "treeview";
+    }
+
+    if (parentID !== 'undefined')
+    {
+        document.getElementById(parentID).className = "treeview active";
+    }
+}
+</script>
+
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <!--BEGIN Menu -->
+        <ul class="sidebar-menu" data-widget="tree" >
+            <li class="header">MENU</li>
+            <li id="sbiIndex" class="">
+                <a href="Index.html"><i class="fa fa-link"></i> <span>Home</span></a>
+            </li>
+            <li id="sbiTest" class="">
+                <a href="Test.html"><i class="fa fa-link"></i> <span>Test Link</span></a>
+            </li>
+            <li id="tvSessionManagement" class="treeview">
+                <!--<a href="SessionManagement.html"><i class="fa fa-link"></i> </a>-->
+                <a href="#">
+                    <i class="fa fa-link"></i> <span onclick="setActiveClass('tvSessionManagement')">Authentication & <br>Session Management</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" >
+                    <li id="sbiSessionManagement_1" class="" >
+                        <a href="SessionManagement.html"><i class="fa fa-link"></i> <span>Theorie</span></a>
+                    </li>
+                    <li id="sbiSessionManagement_2" class="">
+                        <a href="SessionManagement_FirstExample.html"><i class="fa fa-link"></i> <span>Übung 1</span></a>
+                    </li>
+                    <li id="sbiSessionManagement_3" class="">
+                        <a href="SessionManagement_SecondExample.html"><i class="fa fa-link"></i> <span>Übung 2</span></a>
+                    </li>
+                    <li id="sbiSessionManagement_4" class="">
+                        <a href="SessionManagement_ThirdExample.html"><i class="fa fa-link"></i> <span>Übung 3</span></a>
+                    </li>
+                    <li id="sbiSessionManagement_5" class="">
+                        <a href="SessionManagement_FourthExample.html"><i class="fa fa-link"></i> <span>Übung 4</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            <li id="tvBufferOverflow" class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span onclick="setActiveClass('tvBufferOverflow')">Buffer Overflow</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" >
+                    <li id="sbiBufferOverflow" class="" >
+                        <a href="BufferOverflow.html"><i class="fa fa-link"></i> <span>Einführung</span></a>
+                    </li>
+                    <li id="sbiBufferOverflowFE" class="">
+                        <a href="BufferOverflow_FirstExample.html"><i class="fa fa-link"></i> <span>Übung 1</span></a>
+                    </li>
+                    <li id="sbiBufferOverflowSE" class="">
+                        <a href="BufferOverflow_SecondExample.html"><i class="fa fa-link"></i> <span>Übung 2</span></a>
+                    </li>
+
+                </ul>
+            </li>
+            <li id="tvSQLInjection" class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span onclick="setActiveClass('tvSQLInjection')">SQLInjection</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" >
+                    <li id="sbiSQLInjection" class="" >
+                        <a href="SQLInjection.html"><i class="fa fa-link"></i> <span>SQL Injection</span></a>
+                    </li>
+                    <li id="sbiSQLInjectionSelect" class="">
+                        <a href="SQLInjection_select.html"><i class="fa fa-link"></i> <span>Select</span></a>
+                    </li>
+                    <li id="sbiSQLInjectionInsert" class="">
+                        <a href="SQLInjection_insert.html"><i class="fa fa-link"></i> <span>Insert</span></a>
+                    </li>
+                    <li id="sbiSQLInjectionDrop" class="">
+                        <a href="SQLInjection_drop.html"><i class="fa fa-link"></i> <span>Drop</span></a>
+                    </li>
+                    <li id="sbiSQLInjectionPlayground" class="">
+                        <a href="SQLInjection_playground.html"><i class="fa fa-link"></i> <span>Playground</span></a>
+                    </li>
+                    <li id="sbiSQLInjection_Modify" class="">
+                        <a href="SQLInjection_Modify.html"><i class="fa fa-link"></i> <span>Modify</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="tvXSS" class="treeview">
+                <a href="#">
+                    <i class="fa fa-link"></i> <span onclick="setActiveClass('tvXSS')">Cross Site Scripting</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu" >
+                    <li id="sbiReflectedXSSXSS" class="" >
+                        <a href="Reflected_XSS_master.php"><i class="fa fa-link"></i> <span>Reflected XSS</span></a>
+                    </li>
+                    <li id="sbiStoredXSS" class="">
+                        <a href="StoredXSS.php"><i class="fa fa-link"></i> <span>Stored XSS</span></a>
+                    </li>
+
+                    <li id="sbiDOMbasedXSS" class="">
+                        <a href="DOMbasedXSS.php"><i class="fa fa-link"></i> <span>DOMbased XSS</span></a>
+                    </li>
+                </ul>
+            </li>
+
+            <li id="sbiLoginParcours" class="">
+                <a href="LoginParcoursHome.html"><i class="fa fa-link"></i> <span>Login Parcours</span></a>
+            </li>
+            </ul>
+        <!-- END Menu -->
+</section>
+</aside>
