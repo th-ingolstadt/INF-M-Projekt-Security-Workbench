@@ -569,17 +569,17 @@ chmod +x ../ARPspoofing/server/http/arphttpDockerControl.sh
 ../ARPspoofing/server/http/arphttpDockerControl.sh start
 
 # ARP-Spoofing Container HTTPS NO-HSTS
-#export export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/ARPspoofing/server/https/html'
-#chmod +x ../ARPspoofing/server/https/arphttpsDockerControl.sh
-#../ARPspoofing/server/https/arphttpsDockerControl.sh start
+export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/ARPspoofing/server/https/html'
+chmod +x ../ARPspoofing/server/https/arphttpsDockerControl.sh
+../ARPspoofing/server/https/arphttpsDockerControl.sh start
 
 # ARP-Spoofing Container HTTPS HSTS
-#export export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/ARPspoofing/server/https/html'
+#export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/ARPspoofing/server/https/html'
 #chmod +x ../ARPspoofing/server/https/arphttpsDockerControl.sh
 #../ARPspoofing/server/https/arphttpsDockerControl.sh start
 
 # Tutorial Container 
-#export export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/XYZ/server/html'
+#export ARP_WEB_RES_PATH='/home/pi/INF-M-Projekt-Security-Workbench/Projekte/XYZ/server/html'
 #chmod +x ../XYZ/server/XYZDockerControl.sh
 #../XYZ/server/XYZDockerControl.sh start
 
