@@ -39,6 +39,12 @@ else
 	fi
 fi
 
+# check if IP variable is set
+if [ -z "$WEB_RES_IP" ]; then
+	echo "Environment variable will set to localhost not set!"
+	WEB_RES_IP='80:80'
+fi
+
 # One argument has to be supplied
 if [ $# -ne 1 ]; then
 	echo "There has to be exacatly one argument!"
@@ -113,7 +119,7 @@ if [ "$1" == "start" ]; then
 
 	docker run \
 		-v $WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
-		-p 80:80 \
+		-p $WEB_RES_IP \
 		--name $CONTAINER_NAME \
 		-d $IMAGE_NAME
 
