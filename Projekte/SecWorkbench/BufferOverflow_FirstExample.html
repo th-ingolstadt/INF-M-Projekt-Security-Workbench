@@ -61,11 +61,10 @@
                     include("./phpshell-2.4/phpshell.php");
                 ?>
                 <script>
-                    // preload command / precall programm
+                    // preload command
                     if(document.getElementById("shellOutput").value === "")
                     {
-                        document.getElementById("commandBox").value = "echo Test";
-                        document.getElementById("shell").submit(); 
+                        document.getElementById("commandBox").value = 'gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "display $authflag" -ex "continue" ./App_Data/FirstExample';
                     }
                 </script>
             </div>
@@ -108,8 +107,8 @@
                                 Die Variable "authflag", das Authentifizierungsflag, muss von seinem Initialzustand auf einen beliebigen anderen Wert gesetzt werden, damit die if-Verzweigung betreten wird. <br />
                                 Durch einen Eingabe-String, der größer, als die Variable "buffer" ist, kann dieses Flag überschrieben werden.<br />
                                 Wie groß muss der Eingabe-String sein?<br />
-                                Warum muss der Eingabe-String größer als diese Variable sein?
-
+                                Warum muss der Eingabe-String größer als diese Variable sein?<br />
+                                Für die Ermittlung der Eingabegröße, kann die Ausgabe der Speicheradressen der Variablen helfen. Kopiere hierzu den Befehl "gdb -q -batch -ex "break 15" -ex "run" -ex "p &authflag" -ex "p &buffer" ./App_Data/FirstExample" in die Shell.
                             </div>
                         </div>
                     </div>
