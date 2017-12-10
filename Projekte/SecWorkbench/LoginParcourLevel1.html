@@ -3,6 +3,17 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 ?>
 
 <script>
+    window.onload = function () {
+        var title = "Loginparcours - Level 1";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+    
+    document.getElementById('sbiLoginParcours').className = 'active';
+</script>
+
+<script>
     function checkLoginCredentials() {
         var password = document.getElementById('login_password');
         if (password.value == "hallo123") {

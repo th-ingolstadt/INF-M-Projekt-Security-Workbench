@@ -1,7 +1,14 @@
-<html>
-<head>
-<meta charset="UTF-8">
-<title>SQL-Injection: Spielwiese</title>
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+<script>
+    window.onload = function () {
+        var title = "SQLInjection - Playground";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>
 <style>
 	input[type=text]{
 		text-align: left;
@@ -86,10 +93,8 @@ function showData() {
 
 
 </script>
-</head>
-<body>
 
-<h1>SQL-Injection: Spielwiese</h1>
+
 	<div>Innerhalb dieser Spielwiese kannst du beliebige SQL-Injections ausprobieren. Als Hinweis sind die Statements der vorhergegangenen Beispiele und einige weitere im nachfolgenden Fenster hinterlegt. Um sie zu sehen musst du lediglich den Inhalt des Fensters mit der Maus markieren. Bitte beachte, dass du die Datenbank im Hauptmenü des Konsolen-Skripts im Unterpunkt "5. Datenbank zurück setzen" wieder initialisieren musst, wenn du nach einer Datenstruktur verändernden SQL-Injection weiter arbeiten willst. Deine Änderungen am Inhalt oder an der Struktur der Datenbank kannst du mit der Anzeige der Tabellenstruktur bzw. dem Inhalt jederzeit prüfen.</div>
 	<table class='invisible'>	
 		<tr>
@@ -149,6 +154,10 @@ function showData() {
 	<p></p>
 	<div style="color:red" id="table"></div>
 
-
-</body>
-</html>
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+<script> 
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjectionPlayground').className = 'active';
+</script>

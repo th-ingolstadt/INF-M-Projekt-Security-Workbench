@@ -1,7 +1,15 @@
-<html>
-<head>
-<meta charset="UTF-8">
-<title>SQL-Injection: DROP</title>
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+<script>
+    window.onload = function () {
+        var title = "SQLInjection - Drop";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>
+
 <style>
 	input[type=text]{
 		text-align: left;
@@ -78,10 +86,7 @@ function showData() {
 
 
 </script>
-</head>
-<body>
 
-<h1>SQL-Injection: DROP</h1>
 	<div>Im dritten Teil des Tutorials wird mittels einer SQL-Injection die komplette Tabelle gelöscht (drop). Bitte beachte, dass du die Datenbank erst im Hauptmenü des Konsolen-Skripts im Unterpunkt "5. Datenbank zurück setzen" wieder initialisieren musst, wenn du nach dem drop weiterarbeiten möchtest! Nun hängen wir an einen beliebigen Benutzernamen folgendes Statement inkl. Kommentar an: <b>"; DROP TABLE secretUserData; --</b> . Im Eingabefeld für das Passwort können ebenfalls beliebige Zeichen eingegeben werden."<br><br>Lass dir anschließend die Tabellenstruktur mittels des Buttons "Zeige Tabellenstruktur" anzeigen.</div>
 	<h2>Login</h2>
 	<form>
@@ -98,7 +103,11 @@ function showData() {
 	<p></p>
 	<div style="color:red" id="table"></div>
 
-
-</body>
-</html>
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+<script> 
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjectionDrop').className = 'active';
+</script>
 

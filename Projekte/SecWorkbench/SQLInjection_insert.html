@@ -1,7 +1,20 @@
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>SQL-Injection: INSERT</title>
+
+<script>
+    window.onload = function () {
+        var title = "SQLInjection - Insert";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>
+
 <style>
 	input[type=text]{
 		text-align: left;
@@ -81,7 +94,6 @@ function showData() {
 </head>
 <body>
 
-<h1>SQL-Injection: INSERT</h1>
 	<div>Im zweiten Teil des Tutorials wird mittels einer SQL-Injection ein zusätzlicher Datensatz in die Tabelle eingefügt. Die Beispiel-Applikation ist equivalent zu der aus dem ersten Tutorial. Dieses mal hängen wir an einen beliebigen Benutzernamen folgendes INSERT-Statement inkl. Kommentar an: <b>"; INSERT INTO secretUserData VALUES(1234, "Hackerman", "fsociety"); --</b> . Im Eingabefeld für das Passwort können ebenfalls beliebige Zeichen eingegeben werden."<br><br>Lass dir anschließend den Tabelleninhalt mittels des Buttons "Zeige Tabelleninhalt" anzeigen.</div>
 	<h2>Login</h2>
 	<form>
@@ -100,5 +112,12 @@ function showData() {
 	<button type="button" onclick="showData()">Zeige Tabelleninhalt</button>
 	<p></p>
 	<div style="color:red" id="table"></div>
-</body>
-</html>
+        
+        
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+<script> 
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjectionInsert').className = 'active';
+</script>

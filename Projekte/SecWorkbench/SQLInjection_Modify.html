@@ -4,14 +4,17 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 
 <script>
     window.onload = function () {
-        var title = "";
+        var title = "SQLInjection - Modify";
         document.getElementById("pageTitle").innerHTML = title;
         document.getElementById("titleDiv").innerHTML = title;
         document.getElementById("pageDescription").innerHTML = "";
     };
+    
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjection_Modify').className = 'active';
 </script>
 
-<h2>SQLInjection - Modify</h2>
+<!--<h2>SQLInjection - Modify</h2>-->
 <div class="row">
     <div class="col-xs-8 col-md-8">
         <div class="box box-primary">
@@ -163,11 +166,13 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 </div>
 
 
+
+
 <?php
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
 
 <script> 
-    document.getElementById('tvSQLInjection').className = 'treeview active'; 
-    document.getElementById('sbiSQLInjection_Modify').className = 'active';
+    //document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    //document.getElementById('sbiSQLInjection_Modify').className = 'active';
 </script>

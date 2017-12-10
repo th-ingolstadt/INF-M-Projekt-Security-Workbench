@@ -1,7 +1,16 @@
-<html>
-<head>
-<meta charset="UTF-8">
-<title>SQL-Injection: SELECT</title>
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<script>
+    window.onload = function () {
+        var title = "SQLInjection - Select";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>
+
 <style>
 	input[type=text]{
 		text-align: left;
@@ -78,10 +87,6 @@ function showData() {
 
 
 </script>
-</head>
-<body>
-
-<h1>SQL-Injection: SELECT</h1>
 	<div>Im ersten Teil des Tutorials werden mittels einer einfachen SQL-Injection Daten aus der Datenbank gelesen, auf die man über die Anwendung eigentlich keinen Zugriff hätte. Über die zwei Eingabefelder "Benutzername" und "Login" kann sich der Benutzer an einer Anwendung anmelden. Die Eingaben werden an die Datenbank geschickt und in einem SELECT-Statement überprüft. Anschließend wird der selektierte Datensatz zurück geschickt.<br>Als erstes melden wir uns mit einem schon bekannten User und Passwort an, um die Funktionsweise zu testen. Nutze hierzu den User <b>Douglas Adams</b> mit dem Passwort <b>DontPanic!</b> und drücke auf den "Login"-Button."<br><br>Anschließend kannst du eine SQL-Injection machen um dir alle User der Datenbank "secretUserData" ausgeben zu lassen. Ersetze die aktuellen Eingaben hierzu z.B. durch <b>blabla" OR "1"="1</b> . </div>
 	<h2>Login</h2>
 	<form>
@@ -99,5 +104,14 @@ function showData() {
 	<div style="color:red" id="table"></div>
 
 
-</body>
-</html>
+
+
+
+
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+<script> 
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjectionSelect').className = 'active';
+</script>

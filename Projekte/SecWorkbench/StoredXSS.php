@@ -197,3 +197,16 @@
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
+
+<script>    
+    // mark the site as active in the nav bar
+    document.getElementById('tvXSS').className = 'treeview active'; 
+    document.getElementById('sbiStoredXSS').className = 'active';
+    
+    window.onload = function () {
+        var title = "Cross Site Scripting - Stored";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>

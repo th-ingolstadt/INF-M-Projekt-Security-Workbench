@@ -1,6 +1,17 @@
 <?php
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
+
+<script>
+    window.onload = function () {
+        var title = "Loginparcours - Home";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+    
+    document.getElementById('sbiLoginParcours').className = 'active';
+</script>
     <body>
 
 

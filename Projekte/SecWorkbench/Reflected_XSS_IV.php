@@ -147,5 +147,8 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
 
-// mark sidebar element for this page active
-<script> document.getElementById('sbiSessionManagement').className = 'active';</script>
+<script>    
+    // mark the site as active in the nav bar
+    document.getElementById('tvXSS').className = 'treeview active'; 
+    document.getElementById('sbiReflectedXSS').className = 'active';
+</script>
