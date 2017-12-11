@@ -39,7 +39,7 @@
     <!-- DB INSERT SELF FORM VALIDATION --> 
     <?php if (isset($_POST['sent'])) {
 
-        $conn = new mysqli("localhost", "root", "", "swb_database");
+        $conn = new mysqli("localhost", "root", "", "vulnerableDB");
 
        if ($conn->connect_error) {
            die("Connection failed: " . $conn->connect_error);
@@ -112,7 +112,7 @@
                                 </thead>
                                 <tbody>
                                     <?php
-                                    $conn = new mysqli("localhost", "root", "", "swb_database");
+                                    $conn = new mysqli("localhost", "root", "", "vulnerableDB");
 
                                     if ($conn->connect_error) {
                                         die("Connection failed: " . $conn->connect_error);

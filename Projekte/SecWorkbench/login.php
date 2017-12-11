@@ -1,6 +1,6 @@
 <?php if (isset($_POST['login'])) {
      
-        $conn = new mysqli("localhost", "root", "", "tutorials");
+        $conn = new mysqli("localhost", "root", "", "vulnerableDB");
         
         // Check connection
         if ($conn->connect_error) {
