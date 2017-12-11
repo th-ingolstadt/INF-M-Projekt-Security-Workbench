@@ -72,7 +72,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                             <?php
 
                             if (isset($_POST['search']) && $_POST["searchTerm"] != "") {
-                                $conn = new mysqli("localhost", "root", "", "vulnerableDB");
+                                $conn = new mysqli("127.0.0.1", "normal_user", "master42", "vulnerableDB");
 
                                 if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
@@ -131,13 +131,13 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 
                                 $conn->close();
                             } else {
-                                $conn = new mysqli("localhost", "root", "", "vulnerableDB");
+                                $conn = new mysqli("127.0.0.1", "normal_user", "master42", "vulnerableDB");
 
                                 if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                                 }
 
-                                $sqlQuery = "SELECT user, punkte FROM rangliste ORDER BY punkte DESC LIMIT 5";
+                                $sqlQuery = "SELECT user, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 5";
                                 $result = $conn->query($sqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($result->num_rows > 0) {
