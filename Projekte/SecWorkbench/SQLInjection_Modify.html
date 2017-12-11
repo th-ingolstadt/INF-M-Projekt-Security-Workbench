@@ -4,7 +4,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 
 <script>
     window.onload = function () {
-        var title = "SQLInjection - Modify";
+        var title = "SQL Injection - Modify";
         document.getElementById("pageTitle").innerHTML = title;
         document.getElementById("titleDiv").innerHTML = title;
         document.getElementById("pageDescription").innerHTML = "";
@@ -81,16 +81,16 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 $searchedUserRanglistenIndex = 0;
                                 $searchUserPoints = "";
                                 $searchedUser = $_POST["searchTerm"];
-                                
+
                                 $sqlQuery = "SELECT user, punkte FROM rangliste WHERE user = '".$searchedUser."'";
-                                
+
                                 /* Php austricksen, damit er die SQLInjection erlaubt ;) */ 
                                 if(strpos($sqlQuery, ";") == true){
                                     $result = $conn->multi_query($sqlQuery);
                                 } else {
                                     $result = $conn->query($sqlQuery);
                                 }
-                                
+
                                 if (strpos($sqlQuery, "'; UPDATE rangliste SET punkte") == true) {
                                     echo '<b><font color="green">Herzlichen Glückwunsch! Du hast die Aufgabe gelöst. Schau dir dein Ergebnis an, 
                                             indem du dir nochmal die modifizierte Rangliste ansiehst!</font></b>';
@@ -98,7 +98,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 } else if(!$result) {
                                     trigger_error('Invalid query: ' . $conn->error);
                                 }
-                                
+
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         $searchedUser = $row["user"];
