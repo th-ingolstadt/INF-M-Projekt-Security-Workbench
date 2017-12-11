@@ -13,7 +13,7 @@
 
 <?php
 
-$con = mysqli_connect('localhost','root','','vulnerableDB');
+$con = mysqli_connect('localhost','normal_user','master42','vulnerableDB');
 $query = 'DESCRIBE secretUserData;';
 
 if (!$con) {

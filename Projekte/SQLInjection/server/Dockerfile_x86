@@ -1,0 +1,26 @@
+FROM debian:9
+ 
+# Update and install all necessary packages
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    php \
+    php-mysql \
+    mariadb-server \
+    mariadb-client \
+    python \
+    python-mysqldb \
+    && apt-get clean
+
+# Open ports
+EXPOSE 80
+
+# copy mysql script into the container
+COPY initializeDB.sql .
+
+# Start services as last step
+COPY startServices.sh startServices.sh
+RUN chmod u+x startServices.sh
+# CMD will run evertime the container starts up
+CMD ./startServices.sh
+
+

