@@ -38,7 +38,8 @@ def SYNFLOOD_Menu():
 		os.system(command)
 		clearScreen()
 		
-		print("Öffne die Startseite des angegriffenen Webservers, um den Effekt des Denial-of-Service Angriffs zu sehen.")
+		print("Gebe die IP-Adresse des Opfers in deinen Browser ein, um den Effekt des Denial-of-Service Angriffs zu sehen.\n")
+		raw_input("Drücke Enter um fortzufahren.")
 
 		synLoop = True
 
