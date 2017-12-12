@@ -22,7 +22,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 <h3 class="box-title">SQLInjection zum Modifizieren von einer Rangliste</h3>
                 <div class="box-body">
                     In dem folgenden Formular kann der Nutzer die Rangliste einer virutellen Footballliga betrachten. Initial werden dabei 
-                    die Top 5 des Wettbewerbs angezeigt. Daher gibt es zusätzlich eine Suchfunktion, die den gewünschten User anzeigt. <br/>
+                    die Top 10 des Wettbewerbs angezeigt. Daher gibt es zusätzlich eine Suchfunktion, die den gewünschten User anzeigt. <br/>
                     Allerdings ist dieses Formular verwundbar für eine SQLInjection. Versuchen Sie die Punktzahl des Users Mr. Robot zu modifzieren. 
                 </div>
             </div>
@@ -147,10 +147,10 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                         $searchUserPoints = $row["punkte"];
                                     }
                                 } else {
-                                    echo "Sth is wrong with the database2 :(";
+                                    echo "<b style="color:red">ERROR in database connection! Please try again!</b>";
                                 }
 
-                                $secondSqlQuery = "SELECT user, punkte FROM rangliste ORDER BY punkte DESC LIMIT 5";
+                                $secondSqlQuery = "SELECT user, punkte FROM rangliste ORDER BY punkte DESC LIMIT 10";
                                 $ranglistenResult = $conn->query($secondSqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($ranglistenResult->num_rows > 0) {
@@ -161,7 +161,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                             $ranglistenIndex++;
                                         }
                                 } else {
-                                    echo "Sth is wrong with the database1 :(";
+                                    echo "<b style="color:red">ERROR in database connection! Please try again!</b>";
                                 }
 
                                 echo "<tr>";
@@ -192,7 +192,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                         $ranglistenIndex++;
                                     }
                                 } else {
-                                    echo "Sth is wrong with the database :(";
+                                    echo "<b style="color:red">ERROR in database connection! Please try again!</b>";
                                 }
 
                                 $conn->close();
