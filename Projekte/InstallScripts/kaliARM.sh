@@ -5,6 +5,12 @@ apt update && apt full-upgrade
 ## Get needed Packages for SecWorkbench
 apt install ettercap-common hping3 arp-scan gdb okular reaver mdk3 hostapd-wpe hostapd metasploit-framework wifiphisher sslstrip psmisc
 
+# disable lua to avoid lua warning for wireshark
+wireshark_init_lua_line="disable_lua = false"
+wireshark_init_lua_replacement="disable_lua = true"
+sed -i.bak "s/${wireshark_init_lua_line}/${wireshark_init_lua_replacement}/g" /etc/wireshark/init.lua
+
+
 ## Generate SSH Keys
 ##
 # Install Docker
