@@ -32,16 +32,18 @@ systemctl enable docker
 service docker start 
 # Create Docker container
 #########################
+project_path=$(realpath ..)
 # Create DOS-Container
-#export DOS_WEB_RES_PATH=TODO
-#../DenialofService/server/apacheDockerControl.sh 
+export DOS_WEB_RES_PATH=$project_path/DenialofService/server/html
+../DenialofService/server/dosDockerControl.sh start
 # Create Heartbleed-Container
 #../Heartbleed/server/TODO
 # Create Arp-Spoofing-Container
-#../ARPspoofing/server
+export ARP_WEB_RES_PATH=$project_path/ARPspoofing/server/http/html
+../ARPspoofing/server/http/arphttpDockerControl.sh start
 # Create SQLInjection-Container
-# export WEB_RES_PATH=TODO
-#../SQLInjection/server/lampDockerControl.sh
+export SQL_WEB_RES_PATH=$project_path/SQLInjection/html
+../SQLInjection/server/sqlDockerControl.sh start
 
 # Configurate SecWorkbench
 #TODO Pfade Müssen gegebenfalls noch angepast werden
