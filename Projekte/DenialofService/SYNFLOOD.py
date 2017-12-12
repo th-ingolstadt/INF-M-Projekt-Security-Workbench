@@ -6,10 +6,12 @@ import os
 import sys
 import subprocess
 import socket
+import webbrowser
 
 import colors
 import generics
 from generics import rlinput, execute, clearScreen
+
 
 def SYNFLOOD_Menu():
 	shellCols = colors.ShellColors
@@ -35,6 +37,8 @@ def SYNFLOOD_Menu():
 		command = rlinput('Wireshark Öffnen: \n# ', ' wireshark &')
 		os.system(command)
 		clearScreen()
+		
+		print("Öffne die Startseite des angegriffenen Webservers, um den Effekt des Denial-of-Service Angriffs zu sehen.")
 
 		synLoop = True
 
