@@ -1,0 +1,142 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <script>
+            window.onload = function(){
+                var title = "Authentifizierung und Session-Management";
+                document.getElementById("pageTitle").innerHTML = title;
+                document.getElementById("titleDiv").innerHTML = title;
+                document.getElementById("pageDescription").innerHTML = "";
+            };
+        </script>
+
+        <div class="row">
+        
+            <div class="col-xs-12 col-md-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <p>
+                            Fehler in der Authentifizierung und dem Session-Management gehören zu den häufigsten Sicherheitslücken in Webapplikationen und liegen im <em>OWASP Top 10 Risk Rating 2017</em> auf dem zweiten Platz.<br>
+                            Viele Webapplikationen bieten benutzerbezogene Dienste an wie beispielsweise Social-Media-Plattformen. Um auf der Plattform aktiv zu werden, ist eine Authentifizierung des Benutzers mittels Benutzername und Passwort gegenüber der Webapplikation notwendig.<br>
+                            Das <em>Session-Management</em> ist dafür zuständig, dass ein Benutzer nach erfolgreicher Authentifizierung als angemeldeter Benutzer <em>mit der Webapplikation interagieren</em> kann. Hierzu werden Session-IDs in der Form von <em>Cookies</em> verwendet. Cookies sind im Browser gespeicherte Informationen zur Authentifizierung gegenüber der Webapplikation.<br>
+                            Technischer Hintergrund: Das http-Protokoll, das zur Kommunikation über den Browser mit dem Webserver verwendet wird, ist zustandslos. Seitenaufrufe sind für den Sever deshalb unabhängig voneinander und stehen in keinerlei Zusammenhang.<br>
+                            Cookies stellen sicher, dass derselbe Benutzer über die Zeit einer Anwendungssession bei mehreren Anfragen an den Webserver als ein Benutzer erkannt wird.<br>
+                            Die <em>Session-ID</em> ist typischerweise eine lange, zufällige Zeichenkette wie z.B. jk743gfb23juk987hkjh90.Es muss sichergestellt werden, dass Session-IDs <em>eindeutig</em> sind und <em>nicht leicht erraten werden können</em>.
+                            Fehler in der Authentifizierung und dem Session-Management können zur Kompromittierung oder der Übernahme von Benutzerkonten führen.
+
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-6">
+                <div class="box box-success">
+
+                    <div class="box-body">
+                        <h3>Authentication Management</h3>
+                        <video width="640" height="380" controls>
+                            <source src="Content/videos/AuthenticationManagement.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="box box-success">
+                    <div class="box-body">
+                        <h3>Session Management</h3>
+                        <video width="640" height="380" controls>
+                            <source src="Content/videos/SessionManagement.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-xs-6 col-md-6">
+                <div class="box box-danger">
+                    <div class="box-body">
+                        <h3>Fehler in der Authentifizierung</h3>
+                        <ul>
+                            <li>
+                                Brute-Force-Angriff: Benutzernamen und Passwörter können leicht durch systematisches Ausprobieren aller möglichen Kombinationen erraten werden.
+                            </li>
+                            <li>
+                                Webapplikation gibt aussagekräftige Rückmeldungen über bereits bestehende Benutzernamen. Bei der Passwort-Zurücksetzen-Funktion oder der Kontoerstellung lassen sich Rückschlüsse auf bereits bestehende Benutzernamen ziehen. Ein bekannter Benutzername stellt bereits die Hälfte der Lösung des Benutzername-Passwort-Rätsels dar.
+                            </li>
+                            <li>
+                                Passwörter werden ohne Hashverfahren oder Verschlüsselung gespeichert und sind somit ungeschützt gegenüber anderen Sicherheitslücken wie SQL-Injections.
+                            </li>
+                            <li>
+                                Der Benutzername und das Passwort werden bei der Anmeldung im Klartext über https übertragen. Ein Angreifer kann die Kommunikation abhören und so an gültige Anmeldedaten gelangen.
+                            </li>
+                            <li>
+                                Die Passwortregeln bei der Registrierung sind nicht ausreichend und ermöglichen dem Benutzer schwache, leicht zu erratende Passwörter zu verwenden.
+                            </li>
+
+                        </ul>
+                        <br>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                <div class="box box-danger">
+                    <div class="box-body">
+                        <h3>Fehler im Session-Management</h3>
+                        <ul>
+                            <li>
+                                Session-IDs sind nicht ausreichend zufällig gewählt und deshalb lassen sich gültige Session-IDs leicht erraten.
+                            </li>
+                            <li>
+                                Session-IDs bleiben auch nach dem Abmelden eines Benutzers gültig und können zur Wiederherstellung der Anwendersession verwendet werden
+                            </li>
+                            <li>
+                                Session-IDs werden nicht in Form von Cookies, sondern als Parameter in der URL übertragen. Eine URL inklusive Session-ID ermöglicht eine Session-Übernahme und damit die Verwendung aller Funktionen der Webapplikation mit den Rechten des angemeldeten Benutzers.
+                            </li>
+                            <li>
+                                Session-IDs ändern sich nicht mit erneuter Anmeldung und können leicht vorhergesagt werden.
+                            </li>
+                            <li>
+                                Übertragung von Session-IDs im Klartext, statt verschlüsselt über https, ermöglicht es einem Angreifer die Kommunikation abzuhören und mit einer gültigen Session-ID die Sitzung des gerade angemeldeten Benutzers zu übernehmen.
+                            </li>
+                            <li>
+                                Nicht Setzen des HttpOnly-Attributs ermöglicht, dass der Session-Cookie über Skriptsprachen ausgelesen werden kann und beispielsweise im Rahmen eines XSS-Angriffs die Session-ID eines anderen Nutzers bestimmt wird.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-12">
+                <div class="box box-success">
+                    <div class="box-body">
+                        <h3>Gegenmaßnahmen</h3>
+                        <p>
+                            Die Authentifizierungsfunktion sollte so gestaltet sein, dass <em>nach wiederholter Fehleingabe</em> der Anmeldedaten das Benutzerkonto oder die Aufrufer-IP <em>temporär gesperrt</em> werden.<br>
+                            Außerdem sollte weder bei der <em>Registrierung noch bei der Passwort-Vergessen-Funktion</em> eine aussagekräftige <em>Rückmeldung über bereits existierende Benutzernamen</em> gegeben werden. Wenn dies aus Gründen der Benutzerfreundlichkeit nicht möglich ist, sollten zumindest automatisierte Abfragen unterbunden werden.<br>
+                            Anmeldedaten sollten ausschließlich <em>verschlüsselt mit TLS</em> übermittelt werden und <em>Passwörter in gehashter Form</em> mit geeigneten kryptographischen Funktionen gespeichert werden.<br>
+                            Session-IDs sollten ausreichen zufällig gewählt, nicht unverschlüsselt übertragen und bei einer Anmeldung serverseitig beendet werden. Zum Erzwingen der Verschlüsselten Übertragung der Session-ID kann das Secure-Attribut des Session-Cookies aktiviert werden. Außerdem sollte das <em>HttpOnly-Attribut</em> gesetzt werden, um ein Auslesen des Cookies mittels JavaScript zu verhindern.<br>
+                            Um Session-Übernahmen zu vermeiden, können darüber hinaus die Session des Anwenders mit spezifischen Nutzermerkmalen, beispielsweise dem entsprechenden User-Agent oder der IP-Adresse verknüpft werden.<br>
+                            Neben diesen Standardmaßnahmen sollten auch die von der OWASP formulierten Anforderungen an Authentifizierung und Session-Management umgesetzt werden. Diese sind in den <em>OWASP Application Security Verification Standards</em> beschrieben.<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('tvSessionManagement').className = 'treeview active';
+            document.getElementById('sbiSessionManagement_1').className = 'active';
+        </script>
+    </body>
+</html>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>

@@ -1,0 +1,45 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            window.onload = function(){
+                var title = "Session Management - Aufgabe 1";
+                document.getElementById("pageTitle").innerHTML = title;
+                document.getElementById("titleDiv").innerHTML = title;
+                document.getElementById("pageDescription").innerHTML = "";        
+            };
+        </script>
+        
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="box box-default">
+                    
+                    <div class="box-body center-block">
+                        <p>Herzlichen Glückwunsch! Du hast die 1. Aufgabe geschafft!</p>
+                    </div>
+                    <img src="Content/img/glueckwunsch.jpg" alt="Geschafft!" width="400" height="300"> 
+                    
+                </div>
+            </div>
+        </div>
+        
+        <script> 
+            document.getElementById('tvSessionManagement').className = 'treeview active'; 
+            document.getElementById('sbiSessionManagement_2').className = 'active';
+        </script>
+    </body>
+</html>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+    session_unset();
+?>

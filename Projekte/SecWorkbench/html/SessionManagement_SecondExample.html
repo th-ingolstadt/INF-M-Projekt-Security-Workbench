@@ -1,0 +1,91 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+
+<html>
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        
+        <script>
+            window.onload = function(){
+                var title = "Session Management - Aufgabe 2";
+                document.getElementById("pageTitle").innerHTML = title;
+                document.getElementById("titleDiv").innerHTML = title;
+                document.getElementById("pageDescription").innerHTML = "";        
+            };
+        </script>
+        
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                <div class="box box-default">
+                    
+                    <div class="box-body">
+                        <form id='login' action='login.php' method='post' accept-charset='UTF-8'>
+                            <fieldset >
+                                <legend>Login</legend>
+                                <input type='hidden' name='submitted' id='submitted' value='1'/>
+                                <label for='username' >Benutzername*:</label>
+                                <input type='text' name='username' id='username' maxlength="50"  required class="form-control"/>
+                                <br>
+                                <label for='password' >Passwort*:</label>
+                                <input type='password' name='passwort' id='passwort' maxlength="50"   required class="form-control"/>
+                                <br>
+                                <input type='submit' name='login' value='Login' class="btn btn-primary"/>
+                                <br><br>
+                                <p>Versuche dich als ein anderer User an der Webseite anzumelden.</p>
+                        
+                                
+                            </fieldset>
+                            
+                        </form>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-xs-6 col-md-6">
+            <div class="box box-default collapsed-box">
+                <div class="box-header">
+                    <h3 class="box-title">Hinweis</h3>
+                    <div class="box-tools pull-right">
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+                <div style="display: none;" class="box-body">
+                    <div class="box-group" id="accordion">
+                        <div class="panel box box-success">
+                            <div class="box-header">
+                                <h4 class="box-title">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                        Hinweis 1
+                                    </a>
+                                </h4>
+                            </div>
+                            <div id="collapseOne" class="panel-collapse collapse">
+                                <div class="box-body">
+                                    <p>Manche Benutzer verwenden ein einfaches Passwort...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        
+        
+        <script> 
+            document.getElementById('tvSessionManagement').className = 'treeview active'; 
+            document.getElementById('sbiSessionManagement_3').className = 'active';
+            
+        </script>
+    </body>
+</html>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
