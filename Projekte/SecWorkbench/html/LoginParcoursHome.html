@@ -1,6 +1,17 @@
 <?php
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
+
+<script>
+    window.onload = function () {
+        var title = "Loginparcours - Home";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+    
+    document.getElementById('sbiLoginParcours').className = 'active';
+</script>
     <body>
 
 
@@ -27,36 +38,30 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                             <tbody>
                                 <tr>
                                     <td>
-                                        <a href="LoginParcourLevel1.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level1 - Simple JavaScript</span></a>
+                                        <a href="LoginParcourLevel1.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 1 - Simple JavaScript</span></a>
                                     </td>
 
                                     <td>
-                                        <a href="LoginParcourLevel2.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level2 - JS decoding fun</span></a>
+                                        <a href="LoginParcourLevel2.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 2 - JS decoding fun</span></a>
                                     </td>
                                     <td>
-                                        <a href="LoginParcourLevel3.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level3 - Find the source code </span></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a href="LoginParcourLevel4.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level4 - Bob's fault</span></a>
-                                    </td>
-                                    <td>
-                                        <a href="LoginParcourLevel5.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level5 - Caeser</span></a>
-                                    </td>
-                                    <td>
-                                        <a href="LoginParcourLevel6.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level6 - Bcrypt Cracking</span></a>
+                                        <a href="LoginParcourLevel3.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 3 - Find the source code </span></a>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>
-                                        <a href=""><i class="glyphicon glyphicon-log-in"></i> <span> Level7</span></a>
+                                        <a href="LoginParcourLevel4.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 4 - Bob's fault</span></a>
                                     </td>
                                     <td>
-                                        <a href=""><i class="glyphicon glyphicon-log-in"></i> <span> Level8 - Packet analyzing</span></a>
+                                        <a href="LoginParcourLevel5.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 5 - Caeser</span></a>
                                     </td>
                                     <td>
-                                        <a href=""><i class="glyphicon glyphicon-log-in"></i> <span> Level9 - MD5</span></a>
+                                        <a href="LoginParcourLevel6.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 6 - Wireshark Sniffing</span></a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="LoginParcourLevel7.html"><i class="glyphicon glyphicon-log-in"></i> <span> Level 7 - Bcrypt Cracking</span></a>
                                     </td>
                                 </tr>
                                 <tr>

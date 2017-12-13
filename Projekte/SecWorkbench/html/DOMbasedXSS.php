@@ -141,11 +141,11 @@
 
 <script> 
     // mark the site as active in the nav bar
-    document.getElementById('tvBufferOverflow').className = 'treeview active'; 
-    document.getElementById('sbiBufferOverflowFE').className = 'active';
+    document.getElementById('tvXSS').className = 'treeview active'; 
+    document.getElementById('sbiDOMbasedXSS').className = 'active';
     
     // Update site description and title
-    var title = "Buffer Overflow";
+    var title = "DOMbased XSS";
     document.getElementById("pageTitle").innerHTML = title;
     document.getElementById("titleDiv").innerHTML = title;
     document.getElementById("pageDescription").innerHTML = "Der erste Angriff";        

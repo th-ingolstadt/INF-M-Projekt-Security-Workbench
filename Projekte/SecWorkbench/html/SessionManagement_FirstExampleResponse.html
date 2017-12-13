@@ -21,22 +21,25 @@
         </script>
         
         <div class="row">
-            <div class="col-xs-12 col-md-12">
+            <div class="col-xs-6 col-md-6">
                 <div class="box box-default">
                     
-                    <div class="box-body">
+                    <div class="box-body center-block">
                         <p>Herzlichen Glückwunsch! Du hast die 1. Aufgabe geschafft!</p>
                     </div>
+                    <img src="Content/img/glueckwunsch.jpg" alt="Geschafft!" width="400" height="300"> 
+                    
                 </div>
             </div>
         </div>
         
         <script> 
             document.getElementById('tvSessionManagement').className = 'treeview active'; 
-            document.getElementById('sbiSessionManagement_3').className = 'active';
+            document.getElementById('sbiSessionManagement_2').className = 'active';
         </script>
     </body>
 </html>
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+    session_unset();
 ?>

@@ -1,7 +1,6 @@
 <?php
    ini_set("session.use_cookies", 0);
     ini_set("session.use_trans_sid", 1);
-    session_start();
     $_SESSION["username"] = "customer";
     session_id('customer');
   
@@ -133,4 +132,5 @@
 </html>
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+    session_unset();
 ?>

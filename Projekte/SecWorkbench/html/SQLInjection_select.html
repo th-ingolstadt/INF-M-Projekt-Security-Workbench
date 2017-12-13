@@ -1,19 +1,15 @@
-<html>
-<head>
-<meta charset="UTF-8">
-<title>SQL-Injection: SELECT</title>
-<style>
-	input[type=text]{
-		text-align: left;
-		width: 500;
-	}
-	*{
-		font-family: helvetica;
-	}
-	div{
-		width: 90%;
-	}
-</style>
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<script>
+    window.onload = function () {
+        var title = "SQL Injection - Select";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+</script>
 
 <script>
 //Function for login-logic. SQL-Injection takes place here.
@@ -78,26 +74,128 @@ function showData() {
 
 
 </script>
-</head>
-<body>
 
-<h1>SQL-Injection: SELECT</h1>
-	<div>Im ersten Teil des Tutorials werden mittels einer einfachen SQL-Injection Daten aus der Datenbank gelesen, auf die man über die Anwendung eigentlich keinen Zugriff hätte. Über die zwei Eingabefelder "Benutzername" und "Login" kann sich der Benutzer an einer Anwendung anmelden. Die Eingaben werden an die Datenbank geschickt und in einem SELECT-Statement überprüft. Anschließend wird der selektierte Datensatz zurück geschickt.<br>Als erstes melden wir uns mit einem schon bekannten User und Passwort an, um die Funktionsweise zu testen. Nutze hierzu den User <b>Douglas Adams</b> mit dem Passwort <b>DontPanic!</b> und drücke auf den "Login"-Button."<br><br>Anschließend kannst du eine SQL-Injection machen um dir alle User der Datenbank "secretUserData" ausgeben zu lassen. Ersetze die aktuellen Eingaben hierzu z.B. durch <b>blabla" OR "1"="1</b> . </div>
-	<h2>Login</h2>
-	<form>
-		<p>Benutzername:<br><input id="username" type="text" required/></p>
-		<p>Passwort:<br><input id="password" type="text" required/></p>
-		<button type="button" onclick="checkUser(document.getElementById('username').value,document.getElementById('password').value)">Login</button> 
-	</form>
-	<div id="output"></div>
-	<br><br>
-	<div>Hier kannst du dir die Tabellenstruktur bzw. den aktuellen Tabelleninhalt der Tabelle "secretUserData" jederzeit ansehen, um die Auswirkung deiner SQL-Injection zu prüfen.
-	<br><br>
-	<button type="button" onclick="showTable()">Zeige Tabellenstruktur</button>
-	<button type="button" onclick="showData()">Zeige Tabelleninhalt</button>
-	<p></p>
-	<div style="color:red" id="table"></div>
+<div class="row">
+    <div class="col-xs-8 col-md-8">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Theorie</h3>
+            </div>
+            <div class="box-body">
+                <div>Im ersten Teil des Tutorials werden mittels einer einfachen SQL-Injection Daten aus der Datenbank gelesen, 
+                    auf die man über die Anwendung eigentlich keinen Zugriff hätte. Über die zwei Eingabefelder "Benutzername" und "Login" 
+                    kann sich der Benutzer an einer Anwendung anmelden. Die Eingaben werden an die Datenbank geschickt und in einem SELECT-Statement überprüft. 
+                    Anschließend wird der selektierte Datensatz zurück geschickt.<br>Als erstes melden wir uns mit einem schon bekannten User und Passwort an, 
+                    um die Funktionsweise zu testen. Nutze hierzu den User <b>Douglas Adams</b> mit dem Passwort <b>DontPanic!</b> und drücke auf den "Login"-Button."
+                    <br><br>
+                    Anschließend kannst du eine SQL-Injection ausführen um dir alle User der Datenbank "secretUserData" ausgeben zu lassen. 
+                    Ersetze die aktuellen Eingaben hierzu z.B. durch <b>blabla" OR "1"="1</b> . 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-4 col-md-4">
+        <div class="box box-info collapsed-box">
+            <div class="box-header">
+                <h3 class="box-title">Tips</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div style="display: none;" class="box-body">
+                <div class="box-group" id="accordion">
+                    <div class="panel box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    Expert Level Tip
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Lorem ipsum..
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel box box-warning">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    Intermediate Level Tip
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Lorem ipsum..
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel box box-danger">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    Noob Level Tip
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Lorem ipsum..
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-5 col-md-5 col-centered">
+        <div class="box box-danger">
+            <div class="box-header">
+                <h3 class="box-title">Login</h3>
+            </div>
+            <div class="box-body">
+                <form>
+                    <p>Benutzername:<br><input class="form-control" id="username" type="text" required/></p>
+                    <p>Passwort:<br><input class="form-control" id="password" type="text" required/></p>
+                    <button type="button" class="btn btn-primary" onclick="checkUser(document.getElementById('username').value,document.getElementById('password').value)">Login</button> 
+                </form>
+                <div id="output"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-md-12">
+        <div class="box box-warning">
+            <div class="box-header">
+                    <h3 class="box-title">seretUserData</h3>
+            </div>
+            <div class="box-body">
+                <div>Hier kannst du dir die Tabellenstruktur bzw. den aktuellen Tabelleninhalt der Tabelle "secretUserData" jederzeit ansehen, um die Auswirkung deiner SQL-Injection zu prüfen.</div>
+                <br>
+                <button type="button" class="btn btn-primary" onclick="showTable()">Zeige Tabellenstruktur</button>
+                <button type="button" class="btn btn-primary" onclick="showData()">Zeige Tabelleninhalt</button>
+            </div>
+            <div class="box-footer with-border">
+                <div style="color:red" id="table"></div>
+            </div>
+        </div>
+    </div>
+</div>
 
 
-</body>
-</html>
+
+
+
+
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+<script> 
+    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+    document.getElementById('sbiSQLInjectionSelect').className = 'active';
+</script>

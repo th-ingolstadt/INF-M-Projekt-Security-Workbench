@@ -1,33 +1,236 @@
 <?php
-    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
 ﻿
 <script>
-    window.onload = function(){
+    window.onload = function () {
         var title = "Security-Workbench Tutorials";
         document.getElementById("pageTitle").innerHTML = title;
         document.getElementById("titleDiv").innerHTML = title;
-        document.getElementById("pageDescription").innerHTML = "Introduction"; 
-};
+        document.getElementById("pageDescription").innerHTML = "";
+    };
 </script>
 
 <div class="row">
-    <div class="col-xs-12 col-md-12">
-        <div class="box box-default">
+    <div class="col-xs-7 col-md-7">
+        <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">IntroVideo</h3>
+                <h3 class="box-title">Herzlich Willkommen zum Security Einsteiger-Tutorial!</h3>
             </div>
             <div class="box-body">
-                
+                <video width="750" height="420" controls>
+                    <source src="Content/videos/intro_video.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
     </div>
 </div>
-    
+
+<div class="row">
+    <div class="col-xs-7 col-md-7">
+        <div class="box box-danger">
+            <div class="box-header">
+                <h2 class="box-title">OWASP Top 10 2017</h2>
+            </div>
+            <div class="panel-body">
+                <p> Das Open Web Application Security Project (OWASP) ist eine
+                    offene Community mit dem Ziel, Unternehmen und Organisationen
+                    zu unterstützen, sichere Anwendungen zu entwickeln. Das Hauptziel der OWASP Top 10 ist es, Entwicklern, Designern, Architekten und Führungskräften von Organisationen und
+                    Unternehmen über die Risiken der wichtigsten Schwachstellen von Webanwendungen aufzuklären.</p>
+            </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Rang</th>
+                        <th>Angriffsart</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Injection</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Broken Authentication and Session Management</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Sensitive Data Exposure</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>XML External Entities (XXE) </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Broken Access Control</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Security Misconfiguration</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Cross-Site Scripting (XSS)</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Insecure Deserialization</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td> Using Components with Known
+                            Vulnerabilities</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Insufficient Logging & Monitoring</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-xs-7 ">
+        <div class="box box-comment">
+            <div class="box-header">
+                <h3 class="box-title">Schutzziele</h3>
+            </div>
+            <div class="panel-body">
+                <p>Authentizität: <br>
+                    Echtheit und Glaubwürdigkeit des Objekts/ Subjekts, die anhand einer eindeutigen Identität oder Eigenschaft überprüfbar ist.
+
+                    <br><br>
+                    Datenintegrität: <br>
+                    Es ist in einem System nicht möglich, dass Subjekte ihre zu schützenden Daten unautorisiert und unbemerkt manipulieren.
+                    <br><br>
+                    Informationsvertraulichkeit: <br>
+                    Das System ermöglicht keine unautorisierte Informationsgewinnung.
+                    <br><br>
+                    Verbindlichkeit: <br>
+                    Subjekte eines Systems können nach der Durchführung einer Aktion nicht die Durchführung abstreiten.  
+
+                </p>    
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xs-7 ">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Klicke auf die Fragen, um die jeweilige Antwort zu erfahren.</h3>
+            </div>
+
+
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapsehackercracker">Was ist der Unterschied zwischen einem Hacker und einem Cracker?</a>
+                        </h4>
+                    </div>
+                    <div id="collapsehackercracker" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Hacker:	<br>
+                                Sind meist Täter mit hohem Sachverstand. <br>
+                                Sie betreiben den Systemeinbruch als „Sport“ und richten eher selten tatsächlich Schaden an. <br>
+                                Häufig teilen sie  die gefundenen Sicherheitslücken mit. <br>
+                            </p>    
+
+                        </div>
+                        <div class="panel-footer">
+                            <p> Cracker: <br> 
+                                Besitzen eine böswillige Absicht in Form der Sabotage, Deaktivierung bestimmter Dienste, Industriespionage oder Veränderung von Informationen.<br>
+                                Inzwischen besitzen sie häufig finanzielles Interesse.             </p>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapseattack">Was ist eigentlich ein Angriff?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseattack" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <p>Ein Angriff entspricht einem nicht autorisierten Zugriffsversuch auf das System. <br>
+                                Sie können in aktive und passive Angriffe gegliedert werden. <br>
+                                <br>
+                                Beispiele: <br>
+                                Passiver Angriff: Abhören einer Datenleitung... <br>
+                                Aktive Angriffe: Bufferoverflow, Cross-Site-Skripting, Session Hijacking ...
+                            </p>      
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel-group">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapsegruende">Was sind die Gründe für typische Sicherheitsvorfälle?</a>
+                        </h4>
+                    </div>
+                    <div id="collapsegruende" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <ul>
+                                <li type="square">Nutzung von USB-Geräten</li>
+                                <li type="square">Verlorenes IT-Equipment</li>
+                                <li type="square">Nutzung von Anmeldedaten durch mehrere Personen</li>
+                                <li type="square">Mangelndes Technikverständnis</li>
+                                <li type="square">Sabotage durch verärgerte Mitarbeiter</li>
+                            </ul> 
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 <?php
-    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
 
-<!-- mark sidebar element for this page active -->
-<script> document.getElementById('sbiIndex').className = 'active'; </script>
-        
+
+<script> document.getElementById('sbiIndex').className = 'active';</script>

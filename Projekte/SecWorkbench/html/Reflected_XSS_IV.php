@@ -17,75 +17,80 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
     <div class="col-xs-12 col-md-7">
         <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">Aufgabenstellung:</h3>
+                <h3 class="box-title">Beschreibung</h3>
             </div>
             <div class="box-body">
-                Bisher war das Ziel einen beliebigen Schadcode auf der Webanwendung auszuführen. Da dieser auf den eigenen 
-                Rechner ausgeführt wurde ist dies natürlich nicht sehr sinnvoll. 
-                Nun soll ein Weg gefunden werden um die Webanwendung so zu manipulieren das die Website inkl. 
-                des Schadecodes an ein mögliches Opfer transferiert werden kann.
-                <br>
-                Die zu angreifenden Objekte sind die schon bearbeiteten Übungen 1-3, nur soll jetzt wie erwähnt der Schadecode versenden
-                werden können.
-                <br>
-                Dabei helfen soll Ihnen eine vorgefertigte Datei "Reflected_XSS_iFrame" die sollen Sie in die Webanwendung integrieren.
-                Das Endergebnis soll eine versandfertige Webanwendung sein, deren Inhalt zum Teil mittels der Datei "Reflected_XSS_iFrame.php"
-                manipuliert wurde.
-                
+                Nach den Übungen 1 bis 3 sind Sie nun mit dem Prinzip des "Reflected Cross-Site-Scripting" vertraut.<br>
+                Wie Sie möglicherweise schon feststellen konnte sind die vorangegangenen Übungen, in denen Schadecode bzw.
+                Scriptcode auf den eigenen Rechner ausgeführt wird, nicht sehr sinnvoll und bedrohlich.<br>
+                Wie der Scriptcode in eine bedrohliche Form gebracht und versendet werden kann, wird in den folgenden Übungen
+                behandelt.               
             </div> 
             <div class="box-body">
 
             </div>
         </div>
     </div>
+    
+
 
     <div class="col-xs-12 col-md-5">
-        <div class="box box-warning">
-            <div class="box-header">
-                <h3 class="box-title">Media</h3>
-            </div>
-            <div class="box-body">
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-md-5">
-        <div class="box box-success">
+        <div class="box box-default collapsed-box">
             <div class="box-header">
                 <h3 class="box-title">Tipps</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
             </div>
             <div class="box-body">
-
-                <a href="javascript:firsttip();">1. Tipp:</a>
-                <output id='firsttip'></output>
-
-                <a href="javascript:secondtip();">2. Tipp:</a>
-                <output id='secondtip'></output>
-
-                <a href="javascript:thirdtip();">3. Tipp:</a>
-                <output id='thirdtip'></output>
-
-
-                <script>
-                    function firsttip()
-                    {
-                        document.getElementById('firsttip').innerHTML = "Versuchen Sie über eines der beiden Eingabefelder\n\
-                            Scriptcode in die Webanwendung zu schleusen.";
-                    }
-
-                    function secondtip()
-                    {
-                        document.getElementById('secondtip').innerHTML = "2.tipp.";
-                    }
-
-                    function thirdtip()
-                    {
-                        document.getElementById('thirdtip').innerHTML = "3.tipp.";
-                    }
-                </script>
-
-
+                <div class="box-group" id="accordion">
+                    <div class="panel box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    1. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Zum einbinden des vorgegebenen Formulars bietet sich &ltiframe>&lt/iframe>.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel box box-warning">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    2. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Mit gewissen Codebefehlen können Sie die Datei so einbinden das, das Formular nicht
+                                verdächtig nach Schadecode aussieht.
+                                So lässt sich zum Beispiel mit "height='...'" und "width='...'" die größe des Formulars anpassen.
+                                <br>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="panel box box-danger">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    3. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Eine mögliche Lösung lautet<br> &ltiframe src="Reflected_XSS_iFrame.php" style="border:4px solid #FF0000;" height="200" width="70%"></iframe>.
+                                <br>
+                            </div>
+                        </div>
+                    </div>  
+                </div>
             </div>
         </div>
     </div>
@@ -93,22 +98,29 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
     <div class="col-xs-12 col-md-7">
         <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">Übungen:</h3>
+                <h3 class="box-title">Aufgabenstellung:</h3>
             </div>
             <div class="box-body">
-                <a href="Reflected_XSS.php" target="_blank">1. Übung</a><br>
-                <a href="Reflected_XSS_II.php" target="_blank">2. Übung</a><br>
-                <a href="Reflected_XSS_III.php" target="_blank">3. Übung</a><br>
-            </div>          
+                Ihre Aufgabe ist es nun ein Schadecode zu integrieren der ein typisches Login-Formular auf der Webanwendung erscheinen lässt.
+                Dieses soll den Opfer dazu verleiten seine möglicherweise empfindlichen Daten einzugeben.
+                Im Anschluss sollen die möglicherweise empfindlichen Benutzerdaten dem Angreifer zugesendet werden.
+                Zur Vereinfachung sollen Sie lediglich das Formular einbinden und möglichst so das es dem Opfer nicht wie integrierten Schadcode vorkommt.
+                <br>
+                Für diesen Vorgang wird üblicherweise ein Link mittels Scriptcode eingebunden.
+                Um dies für Sie etwas zu vereinfachen wird mit "Reflected_XSS_iFrame.php" ein Formular bereit gestellt, das Sie einbinden sollen.
+                <br>
+                <br>
+                Falls Ihnen das gelungen ist können Sie anschließend zur <a href="Reflected_XSS_V.php">Übung 5</a> übergehen.
+            </div> 
             <div class="box-body">
 
             </div>
         </div>
     </div>
+    
+ 
+    
 </div>
-
-<br />
-
 
 <style type="text/css">
     #loginf p 
@@ -131,6 +143,45 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 
 </head>
 <body>
+
+
+
+    <div id='loginf'>
+
+        <form method='get' action='<?php echo($_SERVER['PHP_SELF']); ?>'>
+            <p>Vorname:<input type="text" name="user" /></p>
+            <p>Nachname:<input type="text" name="pass" /></p>
+
+            <?php
+            //$benutzer = $_GET['user'];
+            //$passwort = $_GET['pass'];
+            //$loginbutton = $_GET['login'];
+
+            if (!isset($_GET['login']) or $_GET['login']) {
+
+                if ((isset($_GET['user'])) && (isset($_GET['pass']))) {
+
+                    if (!empty($_GET['user']) && !empty($_GET['pass'])) {
+                        if (isset($_GET['user'])) {
+                            echo 'Hallo, ';
+                            echo $_GET['user']; //$benutzer;
+                            echo ' ';
+                        }
+                        if (isset($_GET['pass'])) {
+                            echo $_GET['pass']; //$passwort;
+                        }
+                    } else {
+                        echo 'Vor- oder Nachname nicht eingegeben, bitte befüllen Sie beide Eingabefelder.';
+                    }
+                }
+            }
+            ?>
+            <br />
+            <input name="login" type="submit" value="LOGIN" />
+            <input name="reset" type="reset" value="RESET" />
+        </form>
+    </div>
+
 
 </body>
 

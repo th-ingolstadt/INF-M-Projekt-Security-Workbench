@@ -21,13 +21,22 @@
         </script>
         
         <div class="row">
-            <div class="col-xs-12 col-md-12">
+            <div class="col-xs-6 col-md-6">
                 <div class="box box-default">
                     
                     <div class="box-body">
                         <p>Herzlichen Glückwunsch! Du hast die 2. Aufgabe geschafft!</p>
                         <p>Du bist jetzt angemeldet mit folgendem User:</p> 
-                        <?php echo $_SESSION["username"]; ?>
+                        <?php 
+                            
+                            //echo $_SESSION["usernameAufg2"]; 
+                            echo $username;
+                        ?>
+                        <br>
+                        <br>
+                        <img src="Content/img/willkommen.jpg" alt="Herzlich Willkommen!">
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -35,10 +44,11 @@
         
         <script> 
             document.getElementById('tvSessionManagement').className = 'treeview active'; 
-            document.getElementById('sbiSessionManagement_2').className = 'active';
+            document.getElementById('sbiSessionManagement_3').className = 'active';
         </script>
     </body>
 </html>
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+    session_unset();
 ?>

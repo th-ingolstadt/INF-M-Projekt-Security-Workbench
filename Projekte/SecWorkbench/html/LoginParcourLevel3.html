@@ -1,7 +1,17 @@
 <?php
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
- 
+
+<script>
+    window.onload = function () {
+        var title = "Loginparcours - Level 3";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+    
+    document.getElementById('sbiLoginParcours').className = 'active';
+</script>
 
 <script src="../Content/js/loginParcour.js"></script>
 
@@ -48,7 +58,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header" align="center">
-                        <img class="img-bordered" id="img_logo" src="~/Content/img/hackersymbol.png">
+                        <img class="img-bordered" id="img_logo" src="./Content/img/hackersymbol.png">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>

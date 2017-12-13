@@ -141,6 +141,7 @@ function checkLoginCredentialsBCrypt() {
     var username = document.getElementById('login_username');
     var password = document.getElementById('login_password');
     if (password.value === "sniffing" && username.value === "Kevin") {
+        alert("Correct password!");
         $('#login-modal').modal('hide');
         document.getElementById("solution").removeAttribute("hidden");
         document.getElementById("instruction").setAttribute("hidden", true);
@@ -148,3 +149,17 @@ function checkLoginCredentialsBCrypt() {
         alert("Wrong password - try again!");
     }
 }
+
+function checkLoginCredentialsPCAP() {
+    var username = document.getElementById('login_username');
+    var password = document.getElementById('login_password');
+    if (password.value === "saymynameheisenberg" && username.value === "jerry") {
+        alert("Correct password!");
+        $('#login-modal').modal('hide');
+        document.getElementById("solution").removeAttribute("hidden");
+        document.getElementById("instruction").setAttribute("hidden", true);
+    } else {
+        alert("Wrong password - try again!");
+    }
+}
+

@@ -12,6 +12,9 @@ if [ $status -ne 0 ]; then
 	exit $status
 fi
 
+# apache configuration
+printf "RemoveHandler .html .htm \nAddType application/x-httpd-php .php .htm .html" >> /etc/apache2/apache2.conf
+
 # start mysql
 #/usr/bin/mysqld_safe
 /etc/init.d/mysql start

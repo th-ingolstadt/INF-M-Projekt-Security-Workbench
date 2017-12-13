@@ -1,22 +1,14 @@
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+    $_SESSION['needLogin']=FALSE; // no login will be needed
 ?>
-
-<script>
-    window.onload = function(){
-        var title = "Buffer Overflow";
-        document.getElementById("pageTitle").innerHTML = title;
-        document.getElementById("titleDiv").innerHTML = title;
-        document.getElementById("pageDescription").innerHTML = "Der zweite Angriff";        
-};
-</script>
 
 <script src="~/Content/js/prism.js"></script>
 
 <h2>Stack Overflow</h2>
 
 <div class="row">
-    <div class="col-xs-12 col-md-7">
+    <div class="col-xs-7 col-md-7">
         <div class="col-xs-12 col-md-12">
             <div class="box box-default collapsed-box">
                 <div class="box-header">
@@ -51,7 +43,29 @@
         </div>
     </div>
     <div class="col-xs-5 col-md-5">
-        <div class="box box-default collapsed-box">
+        <div class="box box-warning">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                        Media
+                        </h3>
+                    </div>
+                    <div class="box-body">
+                        
+                    
+                <?php 
+                    // Call php shell
+                    include("./phpshell-2.4/phpshell.php");
+                ?>
+                <script>
+                    // preload command
+                    if(document.getElementById("shellOutput").value === "")
+                    {
+                        document.getElementById("commandBox").value = 'gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "display $authflag" -ex "continue" ./App_Data/FirstExample';
+                    }
+                </script>
+            </div>
+        </div>
+        <div class="box box-info collapsed-box">
             <div class="box-header">
                 <h3 class="box-title">Tips</h3>
                 <div class="box-tools pull-right">
@@ -139,7 +153,7 @@
                     }
                     else
                     {
-                        $command = "./App_Data/SecondExample.exe " . $input;
+                        $command = '/var/www/html/SecWorkbench/App_Data/SecondExample ' . $input;
                     }
                     exec($command, $output);
                 }
@@ -181,4 +195,10 @@
 <script> 
     document.getElementById('tvBufferOverflow').className = 'treeview active'; 
     document.getElementById('sbiBufferOverflowSE').className = 'active';
+    
+    // Update site description and title
+    var title = "Buffer Overflow";
+    document.getElementById("pageTitle").innerHTML = title;
+    document.getElementById("titleDiv").innerHTML = title;
+    document.getElementById("pageDescription").innerHTML = "Der zweite Angriff"; 
 </script>
