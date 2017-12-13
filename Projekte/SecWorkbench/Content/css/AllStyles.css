@@ -15,6 +15,7 @@ Master CSS to bind all styles into one file
 @import "prism_Coy.css";
 @import "prism_Twilight.css";
 @import "select2.min.css";
+@import "googleapisFonts_Sans.css";
 
 @import "icheck/aero.css";
 @import "icheck/aero.min.css";
