@@ -1,6 +1,6 @@
 <?php if (isset($_POST['login'])) {
      
-        $conn = new mysqli("localhost", "root", "", "vulnerableDB");
+        $conn = new mysqli("localhost", "root", "", "tutorials");
         
         // Check connection
         if ($conn->connect_error) {
@@ -23,10 +23,11 @@
         
         if( $result->num_rows >0){
             //echo $result->num_rows ;
-            session_start();
-            $_SESSION["username"] = $username;
+            //session_start();
+            $_SESSION["usernameAufg2"] = $username;
             
-            //echo $_SESSION[$username];
+            //echo $_SESSION["usernameAufg2"];
+            //echo $username;
             include ('SessionManagement_SecondExampleResponse.html');
         }else{
             echo '<script type="text/javascript">alert("Dein Login war leider nicht erfolgreich!");</script>';

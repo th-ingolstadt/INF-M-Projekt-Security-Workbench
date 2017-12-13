@@ -30,7 +30,7 @@
     
         
         <div class="row">
-            <div class="col-xs-12 col-md-12">
+            <div class="col-xs-6 col-md-6">
                 <div class="box box-default">
                     
                     <div class="box-body">
@@ -39,12 +39,12 @@
                                 <legend>Registrierung</legend>
                                 <input type='hidden' name='submitted' id='submitted' value='1'/>
                                 <label for='username' >Benutzername*:</label>
-                                <input type='text' name='username' id='username' maxlength="50"  required/>
+                                <input type='text' name='username' id='username' maxlength="50"  required class="form-control"/>
                                 <br>
                                 <label for='password' >Passwort*:</label>
-                                <input type='password' name='passwort' id='passwort' maxlength="50"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required title="Gib ein besseres Passwort ein!"/>
+                                <input type='password' name='passwort' id='passwort' maxlength="50"  pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required title="Gib ein besseres Passwort ein!" class="form-control"/>
                                 <br>
-                                <input type='submit' name='registrierung' value='Registrierung' />
+                                <input type='submit' name='registrierung' value='Registrierung' class="btn btn-primary"/>
                             </fieldset>
                         </form>
                         <!--<p id="nachricht">Test</p>-->

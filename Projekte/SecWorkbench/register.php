@@ -1,6 +1,6 @@
 <?php if (isset($_POST['registrierung'])) {
      
-        $conn = new mysqli("localhost", "root", "", "vulnerableDB");
+        $conn = new mysqli("localhost", "root", "", "tutorials");
         
         // Check connection
         if ($conn->connect_error) {

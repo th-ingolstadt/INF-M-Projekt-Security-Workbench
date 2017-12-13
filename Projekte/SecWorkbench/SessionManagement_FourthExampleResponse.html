@@ -1,7 +1,7 @@
 <?php
    ini_set("session.use_cookies", 0);
     ini_set("session.use_trans_sid", 1);
-    session_start();
+    
     $_SESSION["username"] = "customer";
     session_id('customer');
   
@@ -66,9 +66,9 @@
                                             <th>Nacht</th> 
                                         </tr>
                                         <tr>
-                                            <td><img src="Content/img/sonne.png" alt="Selfhtml"></td>
-                                            <td><img src="Content/img/sonne_bewölkt.png" alt="Selfhtml"></td>
-                                            <td><img src="Content/img/regen.png" alt="Selfhtml"></td>
+                                            <td><img src="Content/img/sonne.png" alt="Sonne"></td>
+                                            <td><img src="Content/img/sonne_bewölkt.png" alt="Benölkt"></td>
+                                            <td><img src="Content/img/regen.png" alt="Regen"></td>
                                         </tr>
                                         <tr>
                                             <td>13°</td>
@@ -77,14 +77,56 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <br><br>
-                                <input type="button" value="Hinweis 1" onclick="hinweis1()"/>
-                                <br>
-                                <input type="button" value="Hinweis 2" onclick="hinweis2()"/>
+                                
                                 
                                 
                             </fieldset>
                         </form>
+                    </div>
+                </div>
+            </div>
+            
+             <div class="col-xs-5 col-md-5">
+                <div class="box box-default collapsed-box">
+                    <div class="box-header">
+                        <h3 class="box-title">Hinweis</h3>
+                        <div class="box-tools pull-right">
+                            <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div style="display: none;" class="box-body">
+                        <div class="box-group" id="accordion">
+                            <div class="panel box box-success">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                            Hinweis 1
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse">
+                                    <div class="box-body">
+                                        <p>Kannst du dich an die Unterschiede zwischen GET und POST Requests im HTTP-Protokoll erinnern?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel box box-warning">
+                                <div class="box-header">
+                                    <h4 class="box-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                            Hinweis 2
+                                        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="box-body">
+                                        <p>Kannst du den benötigten Parameter in der URL erkennen?</p>
+
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,15 +135,11 @@
         <script> 
             document.getElementById('tvSessionManagement').className = 'treeview active'; 
             document.getElementById('sbiSessionManagement_5').className = 'active';
-            function hinweis1(){
-                alert("Kannst du dich an die Unterschiede zwischen GET und POST Requests im HTTP-Protokoll erinnern?");
-            }
-            function hinweis2(){
-                alert("Kannst du den benötigten Parameter in der URL erkennen?");
-            }
+            
         </script>
     </body>
 </html>
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+    session_unset();
 ?>
