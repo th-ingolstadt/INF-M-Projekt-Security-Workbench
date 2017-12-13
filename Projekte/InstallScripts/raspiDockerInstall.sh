@@ -28,9 +28,11 @@ chmod +x ../SecWorkbench/tutorialDockerControl.sh
 
 # Linux Keylogger Container
 export LINUX_KEYLOGGER_WEB_RES_PATH=$project_path/Keylogger/wifi_snatcher_DigiSpark/linux/html
+chmod +x ../Keylogger/wifi_snatcher_DigiSpark/linux/keyloggerLinuxDockerControl.sh
 ../Keylogger/wifi_snatcher_DigiSpark/linux/keyloggerLinuxDockerControl.sh start
 # Windows Keylogger container
 export WINDOS_KEYLOGGER_WEB_RES_PATH=$project_path/Keylogger/wifi_snatcher_DigiSpark/windows/html
+chmod +x ../Keylogger/wifi_snatcher_DigiSpark/windows/keyloggerDockerControl.sh
 ../Keylogger/wifi_snatcher_DigiSpark/windows/keyloggerDockerControl.sh start
 
 echo "############################################################"

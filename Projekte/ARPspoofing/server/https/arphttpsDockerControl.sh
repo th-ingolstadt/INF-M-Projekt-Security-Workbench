@@ -100,8 +100,8 @@ if [ "$1" == "start" ]; then
 	
 	docker run \
 		-v $ARP_WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
-		-p 172.26.32.5:80:80 \
-		-p 172.26.32.5:443:443 \
+		-p 172.26.32.6:80:80 \
+		-p 172.26.32.6:443:443 \
 		--name $CONTAINER_NAME \
 		--restart=unless-stopped \
 		-d $IMAGE_NAME
