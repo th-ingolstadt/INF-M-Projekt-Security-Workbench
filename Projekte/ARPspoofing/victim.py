@@ -73,7 +73,7 @@ def ReplaceImagesMode():
 			break
 
 		##Schritt 2
-		print('Rufe nun in deinem Browser die Homepage -  www.sueddeutsche.de - auf. Schliesse im Anschluss den Browser.')
+		print('Rufe nun in deinem Browser die Homepage -  news.local - auf. Schliesse im Anschluss den Browser.')
 		selection = raw_input(shellCols.BLUE + '\nDrücke Enter um fortzufahren oder x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		if(selection == "x"):
 			print('Gehe zurück zum Hauptmenü')
@@ -89,7 +89,7 @@ def ReplaceImagesMode():
 			break
 
 		##Schritt 4 
-		print('Rufe nun in deinem Browser erneut die zuvor gewählte Webseite auf. Es sollte jetzt das entsprechende Youtubevideo auf der Webseite eingebunden und abgespielt werden.')
+		print('Rufe nun in deinem Browser erneut die zuvor gewählte Webseite auf. Es sollte jetzt die Webseite manipuliert sein.')
 		selection = raw_input(shellCols.BLUE + '\nDrücke x um das Programm zu verlassen... ' + shellCols.ENDC + '\n')
 		#if(selection == "x"):
 		print('Gehe zurück zum Hauptmenü')

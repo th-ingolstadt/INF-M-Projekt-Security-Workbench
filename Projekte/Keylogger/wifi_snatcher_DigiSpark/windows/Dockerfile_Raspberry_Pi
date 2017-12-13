@@ -1,0 +1,12 @@
+FROM resin/rpi-raspbian
+ 
+# Update and install all necessary packages
+RUN apt-get update && apt-get install -y \
+    apache2 \
+    && apt-get clean
+
+# Open ports
+EXPOSE 80
+
+CMD apachectl -D FOREGROUND
+

@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y \
 EXPOSE 80
 
 # Copy sql script into the container to initialize the DB
-COPY initlializeDB.sql . 
+COPY initializeDB.sql . 
 
 # Start services as last step
 COPY startServices.sh startServices.sh
