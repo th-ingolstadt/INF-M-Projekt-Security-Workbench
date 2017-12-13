@@ -13,12 +13,7 @@ Eine beliebige Webseite für das ARP-Spoofing Szenario.
 </p>
 
 <p>
-<a href="bank24.local">HTTPS ohne HSTS</a>
+<a href="https://www.bank24.local">HTTPS Webseite</a>
 </p>
-<p>
-<a href="hsts.bank24.local">HTTPS mit HSTS</a>
-</p>
-
-
 
 </html>

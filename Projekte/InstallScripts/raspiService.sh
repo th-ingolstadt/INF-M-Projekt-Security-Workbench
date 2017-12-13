@@ -563,12 +563,14 @@ systemctl enable hostapd
 systemctl enable freeradius.service
 
 echo "############################################################"
-echo "Installion Complete Reboot needed."
+echo "Installion 1/2 Complete Reboot needed."
 echo "Info über WLAN-AP: NAME:PW"
 echo "THISecurityWorkbenchWEPOpen/Share: BC6AFE583E"
 echo "THISecurityWorkbenchWPA2: HackMeHackMe"
 echo "THI SecurityWorkbenchWPA2-E: User: TestUser PW: HackMeHackMe"
 echo "Genauere Informationen findet man in der Dokumentation"
+echo "Um die Installation abzuschliesen muss nach dem reboot "
+echo "noch raspiDockerInstall.sh ausgeführt werden."
 echo "RPI wird in 30 Sekunden Automatisch neu-gestartet mit ctrl +c Abbrechen"
 echo "############################################################"
 sleep 30

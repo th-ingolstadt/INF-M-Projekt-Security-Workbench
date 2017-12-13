@@ -29,4 +29,9 @@ chown pi:pi -R INF-M-Projekt-Security-Workbench
 ##
 ## Keyboard layout
 ##
+echo "Um dem Router-Pi aufzusetzten muss nach dem neustart im Ordner"
+echo "INF-M-Projekt-Security-Workbench/Projekte/InstallScripts"
+echo "raspiService.sh ausgeführt werden"
+echo "PI wird in 30 sec. Rebootet. mit Ctrl + C abbrechen"
+sleep 30
 reboot
