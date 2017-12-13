@@ -7,7 +7,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
         var title = "Cross Site Scripting - Reflected";
         document.getElementById("pageTitle").innerHTML = title;
         document.getElementById("titleDiv").innerHTML = title;
-        document.getElementById("pageDescription").innerHTML = "Übung 2";
+        document.getElementById("pageDescription").innerHTML = "Übung 5";
     };
 </script>
 
@@ -15,16 +15,14 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
     <div class="col-xs-12 col-md-7">
         <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">Aufgabenstellung:</h3>
+                <h3 class="box-title">Beschreibung:</h3>
             </div>
             <div class="box-body">
-               Im Grunde bleibt die Aufgabenstellung zu der 1. Übung fast identisch.<br>
-              Der einzige Unterschied bezieht sich auf die Zeichen die in den beiden Zeichenfeldern die für 
-              Vor- und Nachname zulässig sind. Folglich wird es Ihnen erschwert einen Scriptcode über die Webanwendung
-              auszuführen.
-              <br>
-              <br>
-              Nach dem Abschließen dieser Übung können sie zu <a href="Reflected_XSS_III.php">Übung 3</a> übergehen. 
+                Nach den Übungen 1 bis 3 sind Sie nun mit dem Prinzip des "Reflected Cross-Site-Scripting" vertraut.<br>
+                Wie Sie möglicherweise schon feststellen konnte sind die vorangegangenen Übungen, in denen Schadecode bzw.
+                Scriptcode auf den eigenen Rechner ausgeführt wird, nicht sehr sinnvoll oder bedrohlich.<br>
+                Wie der Scriptcode in eine bedrohliche Form gebracht und versendet werden kann, wird in den folgenden Übungen
+                behandelt.                
             </div> 
             <div class="box-body">
 
@@ -54,7 +52,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
-                                Die Zeichen " und ' sind nicht zulässig.
+                                Die Zeichen bzw. Zeichenkette ",' und "script" sind nicht zulässig.
                             </div>
                         </div>
                     </div>
@@ -68,15 +66,49 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
-                                Eine Lösung für den Scriptcode lautet <br>"&ltscript>alert(String.fromCharCode(84,69,83,84));&lt/script>".                                
+                                Die unzulässigen Zeichen sind zum Teil nicht zwingend erforderlich und können
+                                weggelassen werden.
                             </div>
                         </div>
                     </div>             
+                    <div class="panel box box-danger">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                                    3. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseFour" class="panel-collapse collapse">
+                            <div class="box-body">
+                                &ltiframe src=Reflected_XSS_iFrame.php height=200 width=70%>&lt/iframe>.
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>  
         </div>
     </div>
 
+ 
+    <div class="col-xs-12 col-md-7">
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Aufgabenstellung:</h3>
+            </div>
+            <div class="box-body">
+              Im Grunde bleibt die Aufgabenstellung zu der 4. Übung fast identisch.<br>
+              Der einzige Unterschied bezieht sich auf die Zeichen die in den beiden Zeichenfeldern die für 
+              Vor- und Nachname zulässig sind. Folglich wird es Ihnen erschwert das Formular in die Webanwendung zu integrieren.
+              <br>
+              <br>
+              Nach dem Abschließen dieser Übung können sie zur <a href="Reflected_XSS_master.php">Übersichtsseite</a> zurückkehren.
+            </div>          
+            <div class="box-body">
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -120,7 +152,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 if ((isset($_GET['user'])) && (isset($_GET['pass']))) {
 
                     if (!empty($_GET['user']) && !empty($_GET['pass'])) {
-                        if ((!preg_match('["|\']', ($_GET['user']))) && !preg_match('["|\']', ($_GET['pass']))) {
+                        if ((!preg_match('["|\'|script]', ($_GET['user']))) && !preg_match('["|\'|script]', ($_GET['pass']))) {
                             if (isset($_GET['user'])) {
                                 echo 'Hallo, ';
                                 echo $_GET['user']; //$benutzer;

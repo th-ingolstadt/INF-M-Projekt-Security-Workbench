@@ -17,65 +17,50 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
     <div class="col-xs-12 col-md-7">
         <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">Übersichtsseite:</h3>
+                <h3 class="box-title">Theorie</h3>
             </div>
-            <div class="box-body">
-                Übersicht..........................
+            <div class="box-body">               
+                <center>
+                    <figure>
+                        <video src="Content/img/Attacks/XSS_Reflected/xss_reflected.mp4" controls width="560" height="315"></video>
+                    </figure>
+                </center>
+                <br>
+                Das Reflected-Cross-Site-Scripting ist ein Angriff, 
+                bei dem die Eingaben des Benutzers direkt vom Server wieder zurückgesendet und anschließend ausgegeben werden.
+                Enthält diese Eingabe ausführbaren Scriptcode, wird dieser Code direkt ausgeführt.<br>
+                Ein Beispiel für so ein Verhalten findet man häufig bei der Suchfunktion einer Website.
+                Da der eingegebene Suchbegriff meistens in einer Form wie z.B. "... der Suchbegriff "Beispielbegriff" wurde nicht gefunden..." 
+                wieder augegeben wird bietet sich dies vom Prinzip her als Angriffsstelle für einen Reflected Cross-Site-Scripting Angriff an.<br>
+                Dadurch das bei php die Eingegebenen Daten, wie z.B. ein Suchbegriff nicht selten mittels $GET übergeben werden, wird die
+                Eingabedaten in der URL gespeichert. Dies ermöglicht uns das Versenden des Schadecodes, indem man die URL inklusive Schadecodes an
+                das Opfer sendet.
                 <br>
                 <br>
+                Dies wird in der folgenden Grafik veranschaulicht:
+                <center>
+                <img src="Content/img/Attacks/XSS_Reflected/xss_reflected.png" width="560" height="300">
+                </center>
             </div> 
             <div class="box-body">
 
             </div>
         </div>
     </div>
-
-    <div class="col-xs-12 col-md-5">
-        <div class="box box-warning">
+    
+    <div class="col-xs-12 col-md-7">
+        <div class="box box-default">
             <div class="box-header">
-                <h3 class="box-title">Media</h3>
+                <h3 class="box-title">Übungen zu Reflected Cross-Site-Scripting</h3>
             </div>
+            <div class="box-body">                              
+                <a href="Reflected_XSS.php">1. Übung</a><br>
+                <a href="Reflected_XSS_II.php">2. Übung</a><br>
+                <a href="Reflected_XSS_III.php">3. Übung</a><br>
+                <a href="Reflected_XSS_IV.php">4. Übung</a><br>
+                <a href="Reflected_XSS_V.php">5. Übung</a><br>
+            </div> 
             <div class="box-body">
-
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xs-12 col-md-5">
-        <div class="box box-success">
-            <div class="box-header">
-                <h3 class="box-title">Tipps</h3>
-            </div>
-            <div class="box-body">
-
-                <a href="javascript:firsttip();">1. Tipp:</a>
-                <output id='firsttip'></output>
-
-                <a href="javascript:secondtip();">2. Tipp:</a>
-                <output id='secondtip'></output>
-
-                <a href="javascript:thirdtip();">3. Tipp:</a>
-                <output id='thirdtip'></output>
-
-
-                <script>
-                    function firsttip()
-                    {
-                        document.getElementById('firsttip').innerHTML = "Versuchen Sie über eines der beiden Eingabefelder\n\
-                            Scriptcode in die Webanwendung zu schleusen.";
-                    }
-
-                    function secondtip()
-                    {
-                        document.getElementById('secondtip').innerHTML = "2.tipp.";
-                    }
-
-                    function thirdtip()
-                    {
-                        document.getElementById('thirdtip').innerHTML = "3.tipp.";
-                    }
-                </script>
-
 
             </div>
         </div>
@@ -124,8 +109,5 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
 
-<script>    
-    // mark the site as active in the nav bar
-    document.getElementById('tvXSS').className = 'treeview active'; 
-    document.getElementById('sbiReflectedXSS').className = 'active';
-</script>
+// mark sidebar element for this page active
+<script> document.getElementById('sbiSessionManagement').className = 'active';</script>

@@ -38,80 +38,67 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
         </div>
     </div>
 
-    <div class="col-xs-12 col-md-5">
-        <div class="box box-warning">
-            <div class="box-header">
-                <h3 class="box-title">Media</h3>
-            </div>
-            <div class="box-body">
-
-            </div>
-        </div>
-    </div>
 
     <div class="col-xs-12 col-md-5">
-        <div class="box box-success">
+        <div class="box box-default collapsed-box">
             <div class="box-header">
                 <h3 class="box-title">Tipps</h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
             </div>
             <div class="box-body">
-
-                <a href="javascript:firsttip();">1. Tipp:</a>
-                <output id='firsttip'></output>
-
-                <a href="javascript:secondtip();">2. Tipp:</a>
-                <output id='secondtip'></output>
-
-                <a href="javascript:thirdtip();">3. Tipp:</a>
-                <output id='thirdtip'></output>
-
-
-                <script>
-                    function firsttip()
-                    {
-                        document.getElementById('firsttip').innerHTML = "Versuchen Sie über eines der beiden Eingabefelder\n\
-                            Scriptcode in die Webanwendung zu schleusen.";
-                    }
-
-                    function secondtip()
-                    {
-                        document.getElementById('secondtip').innerHTML = "2.tipp.";
-                    }
-
-                    function thirdtip()
-                    {
-                        document.getElementById('thirdtip').innerHTML = "3.tipp.";
-                    }
-                </script>
-
-
+                <div class="box-group" id="accordion">
+                    <div class="panel box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    1. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Füge den Scriptcode in eines der beiden Eingabefelder ein und drücke den "Login"-Button.<br>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel box box-warning">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    2. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Beachte dabei das beide Eingabelfeder nicht leer sein dürfen.<br>
+                            </div>
+                        </div>
+                    </div>             
+                    <div class="panel box box-danger">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    3. Tipp
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Eine Lösung für den Scriptcode lautet <br>"&ltscript>alert("Testausgabe");&lt/script>".<br>                                                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--
-    <div class="col-xs-12 col-md-7">
-        <div class="box box-default">
-            <div class="box-header">
-                <h3 class="box-title">Vorgehensweise:</h3>
-            </div>
-            <div class="box-body">
-                Neben den, in der Einführung erwähnten Beispiel kann ein Ziel eines Reflected-Anfgriffs
-                natürlich auch anders aussehen. Im folgenden Beispiel, das von Ihnen attackiert werden soll, 
-                finden Sie zwei Eingabefenster, die für Ihren Vor- und Nachname vorgesehen sind. 
-                Nach den Betätigen des "???" - Button sollen Sie mit Ihren vollen Namen begrüßt werden.
-                Da Ihre Eingabe, was im Normalfall Ihr Vor- und Nachname ist, direkt wieder ausgegeben wird,
-                wird uns so ermöglicht einen Reflected-XSS-Angriff auszuführen. 
-            </div>          
-            <div class="box-body">
-
-            </div>
-        </div>
-    </div>
-    -->
+    
+ 
+    
 </div>
-
-<br />
-
 
 <style type="text/css">
     #loginf p 
@@ -189,8 +176,5 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
 
-<script>    
-    // mark the site as active in the nav bar
-    document.getElementById('tvXSS').className = 'treeview active'; 
-    document.getElementById('sbiReflectedXSS').className = 'active';
-</script>
+// mark sidebar element for this page active
+<script> document.getElementById('sbiSessionManagement').className = 'active';</script>
