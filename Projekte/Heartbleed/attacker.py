@@ -19,7 +19,8 @@ def StartHeartbleedMetasploit():
 
 		# IP des Opfers
 		print('Zuerst wird die IP-Adresse des Opfers benötigt, auf welchem der verwundbare OpenSSL-Server läuft. Wurde dieser auf dem selben Rechner gestartet, lautet diese 127.0.0.1 (localhost).')
-		ip = rlinput("Gib die IP-Adresse des Zielservers ein: ", "127.0.0.1")
+ 		print('In der Raspberry Security Workbench kann ebenfalls der Server angegriffen werden unter router.local')
+		ip = rlinput("Gib die IP-Adresse des Zielservers ein: ", "router.local")
 
 
 		# Port

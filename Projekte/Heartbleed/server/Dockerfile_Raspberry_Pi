@@ -1,0 +1,21 @@
+FROM resin/rpi-raspbian:latest
+
+MAINTAINER Sascha Kirstein sak6831@thi.de
+
+# Install Dependancies
+RUN apt-get update && apt-get install -y \
+	&& apt-get clean
+
+# Open ports
+EXPOSE 8989
+#Copy exec openssl into docker container
+COPY local_Raspberry_Pi/ ./local
+# Copy bash file for configuration an starting openssl into docker container
+COPY startOpenSSH.sh startOpenSSH.sh
+# make bash file executable
+RUN chmod u+x startOpenSSH.sh
+# exec bash file for config and start openssl 
+CMD ./startOpenSSH.sh
+
+
+
