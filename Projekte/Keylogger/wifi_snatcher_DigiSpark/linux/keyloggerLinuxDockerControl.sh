@@ -119,6 +119,7 @@ if [ "$1" == "start" ]; then
 	docker run \
 		-v $WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
 		-p 8888:80 \
+		--restart=unless-stopped \
 		--name $CONTAINER_NAME \
 		-d $IMAGE_NAME \
 
