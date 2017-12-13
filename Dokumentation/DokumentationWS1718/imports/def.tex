@@ -1,0 +1,128 @@
+%!TEX root = ../document.tex
+\documentclass[oneside,11pt,DIV=8,listof=totoc]{scrreprt}
+\usepackage{scrhack}
+\usepackage[utf8]{inputenc}
+\usepackage[ngerman]{babel}
+\usepackage{setspace}
+\usepackage{microtype}
+\usepackage[T1]{fontenc}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage{blindtext}
+\usepackage{amsmath}
+\usepackage{mathpazo}
+\usepackage{FiraSans}
+\usepackage[scaled=.98,sups,osf]{XCharter}
+\usepackage[scaled=1.04,varqu,varl]{inconsolata}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{csquotes}
+\usepackage{tikz}
+\usepackage{xparse}
+\usepackage{listings}
+\usepackage{float}
+\setlength{\emergencystretch}{0.5em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%d%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% colors
+\definecolor{THI-Blue}{RGB}{1,90,156}
+\definecolor{altgray}{RGB}{240, 240, 240}
+\colorlet{BLACK}{black}
+\colorlet{documentColor}{THI-Blue}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% listings
+\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+\lstset{stringstyle=\color{red}} % typewriter type for strings
+\lstset{keywordstyle=\color{blue}\bfseries} \lstset{commentstyle=\color{green}}
+\lstset{showstringspaces=true} % no special string spaces
+\lstset{backgroundcolor=\color{altgray}} %
+\lstset{literate=%
+  {Ö}{{\"O}}1
+  {Ä}{{\"A}}1
+  {Ü}{{\"U}}1
+  {ß}{{\ss}}2
+  {ü}{{\"u}}1
+  {ä}{{\"a}}1
+  {ö}{{\"o}}1
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Section font settings
+\addtokomafont{chapter}{\leavevmode\color{documentColor}}
+\addtokomafont{section}{\leavevmode\color{documentColor}}
+\addtokomafont{subsection}{\leavevmode\color{black!70}}
+\addtokomafont{title}{\mdseries\Huge\leavevmode\color{documentColor}}
+\addtokomafont{author}{\sffamily\color{black!70}}
+\addtokomafont{date}{\sffamily\color{black!70}}
+\addtokomafont{subtitle}{\Large}
+\addtokomafont{subject}{\sffamily\mdseries\color{black!70}\lsstyle}
+\addtokomafont{disposition}{\mdseries}
+\addtokomafont{paragraph}{\normalfont\bfseries\color{black!80}}
+\addtokomafont{caption}{\small\sffamily\color{black!80}}
+\addtokomafont{captionlabel}{\sffamily\color{documentColor}}
+\setcounter{secnumdepth}{3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% begin of the document
+\usepackage{eso-pic}
+\AtBeginDocument{
+\newcommand\BackgroundPic{%
+ \put(-1,-1){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\includegraphics[width=0.95\paperwidth]{imports/thi_green.png}
+\hfill
+}
+}
+\put(0,-120){%
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=7cm]{imports/thi_logo.pdf}
+\\[0.5cm]
+\vfill
+}}
+}
+\AddToShipoutPicture*{\BackgroundPic}
+\maketitle
+\clearpage
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header
+\usepackage[automark]{scrlayer-scrpage}
+% \pagestyle{headings}
+\addtokomafont{pageheadfoot}{\normalfont\small\color{black!60}\sffamily}
+\addtokomafont{pagefoot}{\small}
+\addtokomafont{pagehead}{\small}
+\addtokomafont{pagenumber}{\normalfont\small\color{black!60}\sffamily}
+\newcommand\spacedlowsmallcaps[1]{\scshape\lsstyle \MakeLowercase{#1}}
+\newcommand\spacedallcaps[1]{#1}
+
+\clearscrheadings
+%\renewcommand{\sectionmark}[1]{\markright{\thesection\enspace\spacedlowsmallcaps{#1}}}
+\renewcommand{\chaptermark}[1]{\markboth{\spacedlowsmallcaps{#1}}{\spacedlowsmallcaps{#1}}}
+\lehead{\mbox{\llap{\thepage\kern2em}\headmark\hfil}}
+\rohead{\mbox{\hfil{\headmark}\rlap{\kern2em\thepage}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Makros
+\newcommand\bashCommand[1]{\colorbox{altgray}{\footnotesize\texttt{#1}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Hyperref ganz am Ende laden
+\usepackage[hidelinks]{hyperref}
+
+\hyphenation{Open-SSL}
