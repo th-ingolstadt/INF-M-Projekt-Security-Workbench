@@ -106,7 +106,7 @@ iface wlan5 inet static
 address 172.26.111.253
 netmask 255.255.240.0
 up service isc-dhcp-server restart
-up ip addr add dev wlan5
+up ip addr add 172.26.112.1 dev wlan5
 " > /etc/network/interfaces.d/wlan
 
 ## Configure eth Interfaces
