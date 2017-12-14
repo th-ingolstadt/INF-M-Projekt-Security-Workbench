@@ -2,52 +2,92 @@
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
 
-<script>
-    $(document).ready(function () {
-        $("#letsGo").click(function () {
-            $("#loginModal").modal();
-        });
-    });
-</script>
-<style>
-    .modal-header, h4, .close {
-        background-color: #006dcc;
-        color: white !important;
-        text-align: center;
-        font-size: 30px;
-    }
-
-    .modal-footer {
-        background-color: #f9f9f9;
-    }
-</style>
-
 <script src="Content/js/guestbook.js"></script>
 
 <div class="row">
     <div class="col-xs-7 col-md-7">
-        <div class="box box-default">
+        <div class="box box-primary">
             <div class="box-header">
-                <h3 class="box-title">Aufgabenstellung</h3>
+                <h3 class="box-title">Theoretischer Hintergrund</h3>
             </div>
             <div class="box-body">
                 <h5><b><u>DOM-based Cross Site Scripting</u></b></h5>
-                Der Angriff spielt sich ausschließlich im Webbrowser ab, im Unterschied zu Angriffen über reflektiertes oder
+                Der Angriff spielt sich ausschließlich im Webbrowser ab. Im Unterschied zu Angriffen über reflektiertes oder
                 persistentes XSS ist der Schadcode niemals Bestandteil der vom Server gelieferten HTML-Daten. 
                 Weder der Server noch ein IDS/IPS oder eine Web Application Firewall können ihn darin also erkennen.<br/>
-                Der Client-seitige Code einer Webanwendung ist immer dann für DOM-basiertes XSS anfällig, wenn sie Daten aus vom Angreifer kontrollierbaren Objekten wie zum Beispiel document.location, document.URL oder document.referrer oder in Zeiten von HTML5 und Web 2.0 auch irgend welche lokalen Eingaben ohne Prüfung auf eingeschleusten Code verwendet.
+                Der Client-seitige Code einer Webanwendung ist immer dann für DOM-basiertes XSS anfällig, wenn sie Daten 
+                aus vom Angreifer kontrollierbaren Objekten wie zum Beispiel <pre>document.location, document.URL oder document.referrer</pre> oder in Zeiten von HTML5 und Web 2.0 auch irgend welche lokalen Eingaben ohne Prüfung auf eingeschleusten Code verwendet.
             </div>
         </div>
+    </div>
+    <div class="col-xs-5 col-md-5">
+        <div class="box box-info collapsed-box">
+            <div class="box-header">
+                <h3 class="box-title">Tips</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+            </div>
+            <div style="display: none;" class="box-body">
+                <div class="box-group" id="accordion">
+                    <div class="panel box box-success">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    Expert Level Tip
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Schau dir nach dem Start des Tutorials die URL an. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel box box-warning">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    Intermediate Level Tip
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Die Auswahlliste wird mit einem "document.write(...)" befüllt, dass auf die URL zugreift. 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel box box-danger">
+                        <div class="box-header">
+                            <h4 class="box-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                                    Noob Level Tip
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse">
+                            <div class="box-body">
+                                Manipuliere die URL mit einem Script! 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+        </div>
+    </div>
 
-        <div class="box box-default">
+    <div class="col-md-7 col-xs-7">
+        <div class="box box-warning">
             <div class="box-header">
                 <h3 class="box-title">Aufgabe</h3>
-                Versuche mit einer DOM-Based XSS die Cookies auszulesen!
             </div>
 
             <div class="box-body">
+                <p>In dieser Aufgabe wirst du eine Sprachenauswahl wiederfinden. Diese wird zum Teil aus der URL generiert. In den Cookies der Webseiten sind Credentials 
+                    versteckt. Versuche sie mit einer DOM-Based-XSS herauszufinden! 
                 <div class="box-body">
-                    <button name="login" class="btn btn-success" id="loginButton" onclick="startDOMBasedXSS();"><span class="glyphicon glyphicon-off"></span>Start</button>
+                    <button name="login" class="btn btn-success" id="loginButton" onclick="startDOMBasedXSS();"><span class="glyphicon glyphicon-off"></span> Start</button>
                 </div>
                 <div id="hidingList" hidden>
                     <h3>Wähle eine Sprache:</h3>
@@ -58,7 +98,53 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
             </div>
         </div>
     </div>
+    
+     <div class="col-xs-12 col-md-12">
+        <div class="box box-success collapsed-box">
+            <div class="box-header">
+                <h3 class="box-title">Gegenmaßnahmen</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
+                <div style="display: none;" class="box-body">
+                    <ul class="timeline">
+                        <li class="time-label">
+                            <span class="bg-blue">
+                                Webanwendung
+                            </span>
+                        </li>
+                        <li>
+                            <i class="fa fa-lightbulb-o bg-yellow"></i>
+                            <div class="timeline-item">
+                                <h3 class="timeline-header"><b style="color:orange">Welche Sicherheitsmaßnahmen können ergriffen werden?</b></h3>
+
+                                <div class="timeline-body">
+                                    <ul>
+                                        <li>Nutze HTML Escape (/Maskierungs-) Möglichkeiten bevor die Daten eingefügt werden: 
+                                            <pre> document.write("<%=Encoder.encodeForJS(Encoder.encodeForHTML(untrustedData))%>");
+ document.writeln("<%=Encoder.encodeForJS(Encoder.encodeForHTML(untrustedData))%>");</pre>
+                                        </li>
+                                        <li>
+                                            Weitere und noch detailiertere Beispiele unter <a href="https://www.owasp.org/index.php/DOM_based_XSS_Prevention_Cheat_Sheet">DOM-Based-XSS Prevention</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="timeline-footer">
+                                    <p style="color:red">Achtung! Manche Browser wieder die neuen Firefox 
+                                        Versionen bieten einen integrierten Schutz, in dem die URL automatisch verschlüsselt wird. <br/> Ist auf deiner Maschine ein neuerer Firefox installiert, versuch es doch einmal mit dem Internet Explorer ;) </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+     </div>
+   
+    
 </div>
+
 
 
 <?php
