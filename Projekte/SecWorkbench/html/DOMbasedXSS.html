@@ -1,0 +1,81 @@
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<script>
+    $(document).ready(function () {
+        $("#letsGo").click(function () {
+            $("#loginModal").modal();
+        });
+    });
+</script>
+<style>
+    .modal-header, h4, .close {
+        background-color: #006dcc;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
+
+    .modal-footer {
+        background-color: #f9f9f9;
+    }
+</style>
+
+<script src="Content/js/guestbook.js"></script>
+
+<div class="row">
+    <div class="col-xs-7 col-md-7">
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Aufgabenstellung</h3>
+            </div>
+            <div class="box-body">
+                <h5><b><u>DOM-based Cross Site Scripting</u></b></h5>
+                Der Angriff spielt sich ausschließlich im Webbrowser ab, im Unterschied zu Angriffen über reflektiertes oder
+                persistentes XSS ist der Schadcode niemals Bestandteil der vom Server gelieferten HTML-Daten. 
+                Weder der Server noch ein IDS/IPS oder eine Web Application Firewall können ihn darin also erkennen.<br/>
+                Der Client-seitige Code einer Webanwendung ist immer dann für DOM-basiertes XSS anfällig, wenn sie Daten aus vom Angreifer kontrollierbaren Objekten wie zum Beispiel document.location, document.URL oder document.referrer oder in Zeiten von HTML5 und Web 2.0 auch irgend welche lokalen Eingaben ohne Prüfung auf eingeschleusten Code verwendet.
+            </div>
+        </div>
+
+        <div class="box box-default">
+            <div class="box-header">
+                <h3 class="box-title">Aufgabe</h3>
+                Versuche mit einer DOM-Based XSS die Cookies auszulesen!
+            </div>
+
+            <div class="box-body">
+                <div class="box-body">
+                    <button name="login" class="btn btn-success" id="loginButton" onclick="startDOMBasedXSS();"><span class="glyphicon glyphicon-off"></span>Start</button>
+                </div>
+                <div id="hidingList" hidden>
+                    <h3>Wähle eine Sprache:</h3>
+                    <select id="languageList" >
+                        <script>document.write("<OPTION value=1>" + document.location.href.substring(document.location.href.indexOf("default=") + 8) + "</OPTION>");</script>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script>
+    // mark the site as active in the nav bar
+    document.getElementById('tvXSS').className = 'treeview active';
+    document.getElementById('sbiDOMbasedXSS').className = 'active';
+
+    // Update site description and title
+    var title = "DOMbased XSS";
+    document.getElementById("pageTitle").innerHTML = title;
+    document.getElementById("titleDiv").innerHTML = title;
+    document.getElementById("pageDescription").innerHTML = "Der erste Angriff";
+</script>
+
+
+
