@@ -11,3 +11,5 @@ BufferOverflow/SecondExample
 peda-session-*.txt
 SecWorkbench/nbproject/private/*
 SecWorkbench/nbproject/configs/*
+SecWorkbench/html/nbproject/private/*
+SecWorkbench/html/nbproject/configs/*
