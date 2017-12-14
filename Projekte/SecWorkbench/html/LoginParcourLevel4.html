@@ -54,14 +54,14 @@
                 <div id="div-forms">
 
                     <!-- Begin # Login Form -->
-                    <form id="login-form">
+                    <form id="login-form-" method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
                         <div class="modal-body">
                             <div id="div-login-msg">
                                 <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
                                 <span id="text-login-msg">Bob ist kein guter Entwickler. Er hat das Passwort vergessen und murmelt die ganze Zeit nur etwas von aliens.txt. Ich weiß auch nicht was das bedeuten soll?!</span>
                             </div>
-                            <input id="login_username" class="form-control" type="text" value="root" required disabled>
-                            <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                            <input id="login_username" name="login_username" class="form-control" type="text" value="root" required disabled>
+                            <input id="login_password" name="login_password" class="form-control" type="password" placeholder="Password" required>
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox"> Remember me
@@ -70,7 +70,7 @@
                         </div>
                         <div class="modal-footer">
                             <div>
-                                <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="checkLoginCredentialsLevel4()">Login</button>
+                                <button type="submit" class="btn btn-primary btn-lg btn-block" name="login">Login</button>
                             </div>
                             <div>
                                 <a>Lost Password?</a>
@@ -82,11 +82,26 @@
 
                 </div>
                 <!-- End # DIV Form -->
-
+                
             </div>
         </div>
     </div>
+  <?php
 
+            if (isset($_POST['login'])) {
+                    $passwort =$_POST["login_password"];
+
+                    if($passwort == "bobIsSoStupid123"){
+                        echo '<script type="text/javascript">alert("Yeah du hast Level 6 gemeistert!");</script>';
+                        echo "<b style='color:green'>Level 4 completed! :) </b><br/>"; 
+                        echo "Starte mit dem nächsten Level <a href='LoginParcourLevel5.html'>Level 5</a><br/>";
+                        echo "Zurück zur Übersichtsseite <a href='LoginParcoursHome.html'>Login-Parcour-Levels</a>"; 
+                    } else {
+                        echo '<script type="text/javascript">alert("Dein Login war leider nicht erfolgreich! Probiere es nochmal!");</script>';
+                        echo "<b style='color:red'>Leider war dein dein Login fehlerhaft. Versuche es erneut!</b><br/>"; 
+                    } 
+            }
+           ?>
 </body>
 
 <?php
