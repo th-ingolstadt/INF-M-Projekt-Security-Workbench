@@ -64,7 +64,7 @@
                     // preload command
                     if(document.getElementById("shellOutput").value === "")
                     {
-                        document.getElementById("commandBox").value = 'gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "display $authflag" -ex "continue" ./App_Data/FirstExample';
+                        document.getElementById("commandBox").value = 'gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "p authflag" -ex "continue" ./App_Data/FirstExample';
                     }
                 </script>
             </div>
