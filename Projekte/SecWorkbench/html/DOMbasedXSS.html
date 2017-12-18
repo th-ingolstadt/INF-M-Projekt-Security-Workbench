@@ -11,7 +11,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 <h3 class="box-title">Theoretischer Hintergrund</h3>
             </div>
             <div class="box-body">
-                <h5><b><u>DOM-based Cross Site Scripting</u></b></h5>
+                <h5><b><u>DOM-based Cross Site Scripsting</u></b></h5>
                 Der Angriff spielt sich ausschließlich im Webbrowser ab. Im Unterschied zu Angriffen über reflektiertes oder
                 persistentes XSS ist der Schadcode niemals Bestandteil der vom Server gelieferten HTML-Daten. 
                 Weder der Server noch ein IDS/IPS oder eine Web Application Firewall können ihn darin also erkennen.<br/>
@@ -54,7 +54,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
-                                Die Auswahlliste wird mit einem "document.write(...)" befüllt, dass auf die URL zugreift. 
+                                Die Auswahlliste wird mit einem "document.write(...)" befüllt, dass mittel document.location auf die URL zugreift. 
                             </div>
                         </div>
                     </div>
@@ -87,11 +87,11 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 <p>In dieser Aufgabe wirst du eine Sprachenauswahl wiederfinden. Diese wird zum Teil aus der URL generiert. In den Cookies der Webseiten sind Credentials 
                     versteckt. Versuche sie mit einer DOM-Based-XSS herauszufinden! 
                 <div class="box-body">
-                    <button name="login" class="btn btn-success" id="loginButton" onclick="startDOMBasedXSS();"><span class="glyphicon glyphicon-off"></span> Start</button>
+                    <button name="login" class="btn btn-success" id="loginButton" onclick="startDOMBasedXSS();"><span class="glyphicon glyphicon-off"></span> Start</button>     
                 </div>
                 <div id="hidingList" hidden>
                     <h3>Wähle eine Sprache:</h3>
-                    <select id="languageList" >
+                    <select id="languageList" style='width:500px'>
                         <script>document.write("<OPTION value=1>" + document.location.href.substring(document.location.href.indexOf("default=") + 8) + "</OPTION>");</script>
                     </select>
                 </div>
@@ -144,8 +144,11 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
    
     
 </div>
-
-
+<script>
+    window.onload = function () {
+           // window.history.pushState('DOMbasedXSS', 'Title', '/html/DOMbasedXSS.html?default=german'); 
+    }﻿ 
+</script>
 
 <?php
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
@@ -157,10 +160,11 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html
     document.getElementById('sbiDOMbasedXSS').className = 'active';
 
     // Update site description and title
-    var title = "DOMbased XSS";
+    var title = "DOM-Based XSS";
     document.getElementById("pageTitle").innerHTML = title;
     document.getElementById("titleDiv").innerHTML = title;
     document.getElementById("pageDescription").innerHTML = "Der erste Angriff";
+    
 </script>
 
 
