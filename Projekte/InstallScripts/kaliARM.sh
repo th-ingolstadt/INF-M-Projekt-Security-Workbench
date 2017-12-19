@@ -3,7 +3,7 @@
 apt update && apt full-upgrade
 
 ## Get needed Packages for SecWorkbench
-apt install ettercap-common hping3 arp-scan gdb okular reaver mdk3 hostapd-wpe hostapd metasploit-framework wifiphisher sslstrip psmisc
+apt install ettercap-common hping3 arp-scan gdb okular reaver mdk3 hostapd-wpe hostapd metasploit-framework wifiphisher sslstrip psmisc dsniff
 
 # disable lua to avoid lua warning for wireshark
 wireshark_init_lua_line="disable_lua = false"
@@ -50,6 +50,5 @@ export SQL_WEB_RES_PATH=$project_path/SQLInjection/html
 chmod +x ../WIFI/startFakeAP.sh
 
 ##Add OAth phising Need for wifiphisher 1.1
-# git clone 
-#tar xvfJ oauth-login.tar.xz /usr/lib/python2.7/dist-packages/wifiphisher/data/phishing-pages
+tar xvfJ ../WIFI/oauth-login.tar.xz /usr/lib/python2.7/dist-packages/wifiphisher/data/phishing-pages
 # rm 
