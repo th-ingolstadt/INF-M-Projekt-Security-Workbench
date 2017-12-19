@@ -60,7 +60,7 @@
                     // preload command
                     if(document.getElementById("shellOutput").value === "")
                     {
-                        document.getElementById("commandBox").value = 'gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "display $authflag" -ex "continue" ./App_Data/FirstExample';
+                        document.getElementById("commandBox").value = 'gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "p authflag" -ex "continue" ./App_Data/SecondExample';
                     }
                 </script>
             </div>
@@ -87,6 +87,7 @@
                                 Sieh dir die Abfrage des Authentifizierungsflags und der Magic Number genau an. Was muss eintreten, damit die if-Verzweigung betreten wird? <br />
                                 Wie liegen die Variablen auf dem Stack? <br />
                                 Wie muss der Buffer Overflow ausgeführt werden, damit das Authentifizierungsflag überschrieben werden kann?
+                                Du kannst den Debugger (GDB) zur Hilfe ziehen, indem du ihn im Batch-Modus ausführst, hier ein Beispiel: gdb -q -batch -ex "break ZEILENNUMMER" -ex "run STARTWERT" -ex "p VARNAME" -ex "continue" ./App_Data/SecondExample
                             </div>
                         </div>
                     </div>

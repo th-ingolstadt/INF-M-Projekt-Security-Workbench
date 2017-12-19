@@ -5,6 +5,7 @@ IMAGE_NAME=tutorialimage
 PATH_TO_DOCKERFILE=$(dirname $(realpath "$0"))
 DOCKER_FILE_NAME_RASPBERRY=Dockerfile_Raspberry_Pi
 DOCKER_FILE_NAME_x86=Dockerfile_x86
+
 WEB_SERVER_DST_PATH=/var/www/html/SecWorkbench
 
 
@@ -65,7 +66,7 @@ else
 fi
 
 
-# Check if the lamp image exists
+# Check if the image exists
 image_existing="$(docker images | grep $IMAGE_NAME)"
 
 if [ -z "$image_existing" ]; then
@@ -115,7 +116,7 @@ if [ "$1" == "start" ]; then
 		echo "Removed $CONTAINER_NAME"
 	fi
 
-	echo "Starting lamp docker..."
+	echo "Starting tutorial docker..."
 
 	docker run \
 		-v $WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
@@ -132,7 +133,7 @@ if [ "$1" == "start" ]; then
 		exit 1
 	fi
 
-	echo "...lamp docker started successfully."
+	echo "...tutorial docker started successfully."
 
 elif [ "$1" == "stop" ]; then
 

