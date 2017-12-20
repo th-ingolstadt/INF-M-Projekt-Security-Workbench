@@ -19,7 +19,7 @@ printf "RemoveHandler .html .htm \nAddType application/x-httpd-php .php .htm .ht
 #/usr/bin/mysqld_safe
 /etc/init.d/mysql start
 status=$?
-if [ $status -ne 0]; then
+if [ $status -ne 0 ]; then
 	echo "ERROR: Could not start mysql: $status"
 	exit $status
 fi

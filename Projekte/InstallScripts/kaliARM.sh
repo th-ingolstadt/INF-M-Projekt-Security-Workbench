@@ -35,15 +35,15 @@ service docker start
 project_path=$(realpath ..)
 # Create DOS-Container
 export DOS_WEB_RES_PATH=$project_path/DenialofService/server/html
-../DenialofService/server/dosDockerControl.sh start
+../DenialofService/server/dosDockerControl.sh status
 # Create Heartbleed-Container
 #../Heartbleed/server/TODO
 # Create Arp-Spoofing-Container
 export ARP_WEB_RES_PATH=$project_path/ARPspoofing/server/http/html
-../ARPspoofing/server/http/arphttpDockerControl.sh start
+../ARPspoofing/server/http/arphttpDockerControl.sh status
 # Create SQLInjection-Container
 export SQL_WEB_RES_PATH=$project_path/SQLInjection/html
-../SQLInjection/server/sqlDockerControl.sh start
+../SQLInjection/server/sqlDockerControl.sh status
 
 # Configurate SecWorkbench
 #TODO Pfade Müssen gegebenfalls noch angepast werden
