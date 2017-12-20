@@ -122,7 +122,6 @@ if [ "$1" == "start" ]; then
 		-v $WEB_RES_ABSOLUTE_PATH:$WEB_SERVER_DST_PATH \
 		-p $WEB_RES_IP \
 		--name $CONTAINER_NAME \
-		--restart=unless-stopped \
 		-d $IMAGE_NAME
 
 	status=$?

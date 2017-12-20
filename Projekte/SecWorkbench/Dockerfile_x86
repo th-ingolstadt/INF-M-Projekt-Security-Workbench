@@ -18,6 +18,7 @@ EXPOSE 80
 
 # apache configuration
 RUN printf "RemoveHandler .html .htm \nAddType application/x-httpd-php .php .htm .html" >> /etc/apache2/apache2.conf
+COPY initializeDB.sql initializeDB.sql
 
 # Start services as last step
 COPY startServices.sh startServices.sh
