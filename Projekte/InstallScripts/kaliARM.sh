@@ -50,5 +50,5 @@ export SQL_WEB_RES_PATH=$project_path/SQLInjection/html
 chmod +x ../WIFI/startFakeAP.sh
 
 ##Add OAth phising Need for wifiphisher 1.1
-tar xvfJ ../WIFI/oauth-login.tar.xz /usr/lib/python2.7/dist-packages/wifiphisher/data/phishing-pages
+tar xvfJ ../WIFI/oauth-login.tar.xz -C /usr/lib/python2.7/dist-packages/wifiphisher/data/phishing-pages
 # rm 
