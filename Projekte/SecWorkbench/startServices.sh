@@ -24,6 +24,15 @@ fi
 # create /var/run/mysqld/mysqld.sock file
 touch /var/run/mysqld/mysqld.sock
 
+# check if the DB initialize script was copied inside the container
+if [ ! -f initializeDB.sql ]; then
+	echo "DB initializing script missing!"
+	exit 1
+fi
+
+# create DB
+mysql -u root < initializeDB.sql
+db_init_status=$?
 
 if [ $db_init_status -ne 0 ]; then
 	echo "DB creation failed!"
