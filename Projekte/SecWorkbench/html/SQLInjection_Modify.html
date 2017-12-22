@@ -123,7 +123,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 $searchUserPoints = "";
                                 $searchedUser = $_POST["searchTerm"];
 
-                                $sqlQuery = "SELECT user, punkte FROM sqlInjectionRanking WHERE user = '".$searchedUser."'";
+                                $sqlQuery = "SELECT username, punkte FROM sqlInjectionRanking WHERE username = '".$searchedUser."'";
 
                                 /* Php austricksen, damit er die SQLInjection erlaubt ;) */
                                 if(strpos($sqlQuery, ";") == true){
@@ -142,19 +142,19 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        $searchedUser = $row["user"];
+                                        $searchedUser = $row["username"];
                                         $searchUserPoints = $row["punkte"];
                                     }
                                 } else {
                                     echo "<b style='color:red'>ERROR in database connection! Please try again!</b>";
                                 }
 
-                                $secondSqlQuery = "SELECT user, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 15";
+                                $secondSqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 15";
                                 $ranglistenResult = $conn->query($secondSqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($ranglistenResult->num_rows > 0) {
                                     while ($searchRanglistenIndexRow = $ranglistenResult->fetch_assoc()) {
-                                        if ($searchedUser == $searchRanglistenIndexRow["user"]) {
+                                        if ($searchedUser == $searchRanglistenIndexRow["username"]) {
                                         $searchedUserRanglistenIndex = $ranglistenIndex;
                                         }
                                             $ranglistenIndex++;
@@ -178,14 +178,14 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 die("Connection failed: " . $conn->connect_error);
                                 }
 
-                                $sqlQuery = "SELECT user, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 5";
+                                $sqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 5";
                                 $result = $conn->query($sqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . $ranglistenIndex . "</td>";
-                                        echo "<td>" . $row["user"] . "</td>";
+                                        echo "<td>" . $row["username"] . "</td>";
                                         echo "<td>" . $row["punkte"] . "</td>";
                                         echo "</tr>";
                                         $ranglistenIndex++;
