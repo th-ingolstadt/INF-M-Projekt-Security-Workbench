@@ -1,0 +1,23 @@
+%!TEX root = ../document.tex
+\chapter{Cross-Site-Scripting}
+\label{XSS}
+Cross Site Scripting
+\section{Erklärung}
+blabla bla bla \\ 
+
+\subsection{Angriffsvarianten}
+Grundlegend gibt es drei verschiedene Arten von Cross-Site-Scripting Angriffen: \colorbox{altgray}{\lstinline|Reflected XSS, Stored XSS, DOM-Based XSS|}. Um diese möglichst einfach zu erklären, wird im Folgenden der JavaScript Code \colorbox{altgray}{\lstinline|alert("42")|} als Beispiel verwendet. Hierbei kann aber auch jeder andere beliebige JavaScript Code eingeschleust werden. Je nachdem was das Ziel des Angreifers ist, werden bspw. mit \colorbox{altgray}{\lstinline|alert(document.cookie)|}, die gespeicherten Cookies der Webseite auslesen. \\ 
+\subsubsection*{Reflected XSS}
+\subsubsection*{Stored XSS}
+Im Vergleich zum reflektierenden XSS-Angriff unterscheidet sich der Stored XSS (auch persistent/ persistentes XSS) dadurch, dass der Schadcode auf dem Webserver gespeichert wird. Besonders problematisch dabei ist, dass bei jeder Clientanfrage der Schadcode automatisch ausgeliefert und ausgeführt wird. \\ 
+\subsubsection*{DOM-Based XSS}
+Die dritte Angriffsart von Cross-Site-Scripting bezieht sich ausschließlich auf statische HTML-Seite mit JavaScript Unterstützung lässt dabei den Server außen vor. 
+
+
+\section{Ablauf}
+\subsection{Reflected Cross-Site-Scripting}
+\subsection{Stored Cross-Site-Scripting}
+\subsection{DOM-Based Cross-Site-Scripting}
+
+\section{Gegenmaßnahmen}
+
