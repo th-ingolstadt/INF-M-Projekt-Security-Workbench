@@ -21,7 +21,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
             </div>
             <div class="box-body">
                 Nach den Übungen 1 bis 3 sind Sie nun mit dem Prinzip des "Reflected Cross-Site-Scripting" vertraut.<br>
-                Wie Sie möglicherweise schon feststellen konnte sind die vorangegangenen Übungen, in denen Schadecode bzw.
+                Wie Sie möglicherweise schon feststellen konnten sind die vorangegangenen Übungen, in denen Schadecode bzw.
                 Scriptcode auf den eigenen Rechner ausgeführt wird, nicht sehr sinnvoll und bedrohlich.<br>
                 Wie der Scriptcode in eine bedrohliche Form gebracht und versendet werden kann, wird in den folgenden Übungen
                 behandelt.               
@@ -104,7 +104,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 Ihre Aufgabe ist es nun ein Schadecode zu integrieren der ein typisches Login-Formular auf der Webanwendung erscheinen lässt.
                 Dieses soll den Opfer dazu verleiten seine möglicherweise empfindlichen Daten einzugeben.
                 Im Anschluss sollen die möglicherweise empfindlichen Benutzerdaten dem Angreifer zugesendet werden.
-                Zur Vereinfachung sollen Sie lediglich das Formular einbinden und möglichst so das es dem Opfer nicht wie integrierten Schadcode vorkommt.
+                Zur Vereinfachung sollen Sie lediglich das Formular einbinden und dies möglichst so das es dem Opfer nicht wie integrierten Schadcode vorkommt.
                 <br>
                 Für diesen Vorgang wird üblicherweise ein Link mittels Scriptcode eingebunden.
                 Um dies für Sie etwas zu vereinfachen wird mit "Reflected_XSS_iFrame.php" ein Formular bereit gestellt, das Sie einbinden sollen.
