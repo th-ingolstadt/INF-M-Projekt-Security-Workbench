@@ -2,9 +2,10 @@
 \chapter{Vorbereitung}
 In diesem Kapitel soll erläutert werden, wie das Web-Projekt bereitgestellt und benutzt wird. Hierzu folgt eine kurze Anleitung um einen Host zu installieren, der die Web-Applikation bereitstellt sowie eine Beschreibung mit dem Umgang der bereits installierten virtuellen Maschine.
 
-\section{Installationsanleitung}
+\section{Installationsanleitung ohne Docker}
+\label{secInstall}
 
-Für die Installation der Web-Applikation muss zuerst ein Webserver auf dem Linux Host-Gerät installiert werden, wie z. B. der Apache Server (\url{https://httpd.apache.org}). Eine einfach Installation ist mit dem Befehl \colorbox{altgray}{\lstinline|apt-get install apache2|} möglich. Da sich das Installations-Vorgehen mit den Versionen der Drittanbieter-Software ändert, verzichte ich hier auf eine detaillierte Schritt-für-Schritt-Anleitung. Damit das Webprojekt richtig ausgeführt wird, muss in der apache2.conf folgende zwei Zeilen eingefügt werden:\medskip
+Für die Installation der Web-Applikation ohne den Docker-Container zu nutzen, muss zuerst ein Webserver auf dem Linux Host-Gerät installiert werden, wie z. B. der Apache Server (\url{https://httpd.apache.org}). Eine einfach Installation ist mit dem Befehl \colorbox{altgray}{\lstinline|apt-get install apache2|} möglich. Da sich das Installations-Vorgehen mit den Versionen der Drittanbieter-Software ändert, verzichte ich hier auf eine detaillierte Schritt-für-Schritt-Anleitung. Damit das Webprojekt richtig ausgeführt wird, muss in der apache2.conf folgende zwei Zeilen eingefügt werden:\medskip
 
 \begin{itemize}
 	\item \bashCommand{RemoveHandler .html .htm}
@@ -15,9 +16,13 @@ Diese Konfiguration sorgt dafür, dass HTML-Seiten mit dem PHP-Interpreter ausge
 
 Um alle Tutorials durchführen zu können muss der Host einen GNU-Debugger (GDB) bereitstellen. Dieser kann leicht mit  \colorbox{altgray}{\lstinline|apt-get install gdb|} bezogen werden. Um den GDB zu testen, kann der Befehl \colorbox{altgray}{\lstinline|gdb --version|} ausgeführt und die Version angezeigt werden.\medskip
 
-Zuletzt muss noch eine MySQL-Datenbank auf dem Host-System installiert werden. Hierfür stehen mehrere Alternative Vorgehensweisen zur Verfügung, siehe dazu \url{https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html}.\medskip
+Zuletzt muss noch eine MySQL-Datenbank auf dem Host-System installiert werden. Hierfür stehen mehrere Alternative Vorgehensweisen zur Verfügung, siehe dazu \url{https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html}. Anschließend muss man das MySQL-Skript zur Initialisierung ausführen, dies ist mit dem folgenden Kommando möglich\\ \colorbox{altgray}{\lstinline|mysql < PROJEKTROOT/Projekte/Docker/server/initalizeDB.sql|} \medskip
 
-Um nun die Applikation verwenden zu können, müssen zunächst alle Web-Ressourcen aus dem GitHub-Repository in den von Apache erwarteten Pfad kopieren. Dazu muss das Repository auf den Server kopiert werden, dies kann mit dem Befehl \colorbox{altgray}{\lstinline|git clone https://github.com/th-ingolstadt/INF-M-Projekt-Security-Workbench.git|} erreicht werden. Danach muss der Inhalt des Pfads PROJEKTROOT/Projekte/SecWorkbench/html in das Root-Verzeichnis des Apache-Servers kopiert werden. Dieser ist standardmäßig /var/www/html. Des Weiteren müssen die Rechte des Apache-Users auf das Verzeichnis angepasst werden, dies ist mit dem folgenden Befehl möglich \colorbox{altgray}{\lstinline|XXXXXX|}.
+Um nun die Applikation verwenden zu können, müssen zunächst alle Web-Ressourcen aus dem GitHub-Repository in den von Apache erwarteten Pfad kopieren. Dazu muss das Repository auf den Server kopiert werden, dies kann mit dem Befehl \colorbox{altgray}{\lstinline|git clone https://github.com/th-ingolstadt/INF-M-Projekt-Security-Workbench.git|} erreicht werden. Danach muss der Inhalt des Pfads PROJEKTROOT/Projekte/SecWorkbench/html in das Root-Verzeichnis des Apache-Servers kopiert werden. Dieser ist standardmäßig /var/www/html. Des Weiteren müssen die Rechte des Apache-Users auf das Verzeichnis angepasst werden, dies ist mit dem folgenden Befehl möglich \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|}.
+
+\section{Installationsanleitung mit Docker}
+
+Die Installation der Web-Anwendung mithilfe des bereits konfigurierten Docker-Containers benötigt zuerst die Installation von Docker. Dies kann über den Package-Manager mit \colorbox{altgray}{\lstinline|apt-get install Docker|} durchgeführt werden. Danach sollte, wie in \ref{secInstall} beschrieben, das GitHub-Repository geklont werden. Dort befindet sich der Ordner PROJEKTROOT/Projekte/Docker/server. Dieses Verzeichnis muss nun auf den Desktop des Root-Users kopiert werden. Aus dem eben kopierten Ordner muss das StartUp.sh ebenfalls in das Desktop Verzeichnis verschoben werden. 
 
 \section{Nutzung der virtuellen Maschine}
 
