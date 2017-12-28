@@ -3,7 +3,7 @@
 In diesem Kapitel soll erläutert werden, wie das Web-Projekt bereitgestellt und benutzt wird. Hierzu folgt eine kurze Anleitung um einen Host zu installieren, der die Web-Applikation bereitstellt sowie eine Beschreibung mit dem Umgang der bereits installierten virtuellen Maschine.
 
 \section{Installationsanleitung ohne Docker}
-\label{secInstall}
+\label{sec:Install}
 
 Für die Installation der Web-Applikation ohne den Docker-Container zu nutzen, muss zuerst ein Webserver auf dem Linux Host-Gerät installiert werden, wie z. B. der Apache Server (\url{https://httpd.apache.org}). Eine einfach Installation ist mit dem Befehl \colorbox{altgray}{\lstinline|apt-get install apache2|} möglich. Da sich das Installations-Vorgehen mit den Versionen der Drittanbieter-Software ändert, verzichte ich hier auf eine detaillierte Schritt-für-Schritt-Anleitung. Damit das Webprojekt richtig ausgeführt wird, muss in der apache2.conf folgende zwei Zeilen eingefügt werden:\medskip
 
@@ -18,11 +18,29 @@ Um alle Tutorials durchführen zu können muss der Host einen GNU-Debugger (GDB)
 
 Zuletzt muss noch eine MySQL-Datenbank auf dem Host-System installiert werden. Hierfür stehen mehrere Alternative Vorgehensweisen zur Verfügung, siehe dazu \url{https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html}. Anschließend muss man das MySQL-Skript zur Initialisierung ausführen, dies ist mit dem folgenden Kommando möglich\\ \colorbox{altgray}{\lstinline|mysql < PROJEKTROOT/Projekte/Docker/server/initalizeDB.sql|} \medskip
 
-Um nun die Applikation verwenden zu können, müssen zunächst alle Web-Ressourcen aus dem GitHub-Repository in den von Apache erwarteten Pfad kopieren. Dazu muss das Repository auf den Server kopiert werden, dies kann mit dem Befehl \colorbox{altgray}{\lstinline|git clone https://github.com/th-ingolstadt/INF-M-Projekt-Security-Workbench.git|} erreicht werden. Danach muss der Inhalt des Pfads PROJEKTROOT/Projekte/SecWorkbench/html in das Root-Verzeichnis des Apache-Servers kopiert werden. Dieser ist standardmäßig /var/www/html. Des Weiteren müssen die Rechte des Apache-Users auf das Verzeichnis angepasst werden, dies ist mit dem folgenden Befehl möglich \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|}.
+Um nun die Applikation verwenden zu können, müssen zunächst alle Web-Ressourcen aus dem GitHub-Repository in den von Apache erwarteten Pfad kopieren. Dazu muss das Repository auf den Server kopiert werden, dies kann mit dem Befehl:\\ \colorbox{altgray}{\lstinline|git clone https://github.com/th-ingolstadt/INF-M-Projekt-Security-Workbench.git|} erreicht werden. Danach muss der Inhalt des Pfads PROJEKTROOT/Projekte/SecWorkbench/html in das Root-Verzeichnis des Apache-Servers kopiert werden. Dieser ist standardmäßig /var/www/html. Des Weiteren müssen die Rechte des Apache-Users auf das Verzeichnis angepasst werden, dies ist mit dem folgenden Befehl möglich \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|}.\medskip
+
+Nun kann die Website testweise ausgeführt werden. Dazu gibt man im Browser in der VM folgende Adresse an:  \colorbox{altgray}{\lstinline|http://localhost/SecWorkbench|}. Es sollte nun die Startseite des Projekts angezeigt werden, siehe dazu Abbildung \ref{fig:startseite}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Installation/startseite.png}
+	\caption{Nach erfolgreicher Installation, wird diese Startseite angezeigt}
+	\label{fig:startseite}
+\end{figure}
 
 \section{Installationsanleitung mit Docker}
 
-Die Installation der Web-Anwendung mithilfe des bereits konfigurierten Docker-Containers benötigt zuerst die Installation von Docker. Dies kann über den Package-Manager mit \colorbox{altgray}{\lstinline|apt-get install Docker|} durchgeführt werden. Danach sollte, wie in \ref{secInstall} beschrieben, das GitHub-Repository geklont werden. Dort befindet sich der Ordner PROJEKTROOT/Projekte/Docker/server. Dieses Verzeichnis muss nun auf den Desktop des Root-Users kopiert werden. Aus dem eben kopierten Ordner muss das StartUp.sh ebenfalls in das Desktop Verzeichnis verschoben werden. 
+Die Installation der Web-Anwendung mithilfe des bereits konfigurierten Docker-Containers benötigt zuerst die Installation von Docker. Dies kann über den Package-Manager mit \colorbox{altgray}{\lstinline|apt-get install docker|} durchgeführt werden. Danach sollte, wie in Kapitel \ref{sec:Install} beschrieben, das GitHub-Repository geklont werden. Dort befindet sich der Ordner PROJEKTROOT/Projekte/Docker/server der den Container mit allen benötigten Dienste bereitstellt. Dieses Verzeichnis muss nun auf den Desktop des Root-Users kopiert werden. Aus dem eben kopierten Ordner muss das StartUp.sh ebenfalls in das Desktop Verzeichnis verschoben werden. Dieses Skript wird dazu verwendet, den Docker-Container für die Web-Anwendung zu starten, bzw. wenn der Container noch nie gestartet wurde wird das Image des Containers erstellt. Zudem startet es alle benötigten Dienste. Es wird hier auch ein VSFTPD-Dienst gestartet. Dies ist ein FTP-Server, der nicht zwingend installiert werden muss, daher kann diese Zeile auskommentiert werden.\medskip
+
+Nun müssen auch hier die Daten der Web-Applikation aus dem Verzeichnis PROJEKTROOT/Projekte/SecWorkbench/html in den Ordner /var/www/html kopiert werden. An dieser Stelle sollten die Berechtigungen mit dem Befehl \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|} aktualisiert werden. Danach kann man den Container starte, indem man das Skript StartUp.sh in der Kommandozeile aufruft. Hier sollte eine Ausgabe wie in Abbildung \ref{fig:startUp} angezeigt werden.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\textwidth]{images/Installation/startUp.png}
+	\caption{Die Ausgabe des Start-Skriptes nach erfolgreichem Start des Docker Containers}
+	\label{fig:startUp}
+\end{figure}
 
 \section{Nutzung der virtuellen Maschine}
 
