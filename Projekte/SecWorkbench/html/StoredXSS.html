@@ -22,7 +22,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
     });
 </script>
 <script src="Content/js/guestbook.js"></script>
-<!-- DB INSERT SELF FORM VALIDATION --> 
+<!-- DB INSERT SELF FORM VALIDATION -->
 <?php
 if (isset($_POST['sent'])) {
     $conn = new mysqli("127.0.0.1", "normal_user", "master42", "vulnerableDB");
@@ -33,9 +33,9 @@ if (isset($_POST['sent'])) {
 
     $comment = $_POST["guestbookentry"];
     $date = date("Y-m-d");
-    $sql = "INSERT INTO xssguestbook (User, Date, comment) VALUES ('admin', '" . $date . "', '" . $comment . "')";
+    $sql = "INSERT INTO xssguestbook (username, datum, kommentar) VALUES ('admin', '" . $date . "', '" . $comment . "')";
     if ($conn->query($sql) === TRUE) {
-        
+
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
@@ -69,8 +69,8 @@ if (isset($_POST['sent'])) {
                     <h5><b><u>Stored Cross Site Scripting</u></b></h5>
                     <p style="text-align: justify;">
                         Gespeicherte XSS ist eine Attake bei der ein Skript injiziiert und permanent auf dem Zielserver z. B. in einer Datenbank, einem Nachrichtenforum oder einem Kommentarfeld gespeichert wird.
-                        Sobald dann ein Client ein HTTP-Request nach der Webseite mit den gespeicherten Informationen anfrägt, wird der Server ihm mit dem böswilligen Code antworten. 
-                        Stored XSS wird manchmal auch als Persistent oder Type-I XSS bezeichnet. 
+                        Sobald dann ein Client ein HTTP-Request nach der Webseite mit den gespeicherten Informationen anfrägt, wird der Server ihm mit dem böswilligen Code antworten.
+                        Stored XSS wird manchmal auch als Persistent oder Type-I XSS bezeichnet.
                     </p>
                     <div class="col-xs-12 col-md-12">
                         <div align="center" class="embed-responsive embed-responsive-16by9">
@@ -83,7 +83,7 @@ if (isset($_POST['sent'])) {
                     <blockquote>
                         <p>
                             Dieses Tutorial entspricht einem Gästebuch, in dem User eine Nachricht hinterlassen können. Die eingetragenen Daten werden serverseitig in einer
-                            Datenbank gespeichert. Finden Sie eine Möglichkeit, um diese Sicherheitslücke auszunutzen und verstecke Informationen wie Usernamen/ Passwort herauszufinden. 
+                            Datenbank gespeichert. Finden Sie eine Möglichkeit, um diese Sicherheitslücke auszunutzen und verstecke Informationen wie Usernamen/ Passwort herauszufinden.
                         </p>
                     </blockquote>
                     <button type="button" class="btn btn-primary" id="letsGo">Los Geht's</button>
@@ -111,7 +111,7 @@ if (isset($_POST['sent'])) {
                             </div>
                             <div id="collapseOne" class="panel-collapse collapse">
                                 <div class="box-body">
-                                    Mit Java Script gibt es die Möglichkeit Cookies auszulesen. 
+                                    Mit Java Script gibt es die Möglichkeit Cookies auszulesen.
                                 </div>
                             </div>
                         </div>
@@ -125,7 +125,7 @@ if (isset($_POST['sent'])) {
                             </div>
                             <div id="collapseTwo" class="panel-collapse collapse">
                                 <div class="box-body">
-                                    Wenn die Webanwendung unsicher programmiert ist, besteht die Möglichkeit Skripte als Input mitzugeben 
+                                    Wenn die Webanwendung unsicher programmiert ist, besteht die Möglichkeit Skripte als Input mitzugeben
                                 </div>
                             </div>
                         </div>
@@ -144,7 +144,7 @@ if (isset($_POST['sent'])) {
                             </div>
                         </div>
                     </div>
-                </div> 
+                </div>
             </div>
         </div>
                 <div class="col-xs-12 col-md-12">
@@ -222,9 +222,9 @@ if (isset($_POST['sent'])) {
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>";
-                                    echo "<td>" . $row["User"] . "</td>";
-                                    echo "<td>" . $row["Date"] . "</td>";
-                                    echo "<td>" . $row["comment"] . "</td>";
+                                    echo "<td>" . $row["username"] . "</td>";
+                                    echo "<td>" . $row["datum"] . "</td>";
+                                    echo "<td>" . $row["kommentar"] . "</td>";
                                     echo "</tr>";
                                 }
                             } else {
