@@ -1,6 +1,7 @@
 <?php
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
 ?>
+
 <style>
     .modal-header, h4, .close {
         background-color: #006dcc;
@@ -21,12 +22,10 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
     });
 </script>
 <script src="Content/js/guestbook.js"></script>
-
 <!-- DB INSERT SELF FORM VALIDATION --> 
 <?php
 if (isset($_POST['sent'])) {
-
-    $conn = new mysqli("localhost", "root", "", "swb_database");
+    $conn = new mysqli("127.0.0.1", "normal_user", "master42", "vulnerableDB");
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
@@ -34,7 +33,7 @@ if (isset($_POST['sent'])) {
 
     $comment = $_POST["guestbookentry"];
     $date = date("Y-m-d");
-    $sql = "INSERT INTO Guestbook (User, Date, Comment) VALUES ('admin', '" . $date . "', '" . $comment . "')";
+    $sql = "INSERT INTO xssguestbook (User, Date, comment) VALUES ('admin', '" . $date . "', '" . $comment . "')";
     if ($conn->query($sql) === TRUE) {
         
     } else {
@@ -84,7 +83,7 @@ if (isset($_POST['sent'])) {
                     <blockquote>
                         <p>
                             Dieses Tutorial entspricht einem Gästebuch, in dem User eine Nachricht hinterlassen können. Die eingetragenen Daten werden serverseitig in einer
-                            Datenbank gespeichert. Finden Sie eine Möglichkeit, um diese Sicherheitslücke auszunutzen
+                            Datenbank gespeichert. Finden Sie eine Möglichkeit, um diese Sicherheitslücke auszunutzen und verstecke Informationen wie Usernamen/ Passwort herauszufinden. 
                         </p>
                     </blockquote>
                     <button type="button" class="btn btn-primary" id="letsGo">Los Geht's</button>
@@ -193,7 +192,7 @@ if (isset($_POST['sent'])) {
                     <h3 class="box-title">Aufgabe</h3>
                 </div>
                 <div class="box-body">
-                    <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                    <form role="form" method="post" action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>'>
                         <div class="form-group">
                             <label id="labelGuestbook" for="guestbookEntry"></label>
                             <textarea class="form-control" id="guestbookentry" name="guestbookentry" rows="4"></textarea>
@@ -212,20 +211,20 @@ if (isset($_POST['sent'])) {
                         </thead>
                         <tbody>
                             <?php
-                            $conn = new mysqli("localhost", "root", "", "swb_database");
+                            $conn = new mysqli("127.0.0.1", "normal_user", "master42", "vulnerableDB");
 
                             if ($conn->connect_error) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sqlQuery = "SELECT * FROM Guestbook";
+                            $sqlQuery = "SELECT * FROM xssguestbook";
                             $result = $conn->query($sqlQuery);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $row["User"] . "</td>";
                                     echo "<td>" . $row["Date"] . "</td>";
-                                    echo "<td>" . $row["Comment"] . "</td>";
+                                    echo "<td>" . $row["comment"] . "</td>";
                                     echo "</tr>";
                                 }
                             } else {
