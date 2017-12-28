@@ -9,8 +9,8 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
         document.getElementById("titleDiv").innerHTML = title;
         document.getElementById("pageDescription").innerHTML = "";
     };
-    
-    document.getElementById('tvSQLInjection').className = 'treeview active'; 
+
+    document.getElementById('tvSQLInjection').className = 'treeview active';
     document.getElementById('sbiSQLInjection_Modify').className = 'active';
 </script>
 
@@ -21,9 +21,9 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
             <div class="box-header">
                 <h3 class="box-title">SQLInjection zum Modifizieren von einer Rangliste</h3>
                 <div class="box-body">
-                    In dem folgenden Formular kann der Nutzer die Rangliste einer virutellen Footballliga betrachten. Initial werden dabei 
+                    In dem folgenden Formular kann der Nutzer die Rangliste einer virutellen Footballliga betrachten. Initial werden dabei
                     die Top 10 des Wettbewerbs angezeigt. Daher gibt es zusätzlich eine Suchfunktion, die den gewünschten User anzeigt. <br/>
-                    Allerdings ist dieses Formular verwundbar für eine SQLInjection. Versuchen Sie die Punktzahl des Users Mr. Robot zu modifzieren. 
+                    Allerdings ist dieses Formular verwundbar für eine SQLInjection. Versuchen Sie die Punktzahl des Users Mr. Robot zu modifzieren.
                 </div>
             </div>
         </div>
@@ -48,7 +48,6 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
-                                <p><span class="glyphicon glyphicon-bell"></span> Es können mehrere Queries in einer Abfrage durchgeführt werden.</p>
                                 <p><span class="glyphicon glyphicon-bell"></span> Mit UPDATE, SET und WHERE kann bestehende Einträge in der Datenbank aktualisieren.</p>
                             </div>
                         </div>
@@ -63,7 +62,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
-                                Lorem ipsum..
+                                <p><span class="glyphicon glyphicon-bell"></span> Es können mehrere Queries in einer Abfrage durchgeführt werden.</p>
                             </div>
                         </div>
                     </div>
@@ -77,12 +76,12 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseThree" class="panel-collapse collapse">
                             <div class="box-body">
-                                Lorem ipsum..
+                                <p><span class="glyphicon glyphicon-bell"></span>Die Datenbanktabelle heißt sqlInjectionRanking!</p>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </div>
     </div>
 
@@ -100,8 +99,8 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                     </form>
 
-                    <!-- TODO: If POST SET ... Abfragen nach user 
-                    else standard top 10 --> 
+                    <!-- TODO: If POST SET ... Abfragen nach user
+                    else standard top 10 -->
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -124,44 +123,44 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 $searchUserPoints = "";
                                 $searchedUser = $_POST["searchTerm"];
 
-                                $sqlQuery = "SELECT user, punkte FROM rangliste WHERE user = '".$searchedUser."'";
+                                $sqlQuery = "SELECT username, punkte FROM sqlInjectionRanking WHERE username = '".$searchedUser."'";
 
-                                /* Php austricksen, damit er die SQLInjection erlaubt ;) */ 
+                                /* Php austricksen, damit er die SQLInjection erlaubt ;) */
                                 if(strpos($sqlQuery, ";") == true){
                                     $result = $conn->multi_query($sqlQuery);
                                 } else {
                                     $result = $conn->query($sqlQuery);
                                 }
 
-                                if (strpos($sqlQuery, "'; UPDATE rangliste SET punkte") == true) {
-                                    echo '<b><font color="green">Herzlichen Glückwunsch! Du hast die Aufgabe gelöst. Schau dir dein Ergebnis an, 
-                                            indem du dir nochmal die modifizierte Rangliste ansiehst!</font></b>';
-                                    return; 
+                                if (strpos($sqlQuery, "'; UPDATE sqlInjectionRanking SET punkte") == true) {
+                                    echo "<b><font style='color:green'>Herzlichen Glückwunsch! Du hast die Aufgabe gelöst. Schau dir dein Ergebnis an,
+                                            indem du dir nochmal die modifizierte Rangliste ansiehst!</font></b>";
+                                    return;
                                 } else if(!$result) {
                                     trigger_error('Invalid query: ' . $conn->error);
                                 }
 
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
-                                        $searchedUser = $row["user"];
+                                        $searchedUser = $row["username"];
                                         $searchUserPoints = $row["punkte"];
                                     }
                                 } else {
-                                    echo "<b style="color:red">ERROR in database connection! Please try again!</b>";
+                                    echo "<b style='color:red'>ERROR in database connection! Please try again!</b>";
                                 }
 
-                                $secondSqlQuery = "SELECT user, punkte FROM rangliste ORDER BY punkte DESC LIMIT 10";
+                                $secondSqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 15";
                                 $ranglistenResult = $conn->query($secondSqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($ranglistenResult->num_rows > 0) {
                                     while ($searchRanglistenIndexRow = $ranglistenResult->fetch_assoc()) {
-                                        if ($searchedUser == $searchRanglistenIndexRow["user"]) {
+                                        if ($searchedUser == $searchRanglistenIndexRow["username"]) {
                                         $searchedUserRanglistenIndex = $ranglistenIndex;
                                         }
                                             $ranglistenIndex++;
                                         }
                                 } else {
-                                    echo "<b style="color:red">ERROR in database connection! Please try again!</b>";
+                                    echo "<b style='color:red'>ERROR in database connection! Please try again!</b>";
                                 }
 
                                 echo "<tr>";
@@ -179,20 +178,20 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 die("Connection failed: " . $conn->connect_error);
                                 }
 
-                                $sqlQuery = "SELECT user, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 5";
+                                $sqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 5";
                                 $result = $conn->query($sqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($result->num_rows > 0) {
                                     while ($row = $result->fetch_assoc()) {
                                         echo "<tr>";
                                         echo "<td>" . $ranglistenIndex . "</td>";
-                                        echo "<td>" . $row["user"] . "</td>";
+                                        echo "<td>" . $row["username"] . "</td>";
                                         echo "<td>" . $row["punkte"] . "</td>";
                                         echo "</tr>";
                                         $ranglistenIndex++;
                                     }
                                 } else {
-                                    echo "<b style="color:red">ERROR in database connection! Please try again!</b>";
+                                    echo "<b style='color:red'>ERROR in database connection! Please try again!</b>";
                                 }
 
                                 $conn->close();
@@ -214,7 +213,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
 include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
 ?>
 
-<script> 
-    //document.getElementById('tvSQLInjection').className = 'treeview active'; 
+<script>
+    //document.getElementById('tvSQLInjection').className = 'treeview active';
     //document.getElementById('sbiSQLInjection_Modify').className = 'active';
 </script>
