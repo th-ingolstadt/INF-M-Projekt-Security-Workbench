@@ -1,6 +1,6 @@
 %!TEX root = ../document.tex
 \chapter{Vorbereitung}
-In diesem Kapitel soll erläutert werden, wie das Web-Projekt bereitgestellt und benutzt wird. Hierzu folgt eine kurze Anleitung um einen Host zu installieren, der die Web-Applikation bereitstellt sowie eine Beschreibung mit dem Umgang der bereits installierten virtuellen Maschine.
+In diesem Kapitel soll erläutert werden, wie das Web-Projekt bereitgestellt und benutzt wird. Hierzu folgt eine kurze Anleitung um einen Host zu installieren, der die Web-Applikation bereitstellt sowie eine Beschreibung mit dem Umgang der bereits installierten virtuellen Maschine. Die empfohlene Installationsweise ist die Installation mit Docker beschrieben in Kapitel \ref{sec:InstallWithDocker}. 
 
 \section{Installationsanleitung ohne Docker}
 \label{sec:Install}
@@ -16,7 +16,7 @@ Diese Konfiguration sorgt dafür, dass HTML-Seiten mit dem PHP-Interpreter ausge
 
 Um alle Tutorials durchführen zu können muss der Host einen GNU-Debugger (GDB) bereitstellen. Dieser kann leicht mit  \colorbox{altgray}{\lstinline|apt-get install gdb|} bezogen werden. Um den GDB zu testen, kann der Befehl \colorbox{altgray}{\lstinline|gdb --version|} ausgeführt und die Version angezeigt werden.\medskip
 
-Zuletzt muss noch eine MySQL-Datenbank auf dem Host-System installiert werden. Hierfür stehen mehrere Alternative Vorgehensweisen zur Verfügung, siehe dazu \url{https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html}. Anschließend muss man das MySQL-Skript zur Initialisierung ausführen, dies ist mit dem folgenden Kommando möglich\\ \colorbox{altgray}{\lstinline|mysql < PROJEKTROOT/Projekte/Docker/server/initalizeDB.sql|} \medskip
+Zuletzt muss noch eine MySQL-Datenbank auf dem Host-System installiert werden. Hierfür stehen mehrere Alternative Vorgehensweisen zur Verfügung, siehe dazu \url{https://dev.mysql.com/doc/refman/5.7/en/linux-installation.html}. Anschließend muss man das MySQL-Skript zur Initialisierung ausführen, dies ist mit dem folgenden Kommando möglich:\\ \colorbox{altgray}{\lstinline|mysql < PROJEKTROOT/Projekte/Docker/server/initalizeDB.sql|} \medskip
 
 Um nun die Applikation verwenden zu können, müssen zunächst alle Web-Ressourcen aus dem GitHub-Repository in den von Apache erwarteten Pfad kopieren. Dazu muss das Repository auf den Server kopiert werden, dies kann mit dem Befehl:\\ \colorbox{altgray}{\lstinline|git clone https://github.com/th-ingolstadt/INF-M-Projekt-Security-Workbench.git|} erreicht werden. Danach muss der Inhalt des Pfads PROJEKTROOT/Projekte/SecWorkbench/html in das Root-Verzeichnis des Apache-Servers kopiert werden. Dieser ist standardmäßig /var/www/html. Des Weiteren müssen die Rechte des Apache-Users auf das Verzeichnis angepasst werden, dies ist mit dem folgenden Befehl möglich \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|}.\medskip
 
@@ -30,10 +30,11 @@ Nun kann die Website testweise ausgeführt werden. Dazu gibt man im Browser in d
 \end{figure}
 
 \section{Installationsanleitung mit Docker}
+\label{sec:InstallWithDocker}
 
-Die Installation der Web-Anwendung mithilfe des bereits konfigurierten Docker-Containers benötigt zuerst die Installation von Docker. Dies kann über den Package-Manager mit \colorbox{altgray}{\lstinline|apt-get install docker|} durchgeführt werden. Danach sollte, wie in Kapitel \ref{sec:Install} beschrieben, das GitHub-Repository geklont werden. Dort befindet sich der Ordner PROJEKTROOT/Projekte/Docker/server der den Container mit allen benötigten Dienste bereitstellt. Dieses Verzeichnis muss nun auf den Desktop des Root-Users kopiert werden. Aus dem eben kopierten Ordner muss das StartUp.sh ebenfalls in das Desktop Verzeichnis verschoben werden. Dieses Skript wird dazu verwendet, den Docker-Container für die Web-Anwendung zu starten, bzw. wenn der Container noch nie gestartet wurde wird das Image des Containers erstellt. Zudem startet es alle benötigten Dienste. Es wird hier auch ein VSFTPD-Dienst gestartet. Dies ist ein FTP-Server, der nicht zwingend installiert werden muss, daher kann diese Zeile auskommentiert werden.\medskip
+Die Installation der Web-Anwendung mithilfe des bereits konfigurierten Docker-Containers benötigt zuerst die Installation von Docker. Dies kann über den Package-Manager mit \colorbox{altgray}{\lstinline|apt-get install docker|} durchgeführt werden. Danach sollte, wie in Kapitel \ref{sec:Install} beschrieben, das GitHub-Repository geklont werden. Dort befindet sich der Ordner \colorbox{altgray}{\lstinline|PROJEKTROOT/Projekte/Docker/server |} der den Container mit allen benötigten Dienste bereitstellt. Dieses Verzeichnis muss nun auf den Desktop des Root-Users kopiert werden. Aus dem eben kopierten Ordner muss das StartUp.sh ebenfalls in das Desktop Verzeichnis verschoben werden. Dieses Skript wird dazu verwendet, den Docker-Container für die Web-Anwendung zu starten, bzw. wenn der Container noch nie gestartet wurde wird das Image des Containers erstellt. Zudem startet es alle benötigten Dienste. Es wird hier auch ein VSFTPD-Dienst gestartet. Dies ist ein FTP-Server, der nicht zwingend installiert werden muss, daher kann diese Zeile auskommentiert werden.\medskip
 
-Nun müssen auch hier die Daten der Web-Applikation aus dem Verzeichnis PROJEKTROOT/Projekte/SecWorkbench/html in den Ordner /var/www/html kopiert werden. An dieser Stelle sollten die Berechtigungen mit dem Befehl \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|} aktualisiert werden. Danach kann man den Container starte, indem man das Skript StartUp.sh in der Kommandozeile aufruft. Hier sollte eine Ausgabe wie in Abbildung \ref{fig:startUp} angezeigt werden.
+Nun müssen auch hier die Daten der Web-Applikation aus dem Verzeichnis \colorbox{altgray}{\lstinline|PROJEKTROOT/Projekte/SecWorkbench/html|} in den Ordner \colorbox{altgray}{\lstinline|/var/www/html|} kopiert werden. An dieser Stelle sollten die Berechtigungen mit dem Befehl \colorbox{altgray}{\lstinline|sudo chown -R www-data:www-data /var/www/html/|} aktualisiert werden. Danach kann man den Container starte, indem man das Skript StartUp.sh in der Kommandozeile aufruft. Hier sollte eine Ausgabe wie in Abbildung \ref{fig:startUp} angezeigt werden.
 
 \begin{figure}[H]
 	\centering
@@ -44,4 +45,6 @@ Nun müssen auch hier die Daten der Web-Applikation aus dem Verzeichnis PROJEKTR
 
 \section{Nutzung der virtuellen Maschine}
 
+Die bereitgestellte virtuelle Maschine ist ein x64 Kali-Linux. Hier sind bereits alle Dienste vorinstalliert und konfiguriert. Des Weiteren wird der Root-User (ohne Passwort) automatisch beim Start der VM eingeloggt. Das Skript StartUp.sh wird beim Login des Root-Users aufgerufen, sodass die Website kurz nach dem Login erreichbar ist. Die Ausgabe des Skriptes ist in einer maximierten Shell zu sehen, dabei wird auch die URL der Web-Applikation angezeigt. Dies ist in Abbildung \ref{fig:startUp} zu sehen.\medskip
 
+In der VM wird die Web-Anwendung in einem Docker-Container betrieben. Dieser stellt den Apache-Webserver und die MySQL-Datenbank bereit. Dadurch wird beim Starten der virtuellen Maschine immer eine initiale Datenbasis für die Tutorials bereitgestellt. Um nachsehen zu können, ob der Container richtig gestartet wurde, ist es möglich alle gestarteten Container durch das Kommando \colorbox{altgray}{\lstinline|docker ps|} anzeigen zu lassen. Hier sollte ein Container mit dem Namen tutorialcontainer mit dem Status Up zu sehen sein. 
