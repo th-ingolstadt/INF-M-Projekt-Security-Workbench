@@ -2,24 +2,28 @@
 
 # Dieses Startup-Skript startet alle benötigten Dienste für die Security Workbench
 
-echo "Link ftp locations"
-mount --bind /home/webprouser/html/SecWorkbench/ /var/www/html/SecWorkbench/
-sudo chown -R www-data:www-data /var/www/html/
-echo ""
+# Diese Zeilen werden nur für einen konfigurierten VSFTPD-Server benötigt.
+# Hier dient der User webprouser als FTP-User, dessen Home-Verzeichnis mit dem Code-Verzeichnis der Security Workbench verknüpft wird.
+#echo "Link ftp locations"
+#mount --bind /home/webprouser/html/SecWorkbench/ /var/www/html/SecWorkbench/
+#sudo chown -R www-data:www-data /var/www/html/
+#echo ""
 
 # build C programs
 gcc -ggdb /var/www/html/SecWorkbench/App_Data/FirstExample.c -o /var/www/html/SecWorkbench/App_Data/FirstExample
-gcc -ggdb /var/www/html/SecWorkbench/App_Data/FirstExample.c -o /var/www/html/SecWorkbench/App_Data/SecondExample
+gcc -ggdb /var/www/html/SecWorkbench/App_Data/SecondExample.c -o /var/www/html/SecWorkbench/App_Data/SecondExample
 
 echo "Start docker..."
 service docker start
 service docker status | grep Active: | cut -ds -f1
 echo ""
 
-echo "Start vsftpd..."
-service vsftpd start
-service vsftpd status | grep Active: | cut -ds -f1
-echo ""
+# Diese Zeilen sind nur dann relevant, wenn der FTP-Server vsftpd installiert wurde.
+# Dieser dient zum Upload von Code für Entwickler, wenn die VM im Host only Netzwerk konfiguriert ist.
+#echo "Start vsftpd..."
+#service vsftpd start
+#service vsftpd status | grep Active: | cut -ds -f1
+#echo ""
 
 path=/var/www/html/SecWorkbench/
 export SQL_WEB_RES_PATH=$path
