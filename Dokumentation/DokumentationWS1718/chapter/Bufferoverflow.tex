@@ -80,6 +80,14 @@ Auf der Übungsseite befindet sich eine kurze Erklärung des Beispiels, sowie de
 
 Sollte das Beispiel für die Studierenden nicht lösbar sein, ist eine dreistufige Tippstruktur vorgesehen, in der den Studierenden je nach Level abstrakte Hinweise gegeben werden, bzw. die Lösung verraten wird.
 
+\subsection{PHP-Shell}
+Die integrierte PHP-Shell, soll dem Anwender eine Möglichkeit bieten, den Programmablauf und die Speicherstruktur mit verfolgen zu können. Die PHP-Shell lässt sich wie ein Linux Terminal bedienen. Dazu kann im Eingabefeld das Bash-Kommando eingegeben und mit einem Klick auf den Button \glqq execute command\grqq\, auf dem Server ausgeführt werden. Hierbei werden die Daten mittels POST an den Server geschickt. Der Server startet dabei ein Terminal mit dem entsprechenden Kommando und schließt diesen Prozess nach der Abarbeitung der Befehle. Dabei ist zu beachten, dass das Terminal unter Root-Rechten ausgeführt wird.\medskip
+
+Für dieses Beispiel ist der Gnu Debugger (GDB) hilfreich, um die Speicheradressen der zu überschreibenden Variablen heraus zu finden. Damit kann die Größe der Variablen und somit auch die Länge der Eingabe ermittelt werden. Dies kann z. B. durch folgendes Kommando angezeigt werden:
+
+\bashCommand{gdb -q -batch -ex \glqq break 15\grqq\, -ex \glqq run\grqq\, -ex \glqq p \&authflag\grqq\, -ex \glqq p \&buffer\grqq}\\ \bashCommand{./App\_Data/FirstExample}\medskip
+
+Die oben stehende Anweisung veranlasst, dass in Zeile 15 des Codes ein Breakpoint gesetzt wird. Dabei werden keine Aufrufparameter übergeben, es wird lediglich die Adressen der Variablen authflag und buffer ausgegeben. Hier gilt es zu beachten, dass die Shell nach jedem Ausführen von Kommandos wieder geschlossen wird. Daher muss der GDB im Batch-Modus bedient werden. 
 
 \section{Übung 2}
 \subsection{C-File}
