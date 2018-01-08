@@ -36,7 +36,7 @@ if [ $is_running == "true" ]; then
 	echo "tutorialcontainer is already running"
 else
 	echo "Start conainer..."
-	'/root/Desktop/server/tutorialDockerControl.sh' start
+	'/root/Desktop/WebServerContainer/tutorialDockerControl.sh' start
 fi
 echo ""
 
