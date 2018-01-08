@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y \
 
 # Open ports
 EXPOSE 80
+EXPOSE 3306
 
 # apache configuration
 RUN printf "RemoveHandler .html .htm \nAddType application/x-httpd-php .php .htm .html" >> /etc/apache2/apache2.conf
