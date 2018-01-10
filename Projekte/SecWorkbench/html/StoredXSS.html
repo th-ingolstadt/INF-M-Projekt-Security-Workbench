@@ -33,7 +33,7 @@ if (isset($_POST['sent'])) {
 
     $comment = $_POST["guestbookentry"];
     $date = date("Y-m-d");
-    $sql = "INSERT INTO xssguestbook (username, datum, kommentar) VALUES ('admin', '" . $date . "', '" . $comment . "')";
+    $sql = "INSERT INTO xssGuestbook (username, datum, kommentar) VALUES ('admin', '" . $date . "', '" . $comment . "')";
     if ($conn->query($sql) === TRUE) {
 
     } else {
@@ -217,7 +217,7 @@ if (isset($_POST['sent'])) {
                                 die("Connection failed: " . $conn->connect_error);
                             }
 
-                            $sqlQuery = "SELECT * FROM xssguestbook";
+                            $sqlQuery = "SELECT * FROM xssGuestbook";
                             $result = $conn->query($sqlQuery);
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {

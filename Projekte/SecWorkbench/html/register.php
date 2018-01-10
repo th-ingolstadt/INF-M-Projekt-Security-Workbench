@@ -12,7 +12,7 @@
         $username = $_POST["username"];
         $passwort =$_POST["passwort"];
 
-        $sql = "INSERT INTO users (username, passwort) VALUES ('$username', '$passwort')";
+        $sql = "INSERT INTO cookieManagementUsers (username, password) VALUES ('$username', '$passwort')";
 
         if ($conn->query($sql) === TRUE) {
             //Falls man die Erfolgsnachricht ausgeben möchte
