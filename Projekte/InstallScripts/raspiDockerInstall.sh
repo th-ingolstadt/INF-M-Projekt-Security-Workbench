@@ -15,6 +15,10 @@ export ARP_WEB_RES_PATH=$project_path/ARPspoofing/server/https/html
 chmod +x ../ARPspoofing/server/https/arphttpsDockerControl.sh
 ../ARPspoofing/server/https/arphttpsDockerControl.sh start
 
+echo "OpenSSL Heartbleed verwundbarer HTTPS Webserver wird gebaut"
+chmod +x ../Heartbleed/server/opensslDockerControl.sh
+../Heartbleed/server/opensslDockerControl.sh start
+
 # ARP-Spoofing Container HTTPS HSTS
 #export ARP_WEB_RES_PATH=$project_path/ARPspoofing/server/https/html
 #chmod +x ../ARPspoofing/server/https/arphttpsDockerControl.sh
