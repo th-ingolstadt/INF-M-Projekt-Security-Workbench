@@ -1,0 +1,43 @@
+\chapter{Anhang}
+
+\section{Docker-Merkblatt}
+\label{sec:docker_merkblatt}
+Dieses Kapitel ist an Entwickler gerichtet, die mit Docker arbeiten.
+Zur Hilfestellung werden hier einige nützliche Kommandos aufgeführt.
+
+\subsection*{Allgemein}
+\begin{itemize}
+	\item docker info -> Gesamtüberblick über die lokale Umgebung
+\end{itemize}
+
+\subsection*{Images}
+\begin{itemize}
+	\item docker images -> Listet alle verfügbaren Images auf
+	\item docker rmi <image> -> Löscht ein Image
+	\item docker build <Verzeichnis des Dockerfiles> -> Erzeugt ein Image
+	\begin{itemize}
+		\item[$\triangleright$] -t <image> -> Vergibt dem Image einen Namen
+	\end{itemize}
+\end{itemize}
+
+
+\subsection*{Container}
+
+\begin{itemize}
+	\item docker ps -> Listet alle laufenden Container auf
+	\begin{itemize}
+		\item -a -> Listet alle Container auf
+	\end{itemize}
+	
+	\item docker start <container> -> Startet einen Container
+	\item docker stop <container> -> Stoppt einen Container
+	\item docker logs <container> -> Zeigt Logfile des Containers 
+	\item docker run <image> -> Erzeugt \& startet Container
+	\begin{itemize}
+		\item[$\triangleright$] --name <container> -> Vergibt Containernamen
+		\item[$\triangleright$] -p <ip>:<host-port>:<container-port> -> IP-Adresse des Containers und Portmapping zwischen Container und Host (WICHTIG: Dockerfile muss Port freigeben mittels EXPOSE)
+		\item[$\triangleright$] -d -> Container wird im Hintergrund gestartet
+		\item[$\triangleright$] -v <host-Verzeichnis>:<container-Verzeichnis> -> Bindet ein Volume vom Host in den Container ein
+	\end{itemize}
+	\item docker exec -it <container> <kommando> -> Führt ein Kommando in einem laufenden Container aus (HINWEIS: Um eine Bash in einem laufenden Container zu öffnen docker exec -it <container> /bin/bash eingeben)
+\end{itemize}
