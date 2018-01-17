@@ -1,4 +1,5 @@
-﻿function checkCookiesForLoggedinUser() {
+
+function checkCookiesForLoggedinUser() {
     var usrnameCookie = getCookie("username");
     var pwdCookie = getCookie("password"); 
 
@@ -35,16 +36,39 @@ function checkLoginInput() {
     document.cookie = "password=" + password; 
 }
 
-function checkLoginDOMXSS() {
-    var username = document.getElementById("usrname").value;
-    var password = document.getElementById("pwd").value; 
+function startDOMBasedXSS() {
+    document.cookie = "username=" + "root";
+    document.cookie = "password=" + "hallo123"; 
+    document.cookie = "\n Du has dieses Tutorial gelöst!"; 
     
-    if (username === "admin" && password === "admin") {
-        document.getElementById("shoppingList").removeAttribute("hidden");
-        // var pos = document.URL.indexOf("context=") + 8;
-      //  document.write(document.URL.substring(pos, document.URL.length));
-	//var pos=document.URL.indexOf("context=")+8;
-	//document.write(document.URL.substring(pos,document.URL.length));
-    }
+    document.getElementById("hidingList").removeAttribute("hidden");
+    hiddenState = true; 
+    
+    select = document.getElementById('languageList');
+    
+    var opt = document.createElement('option');
+    opt.value = "Englisch";
+    opt.innerHTML = "Englisch"; 
+    select.appendChild(opt); 
+
+    var opt2 = document.createElement('option');
+    opt2.value = "France";
+    opt2.innerHTML = "France"; 
+    select.appendChild(opt2); 
+
+    var opt3 = document.createElement('option');
+    opt3.value = "Italian";
+    opt3.innerHTML = "Italian"; 
+    select.appendChild(opt3); 
+
+    var opt4 = document.createElement('option');
+    opt4.value = "Spanish";
+    opt4.innerHTML = "Spanish"; 
+    select.appendChild(opt4); 
+
+    var opt5 = document.createElement('option');
+    opt5.value = "Chinese";
+    opt5.innerHTML = "Chinese"; 
+    select.appendChild(opt5); 
 }
 

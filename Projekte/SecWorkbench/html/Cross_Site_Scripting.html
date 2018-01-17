@@ -1,0 +1,83 @@
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<div class="row">
+    <div class="col-xs-7 col-md-7">
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">Cross Site Scripting - XSS </h3>
+            </div>
+            <div class="box-body" style="text-align:justify">
+                <h5><b><u>Was ist Cross Site Scripting? </u></b></h5>
+                Mit <b>Cross-Site Scripting (XSS)</b> wird das Ausnutzen einer Computersicherheitslücke in Webanwendungen bezeichnet,
+                indem ein Angreifer Webseiten mit clientseitigen Skripten infiziert, die von anderen Nutzern aufgerufen werden.
+                Typischerweise zielen XSS-Attacken darauf ab Session Informationen zu stehlen, den Useraccount zu übernehmen, Keylogging, bestimmte
+                DOM-Knoten zu manipulieren oder auch 'Defacements' mit z.B. trojanischen login panels. </br>
+                In unserer Webanwendung findest du Tutorials zu den folgenden XSS-Attacken: </br></br>
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="Reflected_XSS_master.php">
+                            <span class="glyphicon glyphicon-info-sign"></span> Refleced Cross Site Scripting
+                        </a></li>
+                    <li class="list-group-item"> <a href="StoredXSS.html">
+                            <span class="glyphicon glyphicon-info-sign"></span> Stored Cross Site Scripting
+                        </a></li>
+                    <li class="list-group-item"><a href="DOMbasedXSS.html">
+                            <span class="glyphicon glyphicon-info-sign"></span> DOM-Based Cross Site Scripting
+                        </a></li>
+                </ul>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-5 col-md-5">
+        <div class="box box-primary">
+            <div class="box-header">
+                <h3 class="box-title">Kurzinformationen</h3>
+                <div class="box-body">
+                    <div id="w5" class="info-box bg-red"><span class="info-box-icon">
+                            <i class="fa fa-line-chart"></i></span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Statistik</span>
+                            <span class="info-box-number">bis zu 35!</span>
+                            <div class="progress">
+                                <div class="progress-bar" style="width: 45%"></div>
+                            </div>
+                            <span class="progress-description">Bis zu 35% aller Webangriffe sind XSS!</span>
+                        </div>
+                    </div>
+                    <div id="w2" class="alert alert-info fade in">
+                        <h4><i class="fa fa-info-circle"></i>&nbsp;Info!</h4>
+                        Cross Site Scripting Angriffe sind auf <b style="color:red"><u>Platz 7</u></b>
+                        der Top 10 Sicherheitsrisiken von <a href="https://www.owasp.org/index.php/Main_Page">OWASP</a>. Ausgewertet wurden die Angriff anhand der folgenden Kriterien:
+                        <br/><br/>
+                        <ul class="list-group clearfix">
+                            <li style="color:grey" class="list-group-item">Ausnutzbarkeit<div class="pull-right"><span class="label label-danger">Einfach</span></div></li>
+                            <li style="color:grey" class="list-group-item">Häufigkeit<div class="pull-right"><span class="label label-danger">Häufig</span></div></li>
+                            <li style="color:grey" class="list-group-item">Erkennbarkeit<div class="pull-right"><span class="label label-success">Einfach</span></div></li>
+                            <li style="color:grey" class="list-group-item">Technische Auswirkungen<div class="pull-right"><span class="label label-warning">Moderat</span></div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<?php
+include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>
+
+<script>
+    // mark the site as active in the nav bar
+    document.getElementById('tvXSS').className = 'treeview active';
+    document.getElementById('sbiDOMbasedXSS').className = 'active';
+
+    // Update site description and title
+    var title = "Cross Site Scripting";
+    document.getElementById("pageTitle").innerHTML = title;
+    document.getElementById("titleDiv").innerHTML = title;
+    document.getElementById("pageDescription").innerHTML = "Theorie";
+</script>

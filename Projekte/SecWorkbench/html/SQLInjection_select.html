@@ -31,7 +31,7 @@ function checkUser(username, password) {
                 document.getElementById("output").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","login.php?username="+username+"&password="+password,true);
+        xmlhttp.open("GET","injectionLogin.php?username="+username+"&password="+password,true);
         xmlhttp.send();
     }
 }

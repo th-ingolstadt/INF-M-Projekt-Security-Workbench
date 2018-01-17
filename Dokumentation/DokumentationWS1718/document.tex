@@ -1,5 +1,8 @@
 % use PDFLaTex
 \input{Imports/def}
+% kein Einrücke nach einem Absatz
+\setlength\parindent{0pt}
+
 %Titel
 \title{Broken Web Application\\ \vspace{1ex} \Large Ein Einstieg in die Sicherheit von Web-Applikationen}
 
@@ -25,14 +28,14 @@ Betreuer & \emph{Prof. Dr. Stefan Hahndel}\\
 %Beginn Text
 
 \input{chapter/Einleitung.tex}
-\input{chapter/Glossar.tex}
+%\input{chapter/Glossar.tex}
 \input{chapter/Vorbereitung.tex}
-\input{chapter/Tools.tex}
 \input{chapter/BrokenAuthenticationAndSessionManagement.tex}
 \input{chapter/Bufferoverflow.tex}
-\input{chapter/CSS.tex}
-\input{chapter/LoginPacour.tex}
+\input{chapter/XSS.tex}
+\input{chapter/LoginParcour.tex}
 \input{chapter/SQLInjection.tex}
+\input{chapter/Ausblick.tex} 
 \input{chapter/Disclaimer.tex}
 
 

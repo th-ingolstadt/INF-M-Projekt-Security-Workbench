@@ -3,16 +3,16 @@ function setActiveClass(parentID) {
     // all sidebar menu items must be a member of allSBI array
     var allSBI=["sbiIndex",
         //Session Management
-        "sbiSessionManagement_1", "sbiSessionManagement_2", "sbiSessionManagement_3", "sbiSessionManagement_4", "sbiSessionManagement_5", 
+        "sbiSessionManagement_1", "sbiSessionManagement_2", "sbiSessionManagement_3", "sbiSessionManagement_4", "sbiSessionManagement_5",
         //Buffer Overflow
         "sbiBufferOverflow", "sbiBufferOverflowFE", "sbiBufferOverflowSE",
         //SQL Injection
-        "sbiSQLInjection", "sbiSQLInjectionSelect", "sbiSQLInjectionInsert", "sbiSQLInjectionDrop", "sbiSQLInjectionPlayground", "sbiSQLInjection_Modify", 
+        "sbiSQLInjection", "sbiSQLInjectionSelect", "sbiSQLInjectionInsert", "sbiSQLInjectionDrop", "sbiSQLInjectionPlayground", "sbiSQLInjection_Modify",
         //Cross Site Scripting
-        "sbiReflectedXSS", "sbiStoredXSS", "sbiDOMbasedXSS",
+        "sbiXSS", "sbiReflectedXSS", "sbiStoredXSS", "sbiDOMbasedXSS",
         //Login Parcours
         "sbiLoginParcours"
-        
+
         ];
     var allTV=["tvSessionManagement", "tvBufferOverflow", "tvSQLInjection", "tvXSS"];
     var arrayLength = allSBI.length;
@@ -133,15 +133,18 @@ function setActiveClass(parentID) {
                     </span>
                 </a>
                 <ul class="treeview-menu" >
+                    <li id="sbiXSS" class="" >
+                          <a href="Cross_Site_Scripting.html"><i class="fa fa-link"></i> <span>Cross Site Scripting Theorie</span></a>
+                    </li>
                     <li id="sbiReflectedXSS" class="" >
                         <a href="Reflected_XSS_master.php"><i class="fa fa-link"></i> <span>Reflected XSS</span></a>
                     </li>
                     <li id="sbiStoredXSS" class="">
-                        <a href="StoredXSS.php"><i class="fa fa-link"></i> <span>Stored XSS</span></a>
+                        <a href="StoredXSS.html"><i class="fa fa-link"></i> <span>Stored XSS</span></a>
                     </li>
 
                     <li id="sbiDOMbasedXSS" class="">
-                        <a href="DOMbasedXSS.php"><i class="fa fa-link"></i> <span>DOMbased XSS</span></a>
+                        <a href="DOMbasedXSS.html?default=german"><i class="fa fa-link"></i> <span>DOM-Based XSS</span></a>
                     </li>
                 </ul>
             </li>

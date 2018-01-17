@@ -4,7 +4,7 @@
 
 <script>
     window.onload = function () {
-        var title = "Loginparcours - Level 6";
+        var title = "Loginparcours - Level 7";
         document.getElementById("pageTitle").innerHTML = title;
         document.getElementById("titleDiv").innerHTML = title;
         document.getElementById("pageDescription").innerHTML = "";
@@ -53,7 +53,7 @@
                     <!-- Begin # DIV Form -->
                     <div id="div-forms">
                         <!-- Begin # Login Form -->
-                        <form id="login-form-">
+                        <form id="login-form-" method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
                             <div class="modal-body">
                                 <div id="div-login-msg">
                                     <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
@@ -110,8 +110,8 @@
                                     </table>
                                     <br />
                                 </div>
-                                <input id="login_username" class="form-control" type="text" placeholder="Username" required >
-                                <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                <input id="login_username" name="login_username"class="form-control" type="text" placeholder="Username" required >
+                                <input id="login_password" name="login_password" class="form-control" type="password" placeholder="Password" required>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox"> Remember me
@@ -120,7 +120,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="checkLoginCredentialsBCrypt()">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" name='login'>Login</button>
                                 </div>
                                 <div>
                                     <a>Lost Password?</a>
@@ -135,6 +135,23 @@
                 </div>
             </div>
         </div>
+        <?php
+
+            if (isset($_POST['login'])) {
+                    $username = $_POST["login_username"];
+                    $passwort =$_POST["login_password"];
+                    if($username == "Kevin" && $passwort == "sniffing"){
+                        echo '<script type="text/javascript">alert("Yeah du hast Level 6 gemeistert!");</script>';
+                        echo "<b style='color:green'>Level 7 gemeistert! :) </b><br/>"; 
+                        echo "Von vorn beginnen <a href='LoginParcourLevel1.html'>Level 1</a><br/>";
+                        echo "Zurück zur Übersichtsseite <a href='LoginParcoursHome.html'>Login-Parcour-Levels</a>"; 
+                    } else {
+                        echo '<script type="text/javascript">alert("Dein Login war leider nicht erfolgreich! Probiere es nochmal!");</script>';
+                        echo "<b style='color:red'>Leider war dein dein Login fehlerhaft. Versuche es erneut!</b><br/>"; 
+                    } 
+            }
+           ?>
+        
 
 
     </body>

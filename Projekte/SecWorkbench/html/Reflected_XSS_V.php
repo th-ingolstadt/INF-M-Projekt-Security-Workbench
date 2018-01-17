@@ -97,9 +97,9 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 <h3 class="box-title">Aufgabenstellung:</h3>
             </div>
             <div class="box-body">
-              Im Grunde bleibt die Aufgabenstellung zu der 4. Übung fast identisch.<br>
-              Der einzige Unterschied bezieht sich auf die Zeichen die in den beiden Zeichenfeldern die für 
-              Vor- und Nachname zulässig sind. Folglich wird es Ihnen erschwert das Formular in die Webanwendung zu integrieren.
+              Im Grunde bleibt die Aufgabenstellung zu der 4. Übung identisch.<br>
+              Der einzige Unterschied bezieht sich auf die Zeichen die in den beiden Zeichenfeldern 
+              zulässig sind. Folglich wird es Ihnen erschwert das Formular in die Webanwendung zu integrieren.
               <br>
               <br>
               Nach dem Abschließen dieser Übung können sie zur <a href="Reflected_XSS_master.php">Übersichtsseite</a> zurückkehren.

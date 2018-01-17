@@ -59,7 +59,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseOne" class="panel-collapse collapse">
                             <div class="box-body">
-                                Füge den Scriptcode in eines der beiden Eingabefelder ein und drücke den "Login"-Button.<br>                                
+                                Fügen Sie den Scriptcode in eines der beiden Eingabefelder ein und drücke den "Login"-Button.<br>                                
                             </div>
                         </div>
                     </div>
@@ -73,7 +73,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                         </div>
                         <div id="collapseTwo" class="panel-collapse collapse">
                             <div class="box-body">
-                                Beachte dabei das beide Eingabelfeder nicht leer sein dürfen.<br>
+                                Beachten Sie dabei das beide Eingabelfeder nicht leer sein dürfen.<br>
                             </div>
                         </div>
                     </div>             

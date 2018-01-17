@@ -16,7 +16,7 @@
 <script src="../Content/js/loginParcour.js"></script>
 
     </head>
-    <body>
+    <body>       
         <div class="container" id="instruction">
             <div class="row">
                 <div class="col-xs-2 col-md-2"></div>
@@ -53,65 +53,17 @@
                     <!-- Begin # DIV Form -->
                     <div id="div-forms">
                         <!-- Begin # Login Form -->
-                        <form id="login-form-">
+                        <form id="login-form-" method='post' action='<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>'>
                             <div class="modal-body">
                                 <div id="div-login-msg">
                                     <div id="icon-login-msg" class="glyphicon glyphicon-chevron-right"></div>
-                                    <span id="text-login-msg">Du warst in der Lage mittels einer SQL-Injection an die Tabelle mit Usernamen und Passwörtern zu gelangen. 
-                                        Allerdings sind dort nur verschlüsselte Werte vorzufinden. Finde einen Weg in das System! Im ersten Schritt gehst du davon aus, dass min. ein User so freundlich gewesen ist und eines der gebräuchlichen Passwörter zu benutzen. 
-                                        (<a href="./Content/commonpasswords.txt" target="_blank">commonpasswords.txt</a>) <br />
+                                    <span id="text-login-msg">Mit Wireshark ist es möglich den Netzwerkverkehr zu beobachten und Pakete zu verfolgen. Die folgende PCAP 
+                                        Datei enthält unverschlüsselten FTP-Verkehr in die Credentials für dieses Level enthalten sind. Finde Sie und löse die Aufgabe!
+                                        (<a href="./Content/ftp.pcap.gz">PCAP Mitschnitt</a>) <br />
                                     </span>
-                                    <br />
-                                    <table class="table">
-                                        <thead>
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Username</th>
-                                                <th>Hash</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>0</td>
-                                                <td>Daniel</td>
-                                                <td>$2y$10$zwynnupIpCUSxUKAt2jK5.htSXwvkn/el3zMb6ZdgBMdmCuWobWXO</td>
-                                            </tr>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>Mohammed</td>
-                                                <td>$2y$10$GXOsE7j7Qs40FdmuiDorUuprsvPaZFqms.lGCbLzCaIYMveAvxNPS</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>Stefan</td>
-                                                <td>$2y$10$b6XHaEhR0Zwqaf6.CTYkv.QdU2fIh796DxB24wjyXoYv49GuBt4pC</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>Christian</td>
-                                                <td>$2y$10$e5yfZ.2GxpQqaw740ZvjAeZ/lMbi2pOV8lsH3DwN0uaMBVALDiO7C</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>Kevin</td>
-                                                <td>$2y$10$roMOvhk2uJ.9QMbUtKgHZOvfIlv/EsXxsfpoBWEuN1WAvAlJBb5D</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>Sebastian</td>
-                                                <td>$2y$10$K7Zz/co4Fjh1V.QGU.K/Gua3IRdR8HbnYnsWqoyAejBcIziuBR5Ta</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>Fabian</td>
-                                                <td>$2y$10$OM/uZQ5PAdHFvOTFgO8y0OMciHWKW2PPALsM40koeP9Dzdvi5BhJS</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <br />
                                 </div>
-                                <input id="login_username" class="form-control" type="text" placeholder="Username" required >
-                                <input id="login_password" class="form-control" type="password" placeholder="Password" required>
+                                <input id="login_username" name="login_username" class="form-control" type="text" placeholder="Username" required >
+                                <input id="login_password" name="login_password" class="form-control" type="password" placeholder="Password" required>
                                 <div class="checkbox">
                                     <label>
                                         <input type="checkbox"> Remember me
@@ -120,7 +72,7 @@
                             </div>
                             <div class="modal-footer">
                                 <div>
-                                    <button type="submit" class="btn btn-primary btn-lg btn-block" onclick="checkLoginCredentialsBCrypt()">Login</button>
+                                    <button type="submit" class="btn btn-primary btn-lg btn-block" name="login">Login</button>
                                 </div>
                                 <div>
                                     <a>Lost Password?</a>
@@ -135,8 +87,24 @@
                 </div>
             </div>
         </div>
+        <?php
 
+            if (isset($_POST['login'])) {
+                    $username = $_POST["login_username"];
+                    $passwort =$_POST["login_password"];
 
+                    if($username == "jerry" && $passwort == "saymynameheisenberg"){
+                        echo '<script type="text/javascript">alert("Yeah du hast Level 6 gemeistert!");</script>';
+                        echo "<b style='color:green'>Level 6 completed! :) </b><br/>"; 
+                        echo "Starte mit dem nächsten Level <a href='LoginParcourLevel7.html'>Level 7</a><br/>";
+                        echo "Zurück zur Übersichtsseite <a href='LoginParcoursHome.html'>Login-Parcour-Levels</a>"; 
+                    } else {
+                        echo '<script type="text/javascript">alert("Dein Login war leider nicht erfolgreich! Probiere es nochmal!");</script>';
+                        echo "<b style='color:red'>Leider war dein dein Login fehlerhaft. Versuche es erneut!</b><br/>"; 
+                    } 
+            }
+           ?>
+        
     </body>
 <?php
     include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";

@@ -1,0 +1,35 @@
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html";
+?>
+
+<script>
+    window.onload = function () {
+        var title = "Bobs Hidden Page";
+        document.getElementById("pageTitle").innerHTML = title;
+        document.getElementById("titleDiv").innerHTML = title;
+        document.getElementById("pageDescription").innerHTML = "";
+    };
+    
+    document.getElementById('sbiLoginParcours').className = 'active';
+</script>
+
+    </head>
+    <body>
+        <div class="container" id="instruction">
+            <div class="row">
+                <div class="col-xs-2 col-md-2"></div>
+                <div class="col-xs-4 col-md-4">
+                    <p>Ich weiß nicht wie du das herausfinden konntest?! Das Passwort für Level 4 ist: bobIsSoStupid123</p>
+                    Gehe zurück zu Level 4 <a href="LoginParcourLevel4.html"> Level 4 </a>
+                </div>
+            </div>
+        </div>
+        
+
+        
+
+
+    </body>
+<?php
+    include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_LowerPart.html";
+?>

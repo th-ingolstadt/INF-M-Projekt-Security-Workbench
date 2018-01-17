@@ -1,5 +1,5 @@
 %!TEX root = ../document.tex
-\documentclass[oneside,11pt,DIV=8,listof=totoc]{scrreprt}
+\documentclass[article,11pt,DIV=8,listof=totoc, lststotoc]{scrreprt}
 \usepackage{scrhack}
 \usepackage[utf8]{inputenc}
 \usepackage[ngerman]{babel}
@@ -20,6 +20,7 @@
 \usepackage{xparse}
 \usepackage{listings}
 \usepackage{float}
+\usepackage{wrapfig}
 \setlength{\emergencystretch}{0.5em}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%d%%
 
@@ -35,11 +36,34 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % listings
-\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
-\lstset{stringstyle=\color{red}} % typewriter type for strings
-\lstset{keywordstyle=\color{blue}\bfseries} \lstset{commentstyle=\color{green}}
-\lstset{showstringspaces=true} % no special string spaces
-\lstset{backgroundcolor=\color{altgray}} %
+\definecolor{darkgreen}{rgb}{0, 0.4, 0}
+\lstset{
+         basicstyle=\footnotesize\ttfamily, % Standardschrift
+         numbers=left,               % Ort der Zeilennummern
+         numbersep=5pt,              % Abstand der Nummern zum Text
+         tabsize=2,                  % Groesse von Tabs
+         extendedchars=true,         %
+         breaklines=true,            % Zeilen werden Umgebrochen
+         keywordstyle=\color{red},
+    		frame=b,         
+         stringstyle=\color{blue}\ttfamily, % Farbe der String
+         showspaces=false,           % Leerzeichen anzeigen ?
+         showtabs=false,             % Tabs anzeigen ?
+         xleftmargin=17pt,
+         framexleftmargin=17pt,
+         framexrightmargin=5pt,
+         framexbottommargin=4pt,
+         %backgroundcolor=\color{lightgray},
+         showstringspaces=false,      % Leerzeichen in Strings anzeigen ?        
+         commentstyle=\color{darkgreen}
+}
+%\lstset{basicstyle=\footnotesize\ttfamily,breaklines=true}
+%\lstset{stringstyle=\color{red}} % typewriter type for strings
+%\lstset{keywordstyle=\color{blue}\bfseries} \lstset{commentstyle=\color{green}}
+
+\lstloadlanguages{C}
+
+
 \lstset{literate=%
   {Ö}{{\"O}}1
   {Ä}{{\"A}}1
