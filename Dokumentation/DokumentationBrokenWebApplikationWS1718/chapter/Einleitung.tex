@@ -1,0 +1,25 @@
+%!TEX root = ../document.tex
+\chapter{Einleitung}
+Dieses Dokument beschreibt die Verwendung der Broken Web Application. Diese ist Teil der Security Workbench, die seit
+dem Sommersemester 2016 als studentische Projektarbeit im Rahmen des Masterstudiengangs
+Informatik an der TH Ingolstadt entwickelt wird. Die Workbench
+erklärt und veranschaulicht verschiedene Angriffe und Szenarien aus dem Bereich
+der Netzwerksicherheit. Dies betrifft unter anderem Spoofing, Denial-of-Service
+und Angriffe auf die WLAN Infrastruktur. \\ 
+Im Wintersemester 16/17 wurde das Projekt der Security Workbench um eine Broken Web Application erweitert, die dem Einsteiger erlaubt gängige Angriffsarten wie Cross-Site-Scripting, SQL-Injection oder Broken Authentication und Session Management anhand von Beispielübungen kennen zu lernen. \\ 
+Nach einer Erläuterung wie die Broken Web Application unter einer virtuellen Maschine vorbereitet werden muss zeigen die folgenden Kapitel auf, wie die einzelnen Tutorials zu den Angriffsarten durchgeführt werden können. 
+
+\section{Aktualisierung}
+
+Die Broken Web Application liegt unter dem öffentlichen Git-Repository der Security Workbench \\ \url{https://github.com/th-ingolstadt/INF-M-Projekt-Security-Workbench} vor. Hierzu ist der Source Code der Webanwendung im Ordner \textit{SecWorkbench} wiederzufinden. Eine Aktualisierung per git kann auf der Kommandozeile wie folgt durchgeführt werden.
+
+\begin{lstlisting}
+> cd INF-M-Projekt-Security-Workbench
+> git pull
+\end{lstlisting}
+
+\section{Weiterentwicklung} 
+Die Webanwendung basiert auf einem Projekt, bei dem die Serverseite mittels PHP programmiert ist. Clientseitig ist besteht die Applikation aus HTML-Seiten, CSS für das Design und JavaScript für die Logik. Um das Design zu vereinfachen wird mit dem Framework \textit{Bootstrap} entwickelt worden, das dem Entwickler eine Reihe von vordefinierten Styles mit an die Hand gibt (\url{https://getbootstrap.com/}). Darüber hinaus liegt der Weboberfläche das Dashboard \textit{AdminLTE} zugrunde, dass weitere Style-Vereinfachungen bietet (\url{https://adminlte.io/themes/AdminLTE/index2.html}). Besonders in Bezug auf künftige Entwicklungen, können diese Frameworks weiterhin verwendet und so die Weboberfläche einheitlich gestaltet werden.  
+
+
+
