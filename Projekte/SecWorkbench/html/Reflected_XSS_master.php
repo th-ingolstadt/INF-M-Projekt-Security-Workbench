@@ -22,7 +22,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
             <div class="box-body">               
                 <center>
                     <figure>
-                        <video src="Content/img/Attacks/XSS_Reflected/xss_reflected.mp4" controls width="560" height="315"></video>
+                        <video src="Content/videos/ReflectedXSS_mitAudio.mp4" controls width="560" height="315"></video>
                     </figure>
                 </center>
                 <br>
@@ -39,7 +39,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                 <br>
                 Dies wird in der folgenden Grafik veranschaulicht:
                 <center>
-                <img src="Content/img/Attacks/XSS_Reflected/xss_reflected.png" width="560" height="300">
+                <img src="Content/img/xss_reflected.png" width="560" height="300">
                 </center>
             </div> 
             <div class="box-body">

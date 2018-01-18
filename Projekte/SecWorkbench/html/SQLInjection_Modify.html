@@ -132,7 +132,9 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                     $result = $conn->query($sqlQuery);
                                 }
 
-                                if (strpos($sqlQuery, "'; UPDATE sqlInjectionRanking SET punkte") == true) {
+                                if ((strpos($sqlQuery, "'; UPDATE sqlInjectionRanking SET punkte") == true)
+                                    || (strpos($sqlQuery, "'; Update sqlInjectionRanking SET punkte") == true) 
+                                    || (strpos($sqlQuery, "'; update sqlInjectionRanking SET punkte") == true)) { 
                                     echo "<b><font style='color:green'>Herzlichen Glückwunsch! Du hast die Aufgabe gelöst. Schau dir dein Ergebnis an,
                                             indem du dir nochmal die modifizierte Rangliste ansiehst!</font></b>";
                                     return;
@@ -149,7 +151,7 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                     echo "<b style='color:red'>ERROR in database connection! Please try again!</b>";
                                 }
 
-                                $secondSqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 15";
+                                $secondSqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 10";
                                 $ranglistenResult = $conn->query($secondSqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($ranglistenResult->num_rows > 0) {
@@ -175,10 +177,11 @@ include "$_SERVER[DOCUMENT_ROOT]/SecWorkbench/SharedSites/_Layout_UpperPart.html
                                 $conn = new mysqli("127.0.0.1", "normal_user", "master42", "vulnerableDB");
 
                                 if ($conn->connect_error) {
+                                echo "Connection failed";
                                 die("Connection failed: " . $conn->connect_error);
                                 }
 
-                                $sqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 5";
+                                $sqlQuery = "SELECT username, punkte FROM sqlInjectionRanking ORDER BY punkte DESC LIMIT 10";
                                 $result = $conn->query($sqlQuery);
                                 $ranglistenIndex = 1;
                                 if ($result->num_rows > 0) {
